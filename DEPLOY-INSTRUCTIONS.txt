@@ -1,0 +1,45 @@
+BRANDFORGE OS — FINAL DEPLOY ZIP (2026-09-06)
+Contents = exact tracked source of github.com/nabsan144-hub/brandforge-os
++ the full launch pass (routing fix, upgraded banner engine, homepage gallery
++ hero, conversion UX, green CI). No build output, no node_modules, no .git.
+
+HOW TO PUT THIS ON GITHUB AND DEPLOY (Windows cmd) — pick ONE option:
+
+──────── OPTION A — RECOMMENDED (keeps your Git history) ────────
+1) Extract this zip anywhere (e.g. Desktop\bf-final).
+2) Open cmd and run (edit paths if different):
+
+    cd /d "D:\My creations\AI agent\Brandforge os\BrandForgeOS"
+    git clone https://github.com/nabsan144-hub/brandforge-os.git bf-update
+    :: Now copy ALL extracted files INTO the bf-update folder (overwrite everything;
+    ::    easiest in Explorer: select all inside bf-final, copy, paste into bf-update, Replace)
+    cd bf-update
+    git config user.name "nabsan144-hub"
+    git config user.email "296047257+nabsan144-hub@users.noreply.github.com"
+    git add -A
+    git commit -m "Launch pass: production routing fix, visual upgrade, homepage gallery, conversion UX"
+    git push origin main
+
+   (Git will open a browser window the first time to sign in to GitHub.)
+
+──────── OPTION B — SIMPLE (fresh history, force overwrite) ────────
+Use only if Option A fails. Same as above, but instead of clone+copy:
+    cd /d "D:\path\to\EXTRACTED\bf-final"
+    git init
+    git config user.name "nabsan144-hub"
+    git config user.email "296047257+nabsan144-hub@users.noreply.github.com"
+    git add -A
+    git commit -m "Launch pass"
+    git branch -M main
+    git remote add origin https://github.com/nabsan144-hub/brandforge-os.git
+    git push -u origin main --force
+   --force overwrites the current GitHub history (it's just today's 7 commits — acceptable).
+
+3) Vercel redeploys automatically on push (both www and app projects).
+4) IMMEDIATELY VERIFY (this catches the class of bug that broke checkout):
+
+    node scripts\live_api_smoke.mjs
+
+   Every line must print "ok". Full go-live env checklist (Paddle prices,
+   secrets, checkout flags) is in BRANDFORGE-FIX-AND-DEPLOY.md alongside
+   this zip, and in docs/LAUNCH-RUNBOOK.md inside the repo.

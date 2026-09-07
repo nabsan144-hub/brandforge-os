@@ -1,0 +1,231 @@
+{
+  "engine": "offline",
+  "sample": true,
+  "files": [
+    {
+      "name": "01_strategy_and_approval.html",
+      "bytes": 3814,
+      "sha256": "ca413bf2ef75185259191787cc65bcacf9a829867fa7dea9bc64389267093fc3"
+    },
+    {
+      "name": "02_copy_pack.md",
+      "bytes": 1756,
+      "sha256": "fc3b76d5a2846b38ce7ee66b9138057942581bb690037eed81c065acfa63f4e0"
+    },
+    {
+      "name": "03_content_calendar.csv",
+      "bytes": 771,
+      "sha256": "12465b571b9fb56463d29267b6df9d060b83c1d291fc844721b65f9ed6817b7a"
+    },
+    {
+      "name": "04_creative_brief.md",
+      "bytes": 1143,
+      "sha256": "8dfd03ae871b34f53e2e61700c466898c73fb3669424deda2ae409838973250d"
+    },
+    {
+      "name": "README_DELIVERY.md",
+      "bytes": 637,
+      "sha256": "45887b61a26481384157944dcf9cc840fc61b9a728e06c0082f0ad6da16633da"
+    },
+    {
+      "name": "SAMPLE-NOTICE.txt",
+      "bytes": 357,
+      "sha256": "4387c9a42dfa4d696152b21525e999b45ce3c4f83e2702dcdbacb39db1d2dd25"
+    },
+    {
+      "name": "abstract_mark.png",
+      "bytes": 19097,
+      "sha256": "a0a669e4a7151141a8377585d51a2c8dd6d175d261d6b4a749bce15c89590d5e"
+    },
+    {
+      "name": "abstract_mark.svg",
+      "bytes": 497,
+      "sha256": "6878a9f2064615a03277a13d6980b45e9a26563fca41189c64a668f7d272781a"
+    },
+    {
+      "name": "ad_card.html",
+      "bytes": 761119,
+      "sha256": "82b34177b48d059126e5cbfcf99448bdd7565e0ead17fae132eb172a3d3169a0"
+    },
+    {
+      "name": "banner_fb_story.png",
+      "bytes": 48739,
+      "sha256": "ec24d8a3f0e81c4e1df99c1ec4ffec7b00aca3983149d731d580207ca2f96191"
+    },
+    {
+      "name": "banner_fb_story.svg",
+      "bytes": 32883,
+      "sha256": "ae5f2ed2308a90b57f4e57aa243404ec6f87ade2219fda12a0a96a92d64476bc"
+    },
+    {
+      "name": "banner_leaderboard.png",
+      "bytes": 5588,
+      "sha256": "1e1dc4f2ccde4557f54b3874140143acf072edae8ead013198d617559df2a01f"
+    },
+    {
+      "name": "banner_leaderboard.svg",
+      "bytes": 11229,
+      "sha256": "bec2b2021b7dd3d3855546601e9d1c47e3c524d0bd89fc26beb2e767a68be6fd"
+    },
+    {
+      "name": "banner_medium_rectangle.png",
+      "bytes": 13746,
+      "sha256": "11babcb7edc6da08b6574e162ace9b49015423108fcfcef08e7b1f45fc736239"
+    },
+    {
+      "name": "banner_medium_rectangle.svg",
+      "bytes": 32813,
+      "sha256": "71ee0efec9f3d6099894a49a29f6ebb9eac73c168becc2cea79282e20d86c748"
+    },
+    {
+      "name": "brand_guidelines.md",
+      "bytes": 3195,
+      "sha256": "a45b8674c5204d4d91b2c876469105c1727aab63b0ae0402cfeadfe0b74d357a"
+    },
+    {
+      "name": "campaign.docx",
+      "bytes": 38038,
+      "sha256": "c28be3f2724cfcfb92c26cec986a29a88e28c0ea9181890fe5a9252272ecdcc9"
+    },
+    {
+      "name": "campaign.json",
+      "bytes": 8613,
+      "sha256": "4a5d45d8bd92428d3089b900ae052c46da9886d4eb8e0b6082f7e0985bc80d76"
+    },
+    {
+      "name": "campaign.pdf",
+      "bytes": 24608,
+      "sha256": "abeaa5b45030f66356039a42bf97746806b5971dafc0ff5b70550d212be012df"
+    },
+    {
+      "name": "campaign_report.md",
+      "bytes": 2959,
+      "sha256": "41741bdfc6c7dd5d61e2993281b623a8c057107605e44ac54dd3638f04112e3f"
+    },
+    {
+      "name": "color_palette.json",
+      "bytes": 739,
+      "sha256": "df11eb25ba1b8dbd0d3785f8f018184cb70926a240cd338821cba1f3d6b88eeb"
+    },
+    {
+      "name": "emblem.png",
+      "bytes": 46156,
+      "sha256": "ebda1d0c1e446110dafd1dde3c7f558d63cfdb138f73cc4faf095fd911634818"
+    },
+    {
+      "name": "emblem.svg",
+      "bytes": 6379,
+      "sha256": "038f0d9b89766f161438ee93ec400b9e11453fd2c5815efffec2582a770354c4"
+    },
+    {
+      "name": "favicon.png",
+      "bytes": 8557,
+      "sha256": "1dc1aff8f622dd6b5ddab3e1a8e006a4c962aeb0eca78c59d3028f71f346a8fb"
+    },
+    {
+      "name": "favicon.svg",
+      "bytes": 1234,
+      "sha256": "1f4a63dfa54fe93fc358ca099d7abe0c86b1f44e1d83fc8706351b527b372e8d"
+    },
+    {
+      "name": "hero_banner.jpg",
+      "bytes": 48725,
+      "sha256": "a09e4fb33a998a09a7f0c27d3a23542bb4817c305af6c863d2a1ce6a719bf5b3"
+    },
+    {
+      "name": "hero_banner.png",
+      "bytes": 34746,
+      "sha256": "90633fed47ac5592f3883452d18e4808b8cb0d155520a44cd330e3bed3def772"
+    },
+    {
+      "name": "hero_banner.svg",
+      "bytes": 32795,
+      "sha256": "e332c0b93c45e412624c930a0946e08145c7b0decc06da4310a5eedadecfd2b9"
+    },
+    {
+      "name": "icon_only.png",
+      "bytes": 19767,
+      "sha256": "7fb288d36b2c365db048b6aa505953cc70eeecea577f413b79bd8c65dfe4c8d8"
+    },
+    {
+      "name": "icon_only.svg",
+      "bytes": 1236,
+      "sha256": "ef105ed0e23dd23a90eaaede29f920d1e5c56aace7d5f468e93b79fff7224b94"
+    },
+    {
+      "name": "instagram_square.jpg",
+      "bytes": 46768,
+      "sha256": "908740bb6ba77b858f4adfe0c790cd211c2004e7185f0150f625f2c0e96c62e9"
+    },
+    {
+      "name": "instagram_square.png",
+      "bytes": 41761,
+      "sha256": "523de00129862e80e66a3986e849c7747cc64a76f8f4f374f7f2b669e3bef91c"
+    },
+    {
+      "name": "instagram_square.svg",
+      "bytes": 30567,
+      "sha256": "73786f884170615a9880ae0cecaafb4dbff6fedfbe9b67640a307a53356e1958"
+    },
+    {
+      "name": "landing_page.html",
+      "bytes": 761141,
+      "sha256": "99c30cd26ce4b95d19075dd29b0c5a7dba1bcc94a1f3ffdc90007d3355c47e97"
+    },
+    {
+      "name": "lettermark.png",
+      "bytes": 19767,
+      "sha256": "7fb288d36b2c365db048b6aa505953cc70eeecea577f413b79bd8c65dfe4c8d8"
+    },
+    {
+      "name": "lettermark.svg",
+      "bytes": 1236,
+      "sha256": "ef105ed0e23dd23a90eaaede29f920d1e5c56aace7d5f468e93b79fff7224b94"
+    },
+    {
+      "name": "logo_usage.md",
+      "bytes": 1387,
+      "sha256": "8134c2be5849eb800ccdf994e3b838fdf3c4e9fdc343adec8244e290beb2a151"
+    },
+    {
+      "name": "primary_logo.png",
+      "bytes": 24913,
+      "sha256": "b11a26981070b0db976a9c60ad72dc4c370f2ab57968031891ac20239d2aa91c"
+    },
+    {
+      "name": "primary_logo.svg",
+      "bytes": 6271,
+      "sha256": "dda2395490471848179cc0b0e4525c327e114c1932fe8a7c8f1ed264bc8d00f3"
+    },
+    {
+      "name": "reversed_logo.png",
+      "bytes": 24913,
+      "sha256": "b11a26981070b0db976a9c60ad72dc4c370f2ab57968031891ac20239d2aa91c"
+    },
+    {
+      "name": "reversed_logo.svg",
+      "bytes": 6271,
+      "sha256": "dda2395490471848179cc0b0e4525c327e114c1932fe8a7c8f1ed264bc8d00f3"
+    },
+    {
+      "name": "social_avatar.png",
+      "bytes": 8139,
+      "sha256": "5f8986cf527f49915ebcbe2fceb861429e8129ee26f86c8e53d7ed48666a7cbf"
+    },
+    {
+      "name": "social_avatar.svg",
+      "bytes": 1234,
+      "sha256": "e39bbd2b7310a9f02a6f209b5bd6c4d9ff225fb6d809b4f36c60c4628f8ba6d8"
+    },
+    {
+      "name": "wordmark.png",
+      "bytes": 22065,
+      "sha256": "60c40ddf6aa9f23939d6c47a35128b7bb07360531d4a9d0775b3f27153902f89"
+    },
+    {
+      "name": "wordmark.svg",
+      "bytes": 5505,
+      "sha256": "28d1d1b964a9a087a1ed28c9d4dd6d63a14c4e617e53f7d9e34c2d9d145b2779"
+    }
+  ]
+}

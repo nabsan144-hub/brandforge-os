@@ -1,0 +1,14 @@
+import {describe,it,expect,vi,afterEach} from 'vitest';
+vi.mock('../api/_lib/sb.js',()=>({admin:vi.fn()}));
+import {admin} from '../api/_lib/sb.js';
+import {rateLimit,RATE_ENABLED} from '../api/_lib/limit.js';
+afterEach(()=>{vi.unstubAllEnvs();vi.unstubAllGlobals();});
+function pg(){vi.stubEnv('RATE_BACKEND','postgres');vi.stubEnv('SUPABASE_URL','https://db.example.test');vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY','test-service-key');}
+describe('fail-closed durable rate protection',()=>{
+ it('rejects spending permission with no configured store',async()=>{vi.stubEnv('RATE_BACKEND','postgres');vi.stubEnv('SUPABASE_URL','');vi.stubEnv('SUPABASE_SERVICE_ROLE_KEY','');expect(RATE_ENABLED()).toBe(false);await expect(rateLimit('b','u',2,60)).rejects.toMatchObject({status:503});});
+ it('uses PostgreSQL truth/false and hashes identifiers',async()=>{pg();const rpc=vi.fn().mockResolvedValueOnce({data:true}).mockResolvedValueOnce({data:false});admin.mockReturnValue({rpc});expect(await rateLimit('b','private@example.test',2,60)).toBe(true);expect(await rateLimit('b','private@example.test',2,60)).toBe(false);expect(rpc.mock.calls[0][1].key).toMatch(/^[a-f0-9]{64}$/);expect(rpc.mock.calls[0][1].key).not.toContain('private');});
+ it('does not fail over to another store or fail open on a database outage',async()=>{pg();vi.stubEnv('UPSTASH_REDIS_REST_URL','https://cache.example.test');vi.stubEnv('UPSTASH_REDIS_REST_TOKEN','test');const fetcher=vi.fn();vi.stubGlobal('fetch',fetcher);admin.mockReturnValue({rpc:async()=>({error:{message:'down'}})});await expect(rateLimit('b','u',2,60)).rejects.toMatchObject({status:503,code:'RATE_UNAVAILABLE'});expect(fetcher).not.toHaveBeenCalled();});
+ it('rejects malformed database responses',async()=>{pg();admin.mockReturnValue({rpc:async()=>({data:[]})});await expect(rateLimit('b','u',2,60)).rejects.toMatchObject({status:503});});
+ it('uses one atomic INCR/EXPIRE script when Upstash is explicitly selected',async()=>{vi.stubEnv('RATE_BACKEND','upstash');vi.stubEnv('UPSTASH_REDIS_REST_URL','https://cache.example.test');vi.stubEnv('UPSTASH_REDIS_REST_TOKEN','test');const fetcher=vi.fn(async()=>({ok:true,json:async()=>({result:2})}));vi.stubGlobal('fetch',fetcher);expect(await rateLimit('b','u',1,60)).toBe(false);const body=JSON.parse(fetcher.mock.calls[0][1].body);expect(body[0]).toBe('EVAL');expect(body[1]).toContain('EXPIRE');expect(fetcher).toHaveBeenCalledTimes(1);});
+ it('rejects a cache outage, rather than granting another allowance',async()=>{vi.stubEnv('RATE_BACKEND','upstash');vi.stubEnv('UPSTASH_REDIS_REST_URL','https://cache.example.test');vi.stubEnv('UPSTASH_REDIS_REST_TOKEN','test');vi.stubGlobal('fetch',vi.fn(async()=>{throw new Error('offline');}));await expect(rateLimit('b','u',2,60)).rejects.toMatchObject({status:503});});
+});

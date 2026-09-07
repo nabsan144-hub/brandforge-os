@@ -1,0 +1,21 @@
+# Cloudflare Pages headers for the sales site (mirrors sales/netlify.toml).
+# Applied when deployed via Cloudflare Pages; harmless elsewhere.
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=()
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.paddle.com; style-src 'self' 'unsafe-inline' https://cdn.paddle.com; img-src 'self' data: blob: https://*.paddle.com; connect-src 'self' https: https://*.paddle.com; font-src 'self' data:; media-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'; frame-src https://*.paddle.com https://paddle.com
+
+/assets/*
+  Cache-Control: public, max-age=86400
+
+/assets/config.js
+  Cache-Control: no-store
+
+/*.css
+  Cache-Control: public, max-age=86400
+
+/*.js
+  Cache-Control: public, max-age=86400

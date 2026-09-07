@@ -1,0 +1,225 @@
+/* BRANDFORGE OS — Theme system (dark default / light optional)
+   Linked by every sales page. Token triplets power Tailwind's
+   var()-based palette (see tailwind.config.js) + direct CSS vars.
+   CANONICAL PALETTE: keep dark bg/card/line/muted/ink values in sync with
+   app/web-modern/src/app.css (the real dashboard) — workspace.html is a
+   mockup OF the product; drifted tokens misrepresent it. */
+:root{
+  --sb-bg-rgb: 7 13 17;       /* #070D11 — matches dashboard --bg */
+  --sb-card-rgb: 15 23 42;    /* #0F172A — matches dashboard --card */
+  --sb-line-rgb: 30 41 59;    /* #1E293B — matches dashboard --line */
+  --sb-gold-rgb: 232 181 74;  /* #E8B54A */
+  --sb-muted-rgb: 148 163 184;/* #94A3B8 — matches dashboard --mut */
+  --sb-ink: 248 250 252;      /* triplet for rgb(var(--sb-ink)) — matches dashboard --ink #F8FAFC */
+  --sb-ink-rgb: 248 250 252;  /* used directly by .nav-burger; kept in sync with --sb-ink */
+  --sb-inset-rgb: 11 16 22;   /* #0B1016 — recessed panels (bg-inset) */
+  --sb-faint: #76829B;
+  --sb-hairline: rgba(255,255,255,.07);
+  --gold: #E8B54A;
+  --gold-ink: #0A0D14;
+}
+[data-theme="light"]{
+  --sb-bg-rgb: 246 244 239;   /* #F6F4EF warm paper */
+  --sb-card-rgb: 255 255 255;
+  --sb-line-rgb: 214 209 197; /* #D6D1C5 */
+  --sb-gold-rgb: 180 125 18;  /* #B47D12 rich amber */
+  --sb-muted-rgb: 90 100 114; /* #5A6472 */
+  --sb-ink: 20 24 31;
+  --sb-ink-rgb: 20 24 31;
+  --sb-inset-rgb: 240 237 229; /* #F0EDE5 — inset panels on warm paper */
+  --sb-faint: #5B6577;  /* AA on paper (5.35:1) — was #616B7A borderline */
+  --sb-hairline: rgba(20,24,31,.12);
+  --gold: #B47D12;
+  --gold-text: #976418;  /* darker amber — AA contrast for small text on paper */
+  --gold-ink: #14181F;   /* dark ink on gold buttons, matches dark theme */
+}
+
+body {
+  background-color: rgb(var(--sb-bg-rgb));
+  color: rgb(var(--sb-ink));
+}
+
+html[data-theme="light"] body {
+  background-color: rgb(var(--sb-bg-rgb));
+  color: rgb(var(--sb-ink));
+}
+
+/* Headings base contrast */
+h1, h2, h3, h4, h5, h6 {
+  color: rgb(var(--sb-ink));
+}
+[data-theme="light"] h1,
+[data-theme="light"] h2,
+[data-theme="light"] h3,
+[data-theme="light"] h4,
+[data-theme="light"] h5,
+[data-theme="light"] h6 {
+  color: #14181F;
+}
+
+/* Universal high-contrast buttons */
+.btn-gold, .cta-gold {
+  background-color: rgb(var(--sb-gold-rgb)) !important;
+  color: var(--gold-ink) !important;
+  font-weight: 700;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: all .2s ease;
+}
+.btn-gold:hover, .cta-gold:hover {
+  opacity: 0.92;
+  transform: translateY(-1px);
+}
+[data-theme="light"] .btn-gold,
+[data-theme="light"] .cta-gold {
+  background-color: #B47D12 !important;
+  color: #14181F !important;
+}
+
+.btn-outline, .btn-ghost {
+  border: 1px solid rgb(var(--sb-line-rgb));
+  color: rgb(var(--sb-ink)) !important;
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9999px;
+  transition: all .2s ease;
+}
+.btn-outline:hover, .btn-ghost:hover {
+  border-color: rgb(var(--sb-gold-rgb));
+  color: rgb(var(--sb-ink)) !important;
+}
+[data-theme="light"] .btn-outline,
+[data-theme="light"] .btn-ghost {
+  border-color: rgb(var(--sb-line-rgb));
+  color: #14181F !important;
+  background-color: #FFFFFF;
+}
+
+/* Tailwind config colors are wired to these triplets (bg/card/line/gold/muted). */
+[data-theme="light"] .text-white{ color:#14181F; }
+[data-theme="light"] .text-zinc-300{ color:#3A4353; }
+[data-theme="light"] .text-zinc-400{ color:#4A5568; }
+[data-theme="light"] .text-zinc-500{ color:#6B7686; }
+[data-theme="light"] .text-zinc-600{ color:#5B6577; }
+[data-theme="light"] .bg-white{ background-color:#14181F; color:#F6F4EF; }
+[data-theme="light"] .text-black{ color:#F6F4EF; }
+[data-theme="light"] .bg-white\/10{ background-color:rgba(20,24,31,.06); }
+[data-theme="light"] .bg-black\/60,[data-theme="light"] .bg-black\/70,[data-theme="light"] .bg-black\/80{ background-color:rgba(255,255,255,.75); }
+[data-theme="light"] .border-white\/10,[data-theme="light"] .border-white\/20,[data-theme="light"] .border-white\/30,[data-theme="light"] .border-white\/40{ border-color:rgba(20,24,31,.14); }
+[data-theme="light"] .bg-bg\/70,[data-theme="light"] .bg-bg\/80{ background-color:rgba(246,244,239,.8); }
+[data-theme="light"] .shadow-\[0_0_60px_rgba\(255\,255\,255\,0\.08\)\]{ box-shadow:0 0 60px rgba(180,125,18,.12); }
+[data-theme="light"] .hover\:bg-zinc-100:hover{ background-color:#E9E5DC; }
+[data-theme="light"] .hover\:bg-zinc-200:hover{ background-color:#E2DED4; }
+[data-theme="light"] .backdrop-blur-xl,[data-theme="light"] .backdrop-blur-2xl{ backdrop-filter:saturate(1.4) blur(16px); }
+
+/* Keep colors legible on paper */
+[data-theme="light"] .text-emerald-400{ color:#0E8A5F; }
+[data-theme="light"] .text-blue-300{ color:#2563B0; }
+[data-theme="light"] .text-purple-300{ color:#7A4FC0; }
+[data-theme="light"] .text-gold{ color:var(--gold-text); }
+
+
+/* ---- Light-mode accent-text rescue (2026-09-05 full-site audit) ----
+   Pages carry inline dark-theme accent colors (color:var(--gold),
+   color:#E8B54A, .text-[#E8B54A], #10B981, #94A3B8) that were unreadable
+   on the warm-paper light theme (as low as 1.1:1). Attribute-selector
+   rules catch every inline usage without touching page markup. */
+[data-theme="light"] [style*="color:var(--gold)"],
+[data-theme="light"] [style*="color:#E8B54A"],
+[data-theme="light"] [style*="color:rgb(var(--sb-gold-rgb))"],
+[data-theme="light"] .text-\[\#E8B54A\]{ color:var(--gold-text) !important; }
+[data-theme="light"] [style*="color:#10B981"]{ color:#0E8A5F !important; }
+[data-theme="light"] [style*="color:#8E99AB"]{ color:#5B6577 !important; }
+/* The terminal stays dark in both themes — do not recolor its inner mono paths */
+[data-theme="light"] .term [style*="color:#8E99AB"]{ color:#8E99AB !important; }
+[data-theme="light"] [style*="color:#94A3B8"],
+[data-theme="light"] .text-slate-400{ color:#4A5568 !important; }
+[data-theme="light"] .text-slate-200{ color:#3A4353 !important; }
+[data-theme="light"] input[type="range"]{ accent-color:var(--gold-text); }
+
+/* theme toggle button (shared) */
+.theme-toggle{ display:inline-flex; align-items:center; justify-content:center;
+  width:32px; height:32px; border-radius:9999px; border:1px solid var(--sb-hairline);
+  background:transparent; color:rgb(var(--sb-muted-rgb)); cursor:pointer; transition:all .25s ease; flex-shrink:0; }
+.theme-toggle:hover{ color:rgb(var(--sb-ink)); border-color:rgb(var(--sb-line-rgb)); transform:translateY(-1px); }
+/* dark (default): moon icon. light: sun icon */
+.theme-toggle .icon-sun{ display:none; }
+.theme-toggle .icon-moon{ display:inline; }
+[data-theme="light"] .theme-toggle .icon-sun{ display:inline; }
+[data-theme="light"] .theme-toggle .icon-moon{ display:none; }
+
+/* WCAG AA: theme-agnostic utility text colors remapped per theme. */
+html .text-zinc-500, html .text-zinc-600 { color:#94A3B8; }
+[data-theme="light"] .text-zinc-500 { color:#5B6472; }
+[data-theme="light"] .text-zinc-600 { color:#52525B; }
+[data-theme="light"] .text-zinc-200,
+[data-theme="light"] .text-zinc-300,
+[data-theme="light"] .text-zinc-400 { color:#3F4854; }
+[data-theme="light"] .text-emerald-300,
+[data-theme="light"] .text-emerald-400,
+[data-theme="light"] .text-emerald-500 { color:#047857; }
+[data-theme="light"] .text-blue-300 { color:#1D4ED8; }
+[data-theme="light"] .text-purple-300 { color:#7E22CE; }
+
+/* ---- mobile nav (shared) ---- */
+.nav-burger{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:40px;height:40px;border-radius:10px;cursor:pointer;
+  border:1px solid rgb(var(--sb-line-rgb));background:transparent;
+  color:rgb(var(--sb-ink-rgb, 248 250 252));
+}
+.nav-burger svg{width:20px;height:20px}
+#mobile-menu{
+  position:absolute;left:0;right:0;top:100%;z-index:60;
+  display:none;flex-direction:column;
+  padding:10px 20px 18px;
+  background:rgb(var(--sb-bg-rgb));
+  border-bottom:1px solid rgb(var(--sb-line-rgb));
+  box-shadow:0 24px 48px -24px rgba(0,0,0,.65);
+}
+#mobile-menu.vg-open{display:flex}
+#mobile-menu a.mm-link{
+  display:block;padding:12px 8px;border-radius:10px;
+  font-size:15px;color:rgb(var(--sb-muted-rgb));
+}
+#mobile-menu a.mm-link:hover{color:rgb(var(--sb-ink));background:var(--sb-hairline)}
+#mobile-menu .mm-cta{
+  display:block;margin-top:10px;padding:13px 16px;border-radius:9999px;
+  text-align:center;font-weight:700;font-size:14px;
+  background:rgb(var(--sb-gold-rgb));color:var(--gold-ink);
+}
+#mobile-menu .mm-row{display:flex;align-items:center;justify-content:space-between;padding:8px}
+@media (min-width:768px){
+  .nav-burger{display:none}
+  #mobile-menu{display:none !important}
+}
+
+/* Mobile: hide inline separators when trust line wraps to stacked rows */
+@media (max-width: 640px){ .trust-sep{ display:none } }
+
+/* ------------------------------------------------------------------
+ * GLOBAL SCALE (desktop): restore the larger "first look" feel at 100%
+ * browser zoom. One rule scales EVERY page at once (all pages link
+ * theme.css). Desktop only — phones/tablets keep their tuned responsive
+ * sizes. This site sizes text in px (small Tailwind arbitrary values), so
+ * `zoom` is the only property that scales a px-based layout AND reflows it
+ * correctly. `zoom` is now CSS Baseline (Chrome/Edge/Safari for years;
+ * Firefox since v126), so it applies to all current evergreen browsers.
+ * Tune the number or remove entirely to revert.
+ * ------------------------------------------------------------------ */
+@media (min-width:1024px){ html{ zoom:1.125 } }
+
+/* Real-browser audit: paper-tinted badges need darker text, not just a
+   nominal token contrast against pure white. Legal links are not color-only. */
+html[data-theme="light"]{--gold-text:#805509}
+main p a:not(.btn):not(.cta-gold):not(.ghost-btn){text-decoration:underline;text-underline-offset:3px}
+pre:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
+
+/* Skip-to-content link — first Tab stop on every page (WCAG 2.4.1 Bypass
+   Blocks). Off-screen until focused; theme-aware gold chip. */
+.skip-link{position:fixed;top:-120px;left:14px;z-index:300;padding:10px 18px;border-radius:999px;background:rgb(var(--sb-gold-rgb));color:var(--gold-ink);font-weight:700;font-size:13px;text-decoration:none;transition:top .18s ease;box-shadow:0 12px 32px -14px rgba(0,0,0,.55)}
+.skip-link:focus{top:12px;outline:3px solid rgb(var(--sb-gold-rgb));outline-offset:2px}

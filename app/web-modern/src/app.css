@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Self-hosted brand font (vite copies public/ → dist/). Same files the sales
+   site ships — the dashboard makes ZERO third-party font requests and stays
+   inside the server CSP (font-src 'self'). */
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/instrument-serif-400.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'Instrument Serif';
+  font-style: italic;
+  font-weight: 400;
+  font-display: swap;
+  src: url('./assets/fonts/instrument-serif-400-italic.woff2') format('woff2');
+}
+
+/* CANONICAL PALETTE — sales/assets/theme.css mirrors these dark values
+   (keep in sync; workspace.html mockup must match the real product). */
+:root {
+  --bg: #070d11;
+  --card: #0F172A; --inset: #070d11; --line: #1E293B;
+  --ink: #F8FAFC; --mut: #94A3B8; --faint: #76829B; --gold: #E8B54A;
+  --bg-rgb: 7 13 17; --card-rgb: 15 23 42; --inset-rgb: 7 13 17;
+  --line-rgb: 30 41 59; --ink-rgb: 248 250 252; --mut-rgb: 148 163 184;
+  --faint-rgb: 118 130 155; --gold-rgb: 232 181 74;
+}
+[data-theme="light"] {
+  /* Sweep 17 contrast pass: faint/mut were too washed for 11px UI text on
+     cream (user-reported). Darkened to clear WCAG AA at small sizes. */
+  --bg: #F6F4EF; --card: #FFFFFF; --inset: #F0EDE6; --line: #CFC9BB;
+  --ink: #14181F; --mut: #414B59; --faint: #535C6A; --gold: #8A5F0E;
+  --bg-rgb: 246 244 239; --card-rgb: 255 255 255; --inset-rgb: 240 237 230;
+  --line-rgb: 207 201 187; --ink-rgb: 20 24 31; --mut-rgb: 65 75 89;
+  --faint-rgb: 83 92 106; --gold-rgb: 138 95 14;
+}
+
+html { background: var(--bg); }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--line); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; letter-spacing: -0.01em; }
+
+/* WCAG AA: theme-agnostic utility colors (error/success chips) in light mode */
+[data-theme="light"] .text-emerald-300,
+[data-theme="light"] .text-emerald-400,
+[data-theme="light"] .text-emerald-500 { color:#047857; }
+[data-theme="light"] .text-red-300,
+[data-theme="light"] .text-red-400 { color:#B91C1C; }
+[data-theme="light"] .text-amber-400 { color:#B45309; }
+[data-theme="light"] .text-zinc-200,
+[data-theme="light"] .text-zinc-300,
+[data-theme="light"] .text-zinc-400 { color:#3F4854; }
+[data-theme="light"] .text-zinc-500,
+[data-theme="light"] .text-zinc-600 { color:#52525B; }
+[data-theme="light"] .border-white\/20,
+[data-theme="light"] .border-white\/30 { border-color: rgba(20,24,31,.18); }
+/* inverted CTAs (bg-ink text-bg) already flip via tokens; keep spinner visible */
+[data-theme="light"] .border-black\/20 { border-color: rgba(255,255,255,.25); }
+[data-theme="light"] .border-t-black { border-top-color: #14181F; }
+
+/* Narrow-screen shell: keep the product header from creating horizontal
+   overflow while retaining the provider/status context that matters. */
+@media (max-width: 700px) {
+  .nav { min-height: 64px; height: auto; padding: 10px 12px; gap: 8px; flex-wrap: wrap; }
+  .nav > .flex.items-center.gap-2.ml-4 { margin-left: 0; }
+  .nav > .flex.items-center.gap-2.ml-4 > .px-3 { padding-left: 8px; padding-right: 8px; }
+  .nav > .flex.items-center.gap-2.ml-4 > .px-3 span:nth-child(4) { display: none; }
+  .nav .ml-auto { margin-left: auto; }
+  .nav a { white-space: nowrap; }
+}
+
+button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible,
+textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }

@@ -1,0 +1,411 @@
+# BrandForge OS — Changelog
+
+## 1.4.3 — customer-review fixes (2026-09-06)
+
+Rendered-browser + source review by an independent audit; all changes are marketplace
+UX and accessibility fixes, no behaviour/contract changes:
+
+- Product tour (`sales/assets/product-demo/tour.html`):
+  - Now responsive: the fixed 1920x1080 film canvas scales to fit any viewport
+    (was unusable on phones — width was hard-coded and there was no viewport meta).
+  - Nav ("Try Cloud" / "Inspect a real sample pack" / "See plans") and Play/Replay
+    controls moved out of the scaled stage into fixed viewport chrome, so they stay
+    native size and never overlap on small screens.
+  - "Try Cloud" fixed from `../signup` (404) to `https://app.brandforge-os.com/signup`;
+    the other two links made absolute. The end-of-film CTA is now a real link instead
+    of a div with no click handler.
+  - `?paused=1` is now honoured (opens on the first frame with a big Play overlay
+    instead of a black screen); added `role`-safe h1 and `<meta name="viewport">`.
+- Light-mode hamburger icon on the marketing site was invisible (referenced an
+  undefined `--sb-ink-rgb` token); token added to both themes (now 16.2:1 on paper).
+- Step badges in docs.html ("6", checkmark) and workspace.html (S/C/V stage chips)
+  given explicit dark ink — white-ish text on gold/blue/purple chips failed AA in
+  one or both themes (3.2:1–4.0:1 → 4.9:1–10.3:1). Sample-output chip "V" -> "F".
+- Cloud app: empty plan pill hidden until loaded; extra pills hidden on very small
+  screens so the header stays one row; focus-visible ring extended to inputs.
+- `assets/product-demo/manifest.json` tour.html hash/size refreshed.
+
+Second pass (pricing, trust & conversion):
+
+- Pricing page:
+  - "Most popular" Pro card given the gold accent ring so the recommended tier
+    reads at a glance.
+  - New 3-card "at-a-glance" summary above the feature matrix answering the
+    "which product is mine?" question in one line each (Desktop once /
+    Cloud monthly / Cloud Agency).
+  - 14-day money-back note added next to the paid CTAs.
+  - Full FAQ now visible on the page (10 questions matching the JSON-LD) as an
+    accordion, instead of hiding it behind a link.
+- Checkout honesty: when the checkout endpoint is not live, paid Cloud CTAs
+  relabel themselves to "Start free — no card" and point to `/signup`, so nobody
+  can click into a dead purchase flow (`sales/assets/cloud-cta.js`); as soon as
+  checkout is enabled the static "Review plans" labels return.
+- New on-site Changelog page (`sales/changelog.html`, linked from the footer on
+  index / pricing / docs, added to sitemap.xml + a11y test list).
+- Footer on index / pricing / docs now links the Changelog.
+- Tools page no longer dead-ends: after the first preflight analysis an
+  "Want this done for you?" block appears with a free-start CTA and a "Talk to
+  me" link.
+- Removed `fix-cron.bat` (machine-specific path, contained personal notes) from
+  the repo root — repository hygiene before it is sold as a Source asset.
+- Cloud: new `tests/dashboard-contrast.test.js` — theme-token contrast gates
+  ported from the marketing-site suite (closes the jsdom color-contrast gap); the
+  suite is now 25 files / 199 tests.
+
+Third pass (guides, scale audit):
+
+- Two on-site guides answering common search questions, built on the same page
+  skeleton as the policy pages: "Canva Ad Creator vs BrandForge OS" and a
+  "best ad copy generator for agencies" checklist. Honest by design — included a
+  "where we are weaker" section on both; linked from the Docs sidebar and the
+  sitemap (`/vs-canva-ad-creator`, `/best-ad-copy-generator`).
+- Audit of the desktop `zoom: 1.125` global scale hack: verified at 100%, 125%,
+  150% and 175% browser zoom, at 125%/150% OS display scaling and at the WCAG
+  320px reflow width — no horizontal overflow, no clipped headings, and the rule
+  self-disengages above 150% zoom via its media query. One real edge found and
+  fixed: the pricing waitlist form overran its container at 640px (200% zoom);
+  the form now wraps, and the comparison-table wrapper scrolls horizontally
+  instead of breaking the layout at narrow widths.
+
+- Homepage hero trust strip reworded from defensive ("No invented scores") to
+  benefit-first ("One brief → strategy, copy and visuals") while keeping the
+  honest-limits line on the page — same checkmarks, same theme.
+- Founder card now on: Nabeel Ali (Founder, BrandForge OS), 12+ years brand
+  design, LinkedIn link — a findable person behind the $199/$499 licenses.
+- Pricing at-a-glance Agency card cross-sells Desktop clearly: $499 once is
+  labelled the separate Desktop Agency + Source license, not a Cloud price.
+- Sample-pack download CTA gets a subtle theme-matched glow (respects
+  prefers-reduced-motion); no other CTA styling changed.
+
+- Removed the public-repository "Source on GitHub" footer links and every
+  public-repo mention (changelog page, pricing FAQ, agency guide) — the source
+  is no longer advertised in the sales funnel. The Agency + Source $499 SKU
+  sells private build-source access; repository visibility is an owner GitHub
+  setting, not a site feature.
+
+## 1.4.2 — runtime verification and recovery
+
+- Added recoverable, private settings transactions; invalid settings are validated before any writes, and startup restores interrupted file pairs.
+- Setup checks handle malformed state, bind to the installed environment and dependency versions, and only record successful explicit installation/checks.
+- Reworked CLI onboarding/menu paths: masked key prompts, honest failure messages, active-brand routing, safe Unicode IDs, validated spend input and accurate paths/capabilities.
+- Managed loopback startup recognizes its own server instead of an arbitrary occupied port; onboarding shuts it down and browser opening follows readiness. CLI provider overrides are used by the HTTP server.
+- Protected unreadable approval/performance state from silent replacement, exposed failed memory saves and retained complete bounded chat records.
+- Exercised scheduled maintenance, safe log rotation and explicit retention; corrected invalid public-fetch limits and port-zero handling.
+- Added runtime/fault regressions. This is locally verified source, not live deployment, payment/device/legal certification or a promise of 100% correctness.
+
+## 1.4.1 — independent full-package audit revision
+
+- Pinned and bounded public HTTP transport; restricted browser inspection; private Desktop peer enforcement.
+- Fixed Telegram lifecycle/auth, provider snapshots, model selection, error redaction, public-image consent, image validity and complete tool/file output.
+- Fixed per-order artifact metadata, delivery backoff, blank cost settings, unsafe legacy key helpers and public credential misconfiguration handling.
+- Fixed Unicode brand identities, preserved brand context, shared manager locks, connection cleanup and saved update consent.
+- Packaged the dashboard for wheel installs with per-user data; removed the incompatible duplicate Cloud prototype and obsolete deployment recipes.
+- Added clean routes, static publish filtering, variable-font consolidation, corrected public promises and clearer customer/operator documentation.
+- Owner now ships the Desktop runtime and user documentation; Source contains the supported complete project and integrated marketing media.
+- See docs/FULL-AUDIT.md and the delivered verification evidence for exact scope, tests and external release requirements. No deployment or live payment/OS/legal verification is implied.
+
+## 1.4.0 — prelaunch audit implementation (05 Sep 2026)
+
+- Separate Desktop ownership from Cloud subscriptions; retain price points. Proposals: Cloud Agency 300/month, explicit daily/concurrency caps, and clarified license scope. Owner approval is required before selling.
+- Real PostgreSQL generation ledger, immutable consumed usage, waitlist/key privacy, atomic checkout/billing locks and conservative provider budgets. Fresh and legacy-upgrade migration tests now execute the SQL.
+- Server-created checkout transactions, existing-subscription previews/updates, portal and billing-aware account deletion. Guest desktop order outbox, signed downloads, refund/dispute state and resend recovery. Paid checkout remains disabled until external release verification.
+- Intentional golden-output changes: customer-product copy replaces marketing-software boilerplate; no invented 78/100 SEO score. Per-stage provider status, language instructions and partial-result retention.
+- Measured vector layouts, distinct logo concepts, approved-logo composition, accepted API custom sizes, full-draft refinement guard, no truncated artifacts, and shaped Unicode PDF output.
+- Searchable/paged Cloud history, brand profiles, text revisions, PNG/JPEG/ZIP exports, account portability, annual purchase intent and optional feedback.
+- Trusted local Host/capability boundary, accurately scoped request log, explicit setup vs offline launch, named version source, dependency/packaging and launch documentation cleanup.
+- This changelog records local implementation, not a deployment, live payment verification, legal approval or a guarantee of defect-free operation.
+
+## 1.3.3 — 05 Sep 2026 (light-mode accessibility pass)
+
+- **Full light-theme contrast audit & fix** — a computed-style audit of all 10
+  pages (WCAG 2.1 AA) found 104 unreadable text combinations in light mode and
+  45 more in dark mode (previously hidden by scroll-reveal animations). All are
+  fixed: inline gold accents, footer links, muted slate/zinc text, the ROI
+  number, and the slider accent now resolve to AA-safe values per theme, while
+  the terminal panel keeps its intentionally dark surface in both themes.
+- demo page (self-contained dark design) gained a proper light theme: white
+  cards, theme-aware borders, and AA body text.
+- Dark mode untouched by design — every accent, gradient and ink value verifies
+  identical to v1.3.2, and the full suite re-passes: sales funnel 30/30,
+  axe accessibility 11/11, CSS coverage 411 tokens, theme-contrast gates,
+  app pytest 277 passed, ruff clean.
+
+## 1.3.2 — 05 Sep 2026 (live-site deep review pass)
+
+- Copy truth, final sweep: workspace page (visible line + description + Twitter +
+  OG meta) still said "you and 6 AI agents" — now the 6-stage pipeline; the stages
+  page card badge reads STAGE instead of AGENT; docs sidebar category renamed
+  Agents → Pipeline. The /agents URL slug is unchanged (links/canonical/sitemap).
+- Browser-console note and JS comments no longer reference internal audit
+  documents ("audit §…") — professional wording only in shipped source.
+- Everything else on the live site verified clean in a full review: titles,
+  descriptions, canonicals, OG tags, single H1 per page, image alts, valid
+  JSON-LD, zero broken links/assets, clean-URL redirects, CSP headers, working
+  waitlist (Supabase), consistent pricing on all 10 pages.
+
+
+## 1.3.1 — 05 Sep 2026 (external-review response)
+
+- **Real dashboard screenshots on the marketing site** — 6 live captures of the
+  actual app (home, campaign brief, visuals, chat with a real answer, campaigns
+  list, settings); new "Inside the app" section on the homepage.
+- **Honest pre-launch CTAs** — every "Own it once — $199" button now states that
+  secure checkout goes live at launch and points to the waitlist.
+- **Windows double-click install** — `START-HERE.bat` finds Python, creates a
+  private environment, installs dependencies and opens the dashboard. No terminal.
+- **Tier-safe release zips** — the packager now emits `brandforge-os-owner.zip`
+  ($199, no resell license) and `brandforge-os-source.zip` ($499, resell rights +
+  source) so the two products can never be mixed up at upload time.
+- **Accessibility** — light-theme gold text now meets WCAG AA (4.60:1, was 3.4:1);
+  light-theme buttons use dark ink on amber (4.98:1); new CI contrast gate.
+- **Solo-founder FAQ** added (visible + Google FAQ schema).
+- Stale metadata fixes: agents page meta/og/twitter descriptions now say
+  "6-stage pipeline" instead of "6 AI agents".
+
+
+## 1.3.0 — 05 Sep 2026 (AI image design + full audit pass)
+
+- **AI Image Design (desktop):** campaign heroes and Instagram posts can now be
+  real AI-generated brand photography. The brand profile (exact palette, industry,
+  audience, approved benefits) becomes an art-direction brief; a quality provider
+  renders the photo — **Gemini** (Nano Banana), **Grok Imagine** or **OpenAI
+  gpt-image-1**, via your own API key in Settings → AI Image Design — and the
+  brand typography system (badge, headline, benefit chips, CTA, contrast scrim)
+  is composed on top, exported as PNG + JPEG (`hero_ai.*`, `instagram_ai.*`).
+- **Privacy model:** auto mode uses image keys only when the campaign's AI
+  provider is online — offline campaigns still make ZERO network requests
+  (net-audit-proven); choosing a specific image provider is the explicit opt-in;
+  Off = never. Keyless Pollinations fallback for online campaigns unchanged.
+- **Hosted tier:** image calls use the operator's server-side keys under each
+  plan's `ai_images_monthly` quota; hosted users never provide API keys.
+- Brand-faithful design engine: gradients, glows, logos and the palette now
+  derive the accent from the client brand instead of a hardcoded blue; the
+  default BrandForge gold+blue look is unchanged.
+- Copy accuracy: absolute "100% Policy-Compliant" claim removed; agents/swarm
+  wording unified to "6-stage pipeline" across every page, meta tag, nav label,
+  logo alt and Google-facing JSON-LD; privacy copy separates local files/memory
+  from the online-provider prompt disclosure.
+- Launch docs: the migration checklist now lists all four required Supabase
+  migrations in order (0005 waitlist + 0006 rate limit were missing — the
+  waitlist would have 501'd and rate limiting would have been silently off).
+- terms.html §9 draft placeholder replaced with a complete governing-law +
+  UNCITRAL arbitration clause (counsel review recommended).
+- SEO: index/pricing titles ≤60 chars, index description ≤165, sitemap dates
+  refreshed; pricing FAQ (visible + JSON-LD) now describes AI image design
+  accurately; internal launch notes removed from page source.
+- Hygiene: internal audit archives and GTM strategy docs moved out of the
+  public repo (kept in the founder's private workspace copy); Roman-Urdu
+  internal docstring professionalized; README cloud-SDK note corrected.
+- Tests: app 277+ / hosted 81 / cloud 166 / sales funnel+a11y+css+contrast all
+  green; 20+ new tests cover the image engine (request shapes, fallback chains,
+  offline gates, compositing, XSS).
+
+
+## 1.2.34 — 28 Aug 2026 (Independent audit pass 2: dead-domain purge + a11y gate)
+
+- Fixed the bouncing support address everywhere: `support@brandforgeos.com` was an
+  un-hyphenated domain that was never owned — now `support@brandforge-os.com`
+  (config, JS fallbacks, privacy/terms/refund pages).
+- Purged all remaining dead `https://brandforgeos.com` fallback URLs (cloud API
+  config/deliver, cloud SPA, scripts, test fallbacks); `set_site_url.*` now sweeps
+  both spellings.
+- CI hard gate: `check_site_url.sh` fails if the dead legacy domain reappears in any
+  shipped `sales/`/`cloud/` file; funnel suite gained a support-email/domain
+  integrity test.
+- New accessibility gate: axe-core scans all 10 shipped sales pages on every push
+  (`sales/tests/a11y.test.js`) — first run 10/10 clean.
+- Production-deploy scaffolding for `hosted/`: root `Dockerfile` + `.dockerignore`,
+  `fly.toml` (volume, healthcheck, single always-on machine), `railway.json`, and
+  `hosted/deploy/fly-railway.md` runbook (env table, Paddle webhook wiring, DNS
+  for app.brandforge-os.com, checklist, backups). Entrypoint verified live.
+- Dead domain purged from operational docs too (incl. bouncing security@/support@
+  contacts); historical mentions intentionally untouched.
+- Full codebase audit pass 3 (all 291 files): tools.html title de-truncated for
+  Google SERPs; every suite + build re-executed green — `docs/archive/superseded-2026-08/FINAL_AUDIT_2026-08-28_FULL.md`.
+- `validate_launch_config.py` flags both default support emails as unconfigured
+  until a real mailbox is confirmed.
+- All suites green: 248 app · 69 hosted · 122 cloud · 35 sales; ruff clean.
+- Full write-up: `docs/archive/superseded-2026-08/AUDIT_RESOLUTION_2026-08-28_PASS2.md`.
+
+## 1.2.33 — 27 Aug 2026 (Sweep 20: verification pass)
+
+- Stream-failure fallback no longer leaves duplicate thinking bubbles.
+- Re-verified: export injection-safety, hosted/approval escaping, sales
+  meta/SEO coverage.
+
+
+## 1.2.32 — 27 Aug 2026 (Sweep 19: live council + grounded answers)
+
+- Agent Discussion now streams live: thinking bubbles + per-agent turns as
+  they happen (SSE), with batch fallback.
+- Council grounded in real facts: active brand + live URL inspection, so
+  answers are about the customer's actual business/site.
+- Discussion toggle persists across tab switches.
+
+
+## 1.2.31 — 27 Aug 2026 (Sweep 18: A1 visual pass)
+
+- Constellation grey film eliminated in light mode (fade now matches card
+  surface; softer light-theme halos).
+- Brand name no longer truncated on the hero stat card.
+
+
+## 1.2.30 — 27 Aug 2026 (Sweep 17: OpenClaw-style fallbacks + contrast)
+
+- Retired-model 404s now auto-switch to the provider's working model and
+  persist it (no more Custom-box visits).
+- Light-mode contrast pass: faint/mut/line tokens darkened to AA.
+- Grok presets refreshed (4.6/4.5/4.3).
+
+
+## 1.2.29 — 27 Aug 2026 (Sweep 16: canvas halo fix)
+
+- Constellation light-mode grey halos fixed (gradient end-stops now
+  same-hue alpha-0 instead of transparent-black).
+- Default-model migration re-verified on every resolution path.
+
+
+## 1.2.28 — 27 Aug 2026 (Sweep 14+15: model refresh + external-audit fixes)
+
+- Hosted login a11y/UX: label associations, role=alert on auth errors,
+  Enter-to-submit on all fields.
+- Cloud esc() now escapes single quotes (parity with hosted helper).
+- CI dep-scan job (pip-audit hard gate on base reqs, advisory on full).
+- Hosted README scaling caveat; external-audit response logged.
+
+
+- New verified defaults: gemini-3.6-flash, claude-sonnet-5, deepseek-v4-flash,
+  kimi-k2.5 (global Moonshot endpoint) — old retired IDs auto-migrate so no
+  saved config keeps 404-ing.
+- Settings model picker rebuilt from live Aug-2026 catalogs.
+
+
+## 1.2.27 — 27 Aug 2026 (Sweep 13: broken classes, privacy disclosure)
+
+- Campaigns.svelte: 3 broken Tailwind classes (trailing backslashes) fixed —
+  status errors and quality-card text now properly colored in both themes.
+- Privacy page now discloses Anthropic (Claude) among providers.
+- Verified: vercel security headers, release-zip tiers, CLI one-shot,
+  light-mode campaign detail screenshots.
+
+
+## 1.2.26 — 27 Aug 2026 (Sweep 12: light-mode contrast + honest errors)
+
+- Light theme fixes: swarm badges + agent chips were black-on-black /
+  gradient-washed; now readable in both themes (screenshots verified).
+- Provider failures now show the REAL reason in chat
+  ("gemini call failed — HTTP 400: API key not valid") instead of
+  a bare "HTTPError".
+
+## 1.2.25 — 27 Aug 2026 (Sweep 11: full from-scratch audit)
+
+- Docs honesty pass: README now lists Claude among providers/engine options
+  and mentions premium keys; offline-engine notice points to Claude too.
+- Version 1.2.25 synced across server, pyproject and the sales badge.
+- Full re-verification: 244 app tests, hosted 57, cloud 122, sales 23,
+  ruff clean, dashboard QA 20/20 (see docs/archive/superseded-2026-08/FINAL_AUDIT_2026-08-27.md,
+  Sweep 11).
+
+## 1.2.24 — 27 Aug 2026 (Sweep 10: discussion chat, viewable images, premium models)
+
+- **Agent Discussion in chat:** new "Agent Discussion" toggle in Ask
+  BrandForge → `POST /api/swarm/chat` runs a real 3-agent council
+  (Strategist → Copywriter → Critic, each reading the earlier turns) plus a
+  combined final plan (`modules/swarm_council.py`).
+- **Chat images are now viewable:** `generate_image` results are served at
+  `/api/files/generated/<name>` (strict allowlist) and rendered inline in the
+  chat bubble; new "Generate AI Image" quick chip.
+- **Claude (Anthropic) provider:** Messages API, `ANTHROPIC_API_KEY`,
+  onboarding + CLI + Settings support.
+- **Model picker in Settings:** curated premium IDs per provider
+  (claude-opus-4-8, gemini-2.5-pro, …) + custom model field — better model =
+  better campaigns.
+- Fixes: CLI provider menu now persists the chosen provider; Escape closes
+  the network ledger panel.
+- Tests: 244 app (9 new), dashboard QA 20/20, hosted 57, cloud 122,
+  sales 23 — 446 green, ruff clean.
+
+## Unreleased — 27 Aug 2026 (Phases 0–5 implementation run)
+
+- **Phase 5 — Desktop i18n:** offline campaign generation now speaks
+  en/hi/ur/es/pt (`app/modules/i18n.py`; `lang` on `/api/swarm/run`,
+  `--lang` CLI flag, language selector in the dashboard). English output is
+  byte-unchanged (`tests/golden/*.txt` still pass); the four other locales
+  are locked by `tests/test_i18n.py` (desktop) and
+  `cloud/tests/golden-i18n.test.js` (cloud, 16 new parity locks). Campaigns
+  persist their generation language in `campaign.json` (`lang` key).
+  SVG font stacks widened with Noto Arabic/Devanagari families so localized
+  banners render in standalone viewers. NOTE: full Python↔JS byte-parity
+  unification (audit §4 option b) remains deferred; each engine now locks
+  its own locales.
+- Phases 0–4 (see git history): funnel tests + operator checklist, Paddle
+  guide, `.gitignore`/`.env.example`/CI, dead-duplicate cleanup, exception
+  chaining, strict zip, F401/F841 re-enabled, network-activity ledger
+  (`/api/network-audit`), update check (`/api/update-check`,
+  `BRANDFORGE_UPDATE_CHECK=0`), export review gate, honest tier labeling,
+  beta-test script, BrandForge anvil rebrand.
+
+## 1.2.23 — 26 Aug 2026 (full-codebase line-by-line audit: sales site, cloud SPA, docs)
+
+Every file reviewed from scratch — sales pages, cloud SPA, hosted stack,
+docs, packaging, SQL, and release paths. The final hardening pass adds
+regression coverage for the remaining provider, storage, payment, CSP, and
+cross-origin edge cases. Current verification is **350 tests** across the
+three stacks (190 desktop, 57 hosted, 103 cloud); live external-service gates
+remain documented in `FINAL_DEPLOYMENT_GUIDE_2026-08-26.md`:
+
+### Fixed — business/money paths
+- **The waitlist form was dead markup.** pricing.html shipped the form (email,
+  tier, honeypot) with no action and no submit handler — every "Notify Me"
+  click just reloaded the page with query params and the signup was silently
+  lost. New `assets/waitlist.js` wires it to FormSubmit's AJAX endpoint with
+  honeypot + validation, an honest "inbox not configured" state, and a
+  support-email fallback when the service is unreachable.
+- **Pricing page never flipped to "checkout live".** The launch-badge/note
+  script ran BEFORE `assets/config.js` loaded, so `window.BRANDFORGE_LAUNCH`
+  was always `{}` — the page showed "LAUNCHING SOON" forever, even after
+  Paddle was configured. Script order fixed (config first).
+- **Cloud SPA: billing, WhatsApp delivery and BYOK calls sent no
+  Authorization header.** They used raw `fetch()` while the Vercel functions
+  require `Authorization: Bearer <supabase jwt>` — the plans grid died with
+  "Could not load plans", delivery failed with "Not signed in", and key
+  save/remove silently failed. All now use the authenticated `api()` helper.
+
+### Fixed — cloud SPA robustness
+- Paddle is now Initialized once (a second checkout click used to throw
+  "already initialized" and error out).
+- An expired/invalid session now signs out cleanly and shows the auth screen
+  instead of rendering a broken workspace with "FREE" placeholders.
+- The Cloud Vercel CSP now explicitly permits Paddle's checkout script,
+  checkout iframe, and payment connections; the previous policy blocked the
+  newly added billing UI. The sales site also has a Vercel static config, and
+  mutable `assets/config.js` is not cached as immutable, so checkout changes
+  propagate.
+- Campaign delivery reservations now use a service-role-only database lock so
+  concurrent WhatsApp sends cannot all pass the same hourly count check.
+- Paddle webhook handling rejects malformed/placeholder price configuration,
+  deduplicates event IDs, ignores stale events, and refuses cancellation events
+  that do not match the account's current subscription.
+
+### Fixed — hosted/runtime safety
+- Hosted cookie-authenticated writes now enforce same-origin/configured-origin
+  checks; Paddle's signed webhook remains the explicit exception.
+- Hosted billing state is stored with subscription/event timestamps and a
+  server-side event ledger, preventing duplicate, stale, or unrelated
+  cancellation notifications from changing entitlements.
+- Hosted Agency copy now says "up to 100" brands, matching enforcement. The
+  Vercel Cloud copy no longer advertises desktop brand profiles or image
+  quotas that this smaller port does not implement.
+- Long-term Markdown memory writes are atomic; orphan campaign folders and
+  oversized logo uploads are handled safely; Ollama failures are labeled as
+  offline rather than as successful Ollama output.
+
+### Fixed — content/SEO/docs
+- Nav version badge said v1.2.21 (two places) — now tracks the release.
+- `og:url` added to every public page; the legal pages (privacy/terms/refund)
+  gained proper og:title/og:description blocks.
+- `hosted/.env.example` and `cloud/.env.example` created (LAUNCH_GUIDE
+  referenced hosted's but it didn't exist).
+- LAUNCH_GUIDE: test counts corrected (171/49/94), CI description now matches
+  what ci.yml actually runs, waitlist activation step documented.
+- README status section updated to v1.2.23.
