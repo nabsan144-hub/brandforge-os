@@ -2,7 +2,18 @@
 
 ## Unreleased — independent audit fixes (2026-09-08)
 
-Full-repo audit with re-executed test suites and live-site verification:
+Full-repo audit with re-executed test suites and live-site verification.
+
+Design pass (founder-flagged):
+
+- Hero swarm: the six agent orbs no longer ride a fixed ellipse with a visible
+  guide ring — they drift freely through the hero (organic layered-sine wander,
+  soft edge containment) and scatter away from any click/tap in the hero.
+- Light theme: primary buttons (.btn-gold/.cta-gold) are now a dark-ink pill with
+  cream text instead of the muddy amber pill with black text; gold returns as a
+  hover glow. Contrast harness re-pinned to the new pattern (buttons now 16.2:1).
+- Light theme: pricing launch-badge text darkened (#7A530E) — was ~4.2:1 on its
+  gold-tint pill.
 
 - Fixed the flaky `test_consent_flow_gates_update_check`: the server now keeps a
   handle on its update-check worker thread; the test joins it deterministically

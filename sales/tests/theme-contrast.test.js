@@ -72,7 +72,9 @@ console.log('RESULT: escaped-quote ✓ (no literal backslash-quotes in attribute
 // ---- §2 (2026-09-05): light-mode gold TEXT contrast gate ----
 // .text-gold must flip to var(--gold-text) in light theme, and that value
 // must hold >=4.5:1 on BOTH the paper background and white cards. Gold
-// buttons (light theme: dark ink on #B47D12) must hold >=4.5:1 too.
+// buttons: light-theme primary CTAs are DARK INK PILL + cream text (the amber
+// pill with dark ink read as muddy brown on paper — founder-flagged). The test
+// pins that override and its contrast; gold text on paper stays >=4.5:1.
 // Catches the 3.4:1 amber-on-paper regression an external review found.
 {
   const css = fs.readFileSync(path.join(dir, 'assets', 'theme.css'), 'utf8');
@@ -96,6 +98,10 @@ console.log('RESULT: escaped-quote ✓ (no literal backslash-quotes in attribute
     'light .text-gold must use var(--gold-text)');
   must(ratio(goldText, 'F6F4EF') >= 4.5, `gold text ${goldText} on paper #F6F4EF is ${ratio(goldText, 'F6F4EF').toFixed(2)}:1 (<4.5)`);
   must(ratio(goldText, 'FFFFFF') >= 4.5, `gold text ${goldText} on white cards is ${ratio(goldText, 'FFFFFF').toFixed(2)}:1 (<4.5)`);
-  must(ratio(goldInk, 'B47D12') >= 4.5, `button ink ${goldInk} on gold #B47D12 is ${ratio(goldInk, 'B47D12').toFixed(2)}:1 (<4.5)`);
-  console.log(`RESULT: light-gold-contrast ✓ (text ${ratio(goldText, 'F6F4EF').toFixed(2)}:1 on paper, buttons ${ratio(goldInk, 'B47D12').toFixed(2)}:1)`);
+  const button = css.match(/\[data-theme="light"\]\s*\.btn-gold,\s*\n?\[data-theme="light"\]\s*\.cta-gold\s*\{([\s\S]*?)\}/i);
+  must(button, 'light .btn-gold/.cta-gold override block not found');
+  must(/background-color:\s*#14181F/i.test(button[1]) && /color:\s*#F6F4EF/i.test(button[1]),
+    'light primary buttons must be the dark-ink pill (#14181F bg + #F6F4EF text), not amber');
+  must(ratio('14181F', 'F6F4EF') >= 4.5, `button cream #F6F4EF on ink #14181F is ${ratio('14181F', 'F6F4EF').toFixed(2)}:1 (<4.5)`);
+  console.log(`RESULT: light-gold-contrast ✓ (text ${ratio(goldText, 'F6F4EF').toFixed(2)}:1 on paper, buttons ${ratio('14181F', 'F6F4EF').toFixed(2)}:1 dark-pill)`);
 }

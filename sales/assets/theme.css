@@ -74,8 +74,17 @@ h1, h2, h3, h4, h5, h6 {
 }
 [data-theme="light"] .btn-gold,
 [data-theme="light"] .cta-gold {
-  background-color: #B47D12 !important;
-  color: #14181F !important;
+  /* Light mode primary action = dark ink pill + cream text (inverted), NOT the
+     amber pill — #B47D12 gold with dark ink read as muddy brown on paper.
+     Gold returns via the hover glow so the brand color stays present. */
+  background-color: #14181F !important;
+  color: #F6F4EF !important;
+}
+[data-theme="light"] .btn-gold:hover,
+[data-theme="light"] .cta-gold:hover {
+  box-shadow: 0 6px 24px rgba(180,125,18,.35);
+  opacity: 1;
+  transform: translateY(-1px);
 }
 
 .btn-outline, .btn-ghost {
@@ -117,6 +126,7 @@ h1, h2, h3, h4, h5, h6 {
 [data-theme="light"] .backdrop-blur-xl,[data-theme="light"] .backdrop-blur-2xl{ backdrop-filter:saturate(1.4) blur(16px); }
 
 /* Keep colors legible on paper */
+[data-theme="light"] #launch-badge{ color:#7A530E !important; } /* gold-tint pill: 12px bold text was ~4.2:1 */
 [data-theme="light"] .text-emerald-400{ color:#0E8A5F; }
 [data-theme="light"] .text-blue-300{ color:#2563B0; }
 [data-theme="light"] .text-purple-300{ color:#7A4FC0; }

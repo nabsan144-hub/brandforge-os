@@ -75,10 +75,10 @@ body{background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,sans-se
 body.loaded .lm>span{transform:none}
 
 /* ---------- hero constellation (behind the headline - founder request) -----------
-   One TRANSPARENT canvas behind the hero copy: the six agent orbs orbit AROUND
-   the central words on a wide ellipse (radius scales with the hero so the ring
-   passes outside the text, never through it). Kept pointer-inert and dimmed
-   (55-66% opacity) so the copy always wins. Trails are drawn per-segment on a
+   One TRANSPARENT canvas behind the hero copy: the six agent orbs DRIFT FREELY
+   through the hero space (no fixed orbit, no visible guide ring) and scatter
+   away from any click/tap in the hero. Kept pointer-inert and dimmed (.72-.82
+   opacity) so the copy always wins. Trails are drawn per-segment on a
    cleared canvas - no fade-rectangle - so the canvas stays fully transparent
    and the gold glow behind the copy still shows through. */
 #hero-swarm{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1;opacity:.72}
