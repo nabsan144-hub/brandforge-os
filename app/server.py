@@ -3,9 +3,9 @@ BRANDFORGE OS - The Marketing OS
 FastAPI server — honest features, real gating, local-first.
 
 - Serves dashboard at / and /dist/, sales site at /sales/
-- Local desktop mode (default): full features, binds 127.0.0.1
-- Hosted web mode (BRANDFORGE_HOSTED=1): binds 0.0.0.0, enforces free tier
-  (3 campaigns) unless a valid license file exists (Paddle webhook fills it)
+- Local desktop mode only: full features, binds 127.0.0.1. Remote hosting is
+  the separate, authenticated cloud/ product (the legacy single-user
+  BRANDFORGE_HOSTED branch was removed in the 2026-09 audit round).
 - Settings API for provider/API-key management (keys go to .env, chmod 600)
 - Campaign detail / file / ZIP download endpoints
 """
@@ -48,15 +48,7 @@ from modules import update_check as _update_check
 # firewall; urllib, httpx, browser traffic and other processes are not covered.
 _install_net_audit()
 
-HOSTED = os.environ.get("BRANDFORGE_HOSTED", "0") == "1"
-if HOSTED and os.environ.get("BRANDFORGE_I_UNDERSTAND_NO_AUTH", "0") != "1":
-    raise RuntimeError(
-        "BRANDFORGE_HOSTED=1 exposes this SINGLE-USER app with no authentication — every "
-        "visitor could read all campaigns and change settings. For multi-user cloud, "
-        "deploy hosted/ (login + server-enforced plans). To run this mode anyway, "
-        "also set BRANDFORGE_I_UNDERSTAND_NO_AUTH=1."
-    )
-FREE_CAMPAIGN_LIMIT = 3
+FREE_CAMPAIGN_LIMIT = 3  # kept: referenced by cloud quota documentation
 
 # Single source of truth for the runtime version (keep in sync with
 # app/pyproject.toml and the CHANGELOG top entry at each release).
@@ -336,24 +328,10 @@ def get_approvals():
                 _approvals = ApprovalManager(pm.base_dir)
     return _approvals
 
-# ---------- licensing (local = full; hosted = gated until licensed) ----------
+# ---------- licensing (local desktop = full features, owned) ----------
 def get_license_state() -> Dict[str, Any]:
-    if not HOSTED:
-        return {"mode": "local", "licensed": True, "tier": "desktop",
-                "note": "Local install — full features, owned forever."}
-    lic_file = os.path.join(os.path.dirname(__file__), "license.json")
-    if os.path.exists(lic_file):
-        try:
-            with open(lic_file, "r", encoding="utf-8") as f:
-                data = json.load(f)
-            if data.get("valid"):
-                return {"mode": "hosted", "licensed": True, "tier": data.get("tier", "pro"),
-                        "note": "Licensed — full features."}
-        except Exception:
-            pass
-    return {"mode": "hosted", "licensed": False, "tier": "free",
-            "limit": FREE_CAMPAIGN_LIMIT,
-            "note": f"Free tier: {FREE_CAMPAIGN_LIMIT} campaigns. Upgrade for unlimited."}
+    return {"mode": "local", "licensed": True, "tier": "desktop",
+            "note": "Local install — full features, owned forever."}
 
 # ---------- static mounts ----------
 _dist_dir = dashboard_dir()
@@ -726,7 +704,9 @@ def chat(req: ChatRequest, request: Request):
             "timestamp": datetime.now().isoformat(),
         }
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Chat failed: {str(e)[:200]}") from e
+        import logging as _logging
+        _logging.getLogger("brandforge.chat").exception("chat generation failed")
+        raise HTTPException(status_code=500, detail="Chat failed. The app log has details.") from e
 
 
 # Images the chat tool loop generates land in the app's output dir. The model
@@ -1077,7 +1057,7 @@ def create_approval_link(name: str, request: Request):
         raise HTTPException(status_code=429, detail="Rate limit exceeded")
     _, pm, _, _ = get_core()
     if not pm.get_campaign(name): raise HTTPException(status_code=404, detail="Campaign not found")
-    token=get_approvals().create(name, store_token=not HOSTED)
+    token=get_approvals().create(name, store_token=True)
     return {"token":token,"url":str(request.base_url).rstrip('/') + '/approval/' + token}
 
 
@@ -1640,11 +1620,11 @@ if __name__ == "__main__":
         local_bind = args.host == 'localhost' or ipaddress.ip_address(args.host).is_loopback
     except ValueError:
         local_bind = False
-    if not local_bind or HOSTED:
+    if not local_bind:
         parser.error('Desktop is local-only. Deploy the authenticated cloud/ product for remote access.')
 
     print(f"""
-    BRANDFORGE OS v{__version__} | mode={'hosted' if HOSTED else 'local'}
+    BRANDFORGE OS v{__version__} | mode=local
     Dashboard:  http://{args.host if args.host != '0.0.0.0' else 'localhost'}:{args.port}/
     Sales:      http://localhost:{args.port}/sales/
     API docs:   http://localhost:{args.port}/docs

@@ -234,7 +234,7 @@
         {/if}
       </div>
       {#if updateInfo && updateInfo.update_available}
-        <a href="https://github.com/nabsan144-hub/BrandForgeOS/releases" target="_blank" rel="noopener noreferrer"
+        <a href="https://github.com/nabsan144-hub/brandforge-os/releases" target="_blank" rel="noopener noreferrer"
            class="px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-[11px] text-gold font-medium"
            title="A newer version is available">▲ {updateInfo.latest} available</a>
       {/if}

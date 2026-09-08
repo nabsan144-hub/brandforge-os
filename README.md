@@ -8,7 +8,7 @@ A reviewable campaign workspace with two **separate** products:
 - **Desktop:** local ownership. Owner $199 once; Agency + Source $499 once. Offline templates after setup, optional connected providers, client profiles, revision/approval workflows and portable/native exports.
 - **Cloud:** hosted browser workspace. Free 3 lifetime campaigns; Pro $49/month or $490/year with 50/month; Agency $99/month with 300/month. Three text stages, deterministic vectors, saved brands, editable copy and exports. Not the identical Desktop pipeline.
 
-**Prelaunch implementation:** checkout is deliberately gated. Local tests do not mean live billing, email, legal terms, provider output quality or every OS has been verified. The source is proprietary and published for inspection/evaluation, not open source.
+**Billing gate:** Cloud checkout code ships in this repository, but production billing stays disabled until the operator passes the release gate (BILLING_RELEASE_VERIFIED, plus the checklist in OWNER_LAUNCH_TO_DO.md: legal terms approval, live provider + email verification, sandbox-to-live billing test). Local tests alone do not verify live billing, email or provider output quality. The source is proprietary and published for inspection/evaluation, not open source.
 
 ## Start / operate
 

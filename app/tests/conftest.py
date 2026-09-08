@@ -18,7 +18,6 @@ os.environ.setdefault("BRANDFORGE_RATE_CHAT", "100000")
 os.environ.setdefault("BRANDFORGE_RATE_SWARM", "100000")
 os.environ.setdefault("BRANDFORGE_RATE_TOOL", "100000")
 os.environ.setdefault("BRANDFORGE_RATE_WS", "100000")
-os.environ["BRANDFORGE_HOSTED"] = "0"
 
 
 @pytest.fixture()

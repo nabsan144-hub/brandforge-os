@@ -1,6 +1,53 @@
 # BrandForge OS — Changelog
 
-## Unreleased — independent audit fixes (2026-09-08)
+## 1.8.0 — capability catch-up + audit fix rounds (2026-09-08)
+
+**Version alignment:** the product had outgrown 1.4.3 without a version bump —
+the Cloud service, AI artwork scenes (code-dated 2026-09-07), Desktop AI Image
+Design and two independent audit rounds all shipped in this window. The version
+now matches reality. Human-readable capability notes live on
+sales/changelog.html.
+
+### Round 2 — adversarial-audit re-verification (2026-09-08)
+
+An external 36-item "everything is broken" audit was verified claim by claim
+against the current tree and the live sites: ~20 items reproduced as real, the
+rest were stale, wrong or unverifiable. Fixed:
+
+- Updater pointed at the non-existent `nabsan144-hub/BrandForgeOS` repository;
+  corrected to `brandforge-os` in `web-modern/src/App.svelte`,
+  `modules/update_check.py` and the packaged dashboard bundle.
+- Chat 500 no longer leaks provider internals (`server.py`): the exception is
+  logged server-side and a redacted message is returned.
+- Optional Turnstile bot challenge now fails CLOSED when a site key is
+  configured but the challenge cannot load or complete
+  (`cloud/public/app.js`) — a blocked script domain no longer bypasses it.
+- Cloud provider retries are budget-capped to the serverless window
+  (`cloud/api/_lib/engine.js`): a rate-limited model call retries only while
+  another full call still fits inside the 60s function cap; the copy
+  strict-retry is budget-gated the same way. Previously unbounded retries could
+  push a stage past maxDuration and die as an opaque 504.
+- AI artwork scene now embeds once (hero banner) instead of being
+  base64-duplicated into every banner size; size presets are deterministic
+  vector again — smaller packs, lower generation memory. Pricing FAQ wording
+  aligned to the hero-banner behaviour.
+- Retired single-user hosted web mode removed from `server.py`
+  (BRANDFORGE_HOSTED branch, license-file gating, bind bypass, approval-token
+  special case); remote hosting is exclusively the authenticated cloud/
+  product. Test conftest cleaned up.
+- Urdu/Hindi/Spanish/Portuguese audit strings no longer contain untranslated
+  English fragments ("not measured").
+- Copy/truth fixes across the sales site: "proposed Agency plan" terms wording,
+  Python 3.10+ requirement made consistent, tools page "Free forever" residue +
+  compliance placeholder, 404 CTA, garbled onboarding/support FAQ answer
+  (visible + FAQ JSON-LD), Desktop-only formats labelled as such on vs-Canva,
+  Website Audit described as the heuristic checklist it is, WhatsApp reminder
+  marked as planned, workspace page framed as the Desktop product, favicon
+  type attributes corrected on all pages, changelog og:description fixed
+  (it was copy-pasted from the Docs page).
+- Version bumped to 1.8.0 (see header note).
+
+### Round 1 — independent audit fixes (2026-09-08)
 
 Full-repo audit with re-executed test suites and live-site verification.
 

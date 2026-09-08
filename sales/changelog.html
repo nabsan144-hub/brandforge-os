@@ -5,14 +5,14 @@
 <meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <meta content="#070d11" name="theme-color"/>
 <link href="assets/logo-mark.svg" rel="icon" type="image/svg+xml"/>
-<link href="favicon.ico" rel="icon" sizes="32x32" type="image/png"/>
+<link href="favicon.ico" rel="icon" sizes="32x32"/>
 <link href="favicon.ico" rel="shortcut icon"/>
 <link href="apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180"/>
 <title>Changelog — BrandForge OS</title>
 <link href="assets/theme.css" rel="stylesheet"/>
 <link href="assets/motion.css" rel="stylesheet"/>
 <link href="assets/tailwind.css" rel="stylesheet"/>
-<meta content="BrandForge OS release history — what changed in each shipped version, honestly, with the full source inspectable on GitHub." name="description"/>
+<meta content="BrandForge OS release history — what changed in each shipped version, honestly." name="description"/>
 <link href="https://www.brandforge-os.com/changelog" rel="canonical"/>
 <meta content="https://www.brandforge-os.com/changelog" property="og:url"/>
 <meta content="website" property="og:type"/>
@@ -23,7 +23,7 @@
 <meta content="https://www.brandforge-os.com/og-image.jpg" name="twitter:image"/>
 <meta content="1200" property="og:image:width"/>
 <meta content="630" property="og:image:height"/>
-<meta content="Set up BrandForge Desktop, choose an engine, create a campaign, review the copy and export your files. Cloud is a separate browser-based product." property="og:description"/>
+<meta content="BrandForge OS release history — what changed in each shipped version, honestly." property="og:description"/>
 <meta content="Changelog — BrandForge OS" property="og:title"/>
 <link href="assets/fonts.css" rel="stylesheet"/>
 <style>body{font-family:'Geist',system-ui,sans-serif} .serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;letter-spacing:-.01em} .mono{font-family:'Geist Mono',monospace}</style>
@@ -76,6 +76,8 @@
   <p class="text-muted text-[14px] mt-3 max-w-[560px] mx-auto">Every shipped release, in plain language. Review the history before you buy.</p>
 </div>
 <div class="max-w-[760px] mx-auto mb-10">
+<div class="p-6 rounded-2xl bg-card border border-line mb-4"><div class="text-[15px] font-bold text-ink">1.8.0 — Cloud service, AI artwork scenes, audit rounds (capability catch-up, 2026-09-08)</div><p class="text-[13px] text-muted mt-2 leading-relaxed">This page had stalled at 1.4.3 while the product kept moving — an external audit called out the gap, and this cumulative entry closes it. Shipped since 1.4.x: <b>BrandForge Cloud</b> (browser workspace — Supabase accounts, 3 text stages, deterministic vector visuals, per-plan monthly quotas; Paddle checkout stays behind the operator&rsquo;s release gate), <b>AI artwork scenes</b> on Cloud Pro/Agency via the operator-enabled provider (scene on the hero banner; size banners stay deterministic vector), <b>Desktop AI Image Design</b> through your own API key, and the site&rsquo;s free Policy &amp; Claim scanner. Two independent audits (rendered-browser + source; adversarial claim-by-claim re-review) drove fixes across security headers, quota logic, the updater, latency budgets and disclosure wording.</p></div>
+<div class="p-6 rounded-2xl bg-card border border-line mb-4"><div class="text-[15px] font-bold text-ink">Unreleased — adversarial-audit fix round (2026-09-08)</div><p class="text-[13px] text-muted mt-2 leading-relaxed">Verified an external 36-item audit claim by claim against the live product (~20 reproduced; the rest were stale, wrong or unverifiable). Fixed: updater repo links, chat 500 provider-leak redaction, a fail-closed bot challenge, provider retries budgeted to the serverless window, the AI scene embedded once per pack instead of per banner, the retired hosted-mode branch removed, per-language audit phrases, and wording corrections across terms, pricing, tools, 404, comparisons and docs. Details in the repository CHANGELOG.md.</p></div>
 <div class="p-6 rounded-2xl bg-card border border-line mb-4"><div class="text-[15px] font-bold text-ink">1.4.3 — customer-review fixes (2026-09-06)</div><p class="text-[13px] text-muted mt-2 leading-relaxed">Rendered-browser + source review by an independent audit: mobile-responsive product tour (scaling film canvas, fixed viewport chrome, real links, honest paused state), light-mode hamburger contrast fix, AA-contrast badge/chip fixes, single-row app header on small screens. No behaviour or contract changes.</p></div>
 <div class="p-6 rounded-2xl bg-card border border-line mb-4"><div class="text-[15px] font-bold text-ink">1.4.2 — runtime verification and recovery</div><p class="text-[13px] text-muted mt-2 leading-relaxed">Recoverable private settings transactions, setup checks bind to the installed environment, masked key prompts, managed loopback startup, protected approval/performance state, log rotation and retention, runtime regressions.</p></div>
 <div class="p-6 rounded-2xl bg-card border border-line mb-4"><div class="text-[15px] font-bold text-ink">1.4.1 — independent full-package audit revision</div><p class="text-[13px] text-muted mt-2 leading-relaxed">Pinned and bounded public HTTP transport; private Desktop peer enforcement; provider snapshots; image consent; per-order artifact metadata; Unicode brand identities; packaged dashboard for wheel installs.</p></div>

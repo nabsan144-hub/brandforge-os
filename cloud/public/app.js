@@ -461,7 +461,7 @@ async function getCaptchaToken() {
   const key = __cfg && __cfg.captchaSiteKey;
   if (!key) return null;
   const ts = await loadTurnstile();
-  if (!ts) return null; // provider unreachable -> don't block the user
+  if (!ts) return null; // provider unreachable -> caller fails closed when a key is configured
   return new Promise((resolve) => {
     let target = document.getElementById("bf-captcha");
     if (!target) {
@@ -514,6 +514,14 @@ $("auth-go").onclick = async () => {
     }
     // Optional bot challenge (SEC-2). No-op unless CAPTCHA_SITE_KEY is set.
     const captchaToken = await getCaptchaToken();
+    // Fail CLOSED when a key is configured but the challenge could not load or
+    // complete (blocked third-party script, error callback, widget tear-down).
+    // Previously this quietly continued without a token, so anyone blocking the
+    // provider domain bypassed the gate entirely.
+    if (__cfg && __cfg.captchaSiteKey && !captchaToken) {
+      msg.innerHTML = `<div class="err">Security check could not finish — allow challenges.cloudflare.com if you run a script blocker, then try again.</div>`;
+      return;
+    }
     const authOptions = captchaToken ? { captchaToken } : {};
     const result = mode === "signup"
       // Email-confirmation redirect must go to *this* app's origin, not

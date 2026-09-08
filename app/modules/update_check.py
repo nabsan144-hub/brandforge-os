@@ -14,7 +14,7 @@ import re
 from datetime import datetime
 from typing import Any, Dict, Optional, Tuple
 
-RELEASES_URL = "https://api.github.com/repos/nabsan144-hub/BrandForgeOS/releases/latest"
+RELEASES_URL = "https://api.github.com/repos/nabsan144-hub/brandforge-os/releases/latest"
 DEFAULT_TIMEOUT = 10
 
 
