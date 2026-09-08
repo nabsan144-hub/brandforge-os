@@ -127,6 +127,9 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Keep colors legible on paper */
 [data-theme="light"] #launch-badge{ color:#7A530E !important; } /* gold-tint pill: 12px bold text was ~4.2:1 */
+/* Founder avatar: the amber-gradient tile read as muddy brown on paper (same
+   issue as the buttons) — dark-ink tile + cream initials, gold hairline. */
+[data-theme="light"] .bf-founder .tile{ background:#14181F !important; color:#F6F4EF !important; border:1px solid rgba(180,125,18,.45); }
 [data-theme="light"] .text-emerald-400{ color:#0E8A5F; }
 [data-theme="light"] .text-blue-300{ color:#2563B0; }
 [data-theme="light"] .text-purple-300{ color:#7A4FC0; }
