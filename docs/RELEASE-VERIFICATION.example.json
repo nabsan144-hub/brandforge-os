@@ -17,7 +17,8 @@
     "provider_quality": false,
     "legal_approval": false,
     "commercial_hosting": false,
-    "monitoring_alerts": false
+    "monitoring_alerts": false,
+    "captcha_signup": false
   },
-  "note": "Template only. Never mark true without external evidence; store real IDs/receipts privately, not in git."
+  "note": "Template only. Never mark true without external evidence; store real IDs/receipts privately, not in git. captcha_signup = CAPTCHA_SITE_KEY set (Turnstile challenge live on signup/login) plus the matching secret configured in Supabase Auth — abuse control for the lifetime-capped free tier."
 }

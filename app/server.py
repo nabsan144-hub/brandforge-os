@@ -617,6 +617,10 @@ _update_state: Dict[str, Any] = {
 }
 _update_lock = threading.Lock()
 _update_inflight = False
+# Handle to the lazily-started worker so tests/ops can deterministically wait
+# for a check to publish instead of racing a fixed poll budget (this is what
+# made the consent-gate test flaky under full-suite load).
+_update_thread = None
 
 
 class UpdateConsentRequest(BaseModel):
@@ -650,7 +654,7 @@ def api_update_check(refresh: int = 0):
     background thread (never blocks, never at import time so tests stay
     hermetic); BRANDFORGE_UPDATE_CHECK=0 disables it entirely. The check
     itself goes through requests, so it appears in the network ledger."""
-    global _update_state, _update_inflight
+    global _update_state, _update_inflight, _update_thread
     eng, _, _, _ = get_core()
     if not _update_check.allowed(str(eng.config.get("update_check", "")) == "on"):
         return {"current": __version__, "latest": None, "update_available": False,
@@ -668,7 +672,8 @@ def api_update_check(refresh: int = 0):
                     with _update_lock:
                         _update_inflight = False
 
-            threading.Thread(target=_run, daemon=True, name="update-check").start()
+            _update_thread = threading.Thread(target=_run, daemon=True, name="update-check")
+            _update_thread.start()
         return _update_state
 
 @app.get("/logo-mark.svg")

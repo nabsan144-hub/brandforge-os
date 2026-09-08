@@ -13,6 +13,18 @@ def _enable(monkeypatch):
     monkeypatch.setenv("BRANDFORGE_UPDATE_CHECK", "1")
 
 
+@pytest.fixture(autouse=True)
+def _no_leaked_update_worker():
+    yield
+    # The consent-gate worker is a daemon thread writing shared module state;
+    # a leftover worker publishing mid-next-test was the cross-test pollution
+    # behind the full-suite flake. Join any survivor after each test.
+    import threading
+    for t in threading.enumerate():
+        if t.name == "update-check" and t is not threading.current_thread():
+            t.join(timeout=10)
+
+
 def test_parse_version_variants():
     assert parse_version("v1.2.23") == (1, 2, 23)
     assert parse_version("1.2") == (1, 2)
@@ -118,7 +130,6 @@ def test_env_opt_in(monkeypatch):
 
 
 def test_consent_flow_gates_update_check(client, monkeypatch):
-    import time
     import modules.update_check as uc
     monkeypatch.delenv("BRANDFORGE_UPDATE_CHECK", raising=False)  # consent must be the only gate here
 
@@ -141,12 +152,14 @@ def test_consent_flow_gates_update_check(client, monkeypatch):
     srv._update_inflight = False
     assert client.post("/api/update-consent", json={"enabled": True}).json()["consent"] == "on"
     client.get("/api/update-check")
-    got = {}
-    for _ in range(150):  # loaded CI runners may schedule the worker thread late
-        got = client.get("/api/update-check").json()
-        if got.get("update_available"):
-            break
-        time.sleep(0.1)
+    # Wait for the worker the server just started to actually publish, instead
+    # of racing a fixed poll budget — loaded CI runners may schedule the thread
+    # late, and a late thread is exactly what used to flake this test.
+    worker = srv._update_thread
+    assert worker is not None, "opt-in must start the update-check worker"
+    worker.join(timeout=60)
+    assert not worker.is_alive(), "update-check worker did not finish within 60s"
+    got = client.get("/api/update-check").json()
     # Starting the worker is not the same as publishing its result.
     assert called, "opted-in update check must actually run"
     assert got["update_available"] is True

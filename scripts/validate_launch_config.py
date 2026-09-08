@@ -10,7 +10,7 @@ import subprocess
 from pathlib import Path
 
 ROOT=Path(__file__).resolve().parents[1]
-CHECKS=['paddle_sandbox','live_purchase_refund','guest_owner_download','guest_source_download','all_subscription_transitions','deletion_outage','refund_disputes','email_inbox','private_assets','windows_install_offline','macos_install','provider_quality','legal_approval','commercial_hosting','monitoring_alerts']
+CHECKS=['paddle_sandbox','live_purchase_refund','guest_owner_download','guest_source_download','all_subscription_transitions','deletion_outage','refund_disputes','email_inbox','private_assets','windows_install_offline','macos_install','provider_quality','legal_approval','commercial_hosting','monitoring_alerts','captcha_signup']
 
 
 def main():

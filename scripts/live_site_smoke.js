@@ -34,6 +34,10 @@ const BASE = (process.env.SITE_BASE || process.argv[2] || "https://www.brandforg
 const fs=require('node:fs'), path=require('node:path');
 const config=fs.readFileSync(path.join(__dirname,'../sales/assets/config.js'),'utf8');
 const CANON_HOST=(config.match(/site_url:\s*['"]([^'"]+)['"]/)?.[1]||'https://www.brandforge-os.com').replace(/\/+$/,'');
+// Pre-launch, Desktop checkout is off — the live /pricing page must show the
+// waitlist wording and must NEVER show "Buy once". This is the content-level
+// drift the URL checks above cannot see (it shipped once already).
+const DESKTOP_CHECKOUT_OFF = !/desktop_checkout_enabled:\s*true/.test(config);
 function attribute(tag,name){return tag.match(new RegExp('\\b'+name+'=["\']([^"\']+)["\']','i'))?.[1]||null;}
 function tagValue(text,tag,kind,key,value){
  for(const raw of text.match(new RegExp('<'+tag+'\\b[^>]*>','gi'))||[]){if(attribute(raw,kind)===key)return attribute(raw,value);}
@@ -44,6 +48,7 @@ function tagValue(text,tag,kind,key,value){
 const PATHS = [
   "/", "/workspace", "/agents", "/pricing", "/tools",
   "/docs", "/demo", "/privacy", "/refund", "/terms",
+  "/changelog", "/vs-canva-ad-creator", "/best-ad-copy-generator",
 ];
 
 // Stale schemes we must never see in a published page's canonicals or nav.
@@ -95,6 +100,13 @@ async function fetchText(url) {
       if (entry.ogUrl) checks.push(["og:url = canonical", entry.ogUrl === expectedCanonical]);
       checks.push(["no .html nav links", entry.staleNav === 0]);
       checks.push(["www canonical (no apex)", !entry.staleCanonical]);
+
+      // Content drift: the single most important commercial page must match
+      // the repo's honest pre-launch wording while checkout is disabled.
+      if (entry.path === "/pricing" && DESKTOP_CHECKOUT_OFF) {
+        checks.push(["no 'Buy once' while checkout is off", !/Buy once\s*—\s*\$\d/.test(text)]);
+        checks.push(["waitlist wording present", text.includes("Join the waitlist")]);
+      }
 
       const bad = checks.filter(([, ok]) => !ok).map(([n]) => n);
       entry.pass = bad.length === 0;

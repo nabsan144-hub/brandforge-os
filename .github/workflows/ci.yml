@@ -1,0 +1,79 @@
+# CI — the same gates as docs/LAUNCH-RUNBOOK.md §1, on every push/PR.
+# These were previously local-only checks, which is how flaky tests and stale
+# deploys survived unnoticed. Keep this green before treating main as releasable.
+name: CI
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  python:
+    name: Python — lint + 412 test suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - name: Install
+        run: pip install -r app/requirements.txt pytest pytest-cov ruff pip-audit
+      - name: Ruff
+        run: ruff check app
+      - name: Tests
+        run: python -m pytest app/tests -q
+      - name: Dependency audit (report only)
+        continue-on-error: true
+        run: pip-audit -r app/requirements.txt
+
+  cloud:
+    name: Cloud API — Vitest suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: cloud/package-lock.json
+      - run: npm ci --prefix cloud
+      - run: npm test --prefix cloud
+      - name: Schema sync check
+        run: node cloud/scripts/sync-schema.mjs --check
+
+  sales:
+    name: Sales site — funnel/a11y/contrast suite
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sales/package-lock.json
+      - run: npm ci --prefix sales
+      - run: npm test --prefix sales
+
+  dashboard:
+    name: Dashboard — Svelte/Vite build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: app/web-modern/package-lock.json
+      - run: npm ci --prefix app/web-modern
+      - run: npm run build --prefix app/web-modern
+
+  prelaunch-config:
+    name: Prelaunch-safe configuration gate
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: python -m pip install -r app/requirements.txt
+      - run: python scripts/validate_launch_config.py --prelaunch
