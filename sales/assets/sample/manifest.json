@@ -1,26 +1,28 @@
 {
   "engine": "offline",
   "sample": true,
+  "generated": "2026-09-11T07:29:31.699874",
+  "style": "bold",
   "files": [
     {
       "name": "01_strategy_and_approval.html",
-      "bytes": 3814,
-      "sha256": "ca413bf2ef75185259191787cc65bcacf9a829867fa7dea9bc64389267093fc3"
+      "bytes": 3894,
+      "sha256": "d59c8920d4cad4bf4bcc3b07837e44cf2163b9a6ab04a27f8addcb5bdefbe69e"
     },
     {
       "name": "02_copy_pack.md",
-      "bytes": 1756,
-      "sha256": "fc3b76d5a2846b38ce7ee66b9138057942581bb690037eed81c065acfa63f4e0"
+      "bytes": 1824,
+      "sha256": "7788d1f2dad86762264cf49f540b26b30c9ffc16e5cb7e06888e36509b8bb464"
     },
     {
       "name": "03_content_calendar.csv",
-      "bytes": 771,
-      "sha256": "12465b571b9fb56463d29267b6df9d060b83c1d291fc844721b65f9ed6817b7a"
+      "bytes": 750,
+      "sha256": "50971884810e1a9bcd114ea729bd2d0b8cea8973d41e3a7be74f4f5cd75fd05f"
     },
     {
       "name": "04_creative_brief.md",
-      "bytes": 1143,
-      "sha256": "8dfd03ae871b34f53e2e61700c466898c73fb3669424deda2ae409838973250d"
+      "bytes": 1168,
+      "sha256": "0abc1c7e8c6deb7b1a1304926f66f807a8df1995e8a43cd7a886df462f1da0c7"
     },
     {
       "name": "README_DELIVERY.md",
@@ -44,18 +46,18 @@
     },
     {
       "name": "ad_card.html",
-      "bytes": 761119,
-      "sha256": "82b34177b48d059126e5cbfcf99448bdd7565e0ead17fae132eb172a3d3169a0"
+      "bytes": 761158,
+      "sha256": "2f039c77aa0ae69fd3e29470d84c97a0898c4d8cb20af0bdeb8943e5b9129305"
     },
     {
       "name": "banner_fb_story.png",
-      "bytes": 48739,
-      "sha256": "ec24d8a3f0e81c4e1df99c1ec4ffec7b00aca3983149d731d580207ca2f96191"
+      "bytes": 678221,
+      "sha256": "8b1133b731b694a7784240c706a7dabea19a0cad706c2a9244ff02ea25b251f9"
     },
     {
       "name": "banner_fb_story.svg",
-      "bytes": 32883,
-      "sha256": "ae5f2ed2308a90b57f4e57aa243404ec6f87ade2219fda12a0a96a92d64476bc"
+      "bytes": 46467,
+      "sha256": "4e9acd7044bafa8444fe749c654a775fabc44959d4b274d01e7774d4ac25671d"
     },
     {
       "name": "banner_leaderboard.png",
@@ -69,13 +71,13 @@
     },
     {
       "name": "banner_medium_rectangle.png",
-      "bytes": 13746,
-      "sha256": "11babcb7edc6da08b6574e162ace9b49015423108fcfcef08e7b1f45fc736239"
+      "bytes": 63409,
+      "sha256": "6de283df4e9bd0d3b8f4ccd714b595cd887f3846789eb621d9ec1a5cacf36077"
     },
     {
       "name": "banner_medium_rectangle.svg",
-      "bytes": 32813,
-      "sha256": "71ee0efec9f3d6099894a49a29f6ebb9eac73c168becc2cea79282e20d86c748"
+      "bytes": 44077,
+      "sha256": "58b8a10a2cf8425a42b2af6b72edc3a6b7ce60c2b0d459d6e3e572ef205fde16"
     },
     {
       "name": "brand_guidelines.md",
@@ -84,23 +86,23 @@
     },
     {
       "name": "campaign.docx",
-      "bytes": 38038,
-      "sha256": "c28be3f2724cfcfb92c26cec986a29a88e28c0ea9181890fe5a9252272ecdcc9"
+      "bytes": 38049,
+      "sha256": "666a5876085be07161ddb5c8f9fa9d1a8e2a61c1b7d58220a12ba6f3a23b58c2"
     },
     {
       "name": "campaign.json",
-      "bytes": 8613,
-      "sha256": "4a5d45d8bd92428d3089b900ae052c46da9886d4eb8e0b6082f7e0985bc80d76"
+      "bytes": 7507,
+      "sha256": "073b4d7ace012f9a05c4ccfc3624ff919d60372789c8ea41f52aa40dd7e6cb47"
     },
     {
       "name": "campaign.pdf",
-      "bytes": 24608,
-      "sha256": "abeaa5b45030f66356039a42bf97746806b5971dafc0ff5b70550d212be012df"
+      "bytes": 24430,
+      "sha256": "517a49e7cca13220840969c36f0766817b44283c30fdb3656df3fb1bfd2e38c3"
     },
     {
       "name": "campaign_report.md",
-      "bytes": 2959,
-      "sha256": "41741bdfc6c7dd5d61e2993281b623a8c057107605e44ac54dd3638f04112e3f"
+      "bytes": 2682,
+      "sha256": "1bdbfeeba570ce32a6c2b34040e4b74b86fe34207a0c7e155f383f0d4271a3c6"
     },
     {
       "name": "color_palette.json",
@@ -129,18 +131,18 @@
     },
     {
       "name": "hero_banner.jpg",
-      "bytes": 48725,
-      "sha256": "a09e4fb33a998a09a7f0c27d3a23542bb4817c305af6c863d2a1ce6a719bf5b3"
+      "bytes": 69406,
+      "sha256": "bb25693ceceac4c52558fd45a91eca1a757c087f0959b1331ce60b8b890f1f53"
     },
     {
       "name": "hero_banner.png",
-      "bytes": 34746,
-      "sha256": "90633fed47ac5592f3883452d18e4808b8cb0d155520a44cd330e3bed3def772"
+      "bytes": 300457,
+      "sha256": "af8520d83f8e8fed1c1ae58c68e17f40714e8e8a7c87a04062487683d107dab6"
     },
     {
       "name": "hero_banner.svg",
-      "bytes": 32795,
-      "sha256": "e332c0b93c45e412624c930a0946e08145c7b0decc06da4310a5eedadecfd2b9"
+      "bytes": 46265,
+      "sha256": "1973be095f5f1adb84b3d94b0340400a9dd35ce8d8f1f55bd04f18929a16d46b"
     },
     {
       "name": "icon_only.png",
@@ -154,23 +156,23 @@
     },
     {
       "name": "instagram_square.jpg",
-      "bytes": 46768,
-      "sha256": "908740bb6ba77b858f4adfe0c790cd211c2004e7185f0150f625f2c0e96c62e9"
+      "bytes": 84343,
+      "sha256": "1e8edd7fddf1e21a5502306f402c7da4f7d720bba3ed04dffa815b1aeb361cff"
     },
     {
       "name": "instagram_square.png",
-      "bytes": 41761,
-      "sha256": "523de00129862e80e66a3986e849c7747cc64a76f8f4f374f7f2b669e3bef91c"
+      "bytes": 453980,
+      "sha256": "609974c8d6caf039dc7535f00c6798ceadee859a6398fcfba6cf878a0d742735"
     },
     {
       "name": "instagram_square.svg",
-      "bytes": 30567,
-      "sha256": "73786f884170615a9880ae0cecaafb4dbff6fedfbe9b67640a307a53356e1958"
+      "bytes": 44121,
+      "sha256": "190f73230a9d3b6fe8fec92da27f85e690471d292548a5a40bd81ad2137fa08b"
     },
     {
       "name": "landing_page.html",
-      "bytes": 761141,
-      "sha256": "99c30cd26ce4b95d19075dd29b0c5a7dba1bcc94a1f3ffdc90007d3355c47e97"
+      "bytes": 761180,
+      "sha256": "e92e68bfd0aaa9bbe44f86c92ffc7c00848b91a3c276e4419b7cef61d1572842"
     },
     {
       "name": "lettermark.png",

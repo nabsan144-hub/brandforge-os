@@ -136,6 +136,10 @@ body.loaded .lm>span{transform:none}
 @media(max-width:900px){.bf-gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.bf-gallery{grid-template-columns:1fr}}
 .bf-hero:has(.bf-trust){padding-bottom:0}
+.bf-orb-hint{display:flex;align-items:center;justify-content:center;gap:9px;margin-top:12px;font-size:12px;line-height:1.7;color:var(--muted)}
+.orb-dot{width:9px;height:9px;flex:none;border-radius:50%;background:var(--gold);box-shadow:0 0 10px var(--gold);animation:orbPulse 2.6s ease-in-out infinite}
+@keyframes orbPulse{50%{transform:scale(1.55);opacity:.55}}
+@media (prefers-reduced-motion:reduce){.orb-dot{animation:none}}
 .bf-trust{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:10px 30px;list-style:none;margin:0 auto;padding:14px 24px;border-top:1px solid var(--line);max-width:1052px;font-size:12.5px;font-weight:600;color:var(--muted)}
 .bf-trust li{display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
 .bf-trust li span[aria-hidden="true"]{flex:none}
@@ -229,6 +233,7 @@ body.loaded .lm>span{transform:none}
 <p class="bf-lead">Bring a brand, a clear offer and real customer benefits. Draft the copy, create branded visuals, refine the message and hand over a complete pack.</p>
 <div class="bf-actions"><a class="cta-gold" href="https://app.brandforge-os.com/signup">Try 3 free Cloud campaigns</a><a class="ghost-btn" href="#tour">Watch the 60-second tour</a><a class="ghost-btn" href="demo#sample-pack">Inspect a real sample pack</a></div>
 <p class="bf-small">No card needed for Free. Join the Desktop waitlist for availability updates.</p>
+<p class="bf-orb-hint"><span class="orb-dot" aria-hidden="true"></span><span>The six drifting orbs above are your campaign agents — click anywhere in this hero and watch them scatter.</span></p>
 <div class="bf-product-line"><span><b>Cloud</b> · browser workspace · recurring plans</span><span><b>Desktop</b> · local ownership · from $199 once</span></div>
 <p class="bf-small" style="max-width:680px;margin:14px auto 0">Cloud drafts <b>3 text stages</b> (strategy, copy, SEO). Visuals are deterministic vector; <b>Pro and Agency add AI artwork scenes</b> (operator-enabled provider) with the same exact vector text. The <b>six-stage Desktop pipeline</b> — research and quality review included — is a separate product. <a href="pricing#feature-matrix">Compare the exact formats →</a></p>
 <ul aria-label="What you get" class="bf-trust"><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> One brief → strategy, copy and visuals</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Review every claim before you publish</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Free to try — no card required</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Your output is yours — no lock-in</li></ul>
@@ -247,8 +252,8 @@ body.loaded .lm>span{transform:none}
 <div class="bf-compare">
 <figure>
  <div class="lab"><span>Vector build — every plan</span><span class="tag base">BASELINE</span></div>
- <img alt="Vector banner for the fictional Karak Theory brief: gold on navy, headline, three benefits and CTA" loading="lazy" src="assets/gallery/before-vector-karak.svg"/>
- <figcaption>Engine output · the deterministic build Free runs on.</figcaption>
+ <img alt="Bold vector banner for the fictional Karak Theory brief: tilted gold paint band carrying the headline on navy, three pictogram benefits and a gold CTA pill" loading="lazy" src="assets/gallery/bold-vector-karak.svg"/>
+ <figcaption>Engine output · the deterministic bold build every plan ships with.</figcaption>
 </figure>
 <figure>
  <div class="lab"><span>AI scene — Pro &amp; Agency</span><span class="tag ai">AI SCENE</span></div>
@@ -280,7 +285,7 @@ body.loaded .lm>span{transform:none}
 <div class="bf-tour-links"><a href="tour?paused=1">Open the animated HTML tour</a><a download="" href="assets/product-demo/demo.mp4">Download the 1080p video</a><a href="pricing#feature-matrix">Compare Desktop and Cloud</a></div>
 </section>
 <section class="bf-section" id="demo">
-<div class="bf-split"><div><p class="bf-kicker">SHOW THE OUTPUT, NOT JUST THE PROMISE</p><h2>A campaign you<br/>can actually open.</h2><p>This fictional coffee brief was run through the Desktop offline engine. You can inspect the copy, vector and raster visuals, Word/PDF documents, review notes and file manifest.</p><p class="bf-small">This is template output, not a customer testimonial or an AI-provider quality benchmark. No performance or trademark claims are implied.</p><div class="bf-actions"><a class="cta-gold cta-sample" download="" href="assets/sample/northline-campaign.zip">Download the complete sample ZIP</a><a class="ghost-btn" href="assets/sample/campaign.pdf">Read the PDF</a></div></div><figure><img alt="Actual Northline Coffee banner generated from a fictional brief" height="630" src="assets/sample/hero.webp" width="1200"/><figcaption>Actual offline output · fictional Northline Coffee brief</figcaption></figure></div>
+<div class="bf-split"><div><p class="bf-kicker">SHOW THE OUTPUT, NOT JUST THE PROMISE</p><h2>A campaign you<br/>can actually open.</h2><p>This fictional coffee brief was run through the Desktop offline engine. You can inspect the copy, vector and raster visuals, Word/PDF documents, review notes and file manifest.</p><p class="bf-small">This is template output, not a customer testimonial or an AI-provider quality benchmark. No performance or trademark claims are implied.</p><div class="bf-actions"><a class="cta-gold cta-sample" download="" href="assets/sample/northline-campaign.zip">Download the complete sample ZIP</a><a class="ghost-btn" href="assets/sample/campaign.pdf">Read the PDF</a></div></div><figure><img alt="Bold Northline Coffee banner generated offline from a fictional brief: gold paint band, three benefits and a CTA pill" height="630" src="assets/sample/hero.webp" width="1200"/><figcaption>Actual offline output of the bold engine · fictional Northline Coffee brief</figcaption></figure></div>
 </section>
 <section aria-labelledby="gallery-h" class="bf-section" id="gallery">
 <p class="bf-kicker">REAL ENGINE OUTPUT · FICTIONAL BRANDS</p>
@@ -298,7 +303,7 @@ body.loaded .lm>span{transform:none}
 </section>
 <section class="bf-section" id="products"><p class="bf-kicker">SEPARATE PRODUCTS. CLEAR EXPECTATIONS.</p><h2>Choose where your work lives.</h2>
 <div class="bf-two"><article class="bf-panel"><span class="bf-kicker">BRANDFORGE CLOUD</span><h3>Your browser workspace</h3><p>Reusable client brands, three text-generation stages, transparent provider status, editable copy, saved versions, searchable history and portable exports.</p><ul><li>Free: 3 lifetime campaigns, watermarked</li><li>Pro: $49/month or $490/year · 50 campaigns/month</li><li>Agency: $99/month · 300 campaigns/month</li><li>Hosted storage; connected providers receive your brief</li></ul><a class="ghost-btn" href="pricing#cloud-plans">Review Cloud plans</a></article>
-<article class="bf-panel"><span class="bf-kicker">BRANDFORGE DESKTOP</span><h3>Keep the local version</h3><p>Local campaign storage, client profiles, a review pipeline, native Word/PDF exports and optional connected tools. Offline templates need no AI key after setup.</p><ul><li>Owner: $199 once · your own business/brands</li><li>Agency + Source: $499 once · client work and defined resale rights</li><li>No included Cloud subscription or hosted AI allowance</li><li>First setup needs internet; provider charges can apply</li></ul><a class="ghost-btn" href="pricing#waitlist" onclick="brandforgeBuy('owner');return false;">Join the Desktop waitlist</a></article></div>
+<article class="bf-panel"><span class="bf-kicker">BRANDFORGE DESKTOP</span><h3>Keep the local version</h3><p>Local campaign storage, client profiles, a review pipeline, native Word/PDF exports and optional connected tools. Offline templates need no AI key after setup.</p><ul><li>Owner: $199 once · your own business/brands</li><li>Agency + Source: $499 once · client work and defined resale rights</li><li>No included Cloud subscription or hosted AI allowance</li><li>First setup needs internet; provider charges can apply</li></ul><a class="ghost-btn" href="pricing#waitlist" onclick="brandforgeBuy('owner');return false;"><span data-cta-price="199" data-cta-tier="owner">Join the Desktop waitlist</span></a></article></div>
 <p class="bf-small">Cloud and Desktop do not have identical pipelines. <a href="pricing#feature-matrix">Compare the exact formats and capabilities →</a></p></section>
 <section class="bf-section"><p class="bf-kicker">A PRACTICAL WORKFLOW</p><h2>Draft. Refine. Deliver.</h2><div class="bf-steps"><article><b>01 · Start with the brand</b><p>Save the audience, colors, approved logo, tone and proof for each client.</p></article><article><b>02 · Review the draft</b><p>Know which sections came from a model and which are templates. Edit before publishing.</p></article><article><b>03 · Hand over the pack</b><p>Download copy, visuals and review notes. Keep source files and a manifest, not a locked preview.</p></article></div></section>
 <section class="bf-section"><div class="bf-split"><div><p class="bf-kicker">LIMITED CLAIM CHECKS, NOT CERTIFICATION</p><h2>A second look<br/>before you publish.</h2><p>The free ad-copy preflight tool highlights selected health, earnings, urgency, testimonial and statistics patterns. It cannot verify evidence, all languages or changing platform rules.</p><a class="ghost-btn" href="tools">Try the free preflight checker</a></div><div class="bf-panel"><h3>Human judgment stays in the loop.</h3><p>No invented SEO scores. No claim that a green badge makes an ad compliant. No promised revenue, autonomous posting or overnight results.</p><p>Start with a sample, measure your editing time, then decide whether the workspace earns its place.</p></div></div></section>
@@ -321,7 +326,7 @@ body.loaded .lm>span{transform:none}
 <div class="term-body">
 <span class="p">›</span>SETUP-WINDOWS.bat<span class="c">   # one-time install (Windows)</span><br/>
 <span class="p">›</span>pip install -r requirements.txt<span class="c">   # macOS / Linux</span><br/>
-<span class="p">›</span>uvicorn main:app --port 8000<span class="c">   # local engine + UI</span><br/>
+<span class="p">›</span>cd app &amp;&amp; python server.py<span class="c">   # local engine + UI</span><br/>
 <span class="p">›</span>open http://localhost:8000<span class="cursor" aria-hidden="true"></span>
 </div></div>
 <p class="bf-small">Needs Python 3.10+. Cloud needs nothing installed — your browser is the workspace.</p>
@@ -345,7 +350,7 @@ body.loaded .lm>span{transform:none}
 <section class="bf-section" id="release" aria-labelledby="release-h">
 <p class="bf-kicker">LATEST RELEASE</p>
 <h2 id="release-h">What just shipped.</h2>
-<p><b>v1.8</b> — AI artwork scenes on Pro and Agency (Gemini default; OpenAI and xAI Grok as operator options) over exact vector text; a designer-grade vector redesign; provider backoff retries so a rate limit never silently drops a stage.</p>
+<p><b>v1.9</b> — the bold creative engine: vivid, business-specific ad compositions for every generated banner on Cloud and Desktop (organic brand blobs, oversized brief headlines, benefit pictograms, offer punch lines), with a calm "style: essential" option preserved from the previous design. Text stays exact vector copy in English, Urdu/Arabic and Hindi.</p>
 <p class="bf-small">Full history on the <a href="changelog">changelog</a>.</p>
 </section>
 

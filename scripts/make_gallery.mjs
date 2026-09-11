@@ -22,9 +22,14 @@ const tiles = [
   ['realty',   { product: 'Marble & Vine',    audience: 'first-time buyers', primary: '#B4541E', secondary: '#F6F1E7', benefits: ['Verified listings only', 'Move-in ready homes'], cta: 'View homes' }],
   ['urdu',     { product: 'ایپکس کافی',        audience: 'شہری پیشہ ور افراد', primary: '#E8B54A', secondary: '#1A1033', benefits: ['تازہ بھُنی ہوئی پھلیاں', 'اسی دن ڈیلیوری'], cta: 'ابھی دیکھیں' }],
   ['story',    { product: 'Bloom Skincare',   audience: 'sensitive skin', primary: '#F472B6', secondary: '#181520', benefits: ['Dermatologist reviewed', 'Fragrance free'], cta: 'Shop the set', width: 1080, height: 1920 }],
+  // Homepage "same brief, two engines" tile — copy matches the AI-scene
+  // tile (ai-karak.jpg) so the comparison is honestly the same brief.
+  ['bold-vector-karak', { product: 'Karak Theory', audience: "Karachi's morning commuters", primary: '#E8B54A', secondary: '#0F172A',
+    headline: "Karachi's mornings start with karak", subheadline: 'Brewed to order, delivered hot — no queue, no compromises.',
+    benefits: ['Skip the 45-minute queue for a simple cup of karak', 'Real milk, real tea leaves, brewed to order', 'Delivered hot in under 15 minutes'], cta: 'Order Now' }],
 ];
 for (const [name, cfg] of tiles) {
-  const svg = bannerSvg({ watermark: false, width: 1200, height: 630, ...cfg });
+  const svg = bannerSvg({ watermark: false, width: 1200, height: 630, style: 'bold', ...cfg });
   writeFileSync(join(out, `${name}.svg`), svg);
   console.log('gallery tile:', name, `${cfg.width ?? 1200}x${cfg.height ?? 630}`);
 }

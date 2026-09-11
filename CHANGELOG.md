@@ -1,6 +1,6 @@
 # BrandForge OS — Changelog
 
-## 1.9.0 — bold creative engine (unreleased)
+## 1.9.0 — bold creative engine (2026-09-11)
 
 Vivid, business-specific ad compositions for every generated banner (Cloud and
 Desktop), inspired by modern AI-ad creative direction. Each campaign renders in

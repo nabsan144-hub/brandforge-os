@@ -234,51 +234,6 @@
   </div>
 </div>
 <section class="mt-12 p-6 rounded-xl bg-card border border-line" id="feature-matrix"><h2 class="text-[26px] font-bold">What ships in each product</h2><div aria-label="Scrollable Cloud versus Desktop capability table" class="table-scroll" tabindex="0"><table style="width:100%;min-width:560px;border-collapse:collapse;margin-top:18px;font-size:13px"><thead><tr><th scope="col">Capability</th><th scope="col">Cloud</th><th scope="col">Desktop</th></tr></thead><tbody><tr><th scope="row">Pipeline</th><td>3 text stages; vector visuals, plus AI artwork scenes on Pro/Agency (operator-enabled visual provider)</td><td>Strategy, copy, completeness-guarded refinement, visuals; optional research and tools</td></tr><tr><th scope="row">Stored work</th><td>Hosted, account-scoped</td><td>Local files and database</td></tr><tr><th scope="row">Visual exports</th><td>Outlined SVG; browser PNG/JPEG; ZIP</td><td>Outlined SVG; local PNG/JPEG; ZIP</td></tr><tr><th scope="row">Native documents</th><td>Markdown/text/JSON</td><td>Word + Unicode PDF + Markdown</td></tr><tr><th scope="row">Clients and edits</th><td>Up to 100 reusable brands; last 10 text versions</td><td>Local client profiles, draft revisions, approvals and performance entries</td></tr><tr><th scope="row">Language</th><td colspan="2">English, Urdu, Hindi, Spanish, Portuguese. Templates preserve supplied fields; model language checks are heuristic, not translation certification.</td></tr><tr><th scope="row">AI images / research</th><td>AI artwork scenes on Pro/Agency (operator-enabled provider); no live SEO audit</td><td>Optional connected providers; availability, costs and verification apply</td></tr><tr><th scope="row">Automation</th><td colspan="2">No automatic posting, guaranteed compliance, trademark clearance or revenue guarantee</td></tr></tbody></table></div><p class="text-[12px] text-muted mt-4">Cloud usage resets by UTC calendar month (Free does not reset). Pro and Agency allow 2 concurrent generations. Failed unsaved runs do not use an allowance; deleting completed work does not restore it. All tiers are subject to a configured service-wide safety budget. Applicable taxes and renewal totals are shown before payment.</p></section>
-<div class="mt-12 max-w-[760px] mx-auto" data-rv="">
-<h2 class="text-[26px] font-bold tracking-tight mb-6">Frequently asked</h2>
-<div class="space-y-4">
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">How do I receive the software after purchase?</h3>
-<p class="text-[13px] text-muted leading-relaxed">At paid launch, our verified order service sends a signed, tier-specific download link after Paddle confirms payment. No Cloud login is required. Unzip the complete folder and follow START-HERE.md. Initial setup downloads dependencies; later offline launches do not run pip. Installation time varies.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Does it work fully offline?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Desktop templates work offline after setup. The dashboard tracks requests-library traffic only, not every transport or process. Connected providers receive prompts and selected brand context; optional image/search/update features can also use the network. Cloud stores your workspace remotely. See <a href="privacy">Privacy</a> for the deployment differences.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Is the offline output good enough to use as-is?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Offline mode is <b class="text-ink">private, draft-quality templates</b> — a fast, honest starting point, and every campaign ships with a quality score and claim-guard warnings so you can review before publishing. For provider-generated drafts, connect a supported provider in Settings. Provider pricing and limits apply, and generated claims still need review. We say this plainly because we'd rather earn trust than fake a demo.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">What happens if BrandForge disappears one day?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Your software keeps working — that's the structural difference from a subscription tool. There is <b class="text-ink">no license server to phone home to</b>: the local runtime does not require online activation; your purchase receipt and license define your rights. No accounts, no activation checks, no kill switch. If we vanished tomorrow, you could keep using the version you received on a compatible system; future OS and provider compatibility are not guaranteed (the optional update check pings GitHub releases only, and can be switched off).</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">What's the difference between Owner and Agency + Source?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Both are one-time, owned-forever desktop licenses for the same full product — they differ by license scope. Owner ($199 once) is internal business use: one user, your own brands, the full 6-stage pipeline and all 21 tools. Agency + Source ($499 once) adds commercial rights — unlimited client brands, white-label deliverables and the resell right — plus the full build source (dashboard source + CI) and an onboarding session if you brand and sell it yourself.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Does it generate real AI images?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Yes. On desktop, AI Image Design generates real brand photography through your own API key — Gemini, Grok Imagine or OpenAI gpt-image-1 — and composes your brand colors, headline, benefits and CTA on top, exported as PNG and JPEG (set it up in Settings → AI Image Design). Without a configured image key, template visuals remain available. A public image service is an advanced opt-in; it is not used automatically. Offline text/templates require no network, but explicitly connected features can still send requests. The browser Cloud plan currently ships an SVG hero and does not advertise image quotas.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Do I need to be technical or know coding?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Honest answer: the desktop runs on your own computer, so you need Python 3.10+ (free, usually a short install). One requirements file and a 30-second onboarding wizard do the rest — on Windows it's a double-click (START-HERE.bat), on Mac/Linux it's three commands, and no coding is required after that. Not your thing? <b class="text-ink">Agency + Source includes one scheduled onboarding session on a screen share (~20 minutes), subject to availability. Owner includes documentation and email support.</b> Or skip install entirely: Cloud Free/Pro/Agency runs in your browser with zero setup.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Who's behind BrandForge OS?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Contact BrandForge OS by email for product questions, setup help and support.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">Are Owner and Agency + Source different downloads?</h3>
-<p class="text-[13px] text-muted leading-relaxed">Both desktop tiers ship the same full application — the difference is <b class="text-ink">license rights</b> (personal vs client work and resell), stated in the EULA. Agency + Source additionally ships the full build source. Cloud Free/Pro/Agency are separate hosted plans with server-enforced limits.</p>
-</div>
-<div class="p-5 rounded-xl border border-line bg-card">
-<h3 class="font-semibold mb-2 text-ink" style="color:rgb(var(--sb-ink))">What if it's not for me?</h3>
-<p class="text-[13px] text-muted leading-relaxed">14-day money-back guarantee — email support with your order ID and we will process an eligible request. You keep the delivered version. Maintenance and security updates released in the first 24 months are included; perpetual support or future features are not promised.</p>
-</div>
-</div>
-</div>
 <p class="text-center text-[11px] text-zinc-600 mt-10"><span id="launch-note">Desktop availability updates go to the waitlist • Desktop purchase availability will be announced to the waitlist • 14-day money-back guarantee • One-time payment, own forever • Works on macOS, Windows, Linux</span></p>
 </div>
 </section>
