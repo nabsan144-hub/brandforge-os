@@ -251,10 +251,12 @@ class VisualDesigner:
 
     def generate_custom_banner_svg(self, product_name, subtitle, width=1200, height=630,
                                    primary_color="#E8B54A", secondary_color="#0F172A",
-                                   brand_text="BRANDFORGE OS", benefits=None, cta_text="Get Started", layout="hero"):
+                                   brand_text="BRANDFORGE OS", benefits=None, cta_text="Get Started", layout="hero",
+                                   style="bold", offer=""):
         from modules.visual_layout import banner_svg
         return banner_svg(product_name, subtitle, width, height, primary_color, secondary_color,
-                          cta_text, logo=getattr(self, "approved_logo", ""), brand_text=brand_text, benefits=benefits or [])
+                          cta_text, logo=getattr(self, "approved_logo", ""), brand_text=brand_text, benefits=benefits or [],
+                          style=style, offer=offer or getattr(self, "campaign_offer", ""))
 
     def generate_ad_banner_svg(
         self,

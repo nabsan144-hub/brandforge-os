@@ -312,7 +312,7 @@ $('c-go').onclick=async(event)=>{
  try{
   const sizes=[...$('c-preset').querySelectorAll('input:checked')].filter(b=>b.value).map(b=>({preset:b.value}));
   const w=Number($('c-cw').value),h=Number($('c-ch').value);if(window.__bfMe?.limits?.custom_any&&(w||h))sizes.push({width:w,height:h});
-  const payload={...briefFields(),name:$('c-name').value,custom_sizes:sizes},signature=JSON.stringify(payload);
+  const payload={...briefFields(),name:$('c-name').value,custom_sizes:sizes,style:$('c-style').value},signature=JSON.stringify(payload);
   if(!pendingGeneration||pendingGeneration.signature!==signature)pendingGeneration={signature,id:crypto.randomUUID()};
   const data=await requestJSON('/campaigns',{method:'POST',headers:{'Idempotency-Key':pendingGeneration.id},body:signature});pendingGeneration=null;
   msg.className='ok';msg.textContent=data.replayed?'Existing completed request found; opening its pack.':`Pack saved — ${data.provider&&data.provider!=='offline'?'AI draft':'draft'}. Review all sections before publishing.`;

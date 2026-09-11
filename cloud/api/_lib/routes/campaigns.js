@@ -35,9 +35,10 @@ export function campaignInput(body, plan) {
   benefits:clean(body.benefits,500)||'quality, clear information',lang:pickLang(body.lang),primary:safeHex(body.primary_color),secondary:safeHex(body.secondary_color,'#0F172A'),
   custom_sizes:sizes,custom_presets:plan.custom_presets,custom_any:plan.custom_any,watermark:plan.watermark,
   offer:clean(body.offer,200),cta:clean(body.cta,40),url:safeUrl(body.url),tone:clean(body.tone,120),proof:clean(body.proof,500),avoided:clean(body.avoided,500),
-  logo:safeLogo(body.logo),generate_new_logo:body.generate_new_logo===true,provider:body.provider||'auto',brand_id:UUID.test(body.brand_id||'')?body.brand_id:null,
+  logo:safeLogo(body.logo),generate_new_logo:body.generate_new_logo===true,provider:body.provider||'auto',brand_id:UUID.test(body.brand_id||'')?body.brand_id:null,style:body.style==='essential'?'essential':'bold',
  };
  if(!['auto','offline','groq','gemini'].includes(input.provider)) throw new HttpError(400,'Choose a supported provider.');
+ if(body.style!==undefined&&!['bold','essential'].includes(body.style)) throw new HttpError(400,'Choose a supported visual style.');
  if(!input.product) throw new HttpError(400,'Enter a product or brand name.');
  return input;
 }

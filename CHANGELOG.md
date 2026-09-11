@@ -1,5 +1,28 @@
 # BrandForge OS — Changelog
 
+## 1.9.0 — bold creative engine (unreleased)
+
+Vivid, business-specific ad compositions for every generated banner (Cloud and
+Desktop), inspired by modern AI-ad creative direction. Each campaign renders in
+the customer's own brand pair with seeded layout geometry:
+
+- **Bold composition (default):** organic corner blobs in the brand primary, a
+  rotated paint-band carrying the oversized brief headline, star-spark stickers,
+  a pictogram benefit strip (deterministic, collision-free icon pick) and an
+  optional offer punch line. Text stays exact outlined vector copy from the
+  brief/model stages — nothing is invented, and scripts (Urdu/Arabic RTL, Hindi)
+  keep full shaping with RTL-mirrored geometry.
+- **Per-business output, not a template:** colors, headline, sub, benefits,
+  offer, CTA, logo badge (approved logo or initials), corner-seed and icon set
+  all derive from the brief, so two businesses never receive the same creative.
+- **`style: "essential"`** restores the previous calm layout (pixel-unchanged);
+  micro/strip sizes and the AI-artwork scene path are untouched.
+- Desktop (`visual_layout._bold_body`) mirrors the Cloud engine one-for-one;
+  `generate_custom_banner_svg(..., style=..., offer=...)` forwards both, and the
+  brand plate text is preserved.
+
+Verified: Cloud suite 204/204, App suite 412/412.
+
 ## 1.8.0 — capability catch-up + audit fix rounds (2026-09-08)
 
 **Version alignment:** the product had outgrown 1.4.3 without a version bump —

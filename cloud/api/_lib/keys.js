@@ -1,5 +1,6 @@
 // BYOK helpers: validate provider keys and encrypt them at rest.
 import { createCipheriv, createDecipheriv, randomBytes } from "node:crypto";
+import { CLOUD_TEXT_MODEL } from "./engine.js";
 
 export const BYOK_PROVIDERS = ["groq", "gemini"];
 export const BYOK_ENABLED = () => process.env.BYOK_ENABLED === "1";
@@ -54,7 +55,7 @@ export async function validateKey(provider, apiKey) {
         method: "POST",
         headers: { Authorization: `Bearer ${key}`, "Content-Type": "application/json" },
         body: JSON.stringify({
-          model: process.env.CLOUD_TEXT_MODEL || "qwen/qwen3.8-27b",
+          model: process.env.CLOUD_TEXT_MODEL || CLOUD_TEXT_MODEL,
           max_tokens: 1,
           messages: [{ role: "user", content: "ping" }],
         }),

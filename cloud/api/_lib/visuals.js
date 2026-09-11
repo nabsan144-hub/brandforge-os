@@ -54,24 +54,111 @@ function luminance(hex){const a=hex.slice(1).match(/../g).map(x=>parseInt(x,16)/
 function ink(bg){return luminance(bg)>.179?'#000000':'#FFFFFF';}
 function frame(w,h,label,content,layout){return `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}" viewBox="0 0 ${w} ${h}" role="img" aria-label="${esc(label)}" data-layout="${layout}"><title>${esc(label)}</title><metadata>Outlined text preserves font shaping. Full editable copy is in the campaign text files. Simplified small formats intentionally omit secondary text.</metadata>${content}</svg>`;}
 const image=(logo,x,y,w,h)=>logo?`<image href="${esc(logo)}" x="${n(x)}" y="${n(y)}" width="${n(w)}" height="${n(h)}" preserveAspectRatio="xMidYMid meet" aria-label="Approved brand logo"/>`:'';
-export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='#E8B54A',secondary='#0F172A',cta='Learn more',logo='',watermark=false,width=1200,height=630,headline='',subheadline='',scene=''}){
+// ---- Bold creative composition (v1.9 "vivid" redesign) --------------------
+// Language derived from modern ad-creative direction: a saturated brand pair,
+// big organic shapes, a paint-band headline, star sparks and a pictogram
+// benefit strip. All geometry is procedural and deterministic from the brief;
+// text stays exact outlined vector text from the copy stage and only the
+// customer's own colours, words, benefits, offer and approved logo are used.
+// style:'essential' keeps the calm classic composition; 'bold' is the default
+// for new packs (engine level).
+const h32=s=>{let x=5381;for(const c of String(s||''))x=(x*33^c.codePointAt(0))>>>0;return x;};
+function blobPath(cx,cy,rx,ry,wob,seed){
+ const pts=[];for(let i=0;i<8;i++){const a=i/8*Math.PI*2,r=1+wob*Math.sin(i*2.3+seed);pts.push([cx+Math.cos(a)*rx*r,cy+Math.sin(a)*ry*r]);}
+ let d=`M ${n(pts[7][0])} ${n(pts[7][1])} `;
+ for(let i=0;i<8;i++){const p0=pts[(i+7)%8],p1=pts[i],p2=pts[(i+1)%8],p3=pts[(i+2)%8],c1=[p1[0]+(p2[0]-p0[0])/6,p1[1]+(p2[1]-p0[1])/6],c2=[p2[0]-(p3[0]-p1[0])/6,p2[1]-(p3[1]-p1[1])/6];d+=`C ${n(c1[0])} ${n(c1[1])} ${n(c2[0])} ${n(c2[1])} ${n(p2[0])} ${n(p2[1])} `;}
+ return d+'Z';
+}
+const STAR_PATH='M0 -1 L.22 -.22 1 0 .22 .22 0 1 -.22 .22 -1 0 -.22 -.22 Z';
+const sparkAt=(cx,cy,r,fill,op)=>`<path d="${STAR_PATH}" transform="translate(${n(cx)} ${n(cy)}) rotate(${n((cx+cy)%36-18)}) scale(${n(r)})" fill="${fill}" fill-opacity="${n(op)}"/>`;
+const PICTOS=[
+ c=>`<path d="${STAR_PATH}" transform="scale(11)" fill="${c}"/>`,
+ c=>`<path d="M2.2 -11 L-6.5 2.4 h5.1 L-1.8 11 L8.5 -3.2 h-5.1 Z" fill="${c}"/>`,
+ c=>`<path d="M-9 .5 L-3 6.5 L9 -6.5" fill="none" stroke="${c}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>`,
+ c=>`<path d="M0 -11 L8 -8 V.5 C8 6.2 4.4 9.4 0 11 C-4.4 9.4 -8 6.2 -8 .5 V-8 Z" fill="${c}"/>`,
+ c=>`<path d="M-8 9 C-8 -2 -2 -9 9 -9 C9 2 2 9 -8 9 Z" fill="${c}"/>`,
+ c=>`<g fill="${c}" stroke="${c}"><circle r="4.2" stroke="none"/><path d="M0 -11 v3 M0 8 v3 M-11 0 h3 M8 0 h3 M-7.8 -7.8 l2.1 2.1 M5.7 5.7 l2.1 2.1 M7.8 -7.8 L5.7 -5.7 M-5.7 5.7 l-2.1 2.1" fill="none" stroke-width="2.2" stroke-linecap="round"/></g>`
+];
+function boldBody({w,h,p,inner,head,sub,label,list,offerTxt,primary,fg,watermark,rtlTop,logo,cta}){
+ const H=h32(label+'|'+list.join('|')+'|'+offerTxt)||1;
+ const corner=H%4;                    // 0=TL 1=TR 2=BR 3=BL — pure shape placement, content untouched
+ const tileS=Math.min(Math.max(34,Math.min(66,h*.086)),inner*.3);
+ let s=H;const rnd=()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296;};
+ let out='';
+ // 1. Vivid organic shapes in the customer's primary, bleeding off-canvas on
+ //    the composition corners (never under the badge).
+ const blobAt=k=>`<path d="${blobPath(k%2?w*1.07:-w*.07,k<2?-h*.02:h*(1.04+rnd()*.04),k<2?w*.44:w*.38,k<2?h*.36:h*.3,.1,k+H%13)}" fill="${primary}" fill-opacity="${k%2?.95:.88}"/>`;
+ out+=blobAt(corner)+blobAt((corner+2)%4);   // opposite corners; the badge corner stays clear
+ // 2. Star sparks (brand-primary stickers) sprinkled on the base field.
+ const nS=3+H%3;
+ for(let i=0;i<nS;i++){const six=(corner%2?rnd()*w*.24:w*.76+rnd()*w*.24)+ (corner%2&&false?0:0);
+  out+=sparkAt(six,h*.13+rnd()*h*.45,9+rnd()*Math.min(26,h*.045),primary,.95);}
+ // 3. Sticker badge: approved logo, else initials tile with a sticker ring.
+ const badgeTL=corner===0;let fx=badgeTL?p:w-p-tileS;
+ let bx,bw2;
+ if(logo){const lw=Math.min(tileS*1.9,inner*.34),lx=badgeTL?p:w-p-lw;out+=image(logo,lx,p,lw,tileS);fx=lx;bw2=badgeTL?w-p-(lx+lw+p*.5)-p:lx-p*.5-p;}
+ else{
+  const initials=(label.split(/\s+/).map(x=>[...x][0]).filter(c=>c&&/\p{L}/u.test(c)).slice(0,2).join('')||'\u2726');
+  out+=`<rect x="${n(fx-tileS*.07)}" y="${n(p-tileS*.07)}" width="${n(tileS*1.14)}" height="${n(tileS*1.14)}" rx="${n(tileS*.32)}" fill="${fg}" fill-opacity=".92"/>`
+     +`<rect x="${n(fx)}" y="${n(p)}" width="${n(tileS)}" height="${n(tileS)}" rx="${n(tileS*.24)}" fill="${primary}"/>`
+     +textBox(initials,[fx,p+tileS*.08,tileS,tileS*.84],tileS*.42,ink(primary),1,'center');
+  if(badgeTL){bx=fx+tileS+p*.5;bw2=w-p-bx;}
+  else{bw2=fx-p*.5-p;}
+ }
+ const tx=badgeTL?bx:p,tw=badgeTL?Math.max(40,bw2):Math.max(40,fx-p*.5-p);
+ out+=textBox(label,[tx,p+tileS*.2,tw,tileS*.6],Math.min(22,w*.052,h*.06),fg,1,badgeTL?'left':'right');
+ // 4. Vertical rhythm: badge / paint band / sub / offer punch / icon strip / pill.
+ const gap=Math.max(10,h*.018),wmH=watermark?Math.max(18,h*.032):0;
+ const pillH=Math.max(36,Math.min(70,h*.11)),pillW=Math.min(inner*.6,Math.max(140,w*.44)),pillY=h-p-wmH-Math.max(8,h*.016)-pillH;
+ const stripH=list.length?Math.min(150,h*.235):0,offerH=offerTxt?Math.min(36,h*.062):0;
+ const subUse=list.includes(sub)?'':sub,subH=subUse?Math.min(34,h*.06):0;
+ const stripTop=pillY-gap-stripH;
+ const ang=rtlTop?1.6:-2.4,dip=Math.abs(Math.tan(ang*Math.PI/180))*w*.46;
+ const bandY0=p+tileS+Math.max(16,h*.028),bandBottom=Math.max(bandY0+h*.17,stripTop-gap-offerH-(offerTxt?gap*.6:0)-subH-gap*.6-dip*.5),bandH=bandBottom-bandY0,bcy=bandY0+bandH/2;
+ // 5. Rotated paint band carrying the oversized headline.
+ out+=`<g transform="rotate(${ang} ${n(w/2)} ${n(bcy)})"><rect x="${n(-w*.1)}" y="${n(bandY0)}" width="${n(w*1.2)}" height="${n(bandH)}" fill="${primary}"/>`
+    +textBox(head,[p+Math.min(30,w*.03),bandY0+bandH*.1,inner-2*Math.min(30,w*.03),bandH*.8],Math.min(120,w*.115,bandH*.58),ink(primary),2,'center')
+    +`</g>`;
+ let yC=bandBottom+gap;
+ if(subUse){out+=textBox(subUse,[p,yC,inner,subH],Math.min(26,w*.052),fg,1,'center');yC+=subH+gap*.5;}
+ if(offerTxt){const pt=/^[\x00-\x7F]*$/.test(offerTxt)?offerTxt.toUpperCase():offerTxt;out+=textBox(pt,[p,yC,inner,offerH],Math.min(27,w*.056),primary,1,'center');}
+ // 6. Benefit pictogram strip (deterministic icon per benefit text).
+ if(list.length){
+  const m=list.length,stripW=inner*.84,cellW=stripW/m,x0=p+(inner-stripW)/2,r=Math.min(stripH*.24,cellW*.2,h*.07),cY=stripTop+r+gap*.4;
+  const usedPico=new Set();
+  list.forEach((b,i)=>{
+   const cx=x0+cellW*((rtlTop?m-1-i:i)+.5);
+   out+=`<rect x="${n(cx-r)}" y="${n(cY-r)}" width="${n(2*r)}" height="${n(2*r)}" rx="${n(r*.42)}" fill="${primary}" fill-opacity=".96"/>`
+      +`<g transform="translate(${n(cx)} ${n(cY)}) scale(${n(r*1.1/11)})">${(()=>{let k=h32(String(b))%PICTOS.length;while(usedPico.has(k))k=(k+1)%PICTOS.length;usedPico.add(k);return PICTOS[k](ink(primary));})()}</g>`
+      +textBox(b,[cx-cellW*.44,cY+r+4,cellW*.88,Math.max(10,stripTop+stripH-(cY+r+4)-4)],Math.min(18,w*.036),fg,2,'center');
+  });
+ }
+ // 7. CTA pill with glow and an accent spark.
+ const px=rtlTop?w-p-pillW:p;
+ out+=`<ellipse cx="${n(px+pillW/2)}" cy="${n(pillY+pillH*.7)}" rx="${n(pillW*.58)}" ry="${n(pillH*.95)}" fill="${primary}" fill-opacity=".28"/>`
+    +`<rect x="${n(px)}" y="${n(pillY)}" width="${n(pillW)}" height="${n(pillH)}" rx="${n(pillH/2)}" fill="${primary}"/>`
+    +sparkAt(rtlTop?px+4:px+pillW-4,pillY-5,9,primary,.9)
+    +textBox(cta,[px+12,pillY+6,pillW-24,pillH-12],Math.min(23,w*.05),ink(primary),1,'center');
+ if(watermark)out+=textBox('BrandForge \u00b7 Preview',[p,h-p-Math.max(12,h*.024),inner,Math.max(12,h*.024)],Math.min(12,w*.04),fg);
+ return out;
+}
+export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='#E8B54A',secondary='#0F172A',cta='Learn more',logo='',watermark=false,width=1200,height=630,headline='',subheadline='',scene='',style='essential',offer=''}){
  const w=Math.max(50,Math.min(5000,Math.round(width))),h=Math.max(50,Math.min(5000,Math.round(height))),p=Math.max(6,Math.min(64,Math.min(w,h)*.065));
  primary=safeHex(primary);secondary=safeHex(secondary,'#0F172A');logo=safeLogo(logo);
  const fg=ink(secondary),label=product||'Your brand';let svg=`<rect width="${w}" height="${h}" fill="${secondary}"/><path d="M0 0H${w}" stroke="${primary}" stroke-width="${Math.max(3,h*.006)}"/>`,layout;
  // Layered brand depth: two soft radial glows in the brand accent, a diagonal
  // sheen and a fine deterministic grain. All procedural — no external assets,
  // so offline rendering and browser PNG export keep working unchanged.
- const glows=`<defs>
+ const bfDefs=`<defs>
   <radialGradient id="bfA" cx="82%" cy="18%" r="75%"><stop offset="0%" stop-color="${primary}" stop-opacity=".30"/><stop offset="55%" stop-color="${primary}" stop-opacity=".08"/><stop offset="100%" stop-color="${primary}" stop-opacity="0"/></radialGradient>
   <radialGradient id="bfB" cx="8%" cy="95%" r="80%"><stop offset="0%" stop-color="${primary}" stop-opacity=".16"/><stop offset="60%" stop-color="${primary}" stop-opacity=".04"/><stop offset="100%" stop-color="${primary}" stop-opacity="0"/></radialGradient>
   <linearGradient id="bfS" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="${fg}" stop-opacity=".05"/><stop offset="45%" stop-color="${fg}" stop-opacity="0"/></linearGradient>
   <filter id="bfG" x="0" y="0" width="100%" height="100%"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .04 0"/></filter>
- </defs>
- <rect width="${w}" height="${h}" fill="url(#bfA)"/><rect width="${w}" height="${h}" fill="url(#bfB)"/><rect width="${w}" height="${h}" fill="url(#bfS)"/><rect width="${w}" height="${h}" filter="url(#bfG)" opacity=".55"/>`;
- svg+=glows;
- if(w<180&&h<120){layout='micro';const initials=label.split(/\s+/).map(x=>x[0]).slice(0,2).join('');svg+=logo?image(logo,p,p,w-2*p,h-2*p):textBox(initials,[p,p,w-2*p,h-2*p],Math.min(w,h)*.5,fg,1,'center');}
+ </defs>`;
+ const glows=bfDefs+`<rect width="${w}" height="${h}" fill="url(#bfA)"/><rect width="${w}" height="${h}" fill="url(#bfB)"/><rect width="${w}" height="${h}" fill="url(#bfS)"/><rect width="${w}" height="${h}" filter="url(#bfG)" opacity=".55"/>`;
+ if(w<180&&h<120){layout='micro';svg+=glows;const initials=label.split(/\s+/).map(x=>x[0]).slice(0,2).join('');svg+=logo?image(logo,p,p,w-2*p,h-2*p):textBox(initials,[p,p,w-2*p,h-2*p],Math.min(w,h)*.5,fg,1,'center');}
  else if(h<120&&w>h*2){
-  layout='strip';const logoW=logo?h-2*p:0,bw=Math.min(145,w*.27),x=p+(logo?logoW+p:0),available=w-x-bw-3*p;
+  layout='strip';svg+=glows;const logoW=logo?h-2*p:0,bw=Math.min(145,w*.27),x=p+(logo?logoW+p:0),available=w-x-bw-3*p;
   svg+=image(logo,p,p,logoW,logoW)+textBox(label,[x,p,available,h-2*p],Math.min(32,h*.39),fg,2);
   svg+=`<rect x="${w-p-bw}" y="${h*.23}" width="${bw}" height="${h*.54}" rx="${h*.27}" fill="${primary}"/>`+textBox(cta,[w-p-bw+6,h*.23+4,bw-12,h*.54-8],Math.min(16,h*.25),ink(primary),1,'center');
 }else{
@@ -82,7 +169,12 @@ export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='
   const head=(String(headline||'').trim()||String(benefits.find(x=>String(x||'').trim())||'')||label).trim();
   const sub=(String(subheadline||'').trim()||String(benefits.filter(x=>String(x||'').trim())[1]||'')).trim();
   const rtlTop=measured(head||label).rtl;
-  if(scene){
+  const list=benefits.map(x=>String(x||'').trim()).filter(Boolean).slice(0,3);
+  if(!scene&&style==='bold'){
+   svg+=bfDefs+boldBody({w,h,p,inner,head,sub,label,list,offerTxt:String(offer||'').trim(),primary,fg,watermark,rtlTop,logo,cta})
+      +`<rect width="${w}" height="${h}" filter="url(#bfG)" opacity=".45"/>`;
+  }else{
+  if(scene){svg+=glows;
    // v1.8 AI artwork: full-bleed scene + a readability scrim on the reading
    // side. Text/logo stay vector-exact; the scene is decorative only.
    const darkScrim=ink(secondary)==='#FFFFFF';
@@ -96,7 +188,7 @@ export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='
      +`<stop offset="60%" stop-color="rgb(${c})" stop-opacity="0"/>`
      +`<stop offset="100%" stop-color="rgb(${c})" stop-opacity="${darkScrim?.55:.5}"/></linearGradient></defs>`
      +`<rect width="${w}" height="${h}" fill="url(#bfSc)"/><rect width="${w}" height="${h}" fill="url(#bfScB)"/>`;
-  }else{
+  }else{svg+=glows;
    const arcR=Math.max(w,h)*.78;
    svg+=`<path d="M${n(w)},${n(h)} L${n(w)},${n(h-arcR)} A${n(arcR)} ${n(arcR)} 0 0 0 ${n(w-arcR)},${n(h)} Z" fill="${primary}" fill-opacity="${ink(secondary)==='#FFFFFF'?.07:.11}"/>`;
   }
@@ -116,7 +208,6 @@ export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='
   const ctaY=h-p-Math.max(30,Math.min(66,h*.112))-Math.max(16,h*.028)-(watermark?Math.max(18,h*.035):0);
   const areaH=Math.max(40,ctaY-Math.max(14,h*.028)-titleY);
   const tH=areaH*.42,sH=areaH*.17,gH=areaH*.04;
-  const list=benefits.map(x=>String(x||'').trim()).filter(Boolean).slice(0,3);
   const lstH=Math.max(0,areaH-tH-sH-2*gH),itemH=list.length?lstH/list.length:0;
   svg+=textBox(head,[p,titleY,inner,tH],Math.min(96,w*.105,h*.15),fg,3,rtlTop?'right':'left');
   if(sub)svg+=textBox(sub,[p,titleY+tH+gH,inner,sH],Math.min(24,w*.045),fg,1,rtlTop?'right':'left');
@@ -133,6 +224,7 @@ export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='
   const cx0=rtlTop?w-p-bw:p;
   svg+=`<ellipse cx="${n(cx0+bw/2)}" cy="${n(by+bh*.72)}" rx="${n(bw*.55)}" ry="${n(bh*.85)}" fill="${primary}" fill-opacity="${scene?.09:.16}"/><rect x="${n(cx0)}" y="${n(by)}" width="${n(bw)}" height="${n(bh)}" rx="${n(bh/2)}" fill="${primary}"/>`+textBox(cta,[cx0+10,by+5,bw-20,bh-10],Math.min(22,w*.048),ink(primary),1,'center');
   if(watermark)svg+=textBox('BrandForge · Preview',[p,h-p-Math.max(12,h*.024),inner,Math.max(12,h*.024)],Math.min(12,w*.04),fg);
+  }
  }
  return frame(w,h,label,svg,layout);
 }

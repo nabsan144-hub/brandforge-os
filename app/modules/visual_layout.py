@@ -165,6 +165,161 @@ def _image(logo, x, y, w, h):
     return f'<image href="{logo}" x="{x}" y="{y}" width="{w}" height="{h}" preserveAspectRatio="xMidYMid meet" aria-label="Approved brand logo"/>'
 
 
+
+
+# ---- Bold creative composition ("vivid") — mirrors the Cloud engine ----------
+# (cloud/api/_lib/visuals.js) one-for-one: same brief-derived inputs, same
+# seeded geometry — corner blobs, paint-band headline, spark stickers, a
+# pictogram benefit strip and an optional offer punch line. Pass style
+# "essential" for the previous calm layout.
+
+def _h32(s):
+    x = 5381
+    for ch in str(s or ""):
+        x = ((x * 33) ^ ord(ch)) & 0xFFFFFFFF
+    return x
+
+
+def _blob_path(cx, cy, rx, ry, wob, seed):
+    import math
+    pts = []
+    for i in range(8):
+        a = i / 8 * math.pi * 2
+        r = 1 + wob * math.sin(i * 2.3 + seed)
+        pts.append((cx + math.cos(a) * rx * r, cy + math.sin(a) * ry * r))
+    d = f"M {pts[7][0]:.5f} {pts[7][1]:.5f} "
+    for i in range(8):
+        p0, p1, p2, p3 = pts[(i + 7) % 8], pts[i], pts[(i + 1) % 8], pts[(i + 2) % 8]
+        c1 = (p1[0] + (p2[0] - p0[0]) / 6, p1[1] + (p2[1] - p0[1]) / 6)
+        c2 = (p2[0] - (p3[0] - p1[0]) / 6, p2[1] - (p3[1] - p1[1]) / 6)
+        d += f"C {c1[0]:.5f} {c1[1]:.5f} {c2[0]:.5f} {c2[1]:.5f} {p2[0]:.5f} {p2[1]:.5f} "
+    return d + "Z"
+
+
+STAR_PATH = "M0 -1 L.22 -.22 1 0 .22 .22 0 1 -.22 .22 -1 0 -.22 -.22 Z"
+
+
+def _spark_at(cx, cy, r, fill, op):
+    return (f'<path d="{STAR_PATH}" transform="translate({cx:.5f} {cy:.5f}) '
+            f'rotate({(cx + cy) % 36 - 18:.5f}) scale({r:.5f})" fill="{fill}" fill-opacity="{op:.5f}"/>')
+
+
+PICTOS = [
+    lambda c: f'<path d="{STAR_PATH}" transform="scale(11)" fill="{c}"/>',
+    lambda c: f'<path d="M2.2 -11 L-6.5 2.4 h5.1 L-1.8 11 L8.5 -3.2 h-5.1 Z" fill="{c}"/>',
+    lambda c: f'<path d="M-9 .5 L-3 6.5 L9 -6.5" fill="none" stroke="{c}" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"/>',
+    lambda c: f'<path d="M0 -11 L8 -8 V.5 C8 6.2 4.4 9.4 0 11 C-4.4 9.4 -8 6.2 -8 .5 V-8 Z" fill="{c}"/>',
+    lambda c: f'<path d="M-8 9 C-8 -2 -2 -9 9 -9 C9 2 2 9 -8 9 Z" fill="{c}"/>',
+    lambda c: (f'<g fill="{c}" stroke="{c}"><circle r="4.2" stroke="none"/>'
+               f'<path d="M0 -11 v3 M0 8 v3 M-11 0 h3 M8 0 h3 M-7.8 -7.8 l2.1 2.1 M5.7 5.7 l2.1 2.1 M7.8 -7.8 L5.7 -5.7 M-5.7 5.7 l-2.1 2.1" fill="none" stroke-width="2.2" stroke-linecap="round"/></g>'),
+]
+
+_BOLD_DEFS = ('<defs><filter id="bfG" x="0" y="0" width="100%" height="100%">'
+              '<feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="2" stitchTiles="stitch" result="n"/>'
+              '<feColorMatrix in="n" type="matrix" values="0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 .04 0"/></filter></defs>')
+
+
+def _bold_body(w, h, p, inner, head, sub, label, benefits, offer, pc, fg, rtl, logo, cta, plate=""):
+    import math
+    H = _h32(label + "|" + "|".join(str(b) for b in benefits) + "|" + offer) or 1
+    corner = H % 4  # 0=TL 1=TR 2=BR 3=BL — pure shape placement, content untouched
+    tile_s = min(max(34, min(66, h * .086)), inner * .3)
+    s = [H]
+
+    def rnd():
+        s[0] = (s[0] * 1664525 + 1013904223) & 0xFFFFFFFF
+        return s[0] / 4294967296
+
+    def blob_at(k):
+        bx = w * 1.07 if k % 2 else -w * .07
+        by = -h * .02 if k < 2 else h * (1.04 + rnd() * .04)
+        rx = w * .44 if k < 2 else w * .38
+        ry = h * .36 if k < 2 else h * .3
+        op = ".95" if k % 2 else ".88"
+        return f'<path d="{_blob_path(bx, by, rx, ry, .1, k + H % 13)}" fill="{pc}" fill-opacity="{op}"/>'
+
+    out = _BOLD_DEFS + blob_at(corner) + blob_at((corner + 2) % 4)
+    for _i in range(3 + H % 3):
+        sx = rnd() * w * .24 if corner % 2 else w * .76 + rnd() * w * .24
+        out += _spark_at(sx, h * .13 + rnd() * h * .45, 9 + rnd() * min(26, h * .045), pc, .95)
+
+    # Sticker badge: approved logo, else initials tile with a sticker ring.
+    badge_tl = corner == 0
+    fx = p if badge_tl else w - p - tile_s
+    if logo:
+        lw = min(tile_s * 1.9, inner * .34)
+        lx = p if badge_tl else w - p - lw
+        out += _image(logo, lx, p, lw, tile_s)
+        tx, tw, al = (lx + lw + p * .5, w - p - (lx + lw + p * .5), "left") if badge_tl else (p, lx - p * .5 - p, "right")
+    else:
+        initials = "".join(wd[0] for wd in label.split() if wd and wd[0].isalpha())[:2] or "\u2726"
+        out += (f'<rect x="{fx - tile_s*.07:.5f}" y="{p - tile_s*.07:.5f}" width="{tile_s*1.14:.5f}" height="{tile_s*1.14:.5f}" rx="{tile_s*.32:.5f}" fill="{fg}" fill-opacity=".92"/>'
+                f'<rect x="{fx:.5f}" y="{p:.5f}" width="{tile_s:.5f}" height="{tile_s:.5f}" rx="{tile_s*.24:.5f}" fill="{pc}"/>')
+        out += text_box(initials, (fx, p + tile_s * .08, tile_s, tile_s * .84), tile_s * .42, _ink(pc), 1, "center")
+        tx, tw, al = (fx + tile_s + p * .5, w - p - (fx + tile_s + p * .5), "left") if badge_tl else (p, fx - p * .5 - p, "right")
+    out += text_box(plate or label, (tx, p + tile_s * .2, max(40, tw), tile_s * .6), min(22, w * .052, h * .06), fg, 1, al)
+
+    # Vertical rhythm: badge / paint band / sub / offer punch / icon strip / pill.
+    gap = max(10, h * .018)
+    pill_h = max(36, min(70, h * .11))
+    pill_w = min(inner * .6, max(140, w * .44))
+    pill_y = h - p - max(8, h * .016) - pill_h
+    benefit_list = list(benefits[:3])
+    strip_h = min(150, h * .235) if benefit_list else 0
+    offer_txt = str(offer or "").strip()
+    offer_h = min(36, h * .062) if offer_txt else 0
+    sub_use = "" if sub in benefit_list else str(sub or "").strip()
+    sub_h = min(34, h * .06) if sub_use else 0
+    strip_top = pill_y - gap - strip_h
+    ang = 1.6 if rtl else -2.4
+    dip = abs(math.tan(math.radians(ang))) * w * .46
+    band_y0 = p + tile_s + max(16, h * .028)
+    band_bottom = max(band_y0 + h * .17,
+                      strip_top - gap - offer_h - (gap * .6 if offer_txt else 0) - sub_h - gap * .6 - dip * .5)
+    band_h = band_bottom - band_y0
+    out += (f'<g transform="rotate({ang} {w/2:.5f} {band_y0 + band_h/2:.5f})">'
+            f'<rect x="{-w*.1:.5f}" y="{band_y0:.5f}" width="{w*1.2:.5f}" height="{band_h:.5f}" fill="{pc}"/>'
+            + text_box(head, (p + min(30, w * .03), band_y0 + band_h * .1, inner - 2 * min(30, w * .03), band_h * .8),
+                       min(120, w * .115, band_h * .58), _ink(pc), 2, "center")
+            + "</g>")
+    y_c = band_bottom + gap
+    if sub_use:
+        out += text_box(sub_use, (p, y_c, inner, sub_h), min(26, w * .052), fg, 1, "center")
+        y_c += sub_h + gap * .5
+    if offer_txt:
+        pt = offer_txt.upper() if offer_txt.isascii() else offer_txt
+        out += text_box(pt, (p, y_c, inner, offer_h), min(27, w * .056), pc, 1, "center")
+
+    # Benefit pictogram strip (deterministic, collision-free icon pick).
+    if benefit_list:
+        m = len(benefit_list)
+        strip_w = inner * .84
+        cell_w = strip_w / m
+        x0 = p + (inner - strip_w) / 2
+        r = min(strip_h * .24, cell_w * .2, h * .07)
+        c_y = strip_top + r + gap * .4
+        used = set()
+        for i, b in enumerate(benefit_list):
+            cx = x0 + cell_w * ((m - 1 - i) if rtl else i) + cell_w * .5
+            k = _h32(str(b)) % len(PICTOS)
+            while k in used:
+                k = (k + 1) % len(PICTOS)
+            used.add(k)
+            out += (f'<rect x="{cx - r:.5f}" y="{c_y - r:.5f}" width="{2*r:.5f}" height="{2*r:.5f}" rx="{r*.42:.5f}" fill="{pc}" fill-opacity=".96"/>'
+                    f'<g transform="translate({cx:.5f} {c_y:.5f}) scale({r*1.1/11:.8f})">{PICTOS[k](_ink(pc))}</g>'
+                    + text_box(b, (cx - cell_w * .44, c_y + r + 4, cell_w * .88,
+                                   max(10, strip_top + strip_h - (c_y + r + 4) - 4)),
+                               min(18, w * .036), fg, 2, "center"))
+
+    # CTA pill with glow and an accent spark (reading-side edge).
+    px = w - p - pill_w if rtl else p
+    out += (f'<ellipse cx="{px + pill_w/2:.5f}" cy="{pill_y + pill_h*.7:.5f}" rx="{pill_w*.58:.5f}" ry="{pill_h*.95:.5f}" fill="{pc}" fill-opacity=".28"/>'
+            f'<rect x="{px:.5f}" y="{pill_y:.5f}" width="{pill_w:.5f}" height="{pill_h:.5f}" rx="{pill_h/2:.5f}" fill="{pc}"/>'
+            + _spark_at(px + 4 if rtl else px + pill_w - 4, pill_y - 5, 9, pc, .9)
+            + text_box(cta, (px + 12, pill_y + 6, pill_w - 24, pill_h - 12), min(23, w * .05), _ink(pc), 1, "center"))
+    return out + f'<rect width="{w}" height="{h}" filter="url(#bfG)" opacity=".45"/>'
+
+
 def banner_svg(product, subtitle="", width=1200, height=630, primary="#E8B54A", secondary="#0F172A", cta="Learn more", logo="", **kwargs: Any):
     w, h = max(50, min(5000, int(width))), max(50, min(5000, int(height)))
     p = max(6, min(64, min(w, h)*.065))
@@ -194,6 +349,11 @@ def banner_svg(product, subtitle="", width=1200, height=630, primary="#E8B54A", 
         support = benefits[1] if len(benefits) > 1 else ""
         chips = benefits[2:][:2] if benefits else []
         rtl_t = head and _shape(title)["rtl"]
+        if kwargs.get("style", "bold") == "bold":
+            svg += _bold_body(w, h, p, inner, title, support, label, benefits[:3],
+                              str(kwargs.get("offer") or ""), pc, fg, bool(_shape(title)["rtl"]), logo, cta,
+                              str(kwargs.get("brand_text") or label))
+            return _frame(w, h, label, svg, layout)
         # ── Art-direction kit (deterministic, procedural — mirrors Cloud engine) ──
         # 1. Layered glows, sheen and fine grain.
         svg += (f'<defs>'

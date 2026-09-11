@@ -141,7 +141,7 @@ export async function runCampaign(input,{groqKey='',geminiKey='',key_source='off
   visual_status={mode:'ai',model:sceneResult.g.model,provider:sceneResult.g.provider,provider_name:aiVisualsProvider()};
  }else if(sceneResult){visual_status={mode:'svg',reason:sceneResult.reason};}
  const primary=safeHex(input.primary),secondary=safeHex(input.secondary,'#0F172A'),logo=safeLogo(input.logo);
- const common={...input,primary,secondary,logo,headline:aiHeadline,subheadline:aiSub,subtitle:`${t(lang,'svgFor')} ${input.audience}`,cta:input.cta||BUNDLES[lang].cta,benefits:String(input.benefits||'').split(/[,;\n]/)};
+ const common={...input,primary,secondary,logo,headline:aiHeadline,subheadline:aiSub,subtitle:`${t(lang,'svgFor')} ${input.audience}`,cta:input.cta||BUNDLES[lang].cta,benefits:String(input.benefits||'').split(/[,;\n]/),style:input.style==='essential'?'essential':'bold'};
  // Scene is embedded once — in the hero banner — instead of being
  // base64-duplicated into every size variant (audit P0-3): roughly 11 copies of
  // the same data URI inflated memory and pack size for no visual gain. Size
