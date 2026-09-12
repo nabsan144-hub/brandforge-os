@@ -1,0 +1,1 @@
+Original procedural instrumental composition created for the BrandForge product tour. Synthesized sine/FM tones and seeded noise percussion; no third-party audio samples, recordings or songs. Reuse with this project is intended. No claim of Content ID clearance, registered copyright or legal certification is made. Source: production/make_music.py.

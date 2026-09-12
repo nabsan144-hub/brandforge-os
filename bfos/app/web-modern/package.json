@@ -1,0 +1,22 @@
+{
+  "name": "brandforge-os-dashboard",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5173 --host",
+    "build": "vite build",
+    "preview": "vite preview --port 4173"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^7.3.0",
+    "autoprefixer": "^10.4.19",
+    "postcss": "^8.4.40",
+    "svelte": "^5.56.10",
+    "tailwindcss": "^3.4.7",
+    "vite": "^8.2.2"
+  },
+  "dependencies": {
+    "@lucide/svelte": "^1.34.0"
+  }
+}

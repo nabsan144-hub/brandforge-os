@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "brandforge-os"
+version = "1.9.0"
+description = "BrandForge OS — your offline marketing department. Six-stage review workflow, 21 tools, local-first."
+readme = { text = "BrandForge OS — the marketing OS that runs on your PC.", content-type = "text/plain" }
+requires-python = ">=3.10"
+license = { text = "Proprietary — BrandForge OS EULA; see LICENSE at the repository root" }
+authors = [{ name = "BrandForge OS", email = "support@brandforge-os.com" }]
+dependencies = [
+    "rich>=13.7.1",
+    "requests>=2.34.2",
+    "python-dotenv>=1.2.3",
+    "fastapi>=0.141.1,<2.0",
+    "uvicorn>=0.52.4",
+    "websockets>=16.0,<17.0",
+    "pydantic>=2.7.4,<3.0",
+    "python-multipart>=0.0.32",
+    "apscheduler>=3.10.4",
+    "fpdf2>=2.8.8,<3",
+    "uharfbuzz>=0.56,<1",
+    "resvg-py==0.5.0",
+    "python-docx>=1.2.0",
+    "Pillow>=12.3.0",
+]
+
+[project.optional-dependencies]
+full = [
+    "playwright>=1.44.0",
+    "python-telegram-bot>=20.7",
+    "httpx>=0.27.0",
+]
+
+[project.scripts]
+brandforge = "brandforge:main"
+
+[tool.setuptools]
+py-modules = ["brandforge", "server", "daemon", "version_info"]
+packages = ["engines", "modules", "gateway", "brandforge_assets"]
+
+[tool.setuptools.package-dir]
+"" = "."
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F"]
+# E722: bare except is the deliberate graceful-degradation pattern in this
+# codebase (consumer product must not crash on optional-dep failures)
+# E701/E702: deliberate dense one-liner style throughout this codebase
+# F401/F841: were globally ignored; re-enabled in Phase 2 after cleaning up
+# all 34 violations — unused imports/variables now fail lint.
+ignore = ["E501", "E722", "E402", "E731", "E701", "E702", "F541"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.setuptools.package-data]
+brandforge_assets = ["fonts/*.ttf", "fonts/OFL.txt", "fallbacks.json", "dashboard/*.html", "dashboard/*.svg", "dashboard/assets/*", "licenses/*"]

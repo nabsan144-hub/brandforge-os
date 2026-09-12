@@ -1,0 +1,58 @@
+{
+  "kind": "illustrated product tour",
+  "reference_interface_commit": "fe23d7bddec395a6189523efa70be7e6d6c8e70d",
+  "duration_seconds": 60.0,
+  "width": 1920,
+  "height": 1080,
+  "fps": 30,
+  "fictional_sample": true,
+  "live_provider_or_payment_demo": false,
+  "music": "original synthesized instrumental; no voiceover",
+  "files": [
+    {
+      "name": "ASSET-NOTICE.md",
+      "bytes": 945,
+      "sha256": "7f0b82cb9ed4d4fd3f6d50264bb0ddeb064987930daf7b8222c40e070e73fcdd"
+    },
+    {
+      "name": "MUSIC-NOTE.txt",
+      "bytes": 350,
+      "sha256": "08f13b4a132026e5c372e887a19e579f455b13836cc131f0dbe689352e4d8c05"
+    },
+    {
+      "name": "captions.srt",
+      "bytes": 612,
+      "sha256": "8bdcc511f7a93954c3371fa89c363417da0f64285e03a620897d58f6ced68038"
+    },
+    {
+      "name": "captions.vtt",
+      "bytes": 564,
+      "sha256": "f23a2696f7fe5b616a3788a39f2ededddceba02bef9c00d639177557d363923b"
+    },
+    {
+      "name": "demo.mp4",
+      "bytes": 7746379,
+      "sha256": "465feeb957f8cfa274c6172877acc142d766a066bf6729a1ca78d18fa5eab794"
+    },
+    {
+      "name": "geist-OFL.txt",
+      "bytes": 4387,
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f"
+    },
+    {
+      "name": "instrumentserif-OFL.txt",
+      "bytes": 4405,
+      "sha256": "129ed7618959716959f2941fdd5b49e0ad6e6c1d78726761786a00253d865521"
+    },
+    {
+      "name": "poster.jpg",
+      "bytes": 30209,
+      "sha256": "f7077bdb0120c3802617d8fe8c5fd8749eecf2e5aa4035324c2722b263089e2c"
+    },
+    {
+      "name": "tour.html",
+      "bytes": 610637,
+      "sha256": "ced3edb3c248ceb79cf093b4b4b7bb84b329e9da5a681e0df5a81b524b7c178e"
+    }
+  ]
+}

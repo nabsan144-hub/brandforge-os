@@ -1,0 +1,24 @@
+{
+  "commit": "REVIEWED_COMMIT_SHA",
+  "approved_by": "",
+  "approved_at": "",
+  "checks": {
+    "paddle_sandbox": false,
+    "live_purchase_refund": false,
+    "guest_owner_download": false,
+    "guest_source_download": false,
+    "all_subscription_transitions": false,
+    "deletion_outage": false,
+    "refund_disputes": false,
+    "email_inbox": false,
+    "private_assets": false,
+    "windows_install_offline": false,
+    "macos_install": false,
+    "provider_quality": false,
+    "legal_approval": false,
+    "commercial_hosting": false,
+    "monitoring_alerts": false,
+    "captcha_signup": false
+  },
+  "note": "Template only. Never mark true without external evidence; store real IDs/receipts privately, not in git. captcha_signup = CAPTCHA_SITE_KEY set (Turnstile challenge live on signup/login) plus the matching secret configured in Supabase Auth — abuse control for the lifetime-capped free tier."
+}
