@@ -325,7 +325,7 @@
       <div role={msg.ok ? 'status' : 'alert'} class="p-3 rounded-xl text-[12px] bg-card border border-line {msg.ok ? 'text-emerald-300' : 'text-red-300'}">{msg.text}</div>
     {/if}
 
-    <button on:click={save} disabled={busy} class="w-full py-3 rounded-full bg-ink text-bg font-bold text-[13px] disabled:opacity-50 hover:opacity-90 transition">
+    <button on:click={save} disabled={busy} class="w-full py-3 rounded-full bg-ink text-bg font-bold text-[13px] disabled:cursor-wait enabled:hover:opacity-90 transition">
       {busy ? 'Saving...' : 'Save Settings'}
     </button>
 
@@ -358,7 +358,7 @@
           </div>
           <label class="flex items-center gap-2 text-[11px] text-ink cursor-pointer"><input type="checkbox" bind:checked={brain.show_brandforge_branding} class="accent-[var(--gold)]" /> Include “Prepared with BrandForge OS” in client-facing exports</label>
           <p class="text-[10.5px] text-faint">The Claim Guard highlights matches; it does not replace legal, platform, or factual review.</p>
-          <button on:click={saveBrandBrain} disabled={brainSaving} class="w-full py-2.5 rounded-full bg-ink text-bg text-[12px] font-bold disabled:opacity-50">{brainSaving ? 'Saving…' : 'Save Brand Brain'}</button>
+          <button on:click={saveBrandBrain} disabled={brainSaving} class="w-full py-2.5 rounded-full bg-ink text-bg text-[12px] font-bold disabled:cursor-wait">{brainSaving ? 'Saving…' : 'Save Brand Brain'}</button>
         </div>
       {:else if activeClient}
         <p class="text-[11px] text-faint mt-3">{brain.proof_points || brain.prohibited_claims ? 'Guardrails configured for this active brand.' : 'No guardrails configured yet.'}</p>
@@ -428,7 +428,7 @@
               <input id="nc-s" type="color" bind:value={newClient.secondary} class="w-full h-9 rounded-lg border border-line bg-card cursor-pointer" />
             </div>
           </div>
-          <button on:click={addClient} disabled={adding} class="w-full py-2.5 rounded-full bg-ink text-bg text-[12px] font-bold disabled:opacity-50 hover:opacity-90 transition">
+          <button on:click={addClient} disabled={adding} class="w-full py-2.5 rounded-full bg-ink text-bg text-[12px] font-bold disabled:cursor-wait enabled:hover:opacity-90 transition">
             {adding ? 'Adding…' : 'Add brand'}
           </button>
         </div>

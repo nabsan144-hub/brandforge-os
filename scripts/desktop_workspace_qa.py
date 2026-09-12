@@ -9,7 +9,7 @@ ROOT=Path(__file__).resolve().parents[1];OUT=Path(os.environ.get('BRANDFORGE_QA_
 os.environ['BRANDFORGE_DATA_DIR']=str(OUT/'isolated-data');os.environ['BRANDFORGE_UPDATE_CHECK']='0'
 sys.path.insert(0,str(ROOT/'app'))
 from fastapi.testclient import TestClient
-from playwright.async_api import async_playwright
+from playwright.async_api import async_playwright, expect
 import server
 AXE=(ROOT/'cloud/node_modules/axe-core/axe.min.js').read_text()
 ORIGIN='http://127.0.0.1'
@@ -21,11 +21,13 @@ async def main():
     browser=await getattr(p,os.environ.get('BF_BROWSER','chromium')).launch(args=['--no-sandbox'] if os.environ.get('BF_BROWSER','chromium')=='chromium' else [])
     for theme in ['light','dark']:
      for width in [390,1440]:
-      failed_session=False;errors=[]
+      failed_session=False;errors=[];save_gate=asyncio.Event();save_gate.set()
       async def route(r):
        u=urlparse(r.request.url)
        if u.scheme in ('blob','data'):return await r.continue_()
        if u.hostname!='127.0.0.1':return await r.abort()
+       if r.request.method=='PUT' and u.path.startswith('/api/clients/'):
+        await save_gate.wait()
        if failed_session and u.path=='/api/session':return await r.fulfill(status=503,json={'error':'fixture outage'})
        response=await asyncio.to_thread(client.request,r.request.method,u.path+('?' +u.query if u.query else ''),content=r.request.post_data_buffer,headers={k:v for k,v in r.request.headers.items() if k not in ['host','content-length']})
        headers={k:v for k,v in response.headers.items() if k not in ['content-encoding','content-length','transfer-encoding']}
@@ -48,8 +50,20 @@ async def main():
         await page.get_by_role('button',name='Edit',exact=True).click()
         attribution=page.get_by_role('checkbox',name='Include “Prepared with BrandForge OS” in client-facing exports')
         await attribution.uncheck()
+        save_gate.clear()
         await page.get_by_role('button',name='Save Brand Brain',exact=True).click()
+        try:
+         saving=page.get_by_role('button',name='Saving…',exact=True)
+         await saving.wait_for()
+         assert await saving.is_disabled()
+         assert await saving.evaluate('e=>getComputedStyle(e).opacity')=='1','Saving button must retain full contrast'
+         await page.evaluate(AXE)
+         pending=await page.evaluate("async()=> (await axe.run()).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))")
+         results.append({'theme':theme,'width':width,'state':'Settings saving','axe':pending,'errors':list(errors)})
+        finally:
+         save_gate.set()
         await page.get_by_text('Brand Brain saved. Future campaigns will use these guardrails.').wait_for()
+        await expect(page.get_by_role('button',name='Save Brand Brain',exact=True)).to_be_enabled()
         assert not client.get('/api/clients').json()['active']['show_brandforge_branding']
         assert not await attribution.is_checked()
        await page.evaluate(AXE);v=await page.evaluate("async()=> (await axe.run()).violations.map(v=>({id:v.id,nodes:v.nodes.map(n=>({target:n.target,summary:n.failureSummary}))}))")
@@ -63,7 +77,7 @@ async def main():
        await page.locator('#product-name-input').fill('Native bridge coffee');await page.locator('#campaign-no-ai').check();await page.get_by_role('button',name=re.compile('Create My Campaign')).click()
        await page.get_by_role('button',name='View Campaign',exact=True).wait_for(timeout=60000);await page.get_by_role('button',name='View Campaign',exact=True).click()
        await page.get_by_role('button',name='Open selected campaign in canvas',exact=True).wait_for();page.once('dialog',lambda d:d.accept());await page.get_by_role('button',name='Open selected campaign in canvas',exact=True).click()
-       await page.wait_for_url('**/canvas/');await page.wait_for_function("document.querySelector('#layers')?.textContent.includes('image')")
+       await page.wait_for_url('**/canvas/');await expect(page.locator('#layers')).to_contain_text('image')
        assert await page.locator('#copy').input_value()
        results.append({'theme':theme,'width':width,'state':'actual no-AI generation and historical-artwork canvas bridge','errors':list(errors)})
 
