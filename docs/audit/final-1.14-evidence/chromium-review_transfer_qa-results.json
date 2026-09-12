@@ -1,0 +1,38 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "review": "pass",
+    "archive": "pass",
+    "axe": 0,
+    "errors": [],
+    "external_requests": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "review": "pass",
+    "archive": "pass",
+    "axe": 0,
+    "errors": [],
+    "external_requests": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "review": "pass",
+    "archive": "pass",
+    "axe": 0,
+    "errors": [],
+    "external_requests": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "review": "pass",
+    "archive": "pass",
+    "axe": 0,
+    "errors": [],
+    "external_requests": []
+  }
+]

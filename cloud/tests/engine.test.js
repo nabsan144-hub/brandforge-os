@@ -1,11 +1,11 @@
-import {describe,it,expect,vi,afterEach} from 'vitest';
+import {describe,it,expect,vi,afterEach,beforeEach} from 'vitest';
 import {PLANS,runCampaign,fallback,completeCopy} from '../api/_lib/engine.js';
 const input={product:'Apex Coffee',industry:'Specialty Coffee',audience:'Busy professionals',benefits:'Organic beans; same-day delivery',watermark:false};
 afterEach(()=>vi.unstubAllGlobals());
 describe('bounded plans and honest generation',()=>{
  it('separates Desktop ownership and caps Cloud capacity',()=>{expect(PLANS.free.lifetime).toBe(3);expect(PLANS.pro.monthly).toBe(50);expect(PLANS.agency.monthly).toBe(300);expect(PLANS.agency.concurrency).toBe(2);expect(PLANS.desktop_solo).toBeUndefined();expect(PLANS.desktop_agency).toBeUndefined();});
  it('returns complete, grounded templates, assets and explicit provenance',async()=>{const r=await runCampaign(input);expect(r.provider).toBe('offline');expect(r.research_live).toBe(false);expect(r.strategy).toContain('No market research');expect(r.seo).toContain('Not measured');expect(r.seo).not.toContain('78/100');expect(completeCopy(r.copy)).toBe(true);expect(r.copy).toContain('Apex Coffee');expect(r.copy).not.toContain('marketing machine');expect(r.copy).not.toContain('Founder,');expect(r.stage_status.copy.state).toBe('template');});
- it('escapes SVG input and visibly labels a Free preview',async()=>{const r=await runCampaign({...input,product:'<img src=x onerror=1>',watermark:true});const svg=r.files[0].content;expect(svg).not.toContain('<img');expect(svg).not.toContain('<script');expect(svg).toContain('BrandForge · Preview');});
+ it('escapes SVG input and visibly labels a Free preview',async()=>{const r=await runCampaign({...input,product:'<img src=x onerror=1>',watermark:true});const svg=r.files[0].content;expect(svg).not.toContain('<img');expect(svg).not.toContain('<script');expect(svg).toContain('Made with BrandForge');});
  it('retains successful provider stages if one request fails',async()=>{
   const prompts=[];
   vi.stubGlobal('fetch',vi.fn(async(url,options)=>{
@@ -64,6 +64,7 @@ CTA Button: Order Now`;
   expect(calls.filter(c=>c==='copy').length).toBe(2); // 429 once, then backoff success
  });
  describe('v1.8 AI artwork scenes',()=>{
+  beforeEach(()=>{process.env.AI_VISUALS_ENABLED='true';});
   const PNG='iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mP8z8BQDwAEhQGAhKmMIQAAAABJRU5ErkJggg==';
   function imageFetch(imageOK){
    const urls=[];
@@ -87,42 +88,45 @@ CTA Button: Order Now`;
    }));
    return urls;
   }
-  afterEach(()=>{delete process.env.AI_VISUALS_KEY;delete process.env.AI_VISUALS_OPENAI_KEY;delete process.env.AI_VISUALS_XAI_KEY;delete process.env.AI_VISUALS_PROVIDER;delete process.env.AI_VISUAL_MODEL;});
-  it('embeds a Gemini scene into every banner for paid packs',async()=>{
+  afterEach(()=>{delete process.env.AI_VISUALS_ENABLED;delete process.env.AI_VISUALS_KEY;delete process.env.AI_VISUALS_OPENAI_KEY;delete process.env.AI_VISUALS_XAI_KEY;delete process.env.AI_VISUALS_PROVIDER;delete process.env.AI_VISUAL_MODEL;});
+  it('embeds a Gemini scene into the hero for explicitly opted-in paid packs',async()=>{
    process.env.AI_VISUALS_KEY='fixture';const urls=imageFetch(true);
-   const r=await runCampaign({...input,visuals_ai:true},{groqKey:'fixture',key_source:'personal'});
+   const r=await runCampaign({...input,visuals_ai:true,visual_provider:process.env.AI_VISUALS_PROVIDER||'gemini'},{groqKey:'fixture',key_source:'personal'});
    expect(r.visual_status).toMatchObject({mode:'ai',provider:'gemini'});
    expect(urls).toContain('gemini');
    expect(r.files[0].name).toBe('hero_banner.svg');
-   expect(r.files[0].content).toContain('data:image/png;base64,');
+   expect(r.files[0].content).toContain('data:image/jpeg;base64,');
    expect(r.files[0].content).toContain('<image href=');
    expect(r.files[0].content).toContain('Karachi&apos;s mornings start with karak');
    expect(r.files.every(f=>!f.name.startsWith('logo_')||!f.content.includes('data:image'))).toBe(true);
   });
   it('keeps SVG visuals when the scene provider fails or no key is set',async()=>{
    process.env.AI_VISUALS_KEY='fixture';let urls=imageFetch(false);
-   const a=await runCampaign({...input,visuals_ai:true},{groqKey:'fixture'});
+   const a=await runCampaign({...input,visuals_ai:true,visual_provider:process.env.AI_VISUALS_PROVIDER||'gemini'},{groqKey:'fixture'});
    expect(a.visual_status).toMatchObject({mode:'svg',reason:'VISUAL_RATE_LIMIT'});
-   expect(a.files[0].content).not.toContain('data:image/png;base64,');
+   expect(a.files[0].content).not.toContain('data:image/jpeg;base64,');
    delete process.env.AI_VISUALS_KEY;
    urls=imageFetch(true);
-   const b=await runCampaign({...input,visuals_ai:true},{groqKey:'fixture'});
+   const b=await runCampaign({...input,visuals_ai:true,visual_provider:process.env.AI_VISUALS_PROVIDER||'gemini'},{groqKey:'fixture'});
    expect(b.visual_status.mode).toBe('svg');
    expect(urls).not.toContain('gemini');
   });
   it('uses the OpenAI lane when the operator selects it',async()=>{
    process.env.AI_VISUALS_PROVIDER='openai';process.env.AI_VISUALS_OPENAI_KEY='sk-fixture';const urls=imageFetch(true);
-   const r=await runCampaign({...input,visuals_ai:true},{groqKey:'fixture'});
+   const r=await runCampaign({...input,visuals_ai:true,visual_provider:process.env.AI_VISUALS_PROVIDER||'gemini'},{groqKey:'fixture'});
    expect(r.visual_status).toMatchObject({mode:'ai',provider:'openai'});
    expect(urls).toContain('openai');
-   expect(r.files[0].content).toContain('data:image/png;base64,');
+   expect(r.files[0].content).toContain('data:image/jpeg;base64,');
   });
   it('uses the xAI (Grok Imagine) lane when the operator selects it',async()=>{
    process.env.AI_VISUALS_PROVIDER='xai';process.env.AI_VISUALS_XAI_KEY='xk-fixture';const urls=imageFetch(true);
-   const r=await runCampaign({...input,visuals_ai:true},{groqKey:'fixture'});
+   const r=await runCampaign({...input,visuals_ai:true,visual_provider:process.env.AI_VISUALS_PROVIDER||'gemini'},{groqKey:'fixture'});
    expect(r.visual_status).toMatchObject({mode:'ai',provider:'xai'});
    expect(urls).toContain('xai');
    expect(r.files[0].content).toContain('data:image/jpeg;base64,');
   });
  });
+});
+it('does not start provider calls when the end-to-end deadline is exhausted',async()=>{
+ const fetch=vi.fn();vi.stubGlobal('fetch',fetch);const r=await runCampaign(input,{groqKey:'fixture',key_source:'personal',deadline:Date.now()-1});expect(fetch).not.toHaveBeenCalled();expect(r.stage_status.copy.reason).toBe('EXECUTION_DEADLINE');expect(r.provider).toBe('offline');
 });

@@ -1,0 +1,1 @@
+{"rendered_views": 8, "availability_states": 8, "axe_violations": 0, "overflow": 0, "page_errors": 0}

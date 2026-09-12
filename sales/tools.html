@@ -36,6 +36,7 @@
 {"@context":"https://schema.org","@type":"WebApplication","name":"BrandForge Free Marketing Tools","url":"https://www.brandforge-os.com/tools","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"description":"Free ad-copy preflight checker and character counter that runs entirely in your browser. It highlights selected wording patterns (statistics, testimonials, guarantees, medical and urgency claims) so a human can review them. It is guidance, not compliance, legal, or platform approval, and it does not upload your draft."}
 </script>
 <script>(function(){try{var m=document.cookie.match(/(?:^|;\s*)brandforge-theme=([^;]+)/);var t=m?decodeURIComponent(m[1]):localStorage.getItem('brandforge-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}})();</script>
+<link rel="stylesheet" href="assets/semantic-tokens.css">
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 <a class="skip-link" href="#content">Skip to content</a>
@@ -43,7 +44,7 @@
 <nav class="sticky top-0 z-50 bg-bg/70 backdrop-blur-2xl border-b border-line/60">
 <div class="max-w-[1120px] mx-auto px-6 h-[60px] flex items-center justify-between">
 <a class="flex items-center gap-2.5" href="/">
-<img alt="BrandForge OS Logo" class="w-8 h-8 rounded-[10px]" src="assets/logo-mark.svg"/>
+<img width="120" height="120" alt="BrandForge OS Logo" class="w-8 h-8 rounded-[10px]" src="assets/logo-mark.svg"/>
 <span class="font-semibold tracking-tight text-[15px]">BrandForge <span style="color:rgb(var(--sb-gold-rgb))">OS</span></span>
 </a>
 <div class="hidden md:flex items-center gap-7 text-[13px] text-muted">
@@ -347,8 +348,10 @@
   analyze();
 </script>
 <script src="assets/config.js"></script>
+<script src="assets/availability.js"></script>
 <script src="assets/domain.js"></script>
 <script src="assets/theme.js"></script>
 <script src="assets/nav.js"></script>
+<script type="module" src="assets/usage-bootstrap.js"></script>
 </body>
 </html>

@@ -1,0 +1,15 @@
+{
+  "files": 789,
+  "text_lines": 70088,
+  "syntax_failures": [
+    {
+      "path": "docs/audit/final-1.13-evidence/inventory-summary.json",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "lines": 0,
+      "syntax": "FAILED: JSONDecodeError Expecting value: line 1 column 1 (char 0)",
+      "manual_review": "not claimed"
+    }
+  ],
+  "credential_patterns": []
+}

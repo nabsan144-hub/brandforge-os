@@ -16,7 +16,7 @@ const path = require('node:path');
 const dir = path.join(__dirname, '..');
 
 let css = '';
-for (const f of ['assets/tailwind.css', 'assets/theme.css', 'assets/motion.css', 'assets/fonts.css', 'assets/product-tour.css']) {
+for (const f of fs.readdirSync(path.join(dir, 'assets')).filter(n=>n.endsWith('.css')).map(n=>'assets/'+n)) {
   css += fs.readFileSync(path.join(dir, f), 'utf8');
 }
 

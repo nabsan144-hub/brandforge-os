@@ -1,0 +1,61 @@
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/engine.test.js (11 tests) 6148ms
+     ✓ retains successful provider stages if one request fails  4510ms
+     ✓ backoff retries a 429 and binds the generated headline into every banner  1532ms
+ ✓ tests/private-assets.test.js (19 tests) 3721ms
+   ✓ operator recovery writes oversized legacy bytes privately without mutation or overwriting a backup  419ms
+ ✓ tests/vector-corrections.test.js (22 tests) 3505ms
+ ✓ tests/payload-routes.test.js (3 tests) 3093ms
+   ✓ large high-entropy legacy account exports fail with a controlled support path  351ms
+ ✓ tests/billing.test.js (18 tests) 3388ms
+ ✓ tests/campaigns.test.js (16 tests) 3094ms
+ ✓ tests/me-export.test.js (3 tests) 2870ms
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > persists the order when email fails and safely retries delivery
+Paddle processing needs retry evt_9a805681d435414dbbb4b2a19b DELIVERY_PENDING
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > binds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+Paddle processing needs retry evt_67ee240fb2024d92a382cbff94 REQUEST_FAILED
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > keeps an unsuccessful event retryable after a database failure
+Paddle processing needs retry evt_4139e74d1a5d46bba2a87cee56 DATABASE_UNAVAILABLE
+
+ ✓ tests/paddle-webhook.test.js (8 tests) 3220ms
+ ✓ tests/database.test.js (19 tests) 3088ms
+ ✓ tests/full-audit.test.js (7 tests) 2912ms
+ ✓ tests/image-safety.test.js (24 tests) 2950ms
+ ✓ tests/visual-review.test.js (16 tests) 2875ms
+ ✓ tests/me.test.js (6 tests) 2869ms
+ ✓ tests/id.test.js (6 tests) 2697ms
+ ✓ tests/database-upgrade.test.js (1 test) 2666ms
+   ✓ upgrade preserves larger known monthly usage and closes legacy waitlist grants  2664ms
+ ✓ tests/dashboard-a11y.test.js (5 tests) 1228ms
+     ✓ has zero axe violations (color-contrast disabled for jsdom)  1000ms
+ ✓ tests/readiness-regressions.test.js (12 tests) 267ms
+ ✓ tests/watermark-payload.test.js (16 tests) 249ms
+ ✓ tests/i18n.test.js (15 tests) 132ms
+ ✓ tests/golden-i18n.test.js (4 tests) 106ms
+ ✓ tests/quota.test.js (4 tests) 63ms
+ ✓ tests/golden-en.test.js (1 test) 54ms
+stderr | tests/waitlist.test.js > waitlist endpoint > returns 501 with an actionable message when the waitlist table is missing
+waitlist upsert failed relation "public.waitlist" does not exist
+
+ ✓ tests/waitlist.test.js (7 tests) 33ms
+ ✓ tests/capabilities.test.js (8 tests) 35ms
+ ✓ tests/dispatcher.test.js (9 tests) 36ms
+ ✓ tests/deliver.test.js (17 tests) 20ms
+ ✓ tests/keys.test.js (18 tests) 16ms
+ ✓ tests/limit.test.js (6 tests) 8ms
+ ✓ tests/schema.test.js (4 tests) 6ms
+ ✓ tests/vendor.test.js (4 tests) 6ms
+ ✓ tests/dashboard-contrast.test.js (4 tests) 5ms
+ ✓ tests/clientip.test.js (5 tests) 5ms
+
+ Test Files  32 passed (32)
+      Tests  318 passed (318)
+   Start at  14:40:51
+   Duration  59.85s (transform 772ms, setup 0ms, import 4.51s, tests 51.37s, environment 3ms)

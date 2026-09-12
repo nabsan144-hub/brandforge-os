@@ -16,7 +16,6 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from modules.ai_image_designer import (
     AIImageDesigner,
-    IMAGE_PROVIDERS,
     build_design_brief,
     _b64_image,
     _valid_image_bytes,
@@ -242,7 +241,7 @@ def test_explicit_image_provider_opts_in_even_when_text_offline(tmp_path):
     assert post.call_count == 1
 
 
-def test_model_fallback_chain_on_404(tmp_path):
+def test_model_failure_does_not_silently_switch_model(tmp_path):
     designer = make_engine(tmp_path, env={"GEMINI_API_KEY": "g-key-12345678"})
     ok = mock.Mock(status_code=200)
     ok.json.return_value = {"candidates": [{"content": {"parts": [
@@ -253,9 +252,8 @@ def test_model_fallback_chain_on_404(tmp_path):
             "Brand", "Retail", "Shoppers", None, "#E8B54A", "#0F172A",
             allow_network=True,  # online campaign — auto mode may use the key
         )
-    assert shot is not None
-    assert shot["model"] == IMAGE_PROVIDERS["gemini"]["fallback_models"][0]
-    assert post.call_count == 2
+    assert shot is None
+    assert post.call_count == 1
 
 
 def test_provider_setting_off_disables_keyed_providers(tmp_path):
@@ -362,12 +360,17 @@ def test_swarm_campaign_uses_ai_hero_when_available(tmp_path):
                 key_benefits="40-year lifespan, hand-glazed craft", lang="en",
             )
         vf = res["visual_files"]
-        assert vf.get("hero_ai.png", b"").startswith(b"\x89PNG")
-        assert vf.get("hero_ai.jpg", b"")[:2] == b"\xff\xd8"
-        assert vf.get("hero_image.jpg") == tiny_png(600, 315)
+        assert vf.get("hero_banner.png", b"").startswith(b"\x89PNG")
+        assert vf.get("story.png", b"").startswith(b"\x89PNG")
+        assert len([k for k in vf if k.startswith('canvas_')]) == 3
+        assert instance.generate_design_image.call_count == 3
+        from modules.canvas_projects import validate_document
+        for key in ('canvas_hero.json', 'canvas_square.json', 'canvas_story.json'):
+            validate_document(json.loads(vf[key]))
+        assert 'data:image/jpeg;base64,' in vf['hero_banner.svg']
         assert res["meta"]["ai_image"] is True
         assert res["meta"]["image_provider"] == "gemini"
-        # deterministic template deliverables still present
+        # AI replaces the primary visual; the basic template is not substituted
         assert "hero_banner.svg" in vf
     finally:
         if prev_data_dir is None:
@@ -402,3 +405,77 @@ def test_swarm_campaign_stays_offline_without_keys(tmp_path):
             os.environ.pop("BRANDFORGE_DATA_DIR", None)
         else:
             os.environ["BRANDFORGE_DATA_DIR"] = prev_data_dir
+
+
+def test_failed_auto_provider_never_shares_with_other_providers(tmp_path):
+    designer = make_engine(tmp_path, env={
+        "GEMINI_API_KEY": "gemini-fixture-key", "OPENAI_API_KEY": "openai-fixture-key",
+        "XAI_API_KEY": "xai-fixture-key", "BRANDFORGE_PUBLIC_IMAGES": "1",
+    })
+    with mock.patch("modules.ai_image_designer.requests.post", return_value=mock.Mock(status_code=500)) as post, \
+         mock.patch("modules.image_generator.generate_image_bytes") as public:
+        shot = designer.generate_design_image("Brand", "Food", "People", None, "#ffffff", "#000000", allow_network=True)
+    assert shot is None
+    assert post.call_count == 1
+    assert "generativelanguage.googleapis.com" in post.call_args.args[0]
+    public.assert_not_called()
+
+
+def test_unknown_image_setting_fails_closed(tmp_path):
+    designer = make_engine(tmp_path, env={"GEMINI_API_KEY": "gemini-fixture-key"}, config={"image_provider": "typo"})
+    assert designer.provider_setting == "off"
+    assert not designer.network_allowed(True)
+
+
+def test_explicit_model_is_not_replaced_by_default(tmp_path):
+    designer = make_engine(tmp_path, config={"image_provider": "openai", "image_model": "gpt-image-1-mini"})
+    assert designer._model_chain("openai") == ["gpt-image-1-mini"]
+
+
+def test_invalid_explicit_model_has_no_fallback(tmp_path):
+    designer = make_engine(tmp_path, config={"image_provider": "gemini", "image_model": "../models/elsewhere"})
+    assert designer._model_chain("gemini") == []
+
+
+def test_failed_ai_swarm_does_not_return_basic_design(tmp_path, monkeypatch):
+    monkeypatch.setenv('BRANDFORGE_DATA_DIR', str(tmp_path))
+    from engines.ai_engine import get_engine
+    from modules.swarm_director import SwarmDirector
+    from modules.ai_campaign import ArtworkGenerationError
+    director = SwarmDirector(get_engine(provider='offline'))
+    with mock.patch('modules.ai_image_designer.AIImageDesigner') as factory:
+        factory.return_value.has_any_key.return_value = True
+        factory.return_value.network_allowed.return_value = True
+        factory.return_value.generate_design_image.return_value = None
+        import pytest
+        with pytest.raises(ArtworkGenerationError, match='No basic artwork'):
+            director.execute_swarm_campaign(product_name='Fixture', industry='Food', target_audience='People', key_benefits='Crunchy', lang='en')
+
+
+def test_native_gemini_and_openai_reference_transports(tmp_path):
+    reference = 'data:image/png;base64,' + B64_PNG
+    for provider, env_key in [('gemini', 'GEMINI_API_KEY'), ('openai', 'OPENAI_API_KEY')]:
+        designer = make_engine(tmp_path, env={env_key: 'fixture-key-123456'})
+        response = mock.Mock(status_code=200)
+        response.json.return_value = ({'candidates': [{'content': {'parts': [{'inlineData': {'mimeType': 'image/png', 'data': B64_PNG}}]}}]} if provider == 'gemini' else {'data': [{'b64_json': B64_PNG}]})
+        with mock.patch('modules.ai_image_designer.requests.post', return_value=response) as post:
+            shot = designer.generate_design_image('Brand', 'Food', 'People', ['Crunchy'], '#cc4411', '#112233', reference_images=[reference], finished=True, lang='ur')
+        assert shot and shot['provider'] == provider
+        if provider == 'gemini':
+            body = json.loads(post.call_args.kwargs['data'])
+            assert len(body['contents'][0]['parts']) == 2
+            assert '"language": "ur"' in body['contents'][0]['parts'][0]['text']
+        else:
+            assert post.call_args.args[0].endswith('/images/edits')
+            assert post.call_args.kwargs['files'][0][0] == 'image[]'
+            assert 'Content-Type' not in post.call_args.kwargs['headers']
+
+
+def test_native_invalid_reference_fails_before_provider_call(tmp_path):
+    import pytest
+    from modules.ai_campaign import ArtworkConfigurationError
+    designer = make_engine(tmp_path, env={'GEMINI_API_KEY': 'fixture-key-123456'})
+    with mock.patch('modules.ai_image_designer.requests.post') as post:
+        with pytest.raises(ArtworkConfigurationError):
+            designer.generate_design_image('Brand', 'Food', 'People', [], '#112233', '#334455', reference_images=['data:image/png;base64,YmFk'])
+    post.assert_not_called()

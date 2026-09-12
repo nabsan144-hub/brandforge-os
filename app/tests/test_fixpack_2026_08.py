@@ -43,7 +43,7 @@ def test_settings_rejects_foreign_default_model(client):
         "model": "gemini-2.5-flash"})  # stale model from the other provider
     assert r.status_code == 200, r.text
     assert r.json()["provider"] == "groq"
-    assert r.json()["model"] == "qwen/qwen3.8-27b", r.json()["model"]
+    assert r.json()["model"] == "openai/gpt-oss-120b", r.json()["model"]
 
 
 def test_settings_rejects_offline_engine_internal_model(client):
@@ -52,7 +52,7 @@ def test_settings_rejects_offline_engine_internal_model(client):
         "model": "smart-offline-engine-v2"})
     r = client.get("/api/settings").json()
     assert r["provider"] == "groq"
-    assert r["model"] == "qwen/qwen3.8-27b", r["model"]
+    assert r["model"] == "openai/gpt-oss-120b", r["model"]
 
 
 def test_settings_keeps_custom_model(client):

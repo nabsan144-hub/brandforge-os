@@ -32,7 +32,8 @@
     // deepened for paper backgrounds; halos kept faint so nothing smudges
     light: [[176,118,10],[199,44,124],[8,145,129],[29,105,216],[124,58,237],[217,99,10]]
   };
-  const reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const motion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)');
+  let reduced = !!motion?.matches, inView = true;
 
   let W = 0, H = 0, dpr = 1, raf = 0, last = 0, trails = [];
   const orbs = [];
@@ -130,7 +131,7 @@
     draw(t);
     raf = requestAnimationFrame(loop);
   }
-  function start() { if (!raf && !reduced) { last = 0; raf = requestAnimationFrame(loop); } }
+  function start() { if (!raf && !reduced && inView && !document.hidden) { last = 0; raf = requestAnimationFrame(loop); } }
   function stop() { cancelAnimationFrame(raf); raf = 0; }
 
   // click/tap anywhere in the hero -> the agents scatter from the pointer
@@ -148,6 +149,8 @@
     }
   });
 
+  motion?.addEventListener('change', function(e) { reduced=e.matches; stop(); if(reduced) draw(0); else start(); });
+  if(window.IntersectionObserver) new IntersectionObserver(function(entries) { inView=entries[0].isIntersecting; inView ? start() : stop(); }).observe(hero);
   resize();
   if (reduced) { draw(0); } else { start(); }
   document.addEventListener('visibilitychange', function () { document.hidden ? stop() : start(); });

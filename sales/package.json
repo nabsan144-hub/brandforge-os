@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "description": "Funnel regression tests for the static sales site (config.js / buy.js / waitlist.js). The site itself has no build step.",
   "scripts": {
-    "test": "node tests/funnel.test.js && node tests/demo.test.js && node tests/a11y.test.js && node tests/css-coverage.js && node tests/theme-contrast.test.js",
+    "test": "node tests/funnel.test.js && node tests/demo.test.js && node tests/a11y.test.js && node tests/css-coverage.js && node tests/theme-contrast.test.js && node tests/site-integrity.test.js && node tests/hero-motion.test.mjs && node tests/deployment-config.test.mjs",
     "build:css": "tailwindcss -c tailwind.config.js -i tailwind.src.css -o assets/tailwind.css --minify",
     "check:css": "node tests/css-coverage.js",
     "build": "node build.mjs"

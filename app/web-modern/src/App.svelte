@@ -179,7 +179,7 @@
 </script>
 
 <nav class="sticky top-0 z-50 bg-inset/80 backdrop-blur-2xl border-b border-line">
-  <div class="max-w-[1280px] mx-auto px-6 h-[64px] flex items-center gap-6">
+  <div class="max-w-[1280px] mx-auto px-6 min-h-[64px] py-3 flex flex-wrap items-center gap-3">
     <div class="flex items-center gap-3">
       <img src="logo-mark.svg" alt="BrandForge OS" class="w-9 h-9 rounded-xl">
       <div>
@@ -188,7 +188,7 @@
       </div>
     </div>
 
-    <div class="flex items-center gap-2 ml-4 lg:ml-8 min-w-0">
+    <div class="desktop-status flex flex-wrap items-center gap-2 min-w-0">
       <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-card border border-line text-[11px]">
         <span class="w-2 h-2 rounded-full bg-emerald-400 shadow-[0_0_8px_#10B981]" title="Server reachable"></span>
         <span class="text-mut">{health.provider}</span>
@@ -198,12 +198,12 @@
       <div class="relative">
         <button on:click={() => { showNetPanel = !showNetPanel; loadNetAudit() }}
                 class="flex items-center gap-1.5 px-3 py-1.5 rounded-full border text-[11px] font-medium transition {netAudit.external_requests === 0 ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-300' : 'bg-amber-500/10 border-amber-500/30 text-amber-300'}"
-                title="Tracked requests-library calls this session — not a complete network monitor">
+                aria-expanded={showNetPanel} aria-controls="network-ledger" title="Tracked requests-library calls this session — not a complete network monitor">
           <span class="w-2 h-2 rounded-full {netAudit.external_requests === 0 ? 'bg-emerald-400' : 'bg-amber-400'}"></span>
           {netAudit.external_requests === 0 ? '0 tracked requests' : `${netAudit.external_requests} tracked`}
         </button>
         {#if showNetPanel}
-          <div class="absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] p-4 rounded-xl bg-card border border-line shadow-2xl text-[11px]">
+          <div id="network-ledger" class="network-panel absolute left-0 top-[calc(100%+8px)] z-50 w-[320px] p-4 rounded-xl bg-card border border-line shadow-2xl text-[11px]">
             <div class="flex items-center justify-between mb-2">
               <b class="text-ink text-[12px]">Tracked request activity — this session</b>
               <button on:click={() => showNetPanel = false} class="text-faint hover:text-ink" aria-label="Close network ledger">✕</button>
@@ -241,7 +241,7 @@
       <div class="hidden lg:block px-3 py-1.5 rounded-full bg-gold/10 border border-gold/30 text-[11px] text-gold font-medium">{licenseBadge()}</div>
     </div>
 
-    <div class="ml-auto flex items-center gap-2">
+    <div class="desktop-actions ml-auto flex shrink-0 items-center gap-2">
       <button on:click={toggleTheme} class="w-8 h-8 rounded-full bg-card border border-line text-mut hover:text-ink hover:border-line transition flex items-center justify-center" title="Toggle light / dark" aria-label="Toggle light or dark theme">
         {#if theme === 'dark'}<Sun class="w-4 h-4" />{:else}<Moon class="w-4 h-4" />{/if}
       </button>
@@ -254,7 +254,7 @@
         <span class="text-faint">⌘</span><span>K</span>
         <span class="text-faint">Command</span>
       </button>
-      <a href="/docs" target="_blank" rel="noopener noreferrer" class="px-4 py-2 rounded-full border border-line bg-card text-[13px] font-medium hover:border-white/20 transition">API Docs</a>
+      <a href="/docs" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex px-4 py-2 rounded-full border border-line bg-card text-[13px] font-medium hover:border-white/20 transition">API Docs</a>
     </div>
   </div>
 </nav>
@@ -279,8 +279,8 @@
       </div>
       
       <h1 class="text-[clamp(32px,6vw,64px)] leading-[0.92] tracking-[-0.035em] font-[800] mb-5 text-ink">
-        Your Offline<br>
-        <span class="serif font-normal" style="color:var(--gold)">Marketing Department.</span>
+        Your Local<br>
+        <span class="serif font-normal" style="color:var(--gold)">Campaign Workspace.</span>
       </h1>
       
       <p class="text-mut text-[17px] leading-[1.6] max-w-[640px] mx-auto mb-8">
@@ -343,7 +343,7 @@
       
       <div class="p-5 rounded-2xl bg-card border border-line relative overflow-hidden">
         <div class="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-gold/10 to-transparent blur-2xl"></div>
-        <h4 class="font-bold text-[13px] mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-gold text-bg flex items-center justify-center text-[11px] font-bold">✓</span> Your Local Workflow</h4>
+        <h2 class="font-bold text-[13px] mb-3 flex items-center gap-2"><span class="w-5 h-5 rounded-full bg-gold text-bg flex items-center justify-center text-[11px] font-bold">✓</span> Your Local Workflow</h2>
         <ul class="space-y-2.5 text-[12px] text-ink">
           <li class="flex gap-2.5"><span class="text-emerald-400 mt-[2px]">✓</span> <span><b class="text-ink">Separate ownership</b> — Desktop is a one-time purchase; Cloud access and provider usage are separate</span></li>
           <li class="flex gap-2.5"><span class="text-emerald-400 mt-[2px]">✓</span> <span><b class="text-ink">Your data stays under your control</b> — local mode keeps work on your PC; cloud providers are optional</span></li>

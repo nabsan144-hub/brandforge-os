@@ -1,4 +1,4 @@
-import {describe,it,expect,vi,beforeAll,afterAll,beforeEach} from 'vitest';
+import {describe,it,expect,vi,beforeAll,afterAll,beforeEach,afterEach} from 'vitest';
 import {randomUUID} from 'node:crypto';
 vi.mock('../api/_lib/sb.js',()=>({authUser:vi.fn(),admin:vi.fn(),json:(b,s=200)=>new Response(JSON.stringify(b),{status:s,headers:{'Content-Type':'application/json'}})}));
 vi.mock('../api/_lib/limit.js',()=>({rateLimit:vi.fn(async()=>true)}));
@@ -6,11 +6,15 @@ vi.mock('../api/_lib/keys.js',()=>({resolveCampaignKeys:vi.fn(async()=>({key_sou
 import {admin,authUser} from '../api/_lib/sb.js';
 import {rateLimit} from '../api/_lib/limit.js';
 import handler from '../api/_lib/routes/campaigns.js';
+import detailHandler from '../api/_lib/routes/camp-id.js';
+import exportHandler from '../api/_lib/routes/me-export.js';
+import {gunzipSync} from 'node:zlib';
 import {database,request} from './helpers/db.js';
 let sb,user;
 const brief={product_name:'Apex Coffee',industry:'Specialty Coffee',audience:'Busy professionals',benefits:'Organic beans; same-day delivery',provider:'offline'};
 beforeAll(async()=>{sb=await database();admin.mockReturnValue(sb);},30000);
 afterAll(()=>sb.close());
+afterEach(()=>{vi.unstubAllGlobals();vi.unstubAllEnvs();});
 beforeEach(async()=>{user=await sb.user();authUser.mockResolvedValue(user);rateLimit.mockResolvedValue(true);sb.calls.length=0;delete process.env.GENERATION_PAUSED;});
 describe('campaign API against actual migration RPCs',()=>{
  it('requires auth and permits only collection methods',async()=>{authUser.mockResolvedValue(null);expect((await handler(request('/campaigns'))).status).toBe(401);authUser.mockResolvedValue(user);expect((await handler(request('/campaigns','PUT',{}))).status).toBe(405);});
@@ -64,4 +68,45 @@ describe('campaign API against actual migration RPCs',()=>{
   const p2=await(await handler(request('/campaigns?page=2'))).json();expect(p2.campaigns).toHaveLength(15);expect(p2.total).toBe(55);expect(p2.has_more).toBe(false);
   const found=await(await handler(request('/campaigns?q=Seed%2000'))).json();expect(found.campaigns).toHaveLength(1);expect(found.campaigns[0].name).toBe('Seed 00');
  });
+});
+
+describe('paid image request-to-database integration',()=>{
+ function imageEnv(){
+  vi.stubEnv('AI_VISUALS_ENABLED','true');vi.stubEnv('AI_VISUALS_PROVIDER','openai');vi.stubEnv('AI_VISUAL_MODEL','gpt-image-1');
+  vi.stubEnv('AI_VISUALS_OPENAI_KEY','fake-key');vi.stubEnv('AI_VISUALS_OPENAI_COST_MODEL','gpt-image-1');vi.stubEnv('AI_VISUALS_OPENAI_MAX_USD_PER_IMAGE','.2');
+  vi.stubEnv('MAX_PROVIDER_DAILY_USD','10');
+ }
+ it('stops before provider work when image pricing is missing and releases campaign allowance',async()=>{
+  imageEnv();vi.stubEnv('AI_VISUALS_OPENAI_MAX_USD_PER_IMAGE','');await sb.db.query("update profiles set plan='pro' where id=$1",[user.id]);
+  const fetch=vi.fn();vi.stubGlobal('fetch',fetch);
+  const r=await handler(request('/campaigns','POST',{...brief,provider:'auto',visuals_ai:true,visual_provider:'openai'}));
+  expect(r.status).toBe(503);expect((await r.json()).code).toBe('COST_GUARD_UNCONFIGURED');expect(fetch).not.toHaveBeenCalled();
+  expect((await sb.rpc('generation_totals',{p_uid:user.id})).data).toMatchObject({campaigns_lifetime:0,reserved:0});
+ });
+ it('preserves failure status through create, detail and account export, reserving cost before fetch',async()=>{
+  imageEnv();await sb.db.query("update profiles set plan='pro' where id=$1",[user.id]);
+  vi.stubGlobal('fetch',vi.fn(async()=>{expect(sb.calls.some(c=>c.rpc==='reserve_operator_cost')).toBe(true);return {ok:false,status:429};}));
+  const idempotency=randomUUID();
+  const body={...brief,provider:'auto',visuals_ai:true,visual_provider:'openai'};
+  const r=await handler(request('/campaigns','POST',body,{'Idempotency-Key':idempotency}));expect(r.status).toBe(200);const created=await r.json();
+  expect(created.visual_status).toMatchObject({state:'fallback',provider:'openai',reason:'VISUAL_RATE_LIMIT'});
+  const detail=await(await detailHandler(request('/campaigns/'+created.id))).json();expect(detail.visual_status).toEqual(created.visual_status);
+  const exported=await exportHandler(request('/me/export'));const data=JSON.parse(gunzipSync(Buffer.from(await exported.arrayBuffer())).toString());
+  expect(data.data.campaigns[0].visual_status).toEqual(created.visual_status);
+  vi.stubEnv('AI_VISUALS_PROVIDER','gemini'); // a completed request must replay even after config changes
+  const again=await handler(request('/campaigns','POST',body,{'Idempotency-Key':idempotency}));expect((await again.json()).replayed).toBe(true);expect(fetch).toHaveBeenCalledTimes(1);
+  const cost=(await sb.db.query('select upper_usd from operator_cost_reservations where id=$1',[idempotency])).rows[0];expect(Number(cost.upper_usd)).toBe(.2);
+ });
+ it.each(['free','pro','agency'])('ignores attempted imagery in no-AI %s requests',async(plan)=>{
+  imageEnv();await sb.db.query('update profiles set plan=$1 where id=$2',[plan,user.id]);const fetch=vi.fn();vi.stubGlobal('fetch',fetch);
+  const r=await handler(request('/campaigns','POST',{...brief,visuals_ai:true,visual_provider:'openai'}));
+  expect(r.status).toBe(200);expect((await r.json()).visual_status.reason).toBe('NO_AI_MODE');expect(fetch).not.toHaveBeenCalled();
+  expect(sb.calls.some(c=>c.rpc==='reserve_operator_cost')).toBe(false);
+ });
+});
+it('reports actual retained stage progress only to the request owner',async()=>{
+ const {default:progress}=await import('../api/_lib/routes/generation-progress.js');
+ const id=randomUUID();expect((await handler(request('/campaigns','POST',brief,{'Idempotency-Key':id}))).status).toBe(200);
+ const response=await progress(request('/generation-progress?request_id='+id));expect(response.status).toBe(200);const data=await response.json();expect(data.status).toBe('completed');expect(data.stages).toMatchObject({strategy:'template',copy:'template',seo:'template',packaging:'complete'});expect(JSON.stringify(data)).not.toContain('Apex Coffee');
+ authUser.mockResolvedValue(await sb.user());expect((await progress(request('/generation-progress?request_id='+id))).status).toBe(404);
 });

@@ -1,0 +1,54 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/engine.test.js (11 tests) 6178ms
+     ✓ retains successful provider stages if one request fails  4511ms
+     ✓ backoff retries a 429 and binds the generated headline into every banner  1524ms
+ ✓ tests/billing.test.js (18 tests) 3638ms
+ ✓ tests/campaigns.test.js (16 tests) 3441ms
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > persists the order when email fails and safely retries delivery
+Paddle processing needs retry evt_d010650031774064831cc1e4a6 DELIVERY_PENDING
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > binds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+Paddle processing needs retry evt_ffb9835e8b7d46a1bc1dc5fe3a REQUEST_FAILED
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > keeps an unsuccessful event retryable after a database failure
+Paddle processing needs retry evt_f5fa3e6c3baf4f9181cb488b67 DATABASE_UNAVAILABLE
+
+ ✓ tests/paddle-webhook.test.js (8 tests) 3179ms
+ ✓ tests/database.test.js (19 tests) 3305ms
+ ✓ tests/image-safety.test.js (24 tests) 3129ms
+ ✓ tests/full-audit.test.js (7 tests) 3015ms
+ ✓ tests/id.test.js (6 tests) 3044ms
+ ✓ tests/database-upgrade.test.js (1 test) 2995ms
+   ✓ upgrade preserves larger known monthly usage and closes legacy waitlist grants  2993ms
+ ✓ tests/me.test.js (6 tests) 3044ms
+ ✓ tests/me-export.test.js (3 tests) 3054ms
+ ✓ tests/dashboard-a11y.test.js (5 tests) 1346ms
+     ✓ has zero axe violations (color-contrast disabled for jsdom)  1097ms
+ ✓ tests/readiness-regressions.test.js (12 tests) 326ms
+ ✓ tests/i18n.test.js (15 tests) 143ms
+ ✓ tests/golden-i18n.test.js (4 tests) 114ms
+ ✓ tests/quota.test.js (4 tests) 81ms
+ ✓ tests/golden-en.test.js (1 test) 75ms
+stderr | tests/waitlist.test.js > waitlist endpoint > returns 501 with an actionable message when the waitlist table is missing
+waitlist upsert failed relation "public.waitlist" does not exist
+
+ ✓ tests/waitlist.test.js (7 tests) 35ms
+ ✓ tests/dispatcher.test.js (8 tests) 32ms
+ ✓ tests/deliver.test.js (17 tests) 21ms
+ ✓ tests/keys.test.js (18 tests) 18ms
+ ✓ tests/limit.test.js (6 tests) 10ms
+ ✓ tests/schema.test.js (4 tests) 7ms
+ ✓ tests/vendor.test.js (4 tests) 7ms
+ ✓ tests/dashboard-contrast.test.js (4 tests) 5ms
+ ✓ tests/clientip.test.js (5 tests) 5ms
+
+ Test Files  26 passed (26)
+      Tests  233 passed (233)
+   Start at  12:50:57
+   Duration  47.59s (transform 651ms, setup 0ms, import 3.65s, tests 40.25s, environment 3ms)

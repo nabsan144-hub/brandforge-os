@@ -1,0 +1,119 @@
+........................................................................ [ 17%]
+........................................................................ [ 34%]
+........................................................................ [ 51%]
+........................................................................ [ 68%]
+........................................................................ [ 85%]
+...........................................................              [100%]
+=============================== warnings summary ===============================
+tests/test_readiness_regressions.py::test_real_swarm_api_honors_dimensions_logo_and_new_text_revision
+  /home/user/repo/app/tests/test_readiness_regressions.py:39: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+    assert sum(1 for r,g,b in image.getdata() if r>240 and g<20 and 150<b<190)>10
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+================================ tests coverage ================================
+_______________ coverage: platform linux, python 3.13.14-final-0 _______________
+
+Name                                      Stmts   Miss  Cover
+-------------------------------------------------------------
+app/brandforge.py                           285     42    85%
+app/brandforge_assets/__init__.py             0      0   100%
+app/daemon.py                                97     14    86%
+app/engines/__init__.py                       2      0   100%
+app/engines/ai_engine.py                    492    100    80%
+app/gateway/__init__.py                       0      0   100%
+app/gateway/telegram_bot.py                 127     80    37%
+app/make_release_zip.py                     126     81    36%
+app/modules/__init__.py                      11      0   100%
+app/modules/ai_image_designer.py            227     30    87%
+app/modules/approval_manager.py              99      4    96%
+app/modules/audit_scorecard.py               66     17    74%
+app/modules/brand_planner.py                 29     23    21%
+app/modules/campaign_pack.py                 60      4    93%
+app/modules/campaign_quality.py              55      4    93%
+app/modules/campaign_templates.py             4      0   100%
+app/modules/claim_guard.py                   25      1    96%
+app/modules/client_manager.py               154     25    84%
+app/modules/copywriter.py                    17     12    29%
+app/modules/desktop_launcher.py              86      2    98%
+app/modules/document_exporter.py             96      4    96%
+app/modules/draft_integrity.py               12      1    92%
+app/modules/fallback_copy.py                 23      0   100%
+app/modules/i18n.py                          11      0   100%
+app/modules/image_export.py                  54      9    83%
+app/modules/image_generator.py               95     33    65%
+app/modules/landing_layout.py                26      0   100%
+app/modules/local_security.py                68     11    84%
+app/modules/mcp_registry.py                 378     88    77%
+app/modules/memory_manager.py               254     50    80%
+app/modules/net_audit.py                     69      7    90%
+app/modules/performance_tracker.py           61      0   100%
+app/modules/project_manager.py              288     49    83%
+app/modules/public_http.py                  151     22    85%
+app/modules/runtime_paths.py                 20      9    55%
+app/modules/security.py                     101     15    85%
+app/modules/settings_store.py                69      5    93%
+app/modules/state_io.py                      19      2    89%
+app/modules/state_locks.py                   13      0   100%
+app/modules/static_site.py                   25      0   100%
+app/modules/swarm_council.py                 70     19    73%
+app/modules/swarm_director.py               225     53    76%
+app/modules/update_check.py                  45      0   100%
+app/modules/visual_designer.py              143     19    87%
+app/modules/visual_layout.py                409     59    86%
+app/modules/web_searcher.py                 358    133    63%
+app/server.py                              1010    177    82%
+app/setup_env.py                             81      6    93%
+app/tests/conftest.py                        41      1    98%
+app/tests/test_ai_image_designer.py         231      2    99%
+app/tests/test_api.py                        87      0   100%
+app/tests/test_approval_edge.py              41      0   100%
+app/tests/test_approvals.py                  10      0   100%
+app/tests/test_approvals_v2.py               65      1    98%
+app/tests/test_audit_fixes.py                78      1    99%
+app/tests/test_brand_brain.py                15      0   100%
+app/tests/test_campaign_compare.py            6      0   100%
+app/tests/test_campaign_pack.py              10      0   100%
+app/tests/test_campaign_quality.py           13      0   100%
+app/tests/test_campaign_revisions.py         18      0   100%
+app/tests/test_campaign_status.py            11      0   100%
+app/tests/test_campaign_templates.py          9      0   100%
+app/tests/test_chat_context.py               32      0   100%
+app/tests/test_chat_race.py                  43      0   100%
+app/tests/test_csrf_origin.py                26      0   100%
+app/tests/test_final_hardening.py            86      1    99%
+app/tests/test_fixpack_2026_08.py           185      1    99%
+app/tests/test_full_audit.py                124      0   100%
+app/tests/test_golden.py                     48      0   100%
+app/tests/test_i18n.py                       50      0   100%
+app/tests/test_image_export.py               42      0   100%
+app/tests/test_image_gen.py                  79      2    97%
+app/tests/test_logo_upload.py                10      0   100%
+app/tests/test_memory_conn.py                38      0   100%
+app/tests/test_native_exports.py             40      0   100%
+app/tests/test_net_audit.py                  71      0   100%
+app/tests/test_offline_engine.py             53      0   100%
+app/tests/test_pass3_fixes.py               121      3    98%
+app/tests/test_pass5_fixes.py                66      0   100%
+app/tests/test_performance.py                58      0   100%
+app/tests/test_providers_mock.py            128      4    97%
+app/tests/test_public_http.py                49      0   100%
+app/tests/test_readiness_regressions.py     126      0   100%
+app/tests/test_repository_audit.py           69      0   100%
+app/tests/test_review_fixes.py               89      3    97%
+app/tests/test_roi.py                        19      0   100%
+app/tests/test_runtime_142.py               418      0   100%
+app/tests/test_sales_site.py                 86      2    98%
+app/tests/test_sanitizers.py                 74      0   100%
+app/tests/test_ssrf.py                      125      2    98%
+app/tests/test_swarm.py                      68      0   100%
+app/tests/test_sweep10_council.py           139      0   100%
+app/tests/test_tools.py                      69      0   100%
+app/tests/test_update_check.py              110      2    98%
+app/tests/test_visual_designer.py            17      0   100%
+app/tests/test_week4.py                      50      0   100%
+app/tests/test_white_label_pack.py            7      0   100%
+app/version_info.py                           9      1    89%
+-------------------------------------------------------------
+TOTAL                                      9595   1236    87%
+Coverage JSON written to file /home/user/final-audit/evidence/python-coverage.json
+419 passed, 1 warning in 153.39s (0:02:33)

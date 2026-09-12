@@ -1,0 +1,151 @@
+{
+  "local_pg_dump_restore": "pass",
+  "tables": [
+    {
+      "table": "auth.users",
+      "rows": 3,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.billing_customers",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.billing_operations",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.billing_subscriptions",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.brand_profiles",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_asset_bundles",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_image_jobs",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_review_links",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_revisions",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_transfers",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaign_visual_versions",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.campaigns",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.canvas_projects",
+      "rows": 1,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.canvas_requests",
+      "rows": 2,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.canvas_versions",
+      "rows": 2,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.checkout_intents",
+      "rows": 1,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.delivery_log",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.desktop_orders",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.generation_usage",
+      "rows": 50,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.operator_cost_reservations",
+      "rows": 7,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.paddle_events",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.payment_adjustments",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.product_feedback",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.profiles",
+      "rows": 3,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.rate_limits",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.usage_events",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.usage_monthly",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.user_api_keys",
+      "rows": 0,
+      "exact_logical_match": true
+    },
+    {
+      "table": "public.waitlist",
+      "rows": 0,
+      "exact_logical_match": true
+    }
+  ],
+  "external_billing_and_secret_recovery": "not performed"
+}

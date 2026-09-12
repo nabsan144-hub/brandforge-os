@@ -16,9 +16,9 @@ describe('campaign ownership, editing and non-refunding deletion',()=>{
  it('saves a revision, detects a conflict, and restores without losing history',async()=>{
   expect((await handler(request('/campaigns/'+id,'PATCH',{revision:1,copy:'Edited copy'}))).status).toBe(200);
   expect((await handler(request('/campaigns/'+id,'PATCH',{revision:1,copy:'Lost edit'}))).status).toBe(409);
-  const d=await(await handler(request('/campaigns/'+id))).json();expect(d.copy).toBe('Edited copy');expect(d.revisions).toHaveLength(1);
+  const d=await(await handler(request('/campaigns/'+id,'GET',undefined,{'X-Brandforge-Review':'visual-review-v1'}))).json();expect(d.copy).toBe('Edited copy');expect(d.revisions).toHaveLength(1);
   expect((await handler(request('/campaigns/'+id,'PATCH',{revision:2,restore_revision:1}))).status).toBe(200);
-  expect((await(await handler(request('/campaigns/'+id))).json()).copy).toBe('Original copy');
+  expect((await(await handler(request('/campaigns/'+id,'GET',undefined,{'X-Brandforge-Review':'visual-review-v1'}))).json()).copy).toBe('Original copy');
  });
- it('rejects oversized edits without modifying the document',async()=>{expect((await handler(request('/campaigns/'+id,'PATCH',{revision:1,copy:'a'.repeat(20001)}))).status).toBe(400);expect((await(await handler(request('/campaigns/'+id))).json()).revision).toBe(1);});
+ it('rejects oversized edits without modifying the document',async()=>{expect((await handler(request('/campaigns/'+id,'PATCH',{revision:1,copy:'a'.repeat(20001)}))).status).toBe(400);expect((await(await handler(request('/campaigns/'+id,'GET',undefined,{'X-Brandforge-Review':'visual-review-v1'}))).json()).revision).toBe(1);});
 });

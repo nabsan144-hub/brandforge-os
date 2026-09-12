@@ -1,0 +1,386 @@
+[
+  {
+    "page": "index",
+    "theme": "dark",
+    "width": 390,
+    "contrast": {
+      "ratio": 9.032496502399738,
+      "foreground": [
+        166,
+        177,
+        194
+      ],
+      "background": [
+        10,
+        11.96,
+        15.879999999999999
+      ],
+      "text": "brandforge \u2014 desktop setup"
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index",
+    "theme": "dark",
+    "width": 1440,
+    "contrast": {
+      "ratio": 9.032496502399738,
+      "foreground": [
+        166,
+        177,
+        194
+      ],
+      "background": [
+        10,
+        11.96,
+        15.879999999999999
+      ],
+      "text": "brandforge \u2014 desktop setup"
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index",
+    "theme": "light",
+    "width": 390,
+    "contrast": {
+      "ratio": 8.52250596409833,
+      "foreground": [
+        166,
+        177,
+        194
+      ],
+      "background": [
+        15.879999999999999,
+        19.8,
+        27.64
+      ],
+      "text": "brandforge \u2014 desktop setup"
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index",
+    "theme": "light",
+    "width": 1440,
+    "contrast": {
+      "ratio": 8.52250596409833,
+      "foreground": [
+        166,
+        177,
+        194
+      ],
+      "background": [
+        15.879999999999999,
+        19.8,
+        27.64
+      ],
+      "text": "brandforge \u2014 desktop setup"
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing",
+    "theme": "dark",
+    "width": 390,
+    "contrast": {
+      "ratio": 6.9626547485416275,
+      "foreground": [
+        148,
+        163,
+        184
+      ],
+      "background": [
+        15,
+        23,
+        42
+      ],
+      "text": "Prefer to own the engine instead of a subscription? That's the separate Desktop product \u2014 Agency + Source, $499 once."
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing",
+    "theme": "dark",
+    "width": 1440,
+    "contrast": {
+      "ratio": 6.9626547485416275,
+      "foreground": [
+        148,
+        163,
+        184
+      ],
+      "background": [
+        15,
+        23,
+        42
+      ],
+      "text": "Prefer to own the engine instead of a subscription? That's the separate Desktop product \u2014 Agency + Source, $499 once."
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing",
+    "theme": "light",
+    "width": 390,
+    "contrast": {
+      "ratio": 5.999003404562351,
+      "foreground": [
+        90,
+        100,
+        114
+      ],
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "text": "Prefer to own the engine instead of a subscription? That's the separate Desktop product \u2014 Agency + Source, $499 once."
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing",
+    "theme": "light",
+    "width": 1440,
+    "contrast": {
+      "ratio": 5.999003404562351,
+      "foreground": [
+        90,
+        100,
+        114
+      ],
+      "background": [
+        255,
+        255,
+        255
+      ],
+      "text": "Prefer to own the engine instead of a subscription? That's the separate Desktop product \u2014 Agency + Source, $499 once."
+    },
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "state": "closed",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud checkout not open. Desktop waitlist \u2014 purchases not open.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "cloud-only",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud checkout enabled. Desktop waitlist \u2014 purchases not open.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Review Pro monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=month"
+        },
+        {
+          "text": "Review Pro annual \u2014 $490/year",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=year"
+        },
+        {
+          "text": "Review Agency monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=agency&interval=month"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "desktop-only",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud checkout not open. Desktop checkout enabled.",
+      "desktop": [
+        "Buy once \u2014 $199",
+        "Buy once \u2014 $499"
+      ],
+      "cloud": [
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "both",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud checkout enabled. Desktop checkout enabled.",
+      "desktop": [
+        "Buy once \u2014 $199",
+        "Buy once \u2014 $499"
+      ],
+      "cloud": [
+        {
+          "text": "Review Pro monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=month"
+        },
+        {
+          "text": "Review Pro annual \u2014 $490/year",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=year"
+        },
+        {
+          "text": "Review Agency monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=agency&interval=month"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "public-flag-off",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud checkout enabled. Desktop waitlist \u2014 purchases not open.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Review Pro monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=month"
+        },
+        {
+          "text": "Review Pro annual \u2014 $490/year",
+          "href": "https://app.brandforge-os.com/signup?plan=pro&interval=year"
+        },
+        {
+          "text": "Review Agency monthly",
+          "href": "https://app.brandforge-os.com/signup?plan=agency&interval=month"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "offline",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud availability unverified. Desktop availability unverified \u2014 join waitlist.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "timeout",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud availability unverified. Desktop availability unverified \u2014 join waitlist.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  },
+  {
+    "state": "malformed",
+    "labels": {
+      "summary": "Free Cloud: 3 lifetime campaigns, no card. Paid Cloud availability unverified. Desktop availability unverified \u2014 join waitlist.",
+      "desktop": [
+        "Join the waitlist \u2014 $199 at launch",
+        "Join the waitlist \u2014 $499 at launch"
+      ],
+      "cloud": [
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        },
+        {
+          "text": "Start free \u2014 no card",
+          "href": "https://app.brandforge-os.com/signup"
+        }
+      ],
+      "waitlist": true
+    },
+    "page_errors": []
+  }
+]

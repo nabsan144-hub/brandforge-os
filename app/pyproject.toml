@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "brandforge-os"
-version = "1.9.0"
-description = "BrandForge OS — your offline marketing department. Six-stage review workflow, 21 tools, local-first."
+version = "1.14.0"
+description = "BrandForge OS — your local campaign workspace. Six-stage review workflow, 21 tools, local-first."
 readme = { text = "BrandForge OS — the marketing OS that runs on your PC.", content-type = "text/plain" }
 requires-python = ">=3.10"
 license = { text = "Proprietary — BrandForge OS EULA; see LICENSE at the repository root" }

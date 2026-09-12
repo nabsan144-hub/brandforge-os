@@ -1,0 +1,13 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/ops-status.test.js
+
+
+ RUN  v4.1.11 <checkout>/cloud
+
+ ✓ tests/ops-status.test.js (2 tests) 3043ms
+
+ Test Files  1 passed (1)
+      Tests  2 passed (2)
+   Start at  17:27:17
+   Duration  3.30s (transform 56ms, setup 0ms, import 116ms, tests 3.04s, environment 0ms)

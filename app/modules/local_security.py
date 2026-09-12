@@ -12,6 +12,9 @@ from modules.runtime_paths import data_dir
 from urllib.parse import urlsplit
 from starlette.datastructures import Headers
 from starlette.responses import JSONResponse
+from starlette.exceptions import HTTPException
+
+MAX_LOCAL_BODY = 4 * 1024 * 1024
 
 
 def local_capability():
@@ -80,4 +83,18 @@ class LocalSecurityMiddleware:
             approval = bool(re.fullmatch(r'/approval/[A-Za-z0-9_-]+',scope.get('path','')))
             if not approval and not secrets.compare_digest(headers.get('x-brandforge-token',''),self.capability):
                 return await JSONResponse({'detail':'Local write capability required. Reload the dashboard, or read /api/session for local CLI use.'},status_code=403)(scope,receive,send)
+        if kind == 'http':
+            declared = headers.get('content-length')
+            if declared is not None and (not declared.isdigit() or int(declared) > MAX_LOCAL_BODY):
+                return await JSONResponse({'detail': 'Request body exceeds the 4 MB local limit or has an invalid length.'}, status_code=413)(scope, receive, send)
+            size = 0
+            async def bounded_receive():
+                nonlocal size
+                message = await receive()
+                if message['type'] == 'http.request':
+                    size += len(message.get('body', b''))
+                    if size > MAX_LOCAL_BODY:
+                        raise HTTPException(status_code=413, detail='Request body exceeds the 4 MB local limit.')
+                return message
+            return await self.app(scope, bounded_receive, send)
         await self.app(scope,receive,send)

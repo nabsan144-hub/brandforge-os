@@ -1,64 +1,82 @@
 #!/usr/bin/env python3
-"""One-shot trust fix: regenerate pricing.html's FAQPage JSON-LD from the
-visible FAQ markup so structured data never overstates what the page says.
+"""Keep pricing FAQ structured data equal to visible summary/answer content.
 
-Run: python3 scripts/sync_pricing_faq_jsonld.py
+Run with --check in CI; without it, replace only the FAQPage JSON-LD block.
 """
-import html
+import argparse
+from html.parser import HTMLParser
 import json
-import re
 from pathlib import Path
+import re
 
-root = Path(__file__).resolve().parents[1]
-page_path = root / "sales" / "pricing.html"
-page = page_path.read_text(encoding="utf-8")
+ROOT = Path(__file__).resolve().parents[1]
 
-# Locate the visible FAQ section (between the "Frequently asked" heading and
-# the closing of its wrapper div).
-start_marker = ">Frequently asked<"
-start = page.index(start_marker)
-end_marker = '</div>\n</div>\n<p class="text-center text-[11px]'
-end = page.index(end_marker, start)
-faq_html = page[start:end]
 
-qas = []
-for m in re.finditer(
-    r'<h3 class="font-semibold mb-2 text-ink[^>]*>(.*?)</h3>\s*'
-    r'<p class="text-\[13px\] text-muted leading-relaxed">(.*?)</p>',
-    faq_html,
-    re.S,
-):
-    def clean(part):
-        part = re.sub(r"<[^>]+>", "", part)
-        part = html.unescape(part)
-        return re.sub(r"\s+", " ", part).strip()
+class FAQParser(HTMLParser):
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.items, self.question, self.answer = [], [], []
+        self.in_details = self.in_summary = False
 
-    qas.append((clean(m.group(1)), clean(m.group(2))))
+    def handle_starttag(self, tag, attrs):
+        if tag == 'details':
+            if self.in_details:
+                raise ValueError('Nested FAQ details require explicit review')
+            self.in_details, self.question, self.answer = True, [], []
+        elif self.in_details and tag == 'summary':
+            self.in_summary = True
+        elif self.in_details and tag in ('p', 'br', 'li'):
+            self.answer.append(' ')
 
-assert len(qas) == 10, f"expected 10 visible FAQ pairs, found {len(qas)}"
+    def handle_endtag(self, tag):
+        if tag == 'summary':
+            self.in_summary = False
+        if tag == 'details' and self.in_details:
+            clean = lambda words: re.sub(r'\s+', ' ', ''.join(words)).strip()
+            q, a = clean(self.question), clean(self.answer)
+            if not q or not a:
+                raise ValueError('FAQ question or answer is empty')
+            self.items.append({'@type': 'Question', 'name': q,
+                               'acceptedAnswer': {'@type': 'Answer', 'text': a}})
+            self.in_details = False
 
-entity = [
-    {
-        "@type": "Question",
-        "name": q,
-        "acceptedAnswer": {"@type": "Answer", "text": a},
-    }
-    for q, a in qas
-]
-block = json.dumps(
-    {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": entity},
-    ensure_ascii=False,
-    indent=1,
-)
+    def handle_data(self, data):
+        if self.in_details:
+            (self.question if self.in_summary else self.answer).append(data)
 
-old_start = page.index('{"@context":"https://schema.org","@type":"FAQPage"')
-# Replace through the closing of that JSON script tag.
-old_end = page.index("\n</script>", old_start)
-new_page = (
-    page[:old_start]
-    + block
-    + page[old_end + 1 :]  # drop old content, keep the newline+</script>
-)
-json.loads(block)  # validate before writing
-page_path.write_text(new_page, encoding="utf-8")
-print(f"OK: synced FAQPage JSON-LD with {len(qas)} visible Q&As in sales/pricing.html")
+
+def sync(page, check=False):
+    parser = FAQParser()
+    parser.feed(page)
+    if not parser.items:
+        raise ValueError('No visible FAQs found; refusing to erase structured data')
+    expected = {'@context': 'https://schema.org', '@type': 'FAQPage', 'mainEntity': parser.items}
+    matches = []
+    for m in re.finditer(r'<script\b[^>]*type=[\'"]application/ld\+json[\'"][^>]*>(.*?)</script>', page, re.S | re.I):
+        data = json.loads(m[1])
+        if data.get('@type') == 'FAQPage':
+            matches.append((m, data))
+    if len(matches) != 1:
+        raise ValueError('Expected exactly one FAQPage script')
+    m, actual = matches[0]
+    if check:
+        if actual != expected:
+            raise ValueError('FAQ structured data differs from visible content; run the sync script')
+        return page
+    block = json.dumps(expected, ensure_ascii=False, indent=1).replace('<', '\\u003c')
+    return page[:m.start(1)] + '\n' + block + '\n' + page[m.end(1):]
+
+
+def main():
+    args = argparse.ArgumentParser(description=__doc__)
+    args.add_argument('--check', action='store_true')
+    check = args.parse_args().check
+    path = ROOT / 'sales/pricing.html'
+    result = sync(path.read_text(encoding='utf-8'), check)
+    if not check:
+        path.write_text(result, encoding='utf-8')
+    print('Pricing FAQ structured data matches visible content.')
+
+
+if __name__ == '__main__':
+    main()

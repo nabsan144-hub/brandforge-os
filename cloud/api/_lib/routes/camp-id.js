@@ -1,6 +1,9 @@
+import {requireVisualReviewClient} from '../visual-review.js';
+import {requireAssetClient} from '../assets.js';
 import {admin,authUser,json} from '../sb.js';
 import {serve} from '../serve.js';
 import {readJson,clean,dbCheck,HttpError,UUID} from '../http.js';
+import {boundedJson} from '../payload.js';
 import {rateLimit} from '../limit.js';
 async function handle(req,ctx){
  const user=await authUser(req);if(!user)return json({error:'Not signed in'},401);
@@ -11,8 +14,10 @@ async function handle(req,ctx){
   if(!req.method||req.method==='GET'){
    const row=dbCheck(await sb.from('campaigns').select('*').eq('id',id).eq('user_id',user.id).maybeSingle());
    if(!row)throw new HttpError(404,'Campaign not found');
+   requireVisualReviewClient(req,row);
+   if(row.asset_bundle_id)requireAssetClient(req);
    const revisions=dbCheck(await sb.from('campaign_revisions').select('revision,created_at').eq('campaign_id',id).eq('user_id',user.id).order('revision',{ascending:false}))||[];
-   return json({...row,revisions});
+   return boundedJson({...row,revisions});
   }
   if(req.method==='DELETE'){
    // FK SET NULL preserves immutable usage; no quota RPC is called.
@@ -23,9 +28,24 @@ async function handle(req,ctx){
    if(!await rateLimit('campaign-edit',user.id,100,86400))throw new HttpError(429,'Daily edit safety limit reached.');
    const b=await readJson(req,100000),changes={};
    if(!Number.isInteger(b.revision)||b.revision<1)throw new HttpError(400,'Include the version you edited.');
+   if(b.acknowledge_visuals===true){
+    if(['name','strategy','copy','seo','restore_revision'].some(k=>Object.hasOwn(b,k)))throw new HttpError(400,'Review acknowledgment must be a separate action.');
+    const current=dbCheck(await sb.from('campaigns').select('visual_version_id,visual_review_state').eq('id',id).eq('user_id',user.id).maybeSingle());
+    if(!current)throw new HttpError(404,'Campaign not found');
+    requireVisualReviewClient(req,current);
+    const r=dbCheck(await sb.rpc('acknowledge_visual_review',{p_uid:user.id,p_id:id,p_revision:b.revision}));
+    if(!r.ok)throw new HttpError(r.code==='NOT_FOUND'?404:409,r.code==='NOT_FOUND'?'Campaign not found':'A newer version was saved. Reload and review it before acknowledging.',r.code);
+    return json(r);
+   }
    if(b.restore_revision){
     const row=dbCheck(await sb.from('campaign_revisions').select('snapshot').eq('campaign_id',id).eq('user_id',user.id).eq('revision',Number(b.restore_revision)).maybeSingle());
     if(!row)throw new HttpError(404,'That saved revision is no longer available.');
+    if(row.snapshot.visual_version_id){
+     requireVisualReviewClient(req,row.snapshot);
+     const result=dbCheck(await sb.rpc('restore_vector_revision',{p_uid:user.id,p_id:id,p_revision:b.revision,p_restore:Number(b.restore_revision)}));
+     if(!result.ok)throw new HttpError(result.code==='NOT_FOUND'?404:409,'This visual version could not be restored. Reload before retrying.',result.code);
+     return json(result);
+    }
     for(const k of ['name','strategy','copy','seo'])changes[k]=row.snapshot[k]||'';
    }else{
     for(const k of ['name','strategy','copy','seo'])if(Object.hasOwn(b,k)){

@@ -978,3 +978,865 @@ begin
 end $$;
 revoke execute on function public.record_desktop_order(jsonb),public.claim_desktop_delivery(text),public.request_desktop_redelivery(text) from public,anon,authenticated;
 grant execute on function public.record_desktop_order(jsonb),public.claim_desktop_delivery(text),public.request_desktop_redelivery(text) to service_role;
+
+
+-- Additive upgrade: historical campaigns have unknown image provenance.
+-- Do not infer a provider from an existing SVG or overwrite old data.
+alter table public.campaigns add column if not exists visual_status jsonb not null
+ default '{"mode":"unknown","state":"unknown"}'::jsonb
+ check (jsonb_typeof(visual_status)='object');
+
+create or replace function public.complete_generation(p_uid uuid,p_id uuid,p_campaign jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r public.generation_usage; cid uuid; nm text;
+begin
+  perform pg_advisory_xact_lock(hashtext('bf_generation_'||p_uid::text));
+  select * into r from public.generation_usage where id=p_id and user_id=p_uid for update;
+  if not found then raise exception 'Reservation not found'; end if;
+  if r.status='completed' then
+    return jsonb_build_object('id',r.campaign_id,'replayed',true);
+  end if;
+  if r.status<>'reserved' or r.expires_at<=now() then raise exception 'Reservation expired or failed'; end if;
+  if jsonb_typeof(p_campaign->'files') <> 'array' or length(p_campaign->>'product')=0 then
+    raise exception 'Invalid campaign';
+  end if;
+  nm:=left(coalesce(nullif(p_campaign->>'name',''),p_campaign->>'product'),80);
+  insert into public.campaigns(user_id,name,product,industry,audience,benefits,lang,strategy,copy,seo,
+    research_live,provider,files,brief,stage_status,visual_status)
+  values(p_uid,nm,left(p_campaign->>'product',80),left(coalesce(p_campaign->>'industry',''),80),
+    left(coalesce(p_campaign->>'audience',''),120),left(coalesce(p_campaign->>'benefits',''),500),
+    coalesce(p_campaign->>'lang','en'),p_campaign->>'strategy',p_campaign->>'copy',p_campaign->>'seo',
+    false,coalesce(p_campaign->>'provider','offline'),p_campaign->'files',
+    coalesce(p_campaign->'brief','{}'::jsonb),coalesce(p_campaign->'stage_status','{}'::jsonb),
+    coalesce(p_campaign->'visual_status','{"mode":"unknown","state":"unknown"}'::jsonb)) returning id into cid;
+  update public.generation_usage set status='completed',campaign_id=cid,completed_at=now(),provider=p_campaign->>'provider',provider_usage=coalesce(p_campaign->'provider_usage','{}'::jsonb)
+    where id=p_id;
+  return jsonb_build_object('id',cid,'name',nm,'replayed',false);
+end $$;
+
+revoke execute on function public.complete_generation(uuid,uuid,jsonb) from public,anon,authenticated;
+grant execute on function public.complete_generation(uuid,uuid,jsonb) to service_role;
+
+
+-- Immutable private bundles + durable cleanup independent of account lifetime.
+-- Create the private bucket separately; this migration never creates a public bucket.
+create table if not exists public.campaign_asset_bundles (
+ id uuid primary key,
+ user_id uuid references auth.users(id) on delete set null,
+ generation_id uuid,
+ campaign_id uuid references public.campaigns(id) on delete set null,
+ source_campaign_id uuid references public.campaigns(id) on delete set null,
+ source_revision integer,
+ bucket text not null, object_path text not null,
+ bytes integer not null check(bytes between 1 and 20000000),
+ sha256 text not null check(sha256 ~ '^[a-f0-9]{64}$'),
+ file_manifest jsonb not null check(jsonb_typeof(file_manifest)='array'),
+ state text not null default 'pending' check(state in ('pending','attached','deleting')),
+ created_at timestamptz not null default now(), uploaded_at timestamptz,
+ cleanup_until timestamptz, cleanup_token uuid,
+ unique(bucket,object_path)
+);
+create index if not exists campaign_asset_cleanup on public.campaign_asset_bundles(state,created_at);
+create index if not exists campaign_asset_owner on public.campaign_asset_bundles(user_id,campaign_id);
+alter table public.campaign_asset_bundles enable row level security;
+revoke all on public.campaign_asset_bundles from public,anon,authenticated;
+grant select,insert,update,delete on public.campaign_asset_bundles to service_role;
+alter table public.campaigns add column if not exists asset_bundle_id uuid references public.campaign_asset_bundles(id);
+
+create or replace function public.complete_generation(p_uid uuid,p_id uuid,p_campaign jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r public.generation_usage; cid uuid; nm text; b public.campaign_asset_bundles;
+begin
+  perform pg_advisory_xact_lock(hashtext('bf_generation_'||p_uid::text));
+  select * into r from public.generation_usage where id=p_id and user_id=p_uid for update;
+  if not found then raise exception 'Reservation not found'; end if;
+  if r.status='completed' then
+    return jsonb_build_object('id',r.campaign_id,'replayed',true);
+  end if;
+  if r.status<>'reserved' or r.expires_at<=now() then raise exception 'Reservation expired or failed'; end if;
+  if jsonb_typeof(p_campaign->'files') <> 'array' or length(p_campaign->>'product')=0 then
+    raise exception 'Invalid campaign';
+  end if;
+  if p_campaign->>'asset_bundle_id' is not null then
+    select * into b from public.campaign_asset_bundles where id=(p_campaign->>'asset_bundle_id')::uuid for update;
+    if not found or b.user_id is distinct from p_uid or b.generation_id is distinct from p_id
+      or b.state<>'pending' or b.uploaded_at is null or b.source_campaign_id is not null
+      or b.file_manifest is distinct from p_campaign->'files' then raise exception 'Invalid private file bundle'; end if;
+  elsif exists(select 1 from jsonb_array_elements(p_campaign->'files') x where x->>'storage'='bundle') then
+    raise exception 'Missing private file bundle';
+  end if;
+  nm:=left(coalesce(nullif(p_campaign->>'name',''),p_campaign->>'product'),80);
+  insert into public.campaigns(user_id,name,product,industry,audience,benefits,lang,strategy,copy,seo,
+    research_live,provider,files,brief,stage_status,visual_status,asset_bundle_id)
+  values(p_uid,nm,left(p_campaign->>'product',80),left(coalesce(p_campaign->>'industry',''),80),
+    left(coalesce(p_campaign->>'audience',''),120),left(coalesce(p_campaign->>'benefits',''),500),
+    coalesce(p_campaign->>'lang','en'),p_campaign->>'strategy',p_campaign->>'copy',p_campaign->>'seo',
+    false,coalesce(p_campaign->>'provider','offline'),p_campaign->'files',
+    coalesce(p_campaign->'brief','{}'::jsonb),coalesce(p_campaign->'stage_status','{}'::jsonb),
+    coalesce(p_campaign->'visual_status','{"mode":"unknown","state":"unknown"}'::jsonb),
+    (p_campaign->>'asset_bundle_id')::uuid) returning id into cid;
+  if b.id is not null then
+    update public.campaign_asset_bundles set state='attached',campaign_id=cid where id=b.id;
+  end if;
+  update public.generation_usage set status='completed',campaign_id=cid,completed_at=now(),provider=p_campaign->>'provider',provider_usage=coalesce(p_campaign->'provider_usage','{}'::jsonb)
+    where id=p_id;
+  return jsonb_build_object('id',cid,'name',nm,'replayed',false);
+end $$;
+
+-- Historical conversion is storage-only; it does not consume quota or rewrite copy.
+create or replace function public.attach_migrated_asset_bundle(p_uid uuid,p_campaign uuid,p_revision integer,p_bundle uuid)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_campaign and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.asset_bundle_id=p_bundle then return jsonb_build_object('ok',true,'replayed',true); end if;
+ if c.revision<>p_revision or c.asset_bundle_id is not null then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ select * into b from public.campaign_asset_bundles where id=p_bundle for update;
+ if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from p_campaign
+  or b.source_revision is distinct from p_revision or b.state<>'pending' or b.uploaded_at is null
+  or b.generation_id is not null then raise exception 'Invalid migration bundle'; end if;
+ update public.campaigns set files=b.file_manifest,asset_bundle_id=b.id where id=p_campaign;
+ update public.campaign_asset_bundles set state='attached',campaign_id=p_campaign where id=b.id;
+ return jsonb_build_object('ok',true);
+end $$;
+
+-- A lease prevents two maintenance workers from deleting the same queue record.
+-- 24h pending grace covers uncertain uploads/saves. Attached rows remain protected
+-- until their campaign OR identity is deleted. State is locked against attachment.
+create or replace function public.claim_campaign_asset_cleanup(p_limit integer default 25)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare row public.campaign_asset_bundles; token uuid; result jsonb:='[]';
+begin
+ for row in select * from public.campaign_asset_bundles
+  where (state='pending' and created_at<now()-interval '24 hours')
+    or (state='attached' and (campaign_id is null or user_id is null))
+    or (state='deleting' and cleanup_until<now())
+  order by created_at limit greatest(1,least(coalesce(p_limit,25),100)) for update skip locked
+ loop
+  token:=gen_random_uuid();
+  update public.campaign_asset_bundles set state='deleting',cleanup_until=now()+interval '15 minutes',cleanup_token=token where id=row.id;
+  result:=result||jsonb_build_array(jsonb_build_object('id',row.id,'bucket',row.bucket,'object_path',row.object_path,'cleanup_token',token));
+ end loop;
+ return result;
+end $$;
+revoke execute on function public.complete_generation(uuid,uuid,jsonb),public.attach_migrated_asset_bundle(uuid,uuid,integer,uuid),public.claim_campaign_asset_cleanup(integer) from public,anon,authenticated;
+grant execute on function public.complete_generation(uuid,uuid,jsonb),public.attach_migrated_asset_bundle(uuid,uuid,integer,uuid),public.claim_campaign_asset_cleanup(integer) to service_role;
+
+
+-- Unknown historical alignment is not a claim of correctness. New rows are
+-- unchanged since generation; a later copy edit requires an explicit review.
+alter table public.campaigns add column if not exists visual_review_state text not null default 'unknown'
+ check(visual_review_state in ('unknown','unchanged','review_required'));
+alter table public.campaigns alter column visual_review_state set default 'unchanged';
+alter table public.campaigns add column if not exists visual_review_ack_revision integer;
+alter table public.campaigns add column if not exists visual_review_ack_at timestamptz;
+create or replace function public.edit_campaign(p_uid uuid,p_id uuid,p_revision integer,p_changes jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; statuses jsonb; key text;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ statuses:=c.stage_status;
+ foreach key in array array['strategy','copy','seo'] loop
+  if p_changes ? key then statuses:=jsonb_set(statuses,array[key],'{"state":"edited","provider":"human"}'::jsonb); end if;
+ end loop;
+ update public.campaigns set name=coalesce(p_changes->>'name',c.name),strategy=coalesce(p_changes->>'strategy',c.strategy),copy=coalesce(p_changes->>'copy',c.copy),seo=coalesce(p_changes->>'seo',c.seo),stage_status=statuses,visual_review_state=case when p_changes ? 'copy' and p_changes->>'copy' is distinct from c.copy then 'review_required' else c.visual_review_state end,visual_review_ack_revision=null,visual_review_ack_at=null,revision=c.revision+1,updated_at=now() where id=p_id;
+ -- Retention is explicit in the UI: the last ten saved versions.
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1);
+end $$;
+
+-- An owner acknowledges only the current version. This neither changes files
+-- nor certifies their accuracy, consumes quota, or creates a text revision.
+create or replace function public.acknowledge_visual_review(p_uid uuid,p_id uuid,p_revision integer)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.visual_review_ack_revision=c.revision and c.visual_review_ack_at is not null then
+  return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision,'replayed',true);
+ end if;
+ update public.campaigns set visual_review_ack_revision=c.revision,visual_review_ack_at=now() where id=p_id;
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision,'replayed',false);
+end $$;
+revoke execute on function public.edit_campaign(uuid,uuid,int,jsonb),public.acknowledge_visual_review(uuid,uuid,int) from public,anon,authenticated;
+grant execute on function public.edit_campaign(uuid,uuid,int,jsonb),public.acknowledge_visual_review(uuid,uuid,int) to service_role;
+
+
+-- Versioned corrections are deliberately limited to new inline vector packs.
+alter table public.campaigns add column if not exists visual_recipe jsonb;
+alter table public.campaigns add column if not exists visual_fields jsonb;
+alter table public.campaigns add column if not exists visual_field_report jsonb;
+create table if not exists public.campaign_visual_versions (
+ id uuid primary key default gen_random_uuid(),
+ campaign_id uuid not null references public.campaigns(id) on delete cascade,
+ user_id uuid not null references auth.users(id) on delete cascade,
+ payload jsonb not null check(octet_length(payload::text)<=3000000),
+ request_id uuid,source_revision integer,result_revision integer,
+ created_at timestamptz not null default now(),unique(user_id,request_id)
+);
+create index if not exists visual_versions_campaign on public.campaign_visual_versions(campaign_id);
+alter table public.campaign_visual_versions enable row level security;
+revoke all on public.campaign_visual_versions from public,anon,authenticated;
+grant select,insert,update,delete on public.campaign_visual_versions to service_role;
+alter table public.campaigns add column if not exists visual_version_id uuid references public.campaign_visual_versions(id);
+create or replace function public.prune_campaign_visual_versions(p_campaign uuid)
+returns void language sql security definer set search_path=public as $$
+ delete from public.campaign_visual_versions v where v.campaign_id=p_campaign
+ and not exists(select 1 from public.campaigns c where c.visual_version_id=v.id)
+ and not exists(select 1 from public.campaign_revisions r where r.campaign_id=p_campaign and r.snapshot->>'visual_version_id'=v.id::text);
+$$;
+create or replace function public.complete_generation(p_uid uuid,p_id uuid,p_campaign jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r public.generation_usage; cid uuid; nm text; b public.campaign_asset_bundles;
+begin
+  perform pg_advisory_xact_lock(hashtext('bf_generation_'||p_uid::text));
+  select * into r from public.generation_usage where id=p_id and user_id=p_uid for update;
+  if not found then raise exception 'Reservation not found'; end if;
+  if r.status='completed' then
+    return jsonb_build_object('id',r.campaign_id,'replayed',true);
+  end if;
+  if r.status<>'reserved' or r.expires_at<=now() then raise exception 'Reservation expired or failed'; end if;
+  if jsonb_typeof(p_campaign->'files') <> 'array' or length(p_campaign->>'product')=0 then
+    raise exception 'Invalid campaign';
+  end if;
+  if p_campaign->>'asset_bundle_id' is not null then
+    select * into b from public.campaign_asset_bundles where id=(p_campaign->>'asset_bundle_id')::uuid for update;
+    if not found or b.user_id is distinct from p_uid or b.generation_id is distinct from p_id
+      or b.state<>'pending' or b.uploaded_at is null or b.source_campaign_id is not null
+      or b.file_manifest is distinct from p_campaign->'files' then raise exception 'Invalid private file bundle'; end if;
+  elsif exists(select 1 from jsonb_array_elements(p_campaign->'files') x where x->>'storage'='bundle') then
+    raise exception 'Missing private file bundle';
+  end if;
+  nm:=left(coalesce(nullif(p_campaign->>'name',''),p_campaign->>'product'),80);
+  insert into public.campaigns(user_id,name,product,industry,audience,benefits,lang,strategy,copy,seo,
+    research_live,provider,files,brief,stage_status,visual_status,asset_bundle_id,visual_recipe,visual_fields)
+  values(p_uid,nm,left(p_campaign->>'product',80),left(coalesce(p_campaign->>'industry',''),80),
+    left(coalesce(p_campaign->>'audience',''),120),left(coalesce(p_campaign->>'benefits',''),500),
+    coalesce(p_campaign->>'lang','en'),p_campaign->>'strategy',p_campaign->>'copy',p_campaign->>'seo',
+    false,coalesce(p_campaign->>'provider','offline'),p_campaign->'files',
+    coalesce(p_campaign->'brief','{}'::jsonb),coalesce(p_campaign->'stage_status','{}'::jsonb),
+    coalesce(p_campaign->'visual_status','{"mode":"unknown","state":"unknown"}'::jsonb),
+    (p_campaign->>'asset_bundle_id')::uuid,p_campaign->'visual_recipe',p_campaign->'visual_fields') returning id into cid;
+  if b.id is not null then
+    update public.campaign_asset_bundles set state='attached',campaign_id=cid where id=b.id;
+  end if;
+  update public.generation_usage set status='completed',campaign_id=cid,completed_at=now(),provider=p_campaign->>'provider',provider_usage=coalesce(p_campaign->'provider_usage','{}'::jsonb)
+    where id=p_id;
+  return jsonb_build_object('id',cid,'name',nm,'replayed',false);
+end $$;
+
+create or replace function public.edit_campaign(p_uid uuid,p_id uuid,p_revision integer,p_changes jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; statuses jsonb; key text;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ statuses:=c.stage_status;
+ foreach key in array array['strategy','copy','seo'] loop
+  if p_changes ? key then statuses:=jsonb_set(statuses,array[key],'{"state":"edited","provider":"human"}'::jsonb); end if;
+ end loop;
+ update public.campaigns set name=coalesce(p_changes->>'name',c.name),strategy=coalesce(p_changes->>'strategy',c.strategy),copy=coalesce(p_changes->>'copy',c.copy),seo=coalesce(p_changes->>'seo',c.seo),stage_status=statuses,visual_review_state=case when p_changes ? 'copy' and p_changes->>'copy' is distinct from c.copy then 'review_required' else c.visual_review_state end,visual_review_ack_revision=null,visual_review_ack_at=null,revision=c.revision+1,updated_at=now() where id=p_id;
+ -- Retention is explicit in the UI: the last ten saved versions.
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1);
+end $$;
+
+
+create or replace function public.save_vector_correction(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; prior public.campaign_visual_versions; old_id uuid; new_id uuid;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into prior from public.campaign_visual_versions where user_id=p_uid and request_id=p_request;
+ if found then
+  if prior.campaign_id<>p_id or prior.source_revision is distinct from p_revision or prior.payload->'fields' is distinct from p_payload->'fields' then return jsonb_build_object('ok',false,'code','IDEMPOTENCY_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',p_id,'revision',prior.result_revision,'replayed',true);
+ end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.asset_bundle_id is not null or c.visual_recipe->>'schema' is distinct from '1' or c.visual_status->>'mode'='ai' then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ if p_request is null or p_payload->'recipe' is distinct from c.visual_recipe or jsonb_typeof(p_payload->'files') is distinct from 'array' or jsonb_typeof(p_payload->'fields') is distinct from 'object' then raise exception 'Invalid correction payload'; end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(p_id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report)) returning id into old_id;
+  -- All pre-correction text snapshots used this same original file set.
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=p_id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload,request_id,source_revision,result_revision) values(p_id,p_uid,p_payload,p_request,p_revision,c.revision+1) returning id into new_id;
+ update public.campaigns set files=p_payload->'files',visual_fields=p_payload->'fields',visual_field_report=p_payload->'report',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1,'replayed',false);
+end $$;
+
+create or replace function public.restore_vector_revision(p_uid uuid,p_id uuid,p_revision integer,p_restore integer)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; snap jsonb; v public.campaign_visual_versions;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ select snapshot into snap from public.campaign_revisions where campaign_id=p_id and user_id=p_uid and revision=p_restore;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into v from public.campaign_visual_versions where id=(snap->>'visual_version_id')::uuid and campaign_id=p_id and user_id=p_uid;
+ if not found or c.asset_bundle_id is not null or c.visual_status->>'mode'='ai' then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ update public.campaigns set name=snap->>'name',strategy=snap->>'strategy',copy=snap->>'copy',seo=snap->>'seo',stage_status=snap->'stage_status',files=v.payload->'files',visual_fields=v.payload->'fields',visual_recipe=v.payload->'recipe',visual_field_report=v.payload->'report',visual_version_id=v.id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1);
+end $$;
+
+revoke execute on function public.complete_generation(uuid,uuid,jsonb),public.edit_campaign(uuid,uuid,int,jsonb),public.prune_campaign_visual_versions(uuid),public.save_vector_correction(uuid,uuid,int,uuid,jsonb),public.restore_vector_revision(uuid,uuid,int,int) from public,anon,authenticated;
+grant execute on function public.complete_generation(uuid,uuid,jsonb),public.edit_campaign(uuid,uuid,int,jsonb),public.prune_campaign_visual_versions(uuid),public.save_vector_correction(uuid,uuid,int,uuid,jsonb),public.restore_vector_revision(uuid,uuid,int,int) to service_role;
+
+create or replace function public.attach_migrated_asset_bundle(p_uid uuid,p_campaign uuid,p_revision integer,p_bundle uuid)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_campaign and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.visual_version_id is not null then return jsonb_build_object('ok',false,'code','VISUAL_HISTORY_MIGRATION_UNSUPPORTED'); end if;
+ if c.asset_bundle_id=p_bundle then return jsonb_build_object('ok',true,'replayed',true); end if;
+ if c.revision<>p_revision or c.asset_bundle_id is not null then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ select * into b from public.campaign_asset_bundles where id=p_bundle for update;
+ if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from p_campaign
+  or b.source_revision is distinct from p_revision or b.state<>'pending' or b.uploaded_at is null
+  or b.generation_id is not null then raise exception 'Invalid migration bundle'; end if;
+ update public.campaigns set files=b.file_manifest,asset_bundle_id=b.id where id=p_campaign;
+ update public.campaign_asset_bundles set state='attached',campaign_id=p_campaign where id=b.id;
+ return jsonb_build_object('ok',true);
+end $$;
+
+
+-- Scoped, revocable bearer review; no public table access or workspace login.
+create table public.campaign_review_links (
+ id uuid primary key default gen_random_uuid(),
+ campaign_id uuid not null unique references public.campaigns(id) on delete cascade,
+ user_id uuid not null references auth.users(id) on delete cascade,
+ token_hash text not null unique check(token_hash ~ '^[a-f0-9]{64}$'),
+ revision integer not null check(revision>0),
+ expires_at timestamptz not null,
+ revoked_at timestamptz,
+ status text not null default 'pending' check(status in ('pending','approved','changes_requested')),
+ comments jsonb not null default '[]' check(jsonb_typeof(comments)='array' and jsonb_array_length(comments)<=100 and octet_length(comments::text)<250000),
+ created_at timestamptz not null default now()
+);
+alter table public.campaign_review_links enable row level security;
+revoke all on public.campaign_review_links from public,anon,authenticated;
+grant select,insert,update,delete on public.campaign_review_links to service_role;
+
+create function public.manage_campaign_review(p_uid uuid,p_id uuid,p_revision integer,p_hash text,p_days integer)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; r public.campaign_review_links;
+begin
+ -- Same owner deletion lock used by generation; prevent a new link during erasure.
+ perform 1 from public.profiles where id=p_uid and not deletion_pending for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if p_hash is null then
+  update public.campaign_review_links set revoked_at=now() where campaign_id=p_id and user_id=p_uid;
+  return jsonb_build_object('ok',true,'revoked',true);
+ end if;
+ if c.revision<>p_revision or not coalesce((c.visual_review_state='unchanged' or (c.visual_review_ack_revision=c.revision and c.visual_review_ack_at is not null)),false) then
+  return jsonb_build_object('ok',false,'code','REVIEW_REQUIRED');
+ end if;
+ if p_days not in (1,7,30) or p_hash !~ '^[a-f0-9]{64}$' then raise exception 'Invalid review configuration'; end if;
+ insert into public.campaign_review_links(campaign_id,user_id,token_hash,revision,expires_at)
+ values(p_id,p_uid,p_hash,c.revision,now()+make_interval(days=>p_days))
+ on conflict(campaign_id) do update set token_hash=excluded.token_hash,revision=excluded.revision,expires_at=excluded.expires_at,revoked_at=null,status='pending',comments='[]',created_at=now()
+ returning * into r;
+ return jsonb_build_object('ok',true,'revision',r.revision,'expires_at',r.expires_at);
+end; $$;
+
+create function public.access_campaign_review(p_hash text,p_comment jsonb default null)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare r public.campaign_review_links; c public.campaigns; uid uuid; cid uuid;
+begin
+ select user_id,campaign_id into uid,cid from public.campaign_review_links where token_hash=p_hash;
+ if not found then return jsonb_build_object('ok',false); end if;
+ perform 1 from public.profiles where id=uid and not deletion_pending for share;
+ if not found then return jsonb_build_object('ok',false); end if;
+ -- Match manage/edit lock order; editing the campaign invalidates old review links.
+ select * into c from public.campaigns where id=cid and user_id=uid for share;
+ if not found then return jsonb_build_object('ok',false); end if;
+ select * into r from public.campaign_review_links where token_hash=p_hash and revoked_at is null and expires_at>now() for update;
+ if not found or r.revision<>c.revision then return jsonb_build_object('ok',false); end if;
+ if p_comment is not null then
+  if not (p_comment ?& array['request_id','name','message','decision']) or length(p_comment->>'name') not between 1 and 80
+    or length(p_comment->>'message')>1500 or p_comment->>'decision' not in ('comment','approved','changes_requested')
+    or (p_comment->>'request_id') !~ '^[0-9a-f-]{36}$' then raise exception 'Invalid review response'; end if;
+  if exists(select 1 from jsonb_array_elements(r.comments) x where x->>'request_id'=p_comment->>'request_id') then
+   if not exists(select 1 from jsonb_array_elements(r.comments) x where x-'at'=p_comment and x->>'request_id'=p_comment->>'request_id') then raise exception 'Review request ID conflict'; end if;
+  else
+   if jsonb_array_length(r.comments)>=100 then raise exception 'Review comment limit reached'; end if;
+   update public.campaign_review_links set comments=comments || jsonb_build_array(p_comment || jsonb_build_object('at',now())),
+     status=case when p_comment->>'decision'='comment' then status else p_comment->>'decision' end
+     where id=r.id returning * into r;
+  end if;
+ end if;
+ return jsonb_build_object('ok',true,'review',jsonb_build_object('revision',r.revision,'expires_at',r.expires_at,'status',r.status,'comments',r.comments),
+ 'campaign',jsonb_build_object('id',c.id,'name',c.name,'revision',c.revision,'strategy',c.strategy,'copy',c.copy,'seo',c.seo,
+ 'files',c.files,'asset_bundle_id',c.asset_bundle_id,'visual_review_state',c.visual_review_state,'visual_review_ack_revision',c.visual_review_ack_revision,'visual_review_ack_at',c.visual_review_ack_at,'visual_version_id',c.visual_version_id));
+end; $$;
+revoke all on function public.manage_campaign_review(uuid,uuid,integer,text,integer) from public,anon,authenticated;
+revoke all on function public.access_campaign_review(text,jsonb) from public,anon,authenticated;
+grant execute on function public.manage_campaign_review(uuid,uuid,integer,text,integer) to service_role;
+grant execute on function public.access_campaign_review(text,jsonb) to service_role;
+
+
+create table public.campaign_transfers (
+ id uuid primary key default gen_random_uuid(),user_id uuid not null references auth.users(id) on delete cascade,
+ request_id uuid not null,sha256 text not null,name text not null,pack jsonb not null check(octet_length(pack::text)<=3100000),
+ created_at timestamptz not null default now(),unique(user_id,request_id)
+);
+alter table public.campaign_transfers enable row level security;
+revoke all on public.campaign_transfers from public,anon,authenticated;
+grant select,insert,update,delete on public.campaign_transfers to service_role;
+create function public.save_campaign_transfer(p_uid uuid,p_request uuid,p_hash text,p_pack jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare existing public.campaign_transfers; tid uuid;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending for update;
+ if not found then return jsonb_build_object('ok',false,'code','ACCOUNT_UNAVAILABLE'); end if;
+ select * into existing from public.campaign_transfers where user_id=p_uid and request_id=p_request;
+ if found then
+  if existing.sha256<>p_hash then return jsonb_build_object('ok',false,'code','REQUEST_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',existing.id,'replayed',true);
+ end if;
+ if (select count(*) from public.campaign_transfers where user_id=p_uid)>=10 then return jsonb_build_object('ok',false,'code','ARCHIVE_LIMIT'); end if;
+ insert into public.campaign_transfers(user_id,request_id,sha256,name,pack) values(p_uid,p_request,p_hash,p_pack->>'name',p_pack) returning id into tid;
+ return jsonb_build_object('ok',true,'id',tid);
+end; $$;
+revoke all on function public.save_campaign_transfer(uuid,uuid,text,jsonb) from public,anon,authenticated;
+grant execute on function public.save_campaign_transfer(uuid,uuid,text,jsonb) to service_role;
+
+
+-- Image-only recovery: no generation allowance mutation. Operator budget still mandatory.
+create table public.campaign_image_jobs (
+ id uuid primary key default gen_random_uuid(),user_id uuid not null references auth.users(id) on delete cascade,
+ campaign_id uuid not null references public.campaigns(id) on delete cascade,request_id uuid not null,request_hash text not null,
+ source_revision integer not null,result_revision integer,status text not null default 'running' check(status in ('running','completed','failed')),
+ failure_code text,expires_at timestamptz not null default now()+interval '2 minutes',created_at timestamptz not null default now(),unique(user_id,request_id)
+);
+alter table public.campaign_image_jobs enable row level security;
+revoke all on public.campaign_image_jobs from public,anon,authenticated;
+grant select,insert,update,delete on public.campaign_image_jobs to service_role;
+create function public.claim_image_recovery(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_hash text)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; j public.campaign_image_jobs;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending and plan in ('pro','agency') and plan_status is distinct from 'past_due' for update;
+ if not found then return jsonb_build_object('ok',false,'code','PLAN_UNAVAILABLE'); end if;
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into j from public.campaign_image_jobs where user_id=p_uid and request_id=p_request;
+ if found then
+  if j.request_hash<>p_hash or j.campaign_id<>p_id then return jsonb_build_object('ok',false,'code','REQUEST_CONFLICT'); end if;
+  return jsonb_build_object('ok',false,'code',case when j.status='running' and j.expires_at<=now() then 'EXPIRED' else upper(j.status) end,'revision',j.result_revision,'job_id',j.id);
+ end if;
+ if c.revision<>p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.asset_bundle_id is not null or c.visual_recipe->>'schema' is distinct from '1' or c.visual_status->>'state' is distinct from 'fallback' or c.visual_status->>'mode' is distinct from 'svg' then return jsonb_build_object('ok',false,'code','RECOVERY_UNSUPPORTED'); end if;
+ if exists(select 1 from public.campaign_image_jobs where campaign_id=p_id and status='running' and expires_at>now()) then return jsonb_build_object('ok',false,'code','RUNNING'); end if;
+ if (select count(*) from public.campaign_image_jobs where user_id=p_uid and created_at>=date_trunc('day',now() at time zone 'UTC') at time zone 'UTC')>=3 then return jsonb_build_object('ok',false,'code','DAILY_RECOVERY_LIMIT'); end if;
+ insert into public.campaign_image_jobs(user_id,campaign_id,request_id,request_hash,source_revision) values(p_uid,p_id,p_request,p_hash,p_revision) returning * into j;
+ return jsonb_build_object('ok',true,'job_id',j.id);
+end; $$;
+create function public.finish_image_recovery(p_uid uuid,p_job uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; j public.campaign_image_jobs; old_id uuid; new_id uuid; cid uuid;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending for share;
+ if not found then return jsonb_build_object('ok',false,'code','ACCOUNT_UNAVAILABLE'); end if;
+ select campaign_id into cid from public.campaign_image_jobs where id=p_job and user_id=p_uid;
+ select * into c from public.campaigns where id=cid and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into j from public.campaign_image_jobs where id=p_job and user_id=p_uid for update;
+ if j.status='completed' then return jsonb_build_object('ok',true,'revision',j.result_revision,'replayed',true); end if;
+ if j.status<>'running' or j.expires_at<=now() or c.revision<>j.source_revision then return jsonb_build_object('ok',false,'code','REVISION_OR_LEASE_CONFLICT'); end if;
+ if p_payload->'recipe' is distinct from c.visual_recipe or p_payload->'fields' is distinct from c.visual_fields or p_payload->'status'->>'mode'<>'ai' then raise exception 'Invalid image recovery'; end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'status',c.visual_status)) returning id into old_id;
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=c.id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(c.id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,p_payload) returning id into new_id;
+ update public.campaigns set files=p_payload->'files',visual_status=p_payload->'status',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=c.id;
+ update public.campaign_image_jobs set status='completed',result_revision=c.revision+1 where id=p_job;
+ delete from public.campaign_revisions where campaign_id=c.id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(c.id);
+ return jsonb_build_object('ok',true,'id',c.id,'revision',c.revision+1);
+end; $$;
+revoke all on function public.claim_image_recovery(uuid,uuid,integer,uuid,text),public.finish_image_recovery(uuid,uuid,jsonb) from public,anon,authenticated;
+grant execute on function public.claim_image_recovery(uuid,uuid,integer,uuid,text),public.finish_image_recovery(uuid,uuid,jsonb) to service_role;
+
+-- Extend exact restore only to our own versioned recovery payloads, not legacy AI packs.
+create or replace function public.restore_vector_revision(p_uid uuid,p_id uuid,p_revision integer,p_restore integer)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; snap jsonb; v public.campaign_visual_versions;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ select snapshot into snap from public.campaign_revisions where campaign_id=p_id and user_id=p_uid and revision=p_restore;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into v from public.campaign_visual_versions where id=(snap->>'visual_version_id')::uuid and campaign_id=p_id and user_id=p_uid;
+ if not found or c.asset_bundle_id is not null or (c.visual_status->>'mode'='ai' and c.visual_version_id is null) then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ update public.campaigns set name=snap->>'name',strategy=snap->>'strategy',copy=snap->>'copy',seo=snap->>'seo',stage_status=snap->'stage_status',visual_status=coalesce(v.payload->'status',snap->'visual_status',c.visual_status),files=v.payload->'files',visual_fields=v.payload->'fields',visual_recipe=v.payload->'recipe',visual_field_report=v.payload->'report',visual_version_id=v.id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1);
+end $$;
+
+
+-- Optional consented, client-reported event counts. No customer content or account IDs.
+create table public.usage_events (
+ id uuid primary key,actor_hash text not null check(actor_hash ~ '^[a-f0-9]{64}$'),
+ event text not null check(event in ('visit','return_visit','signup_started','email_confirmed','campaign_saved','pack_exported','export_failed','billing_active_seen')),
+ surface text not null check(surface in ('sales','cloud')),created_at timestamptz not null default now(),unique(actor_hash,event,surface)
+);
+alter table public.usage_events enable row level security;
+revoke all on public.usage_events from public,anon,authenticated;
+grant select,insert,delete on public.usage_events to service_role;
+create function public.record_usage_event(p_id uuid,p_actor text,p_event text,p_surface text)
+returns boolean language plpgsql security definer set search_path=public as $$
+begin
+ insert into public.usage_events(id,actor_hash,event,surface) values(p_id,p_actor,p_event,p_surface) on conflict do nothing;
+ return true;
+end; $$;
+create function public.usage_event_summary()
+returns jsonb language sql security definer set search_path=public as $$
+ select jsonb_build_object('window_days',30,'client_reported',true,'event_counts',coalesce((select jsonb_agg(x) from (select surface,event,count(*) as count from public.usage_events where created_at>now()-interval '30 days' group by surface,event order by surface,event) x),'[]'::jsonb),
+ 'notice','Consenting sample; one event type per anonymous browser per UTC day and surface. Daily rotating pseudonyms, no cross-domain or account linkage. Not unique people, actual completed payments, causal conversions or a usable-pack benchmark.');
+$$;
+create function public.gc_usage_events() returns bigint language plpgsql security definer set search_path=public as $$
+declare n bigint;begin delete from public.usage_events where created_at<now()-interval '30 days';get diagnostics n=row_count;return n;end; $$;
+revoke all on function public.record_usage_event(uuid,text,text,text),public.usage_event_summary(),public.gc_usage_events() from public,anon,authenticated;
+grant execute on function public.record_usage_event(uuid,text,text,text),public.usage_event_summary(),public.gc_usage_events() to service_role;
+
+
+-- Private vector correction/restore: immutable files; last-ten-version retention.
+create or replace function public.prune_campaign_visual_versions(p_campaign uuid)
+returns void language plpgsql security definer set search_path=public as $$
+begin
+ delete from public.campaign_visual_versions v where v.campaign_id=p_campaign
+ and not exists(select 1 from public.campaigns c where c.visual_version_id=v.id)
+ and not exists(select 1 from public.campaign_revisions r where r.campaign_id=p_campaign and r.snapshot->>'visual_version_id'=v.id::text);
+ update public.campaign_asset_bundles b set state='deleting',cleanup_until=now()
+ where b.campaign_id=p_campaign and b.state='attached'
+ and not exists(select 1 from public.campaigns c where c.asset_bundle_id=b.id)
+ and not exists(select 1 from public.campaign_visual_versions v where v.campaign_id=p_campaign and v.payload->>'bundle_id'=b.id::text);
+end; $$;
+
+create or replace function public.save_vector_correction(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; prior public.campaign_visual_versions; old_id uuid; new_id uuid; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into prior from public.campaign_visual_versions where user_id=p_uid and request_id=p_request;
+ if found then
+  if prior.campaign_id<>p_id or prior.source_revision is distinct from p_revision or prior.payload->'fields' is distinct from p_payload->'fields' then return jsonb_build_object('ok',false,'code','IDEMPOTENCY_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',p_id,'revision',prior.result_revision,'replayed',true);
+ end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.visual_recipe->>'schema' is distinct from '1' or c.visual_status->>'mode'='ai' then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ if p_request is null or p_payload->'recipe' is distinct from c.visual_recipe or jsonb_typeof(p_payload->'files') is distinct from 'array' or jsonb_typeof(p_payload->'fields') is distinct from 'object' then raise exception 'Invalid correction payload'; end if;
+ if p_payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(p_payload->>'bundle_id')::uuid for update;
+  if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from p_id or b.source_revision is distinct from p_revision or b.state<>'pending' or b.uploaded_at is null or b.file_manifest is distinct from p_payload->'files' then raise exception 'Invalid correction bundle'; end if;
+ elsif c.asset_bundle_id is not null then raise exception 'Private corrections require private output';
+ end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(p_id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'bundle_id',c.asset_bundle_id,'status',c.visual_status)) returning id into old_id;
+  -- All pre-correction text snapshots used this same original file set.
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=p_id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload,request_id,source_revision,result_revision) values(p_id,p_uid,p_payload,p_request,p_revision,c.revision+1) returning id into new_id;
+ update public.campaigns set asset_bundle_id=b.id,files=p_payload->'files',visual_fields=p_payload->'fields',visual_field_report=p_payload->'report',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ if b.id is not null then update public.campaign_asset_bundles set state='attached',campaign_id=p_id where id=b.id; end if;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1,'replayed',false);
+end $$;
+
+
+create or replace function public.restore_vector_revision(p_uid uuid,p_id uuid,p_revision integer,p_restore integer)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; snap jsonb; v public.campaign_visual_versions; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ select snapshot into snap from public.campaign_revisions where campaign_id=p_id and user_id=p_uid and revision=p_restore;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into v from public.campaign_visual_versions where id=(snap->>'visual_version_id')::uuid and campaign_id=p_id and user_id=p_uid;
+ if not found or (c.visual_status->>'mode'='ai' and c.visual_version_id is null) then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ if v.payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(v.payload->>'bundle_id')::uuid and user_id=p_uid and campaign_id=p_id and state='attached' for update;
+  if not found then return jsonb_build_object('ok',false,'code','PRIVATE_VERSION_UNAVAILABLE'); end if;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ update public.campaigns set asset_bundle_id=b.id,name=snap->>'name',strategy=snap->>'strategy',copy=snap->>'copy',seo=snap->>'seo',stage_status=snap->'stage_status',visual_status=coalesce(v.payload->'status',snap->'visual_status',c.visual_status),files=v.payload->'files',visual_fields=v.payload->'fields',visual_recipe=v.payload->'recipe',visual_field_report=v.payload->'report',visual_version_id=v.id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1);
+end $$;
+
+
+-- Extend recovery to validated private vector fallbacks, with immutable versioned assets.
+create or replace function public.claim_image_recovery(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_hash text)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; j public.campaign_image_jobs;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending and plan in ('pro','agency') and plan_status is distinct from 'past_due' for update;
+ if not found then return jsonb_build_object('ok',false,'code','PLAN_UNAVAILABLE'); end if;
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into j from public.campaign_image_jobs where user_id=p_uid and request_id=p_request;
+ if found then
+  if j.request_hash<>p_hash or j.campaign_id<>p_id then return jsonb_build_object('ok',false,'code','REQUEST_CONFLICT'); end if;
+  return jsonb_build_object('ok',false,'code',case when j.status='running' and j.expires_at<=now() then 'EXPIRED' else upper(j.status) end,'revision',j.result_revision,'job_id',j.id);
+ end if;
+ if c.revision<>p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.visual_recipe->>'schema' is distinct from '1' or c.visual_status->>'state' is distinct from 'fallback' or c.visual_status->>'mode' is distinct from 'svg' then return jsonb_build_object('ok',false,'code','RECOVERY_UNSUPPORTED'); end if;
+ if exists(select 1 from public.campaign_image_jobs where campaign_id=p_id and status='running' and expires_at>now()) then return jsonb_build_object('ok',false,'code','RUNNING'); end if;
+ if (select count(*) from public.campaign_image_jobs where user_id=p_uid and created_at>=date_trunc('day',now() at time zone 'UTC') at time zone 'UTC')>=3 then return jsonb_build_object('ok',false,'code','DAILY_RECOVERY_LIMIT'); end if;
+ insert into public.campaign_image_jobs(user_id,campaign_id,request_id,request_hash,source_revision) values(p_uid,p_id,p_request,p_hash,p_revision) returning * into j;
+ return jsonb_build_object('ok',true,'job_id',j.id);
+end; $$;
+create or replace function public.finish_image_recovery(p_uid uuid,p_job uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; j public.campaign_image_jobs; old_id uuid; new_id uuid; cid uuid; b public.campaign_asset_bundles;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending for share;
+ if not found then return jsonb_build_object('ok',false,'code','ACCOUNT_UNAVAILABLE'); end if;
+ select campaign_id into cid from public.campaign_image_jobs where id=p_job and user_id=p_uid;
+ select * into c from public.campaigns where id=cid and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into j from public.campaign_image_jobs where id=p_job and user_id=p_uid for update;
+ if j.status='completed' then return jsonb_build_object('ok',true,'revision',j.result_revision,'replayed',true); end if;
+ if j.status<>'running' or j.expires_at<=now() or c.revision<>j.source_revision then return jsonb_build_object('ok',false,'code','REVISION_OR_LEASE_CONFLICT'); end if;
+ if p_payload->'recipe' is distinct from c.visual_recipe or p_payload->'fields' is distinct from c.visual_fields or p_payload->'status'->>'mode'<>'ai' then raise exception 'Invalid image recovery'; end if;
+ if p_payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(p_payload->>'bundle_id')::uuid for update;
+  if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from c.id or b.source_revision is distinct from j.source_revision or b.state<>'pending' or b.uploaded_at is null or b.file_manifest is distinct from p_payload->'files' then raise exception 'Invalid recovered file bundle'; end if;
+ elsif c.asset_bundle_id is not null then raise exception 'Private recovery requires private output';
+ end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'status',c.visual_status,'bundle_id',c.asset_bundle_id)) returning id into old_id;
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=c.id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(c.id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,p_payload) returning id into new_id;
+ update public.campaigns set asset_bundle_id=b.id,files=p_payload->'files',visual_status=p_payload->'status',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=c.id;
+ if b.id is not null then update public.campaign_asset_bundles set state='attached',campaign_id=c.id where id=b.id; end if;
+ update public.campaign_image_jobs set status='completed',result_revision=c.revision+1 where id=p_job;
+ delete from public.campaign_revisions where campaign_id=c.id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(c.id);
+ return jsonb_build_object('ok',true,'id',c.id,'revision',c.revision+1);
+end; $$;
+
+
+-- Bounded deterministic layout/canonical-field changes, preserving attribution.
+create or replace function public.save_vector_correction(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; prior public.campaign_visual_versions; old_id uuid; new_id uuid; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into prior from public.campaign_visual_versions where user_id=p_uid and request_id=p_request;
+ if found then
+  if prior.campaign_id<>p_id or prior.source_revision is distinct from p_revision or prior.payload->'fields' is distinct from p_payload->'fields' or prior.payload->'change_hash' is distinct from p_payload->'change_hash' then return jsonb_build_object('ok',false,'code','IDEMPOTENCY_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',p_id,'revision',prior.result_revision,'replayed',true);
+ end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.visual_recipe->>'schema' is distinct from '1' or c.visual_status->>'mode'='ai' then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ if p_request is null or p_payload->'recipe'->>'schema' is distinct from '1' or p_payload->'recipe'->'formats' is distinct from c.visual_recipe->'formats' or p_payload->'recipe'->'common'->'watermark' is distinct from c.visual_recipe->'common'->'watermark' or p_payload->'recipe'->'common'->'style' is distinct from c.visual_recipe->'common'->'style' or jsonb_typeof(p_payload->'files') is distinct from 'array' or jsonb_typeof(p_payload->'fields') is distinct from 'object' then raise exception 'Invalid correction payload'; end if;
+ if p_payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(p_payload->>'bundle_id')::uuid for update;
+  if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from p_id or b.source_revision is distinct from p_revision or b.state<>'pending' or b.uploaded_at is null or b.file_manifest is distinct from p_payload->'files' then raise exception 'Invalid correction bundle'; end if;
+ elsif c.asset_bundle_id is not null then raise exception 'Private corrections require private output';
+ end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(p_id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'bundle_id',c.asset_bundle_id,'status',c.visual_status)) returning id into old_id;
+  -- All pre-correction text snapshots used this same original file set.
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=p_id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload,request_id,source_revision,result_revision) values(p_id,p_uid,p_payload,p_request,p_revision,c.revision+1) returning id into new_id;
+ update public.campaigns set visual_recipe=p_payload->'recipe',asset_bundle_id=b.id,files=p_payload->'files',visual_fields=p_payload->'fields',visual_field_report=p_payload->'report',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ if b.id is not null then update public.campaign_asset_bundles set state='attached',campaign_id=p_id where id=b.id; end if;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1,'replayed',false);
+end $$;
+
+
+-- Schema 2 retains a hash-bound immutable JPEG scene; no new provider call.
+-- Bounded deterministic layout/canonical-field changes, preserving attribution.
+create or replace function public.save_vector_correction(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; prior public.campaign_visual_versions; old_id uuid; new_id uuid; b public.campaign_asset_bundles;
+begin
+ select * into c from public.campaigns where id=p_id and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into prior from public.campaign_visual_versions where user_id=p_uid and request_id=p_request;
+ if found then
+  if prior.campaign_id<>p_id or prior.source_revision is distinct from p_revision or prior.payload->'fields' is distinct from p_payload->'fields' or prior.payload->'change_hash' is distinct from p_payload->'change_hash' then return jsonb_build_object('ok',false,'code','IDEMPOTENCY_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',p_id,'revision',prior.result_revision,'replayed',true);
+ end if;
+ if c.revision is distinct from p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if coalesce(c.visual_recipe->>'schema','') not in ('1','2') or (c.visual_status->>'mode'='ai' and c.visual_recipe->>'schema' is distinct from '2') then return jsonb_build_object('ok',false,'code','VISUAL_CORRECTION_UNSUPPORTED'); end if;
+ if p_request is null or p_payload->'recipe'->>'schema' is distinct from c.visual_recipe->>'schema' or p_payload->'recipe'->>'scene_sha256' is distinct from c.visual_recipe->>'scene_sha256' or p_payload->'recipe'->'formats' is distinct from c.visual_recipe->'formats' or p_payload->'recipe'->'common'->'watermark' is distinct from c.visual_recipe->'common'->'watermark' or p_payload->'recipe'->'common'->'style' is distinct from c.visual_recipe->'common'->'style' or jsonb_typeof(p_payload->'files') is distinct from 'array' or jsonb_typeof(p_payload->'fields') is distinct from 'object' then raise exception 'Invalid correction payload'; end if;
+ if p_payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(p_payload->>'bundle_id')::uuid for update;
+  if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from p_id or b.source_revision is distinct from p_revision or b.state<>'pending' or b.uploaded_at is null or b.file_manifest is distinct from p_payload->'files' then raise exception 'Invalid correction bundle'; end if;
+ elsif c.asset_bundle_id is not null then raise exception 'Private corrections require private output';
+ end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(p_id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'bundle_id',c.asset_bundle_id,'status',c.visual_status)) returning id into old_id;
+  -- All pre-correction text snapshots used this same original file set.
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=p_id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(p_id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload,request_id,source_revision,result_revision) values(p_id,p_uid,p_payload,p_request,p_revision,c.revision+1) returning id into new_id;
+ update public.campaigns set visual_recipe=p_payload->'recipe',asset_bundle_id=b.id,files=p_payload->'files',visual_fields=p_payload->'fields',visual_field_report=p_payload->'report',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=p_id;
+ if b.id is not null then update public.campaign_asset_bundles set state='attached',campaign_id=p_id where id=b.id; end if;
+ delete from public.campaign_revisions where campaign_id=p_id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(p_id);
+ return jsonb_build_object('ok',true,'id',p_id,'revision',c.revision+1,'replayed',false);
+end $$;
+
+create or replace function public.finish_image_recovery(p_uid uuid,p_job uuid,p_payload jsonb)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.campaigns; j public.campaign_image_jobs; old_id uuid; new_id uuid; cid uuid; b public.campaign_asset_bundles;
+begin
+ perform 1 from public.profiles where id=p_uid and not deletion_pending for share;
+ if not found then return jsonb_build_object('ok',false,'code','ACCOUNT_UNAVAILABLE'); end if;
+ select campaign_id into cid from public.campaign_image_jobs where id=p_job and user_id=p_uid;
+ select * into c from public.campaigns where id=cid and user_id=p_uid for update;
+ if not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ select * into j from public.campaign_image_jobs where id=p_job and user_id=p_uid for update;
+ if j.status='completed' then return jsonb_build_object('ok',true,'revision',j.result_revision,'replayed',true); end if;
+ if j.status<>'running' or j.expires_at<=now() or c.revision<>j.source_revision then return jsonb_build_object('ok',false,'code','REVISION_OR_LEASE_CONFLICT'); end if;
+ if ((p_payload->'recipe')-'schema'-'scene_sha256') is distinct from (c.visual_recipe-'schema') or p_payload->'recipe'->>'schema' is distinct from '2' or coalesce(p_payload->'recipe'->>'scene_sha256','') !~ '^[a-f0-9]{64}$' or p_payload->'fields' is distinct from c.visual_fields or p_payload->'status'->>'mode'<>'ai' then raise exception 'Invalid image recovery'; end if;
+ if p_payload->>'bundle_id' is not null then
+  select * into b from public.campaign_asset_bundles where id=(p_payload->>'bundle_id')::uuid for update;
+  if not found or b.user_id is distinct from p_uid or b.source_campaign_id is distinct from c.id or b.source_revision is distinct from j.source_revision or b.state<>'pending' or b.uploaded_at is null or b.file_manifest is distinct from p_payload->'files' then raise exception 'Invalid recovered file bundle'; end if;
+ elsif c.asset_bundle_id is not null then raise exception 'Private recovery requires private output';
+ end if;
+ old_id:=c.visual_version_id;
+ if old_id is null then
+  insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,jsonb_build_object('files',c.files,'recipe',c.visual_recipe,'fields',c.visual_fields,'report',c.visual_field_report,'status',c.visual_status,'bundle_id',c.asset_bundle_id)) returning id into old_id;
+  update public.campaign_revisions set snapshot=jsonb_set(snapshot,'{visual_version_id}',to_jsonb(old_id)) where campaign_id=c.id and snapshot->>'visual_version_id' is null;
+  c.visual_version_id:=old_id;
+ end if;
+ insert into public.campaign_revisions(campaign_id,user_id,revision,snapshot) values(c.id,p_uid,c.revision,to_jsonb(c)-'files'-'brief');
+ insert into public.campaign_visual_versions(campaign_id,user_id,payload) values(c.id,p_uid,p_payload) returning id into new_id;
+ update public.campaigns set visual_recipe=p_payload->'recipe',asset_bundle_id=b.id,files=p_payload->'files',visual_status=p_payload->'status',visual_version_id=new_id,revision=c.revision+1,updated_at=now(),visual_review_state='review_required',visual_review_ack_revision=null,visual_review_ack_at=null where id=c.id;
+ if b.id is not null then update public.campaign_asset_bundles set state='attached',campaign_id=c.id where id=b.id; end if;
+ update public.campaign_image_jobs set status='completed',result_revision=c.revision+1 where id=p_job;
+ delete from public.campaign_revisions where campaign_id=c.id and revision<c.revision-9;
+ perform public.prune_campaign_visual_versions(c.id);
+ return jsonb_build_object('ok',true,'id',c.id,'revision',c.revision+1);
+end; $$;
+
+
+-- Independent editable projects: never import credentials, approvals or billing.
+create table public.canvas_projects(id uuid primary key,user_id uuid not null references auth.users(id) on delete cascade,name text not null,revision integer not null default 1,document jsonb not null check(octet_length(document::text)<=1100000),updated_at timestamptz not null default now());
+create index canvas_owner on public.canvas_projects(user_id,updated_at);
+create table public.canvas_versions(project_id uuid references public.canvas_projects(id) on delete cascade,revision integer not null,document jsonb not null,primary key(project_id,revision));
+create table public.canvas_requests(user_id uuid references auth.users(id) on delete cascade,request_id uuid,project_id uuid references public.canvas_projects(id) on delete cascade,request_hash text not null,result_revision integer not null,primary key(user_id,request_id));
+alter table public.canvas_projects enable row level security;
+alter table public.canvas_versions enable row level security;
+alter table public.canvas_requests enable row level security;
+revoke all on public.canvas_projects,public.canvas_versions,public.canvas_requests from public,anon,authenticated;
+grant select,insert,update,delete on public.canvas_projects,public.canvas_versions,public.canvas_requests to service_role;
+create function public.save_canvas(p_uid uuid,p_id uuid,p_revision integer,p_request uuid,p_hash text,p_document jsonb,p_restore integer default null)
+returns jsonb language plpgsql security definer set search_path=public as $$
+declare c public.canvas_projects; q public.canvas_requests; d jsonb; cid uuid; plan_name text;
+begin
+ perform pg_advisory_xact_lock(hashtext('canvas_'||p_uid::text));
+ select plan into plan_name from public.profiles where id=p_uid and not deletion_pending for share;
+ if not found then return jsonb_build_object('ok',false,'code','ACCOUNT_UNAVAILABLE'); end if;
+ select * into q from public.canvas_requests where user_id=p_uid and request_id=p_request;
+ if found then
+  if q.request_hash<>p_hash then return jsonb_build_object('ok',false,'code','IDEMPOTENCY_CONFLICT'); end if;
+  return jsonb_build_object('ok',true,'id',q.project_id,'revision',q.result_revision,'replayed',true);
+ end if;
+ cid:=coalesce(p_id,p_request);
+ select * into c from public.canvas_projects where id=cid and user_id=p_uid for update;
+ if p_id is not null and not found then return jsonb_build_object('ok',false,'code','NOT_FOUND'); end if;
+ if c.id is not null and c.revision<>p_revision then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.id is null and (p_revision<>0 or p_restore is not null or exists(select 1 from public.canvas_projects where id=cid)) then return jsonb_build_object('ok',false,'code','REVISION_CONFLICT'); end if;
+ if c.id is null and (select count(*) from public.canvas_projects where user_id=p_uid)>=10 then return jsonb_build_object('ok',false,'code','TEN_PROJECT_LIMIT'); end if;
+ d:=p_document;
+ if p_restore is not null then
+  select document into d from public.canvas_versions where project_id=cid and revision=p_restore;
+  if not found then return jsonb_build_object('ok',false,'code','VERSION_UNAVAILABLE'); end if;
+ end if;
+ if d->>'format' is distinct from 'brandforge-canvas' or d->>'version' is distinct from '1' or octet_length(d::text)>1100000 then raise exception 'Invalid canvas'; end if;
+ if plan_name='free' then d:=jsonb_set(d,'{watermark}','true'); end if;
+ if c.id is null then
+  insert into public.canvas_projects(id,user_id,name,document)values(cid,p_uid,left(d->>'name',80),d);
+  insert into public.canvas_versions values(cid,1,d);
+ else
+  update public.canvas_projects set name=left(d->>'name',80),document=d,revision=c.revision+1,updated_at=now() where id=cid;
+  insert into public.canvas_versions values(cid,c.revision+1,d);
+ end if;
+ insert into public.canvas_requests values(p_uid,p_request,cid,p_hash,coalesce(c.revision,0)+1);
+ delete from public.canvas_versions where project_id=cid and revision<coalesce(c.revision,0)-8;
+ delete from public.canvas_requests where project_id=cid and result_revision<coalesce(c.revision,0)-18;
+ return jsonb_build_object('ok',true,'id',cid,'revision',coalesce(c.revision,0)+1);
+end $$;
+revoke execute on function public.save_canvas(uuid,uuid,integer,uuid,text,jsonb,integer) from public,anon,authenticated;
+grant execute on function public.save_canvas(uuid,uuid,integer,uuid,text,jsonb,integer) to service_role;
+
+create function public.export_canvas_page(p_uid uuid,p_page integer default 0)
+returns jsonb language sql security definer set search_path=public as $$
+ with owned as (select v.project_id,v.revision,v.document,c.name,c.updated_at from public.canvas_versions v join public.canvas_projects c on c.id=v.project_id where c.user_id=p_uid),
+ n as (select count(*) as total from owned),
+ page as (select * from owned order by project_id,revision offset greatest(0,p_page) limit 1)
+ select jsonb_build_object('data',jsonb_build_object('canvas_versions',coalesce((select jsonb_agg(to_jsonb(page)) from page),'[]'::jsonb)), 'total',n.total,'has_more',greatest(0,p_page)+1<n.total,'next_page',case when greatest(0,p_page)+1<n.total then greatest(0,p_page)+1 else null end) from n;
+$$;
+revoke execute on function public.export_canvas_page(uuid,integer) from public,anon,authenticated;
+grant execute on function public.export_canvas_page(uuid,integer) to service_role;
+
+
+-- Optional, bounded progress metadata; does not change charging or request replay.
+alter table public.generation_usage add column if not exists progress jsonb not null default '{}';
+create or replace function public.set_generation_progress(p_uid uuid,p_id uuid,p_stage text,p_state text)
+returns boolean language plpgsql security definer set search_path=public as $$
+begin
+ if p_stage not in ('strategy','copy','seo','artwork','packaging') or p_state not in ('running','generated','template','fallback','not_requested','complete') then raise exception 'Invalid progress state';end if;
+ update generation_usage set progress=jsonb_set(progress,array[p_stage],to_jsonb(p_state),true)
+ where id=p_id and user_id=p_uid and status='reserved';
+ return found;
+end $$;
+revoke all on function public.set_generation_progress(uuid,uuid,text,text) from public,anon,authenticated;
+grant execute on function public.set_generation_progress(uuid,uuid,text,text) to service_role;

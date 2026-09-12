@@ -1,3 +1,5 @@
+> Current release: read [OWNER-HANDOFF-1.14.md](../OWNER-HANDOFF-1.14.md) first. This reference guide is subordinate to its AI workflow and release boundaries.
+
 # Owner guide — setup, staging, publishing and release checks
 
 This guide is for the owner/operator, not website copy. The code is supplied complete; account-specific secrets, DNS, provider approvals and real-device/payment tests cannot be invented or completed without access. Keep checkout disabled until the evidence below is complete. There is no promise of guaranteed rankings, revenue, security perfection or 100% customer satisfaction.
@@ -26,7 +28,7 @@ Python wheel builds now include the dashboard and use per-user application data.
 Create separate **staging** Supabase and Paddle sandbox resources. Use different secrets and domains from production. Configure a commercial-appropriate hosting plan. Do not put real keys into source, screenshots, public JavaScript, an issue or a chat message.
 
 1. Supabase: create the project; obtain URL, publishable/anon key and service-role key from its settings. The anon/publishable key is public; the service role is server-only. The config endpoint rejects recognized privileged keys placed in the public slot.
-2. Back up an existing database and verify restoration. Apply migrations in `supabase/migrations/` in filename order through **0011**. For a brand-new project, `cloud/schema.sql` is the generated combined schema. Do not rerun a whole schema over an existing project without a migration plan.
+2. Back up an existing database and verify restoration. Apply migrations in `supabase/migrations/` in filename order through **0015**. For a brand-new project, `cloud/schema.sql` is the generated combined schema. Do not rerun a whole schema over an existing project without a migration plan.
 3. Configure Supabase Auth site URL and allowed signup/reset redirects for your staging app. Confirm email verification, password recovery, refresh and logout across tabs. Configure your email sender/domain. If requiring CAPTCHA in Supabase, set the matching public `CAPTCHA_SITE_KEY` in the Cloud deployment.
 4. Review deployed grants/RLS using the supplied SQL and the runbook. Service-role RPCs must work; anonymous/authenticated access to private billing, cost and signing tables must fail.
 

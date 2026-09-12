@@ -1,0 +1,617 @@
+{
+  "schema": 1,
+  "notice": "Fictional local drafts, generated with the shipped Cloud renderer. Product subjects are deliberately drawn packaging/cup illustrations, not photographs or real brands. No native-language, medical, property, delivery-time or customer-quality approval is implied.",
+  "files": [
+    {
+      "name": "coffee-reference.jpg",
+      "sha256": "98152a1cf62d20e4ce1949bc8f7303afc9cd86d7f6c6ad5663f4811179243e28",
+      "bytes": 13832
+    },
+    {
+      "name": "tea-reference.jpg",
+      "sha256": "09e4d69ffe7af16b545c2e0861a1d7bf368bf2a78395d19aaf121cd936dcf729",
+      "bytes": 16236
+    },
+    {
+      "name": "skin-reference.jpg",
+      "sha256": "2b10f05a99ea0846e341c5c605d43bec8931c97ee74f6cc7b1f4788b3a485050",
+      "bytes": 11407
+    },
+    {
+      "name": "coffee.svg",
+      "sha256": "97d47af7380ec4d8c280c3d4b3899f43a4ba9071816e0e631298a43f6da6b016",
+      "bytes": 47391
+    },
+    {
+      "name": "bold-vector-karak.svg",
+      "sha256": "82d51536fc0c35a5bec2188999ed07a58c330263657cbd0946587d265446f74a",
+      "bytes": 46935
+    },
+    {
+      "name": "karak-type.svg",
+      "sha256": "680ea0d211d36140590dd72e734cce85c1e6daf11ca17beda857404152c5e407",
+      "bytes": 25191
+    },
+    {
+      "name": "fitness.svg",
+      "sha256": "17e1b37184e5d7ec2afff09e7d95fd449fb1f5171186a1e0e0be4221b0855c7c",
+      "bytes": 49562
+    },
+    {
+      "name": "skin.svg",
+      "sha256": "d346b63cb53f6743fc19ed0d46232976061b0bbd501cb2d770453f6a2804725d",
+      "bytes": 42511
+    },
+    {
+      "name": "realty.svg",
+      "sha256": "76aadb03934ee8f3a3915bbbc57950cf8bfd9797afcadcaeed671cd5ec25e544",
+      "bytes": 53428
+    },
+    {
+      "name": "urdu.svg",
+      "sha256": "91f6565eb3c997fb6c039a6126b3dc3af1e3f5526f53be8b302122db8b56295e",
+      "bytes": 26709
+    },
+    {
+      "name": "story.svg",
+      "sha256": "b24da4b09e57d680c8e059f1bf1893dfe2c5f14bc4b2da53f9f2bbb6be16ccac",
+      "bytes": 43097
+    },
+    {
+      "name": "saas.svg",
+      "sha256": "50c067ee6c2873bd4dddbbd864d430de955d1f371598bf589140c0b0e44fb96c",
+      "bytes": 37315
+    }
+  ],
+  "briefs": {
+    "coffee": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Northline Coffee",
+      "headline": "Choose your next roast",
+      "offer": "Fictional offer: 250 g / Rs 1,450",
+      "cta": "Explore the roasts",
+      "style": "product-v1",
+      "primary": "#9B4028",
+      "secondary": "#FAF2E4",
+      "product_image": "Local reference JPEG, see matching source asset"
+    },
+    "bold-vector-karak": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Karak Theory",
+      "headline": "Make time for a tea break",
+      "offer": "Fictional menu: cup / Rs 180",
+      "cta": "View the menu",
+      "style": "product-v1",
+      "primary": "#21604E",
+      "secondary": "#F6EDDA",
+      "product_image": "Local reference JPEG, see matching source asset"
+    },
+    "karak-type": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Karak Theory",
+      "headline": "Make time for a tea break",
+      "offer": "Fictional menu: cup / Rs 180",
+      "cta": "View the menu",
+      "style": "offer-v1",
+      "primary": "#21604E",
+      "secondary": "#F6EDDA"
+    },
+    "fitness": {
+      "watermark": false,
+      "width": 1080,
+      "height": 1080,
+      "product": "Pulse Studio",
+      "headline": "Make room for strength",
+      "benefits": [
+        "Coached beginner sessions",
+        "Small-group training"
+      ],
+      "offer": "Fictional schedule: weekday evenings",
+      "cta": "Ask about a first session",
+      "style": "service-v1",
+      "primary": "#256146",
+      "secondary": "#ECF2E5"
+    },
+    "skin": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Bloom Skincare",
+      "headline": "Keep your routine simple",
+      "offer": "Fictional pack: 100 ml",
+      "cta": "Read the ingredients",
+      "style": "product-v1",
+      "primary": "#8E4834",
+      "secondary": "#FAEFE3",
+      "product_image": "Local reference JPEG, see matching source asset"
+    },
+    "realty": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Northline Homes",
+      "headline": "Start with what matters to you",
+      "benefits": [
+        "Share your space requirements",
+        "Ask about current availability"
+      ],
+      "offer": "Illustrative service ad — not a listing",
+      "cta": "Discuss your search",
+      "style": "service-v1",
+      "primary": "#304D68",
+      "secondary": "#EFF2F4"
+    },
+    "urdu": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "کڑک تھیوری",
+      "headline": "آج ایک وقفہ لیں",
+      "benefits": [
+        "دودھ والی چائے"
+      ],
+      "cta": "مینو دیکھیں",
+      "style": "service-v1",
+      "primary": "#25614F",
+      "secondary": "#F7F0DF"
+    },
+    "story": {
+      "watermark": false,
+      "width": 1080,
+      "height": 1920,
+      "product": "Bloom Skincare",
+      "headline": "A little time for your routine",
+      "offer": "Fictional pack: 100 ml",
+      "cta": "Read the ingredients",
+      "style": "product-v1",
+      "primary": "#8E4834",
+      "secondary": "#FAEFE3",
+      "product_image": "Local reference JPEG, see matching source asset"
+    },
+    "saas": {
+      "watermark": false,
+      "width": 1200,
+      "height": 630,
+      "product": "Ledgerline",
+      "headline": "Keep month-end work in view",
+      "benefits": [
+        "Organize the close checklist",
+        "Discuss your reporting workflow"
+      ],
+      "cta": "See the workflow",
+      "style": "service-v1",
+      "primary": "#604793",
+      "secondary": "#F2EDF7"
+    }
+  },
+  "quality": {
+    "coffee": [
+      {
+        "name": "coffee.svg",
+        "renderer": "product-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "product_image",
+            "status": "included",
+            "font_size": 0
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 91.5
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 50
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "bold-vector-karak": [
+      {
+        "name": "bold-vector-karak.svg",
+        "renderer": "product-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "product_image",
+            "status": "included",
+            "font_size": 0
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 85
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 50
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "karak-type": [
+      {
+        "name": "karak-type.svg",
+        "renderer": "offer-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 84.5
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 60
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "product_image",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "fitness": [
+      {
+        "name": "fitness.svg",
+        "renderer": "service-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 43.2
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 39.6
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 86.4
+          },
+          {
+            "field": "benefit_1",
+            "status": "included",
+            "font_size": 39.6
+          },
+          {
+            "field": "benefit_2",
+            "status": "included",
+            "font_size": 39.6
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 41.4
+          },
+          {
+            "field": "subheadline",
+            "status": "omitted_format",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "product_image",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "skin": [
+      {
+        "name": "skin.svg",
+        "renderer": "product-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "product_image",
+            "status": "included",
+            "font_size": 0
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 80.5
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 50
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "realty": [
+      {
+        "name": "realty.svg",
+        "renderer": "service-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 78
+          },
+          {
+            "field": "benefit_1",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "benefit_2",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 46
+          },
+          {
+            "field": "subheadline",
+            "status": "omitted_format",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "product_image",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "urdu": [
+      {
+        "name": "urdu.svg",
+        "renderer": "service-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 96
+          },
+          {
+            "field": "benefit_1",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "offer",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "product_image",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "story": [
+      {
+        "name": "story.svg",
+        "renderer": "product-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 43.2
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 42
+          },
+          {
+            "field": "product_image",
+            "status": "included",
+            "font_size": 0
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 86.4
+          },
+          {
+            "field": "offer",
+            "status": "included",
+            "font_size": 45
+          },
+          {
+            "field": "subheadline",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ],
+    "saas": [
+      {
+        "name": "saas.svg",
+        "renderer": "service-v1",
+        "fields": [
+          {
+            "field": "brand",
+            "status": "included",
+            "font_size": 48
+          },
+          {
+            "field": "cta",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "headline",
+            "status": "included",
+            "font_size": 80
+          },
+          {
+            "field": "benefit_1",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "benefit_2",
+            "status": "included",
+            "font_size": 44
+          },
+          {
+            "field": "offer",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "subheadline",
+            "status": "omitted_format",
+            "font_size": 0
+          },
+          {
+            "field": "proof",
+            "status": "empty",
+            "font_size": 0
+          },
+          {
+            "field": "product_image",
+            "status": "empty",
+            "font_size": 0
+          }
+        ]
+      }
+    ]
+  }
+}

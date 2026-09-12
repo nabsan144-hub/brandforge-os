@@ -1,0 +1,7 @@
+// Diagnostics are derived from the actual hydrated files, never stale recipe
+// fields. Plain data only; callers render via textContent, not innerHTML.
+export function vectorQuality(files=[]){
+ return files.filter(f=>f.name?.endsWith('.svg')&&typeof f.content==='string'&&/data-renderer="(?:editorial|product|offer|service|evidence)-v1"/.test(f.content)).map(f=>({name:f.name,renderer:f.content.match(/data-renderer="([^"]+)"/)[1],fields:Array.from(f.content.matchAll(/data-quality-field="([a-z0-9_]+)" data-fit="([a-z_]+)" data-font-size="([0-9.]+)"/g),m=>({field:m[1],status:m[2],font_size:Number(m[3])}))}));
+}
+export function qualityIssues(report){return report.flatMap(r=>r.fields.filter(f=>f.status.startsWith('omitted_')).map(f=>`${r.name}: ${f.field.replaceAll('_',' ')} ${f.status==='omitted_unfit'?'does not fit at the minimum type size':f.status==='omitted_unsupported'?'contains a character unavailable in the bundled fonts':'omitted in this format'}`));}
+export const QUALITY_NOTICE='These visuals are drafts. Review every format before publishing. Omitted text is NOT printed in the image. Check every price, condition, benefit and action against the copy; shorten text or choose another format where needed. Repeated in heading means the same benefit words are already printed as a heading. Included only means geometric fit at the configured minimum type size. Check actual-size legibility, brand fit, claims and platform safe areas yourself.';

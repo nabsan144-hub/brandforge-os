@@ -1,0 +1,14 @@
+........................................................................ [ 15%]
+........................................................................ [ 31%]
+........................................................................ [ 47%]
+........................................................................ [ 63%]
+........................................................................ [ 79%]
+........................................................................ [ 95%]
+......................                                                   [100%]
+=============================== warnings summary ===============================
+tests/test_readiness_regressions.py::test_real_swarm_api_honors_dimensions_logo_and_new_text_revision
+  /home/user/repo/app/tests/test_readiness_regressions.py:39: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+    assert sum(1 for r,g,b in image.getdata() if r>240 and g<20 and 150<b<190)>10
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+454 passed, 1 warning in 151.58s (0:02:31)

@@ -8,7 +8,8 @@
     "proof": "None supplied — do not invent proof",
     "avoided": "No fabricated results or endorsements",
     "url": "Add a destination before publishing",
-    "problem": "Choosing between {industry} options without enough clear information."
+    "problem": "Choosing between {industry} options without enough clear information.",
+    "no_benefits": "Details to review"
   },
   "es": {
     "strategy": "### Estrategia de marca — {product}\n\n**Posicionamiento:** Para {audience}, {product} es una opción de {industry} centrada en {benefits}.\n**Tono:** {tone}\n**Problema que validar:** {problem}\n**Pruebas aportadas (verificar):** {proof}\n**Evitar:** {avoided}\n\n> Plantilla basada en tu información; no se ha realizado investigación de mercado.",
@@ -19,7 +20,8 @@
     "proof": "No se han aportado pruebas; no inventarlas",
     "avoided": "Resultados y recomendaciones inventados",
     "url": "Añade un destino antes de publicar",
-    "problem": "Elegir entre opciones de {industry} sin información suficiente."
+    "problem": "Elegir entre opciones de {industry} sin información suficiente.",
+    "no_benefits": "Detalles para revisar"
   },
   "pt": {
     "strategy": "### Estratégia de marca — {product}\n\n**Posicionamento:** Para {audience}, {product} é uma opção de {industry} com foco em {benefits}.\n**Tom:** {tone}\n**Problema a validar:** {problem}\n**Evidências fornecidas (verificar):** {proof}\n**Evitar:** {avoided}\n\n> Modelo baseado no seu briefing; nenhuma pesquisa de mercado foi realizada.",
@@ -30,7 +32,8 @@
     "proof": "Nenhuma evidência fornecida; não inventar",
     "avoided": "Resultados e recomendações inventados",
     "url": "Adicione um destino antes de publicar",
-    "problem": "Escolher entre opções de {industry} sem informações suficientes."
+    "problem": "Escolher entre opções de {industry} sem informações suficientes.",
+    "no_benefits": "Detalhes para revisar"
   },
   "ur": {
     "strategy": "### برانڈ حکمت عملی — {product}\n\n**پوزیشننگ:** {audience} کے لیے {product}، {industry} میں ایک انتخاب ہے جس کی توجہ {benefits} پر ہے۔\n**لہجہ:** {tone}\n**صارف کا مسئلہ، جس کی تصدیق ضروری ہے:** {problem}\n**فراہم کردہ ثبوت، تصدیق کریں:** {proof}\n**ان باتوں سے گریز کریں:** {avoided}\n\n> یہ سانچہ صرف آپ کی فراہم کردہ معلومات پر مبنی ہے۔ مارکیٹ کی تحقیق نہیں کی گئی۔",
@@ -41,7 +44,8 @@
     "proof": "کوئی ثبوت فراہم نہیں کیا گیا؛ ثبوت نہ گھڑیں",
     "avoided": "فرضی نتائج اور تعریفیں",
     "url": "اشاعت سے پہلے اصل لنک شامل کریں",
-    "problem": "مکمل معلومات کے بغیر {industry} کے مختلف انتخابوں میں فیصلہ کرنا۔"
+    "problem": "مکمل معلومات کے بغیر {industry} کے مختلف انتخابوں میں فیصلہ کرنا۔",
+    "no_benefits": "جائزے کے لیے تفصیلات"
   },
   "hi": {
     "strategy": "### ब्रांड रणनीति — {product}\n\n**पोज़िशनिंग:** {audience} के लिए {product}, {industry} में एक विकल्प है जिसका ध्यान {benefits} पर है।\n**शैली:** {tone}\n**ग्राहक की समस्या, जिसकी पुष्टि ज़रूरी है:** {problem}\n**दिए गए प्रमाण (पुष्टि करें):** {proof}\n**इनसे बचें:** {avoided}\n\n> यह टेम्पलेट केवल आपके विवरण पर आधारित है। बाज़ार का शोध नहीं किया गया है।",
@@ -52,6 +56,7 @@
     "proof": "कोई प्रमाण नहीं दिया गया; प्रमाण न गढ़ें",
     "avoided": "मनगढ़ंत परिणाम और प्रशंसाएँ",
     "url": "प्रकाशन से पहले सही लिंक जोड़ें",
-    "problem": "पूरी जानकारी के बिना {industry} के विकल्पों में चुनाव करना।"
+    "problem": "पूरी जानकारी के बिना {industry} के विकल्पों में चुनाव करना।",
+    "no_benefits": "समीक्षा के लिए विवरण"
   }
 }

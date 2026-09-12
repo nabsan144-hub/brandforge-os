@@ -124,3 +124,23 @@ def test_websocket_roundtrip(client):
         d1 = _json.loads(ws.receive_text())
         assert d1["type"] == "response"
         assert "Apex Coffee" in d1["message"]
+
+
+def test_explicit_no_ai_campaign_overrides_connected_settings(client, monkeypatch):
+    import server
+    from modules.ai_image_designer import AIImageDesigner
+    engine=server.get_core()[0]
+    monkeypatch.setattr(engine,'provider','groq')
+    monkeypatch.setattr(engine,'api_key','fixture-only')
+    attempted=[]
+    def forbidden(*args,**kwargs):
+        attempted.append(True)
+        raise AssertionError('A no-AI request must not contact a provider')
+    monkeypatch.setattr(AIImageDesigner,'generate_design_image',forbidden)
+    monkeypatch.setattr(AIImageDesigner,'network_allowed',lambda *args:True)
+    monkeypatch.setattr('requests.sessions.Session.request',forbidden)
+    response=client.post('/api/swarm/run',json={'campaign_name':'No AI override','product_name':'Coffee','key_benefits':'Whole beans','no_ai':True})
+    assert response.status_code==200,response.text
+    assert response.json()['provider']=='offline' and response.json()['research_live'] is False
+    assert engine.provider=='groq'
+    assert not attempted

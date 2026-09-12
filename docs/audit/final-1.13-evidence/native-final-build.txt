@@ -1,0 +1,245 @@
+
+> brandforge-os-dashboard@1.0.0 build
+> vite build
+
+7:06:44 AM [vite-plugin-svelte] no Svelte config found at /home/user/repo/app/web-modern - using default configuration.
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 3941 modules transformed.
+rendering chunks...
+computing gzip size...
+../web/dist/index.html                                           1.07 kB │ gzip:  0.67 kB
+../web/dist/assets/instrument-serif-400-DnYpCC2O.woff2          21.03 kB
+../web/dist/assets/instrument-serif-400-italic-DKMiL14s.woff2   22.12 kB
+../web/dist/assets/geist-400-BgDaEnEv.woff2                     29.40 kB
+../web/dist/assets/index-DLYhrHcl.css                           31.88 kB │ gzip:  7.43 kB
+../web/dist/assets/index-IDc_F-K9.js                           169.05 kB │ gzip: 54.04 kB
+
+✓ built in 6.62s
+Canvas assets match canonical source.
+237 INFO: PyInstaller: 6.22.2, contrib hooks: 2026.7
+238 INFO: Python: 3.13.14
+251 INFO: Platform: Linux-6.1.158+-x86_64-with-glibc2.41
+252 INFO: Python environment: /usr/local
+256 INFO: Removing temporary files and cleaning cache in /home/user/.cache/pyinstaller
+361 INFO: Module search paths (PYTHONPATH):
+['/home/user/repo',
+ '/usr/local/lib/python313.zip',
+ '/usr/local/lib/python3.13',
+ '/usr/local/lib/python3.13/lib-dynload',
+ '/usr/local/lib/python3.13/site-packages',
+ '/home/user/repo/app']
+1116 INFO: Appending 'datas' from .spec
+1117 INFO: checking Analysis
+1118 INFO: Building Analysis because Analysis-00.toc is non existent
+1118 INFO: Looking for Python shared library...
+1126 INFO: Using Python shared library: /usr/local/lib/libpython3.13.so.1.0
+1126 INFO: Running Analysis Analysis-00.toc
+1126 INFO: Target bytecode optimization level: 0
+1126 INFO: Initializing module dependency graph...
+1130 INFO: Initializing module graph hook caches...
+1157 INFO: Analyzing modules for base_library.zip ...
+1933 INFO: Processing standard module hook 'hook-math.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+1950 INFO: Processing standard module hook 'hook-heapq.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+2303 INFO: Processing standard module hook 'hook-encodings.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+4316 INFO: Processing standard module hook 'hook-pickle.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+6316 INFO: Caching module dependency graph...
+6366 INFO: Analyzing /home/user/repo/app/frozen_launcher.py
+6829 INFO: Processing standard module hook 'hook-webbrowser.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+6927 INFO: Processing standard module hook 'hook-sysconfig.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+6933 INFO: Processing standard module hook 'hook-_ctypes.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+7022 INFO: Processing standard module hook 'hook-urllib3.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+7149 INFO: Processing pre-safe-import-module hook 'hook-backports.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7150 INFO: SetuptoolsInfo: initializing cached setuptools info...
+7533 INFO: Setuptools: 'backports' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.backports'!
+7544 INFO: Processing standard module hook 'hook-setuptools.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+7605 INFO: Processing standard module hook 'hook-platform.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+7608 INFO: Processing pre-safe-import-module hook 'hook-distutils.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7677 INFO: Processing pre-safe-import-module hook 'hook-jaraco.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7679 INFO: Setuptools: 'jaraco' appears to be a full setuptools-vendored copy - creating alias to 'setuptools._vendor.jaraco'!
+7697 INFO: Processing pre-safe-import-module hook 'hook-more_itertools.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+7698 INFO: Setuptools: 'more_itertools' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.more_itertools'!
+7943 INFO: Processing pre-safe-import-module hook 'hook-typing_extensions.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+8304 INFO: Processing standard module hook 'hook-multiprocessing.util.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+8418 INFO: Processing standard module hook 'hook-xml.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+9478 INFO: Processing pre-safe-import-module hook 'hook-packaging.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+9749 INFO: Processing standard module hook 'hook-setuptools._vendor.jaraco.text.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+9750 INFO: Processing pre-safe-import-module hook 'hook-importlib_resources.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+10444 INFO: Processing pre-safe-import-module hook 'hook-tomli.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+10445 INFO: Setuptools: 'tomli' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.tomli'!
+11363 INFO: Processing pre-safe-import-module hook 'hook-wheel.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+11364 INFO: Setuptools: 'wheel' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.wheel'!
+12009 INFO: Processing standard module hook 'hook-certifi.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+12080 INFO: Processing standard module hook 'hook-charset_normalizer.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+12524 INFO: Processing standard module hook 'hook-sqlite3.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+12843 INFO: Processing standard module hook 'hook-PIL.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+13019 INFO: Processing standard module hook 'hook-PIL.Image.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+13294 INFO: Processing standard module hook 'hook-xml.etree.cElementTree.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+13449 INFO: Processing standard module hook 'hook-xml.dom.domreg.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+14301 INFO: Processing standard module hook 'hook-PIL.ImageFilter.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+14964 INFO: Processing standard module hook 'hook-difflib.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+16383 INFO: Processing standard module hook 'hook-lxml.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+16624 INFO: Processing standard module hook 'hook-lxml.etree.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+19105 INFO: Processing standard module hook 'hook-uvicorn.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+20623 INFO: Processing standard module hook 'hook-websockets.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+21760 INFO: Processing standard module hook 'hook-anyio.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+22386 INFO: Processing standard module hook 'hook-pydantic.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+23098 INFO: Processing standard module hook 'hook-rich.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+23591 INFO: Processing standard module hook 'hook-pygments.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+25909 INFO: Processing standard module hook 'hook-zoneinfo.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+27989 INFO: Processing standard module hook 'hook-docx.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+31240 INFO: Processing standard module hook 'hook-apscheduler.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+31463 INFO: Processing pre-safe-import-module hook 'hook-importlib_metadata.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+31464 INFO: Setuptools: 'importlib_metadata' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.importlib_metadata'!
+31499 INFO: Processing standard module hook 'hook-setuptools._vendor.importlib_metadata.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+31526 INFO: Processing pre-safe-import-module hook 'hook-zipp.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/pre_safe_import_module'
+31526 INFO: Setuptools: 'zipp' appears to be a setuptools-vendored copy - creating alias to 'setuptools._vendor.zipp'!
+31710 INFO: Processing standard module hook 'hook-pytz.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+31944 INFO: Processing module hooks (post-graph stage)...
+33649 INFO: Processing standard module hook 'hook-lxml.isoschematron.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+34439 INFO: Processing standard module hook 'hook-PIL.SpiderImagePlugin.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks'
+38116 INFO: Processing standard module hook 'hook-lxml.objectify.py' from '/usr/local/lib/python3.13/site-packages/_pyinstaller_hooks_contrib/stdhooks'
+38143 INFO: Performing binary vs. data reclassification (707 entries)
+38318 INFO: Looking for ctypes DLLs
+38505 INFO: Analyzing run-time hooks ...
+38516 INFO: Including run-time hook 'pyi_rth_inspect.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/rthooks'
+38522 INFO: Including run-time hook 'pyi_rth_pkgutil.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/rthooks'
+38527 INFO: Including run-time hook 'pyi_rth_multiprocessing.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/rthooks'
+38532 INFO: Including run-time hook 'pyi_rth_setuptools.py' from '/usr/local/lib/python3.13/site-packages/PyInstaller/hooks/rthooks'
+38594 INFO: Creating base_library.zip...
+38619 INFO: Looking for dynamic libraries
+39660 INFO: Warnings written to /home/user/repo/.cache/native-build/desktop/warn-desktop.txt
+39817 INFO: Graph cross-reference written to /home/user/repo/.cache/native-build/desktop/xref-desktop.html
+39880 INFO: checking PYZ
+39880 INFO: Building PYZ because PYZ-00.toc is non existent
+39881 INFO: Building PYZ (ZlibArchive) /home/user/repo/.cache/native-build/desktop/PYZ-00.pyz
+41341 INFO: Building PYZ (ZlibArchive) /home/user/repo/.cache/native-build/desktop/PYZ-00.pyz completed successfully.
+41374 INFO: checking PKG
+41374 INFO: Building PKG because PKG-00.toc is non existent
+41374 INFO: Building PKG (CArchive) BrandForge.pkg
+41398 INFO: Building PKG (CArchive) BrandForge.pkg completed successfully.
+41399 INFO: Bootloader /usr/local/lib/python3.13/site-packages/PyInstaller/bootloader/Linux-64bit-intel/run
+41399 INFO: checking EXE
+41399 INFO: Building EXE because EXE-00.toc is non existent
+41399 INFO: Building EXE from EXE-00.toc
+41400 INFO: Copying bootloader EXE to /home/user/repo/.cache/native-build/desktop/BrandForge
+41401 INFO: Appending PKG archive to custom ELF section in EXE
+41504 INFO: Building EXE from EXE-00.toc completed successfully.
+41517 INFO: checking COLLECT
+41518 INFO: Building COLLECT because COLLECT-00.toc is non existent
+41518 INFO: Building COLLECT COLLECT-00.toc
+41529 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_avif.cpython-313-x86_64-linux-gnu.so
+41551 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_imaging.cpython-313-x86_64-linux-gnu.so
+41570 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_imagingcms.cpython-313-x86_64-linux-gnu.so
+41575 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_imagingft.cpython-313-x86_64-linux-gnu.so
+41581 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_imagingmath.cpython-313-x86_64-linux-gnu.so
+41588 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_imagingtk.cpython-313-x86_64-linux-gnu.so
+41592 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/PIL/_webp.cpython-313-x86_64-linux-gnu.so
+41596 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/ada92cb5d92a588d1b93__mypyc.cpython-313-x86_64-linux-gnu.so
+41617 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/charset_normalizer/cd.cpython-313-x86_64-linux-gnu.so
+41623 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/charset_normalizer/md.cpython-313-x86_64-linux-gnu.so
+41661 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/fontTools/misc/bezierTools.cpython-313-x86_64-linux-gnu.so
+41677 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/fontTools/varLib/iup.cpython-313-x86_64-linux-gnu.so
+41689 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libbz2.so.1.0
+41738 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libcrypto.so.3
+41792 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libffi.so.8
+41800 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libgcc_s.so.1
+41810 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/liblzma.so.5
+41818 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libncursesw.so.6
+41944 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libpython3.13.so.1.0
+41981 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libreadline.so.8
+41991 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libsqlite3.so.0
+42005 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libssl.so.3
+42021 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libstdc++.so.6
+42036 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libtinfo.so.6
+42042 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libuuid.so.1
+42046 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libz.so.1
+42053 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/libzstd.so.1
+42060 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/_elementpath.cpython-313-x86_64-linux-gnu.so
+42065 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/builder.cpython-313-x86_64-linux-gnu.so
+42082 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/etree.cpython-313-x86_64-linux-gnu.so
+42111 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/html/_difflib.cpython-313-x86_64-linux-gnu.so
+42119 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/html/diff.cpython-313-x86_64-linux-gnu.so
+42138 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/objectify.cpython-313-x86_64-linux-gnu.so
+42153 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/lxml/sax.cpython-313-x86_64-linux-gnu.so
+42158 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libXau-154567c4.so.6.0.0
+42184 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libavif-8a7f9d56.so.16.4.2
+42208 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libbrotlicommon-53534446.so.1.2.0
+42212 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libbrotlidec-7e5462ba.so.1.2.0
+42225 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libfreetype-9fc94c80.so.6.20.6
+42238 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libharfbuzz-172d1f63.so.0.61421.0
+42248 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libjpeg-31e2ca52.so.62.4.0
+42258 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/liblcms2-dade1fbf.so.2.0.19
+42265 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/liblzma-2be87c3e.so.5.8.3
+42272 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libopenjp2-b07f72ad.so.2.5.4
+42279 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libpng16-abb096d5.so.16.58.0
+42284 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libsharpyuv-0066295b.so.0.1.2
+42291 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libtiff-fc87e79d.so.6.2.0
+42303 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libwebp-51b0b3f7.so.7.2.0
+42310 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libwebpdemux-9fe2abcc.so.2.0.17
+42314 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libwebpmux-8fb1c9f6.so.3.1.2
+42319 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libxcb-ad31f5a3.so.1.1.0
+42331 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pillow.libs/libzstd-44be1190.so.1.5.7
+42359 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/pydantic_core/_pydantic_core.cpython-313-x86_64-linux-gnu.so
+42384 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_asyncio.cpython-313-x86_64-linux-gnu.so
+42391 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_bisect.cpython-313-x86_64-linux-gnu.so
+42396 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_blake2.cpython-313-x86_64-linux-gnu.so
+42401 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_bz2.cpython-313-x86_64-linux-gnu.so
+42406 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_cn.cpython-313-x86_64-linux-gnu.so
+42413 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_hk.cpython-313-x86_64-linux-gnu.so
+42419 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_iso2022.cpython-313-x86_64-linux-gnu.so
+42425 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_jp.cpython-313-x86_64-linux-gnu.so
+42431 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_kr.cpython-313-x86_64-linux-gnu.so
+42437 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_codecs_tw.cpython-313-x86_64-linux-gnu.so
+42443 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_contextvars.cpython-313-x86_64-linux-gnu.so
+42449 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_csv.cpython-313-x86_64-linux-gnu.so
+42463 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_ctypes.cpython-313-x86_64-linux-gnu.so
+42471 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_curses.cpython-313-x86_64-linux-gnu.so
+42480 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_datetime.cpython-313-x86_64-linux-gnu.so
+42492 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_decimal.cpython-313-x86_64-linux-gnu.so
+42508 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_elementtree.cpython-313-x86_64-linux-gnu.so
+42517 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_hashlib.cpython-313-x86_64-linux-gnu.so
+42523 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_heapq.cpython-313-x86_64-linux-gnu.so
+42532 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_json.cpython-313-x86_64-linux-gnu.so
+42539 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_lzma.cpython-313-x86_64-linux-gnu.so
+42545 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_md5.cpython-313-x86_64-linux-gnu.so
+42551 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_multibytecodec.cpython-313-x86_64-linux-gnu.so
+42556 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_multiprocessing.cpython-313-x86_64-linux-gnu.so
+42561 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_opcode.cpython-313-x86_64-linux-gnu.so
+42570 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_pickle.cpython-313-x86_64-linux-gnu.so
+42578 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_posixshmem.cpython-313-x86_64-linux-gnu.so
+42588 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_posixsubprocess.cpython-313-x86_64-linux-gnu.so
+42595 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_queue.cpython-313-x86_64-linux-gnu.so
+42600 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_random.cpython-313-x86_64-linux-gnu.so
+42605 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_sha1.cpython-313-x86_64-linux-gnu.so
+42615 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_sha2.cpython-313-x86_64-linux-gnu.so
+42624 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_sha3.cpython-313-x86_64-linux-gnu.so
+42631 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_socket.cpython-313-x86_64-linux-gnu.so
+42643 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_sqlite3.cpython-313-x86_64-linux-gnu.so
+42651 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_ssl.cpython-313-x86_64-linux-gnu.so
+42659 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_statistics.cpython-313-x86_64-linux-gnu.so
+42666 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_struct.cpython-313-x86_64-linux-gnu.so
+42671 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_uuid.cpython-313-x86_64-linux-gnu.so
+42677 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/_zoneinfo.cpython-313-x86_64-linux-gnu.so
+42683 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/array.cpython-313-x86_64-linux-gnu.so
+42692 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/binascii.cpython-313-x86_64-linux-gnu.so
+42698 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/fcntl.cpython-313-x86_64-linux-gnu.so
+42703 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/grp.cpython-313-x86_64-linux-gnu.so
+42729 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/math.cpython-313-x86_64-linux-gnu.so
+42747 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/mmap.cpython-313-x86_64-linux-gnu.so
+42769 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/pyexpat.cpython-313-x86_64-linux-gnu.so
+42790 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/readline.cpython-313-x86_64-linux-gnu.so
+42813 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/resource.cpython-313-x86_64-linux-gnu.so
+42830 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/select.cpython-313-x86_64-linux-gnu.so
+42847 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/syslog.cpython-313-x86_64-linux-gnu.so
+42853 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/termios.cpython-313-x86_64-linux-gnu.so
+42870 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/unicodedata.cpython-313-x86_64-linux-gnu.so
+42891 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/python3.13/lib-dynload/zlib.cpython-313-x86_64-linux-gnu.so
+42966 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/resvg_py/resvg_py.abi3.so
+43010 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/simplejson/_speedups.cpython-313-x86_64-linux-gnu.so
+43029 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/tornado/speedups.abi3.so
+43061 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/uharfbuzz/_harfbuzz.abi3.so
+43085 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/websockets/speedups.cpython-313-x86_64-linux-gnu.so
+43103 INFO: Executing: strip /home/user/.cache/pyinstaller/bincache10py31364bit/yaml/_yaml.cpython-313-x86_64-linux-gnu.so
+43108 INFO: Building COLLECT COLLECT-00.toc completed successfully.
+43122 INFO: Build complete! The results are available in: /home/user/repo/.cache/native-final

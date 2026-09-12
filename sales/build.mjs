@@ -34,3 +34,21 @@ console.log('Animated tour mirrored to the publish root as /tour.html (served at
 const enabled=process.env.DESKTOP_CHECKOUT_ENABLED==='true'&&process.env.BILLING_RELEASE_VERIFIED==='true';
 const config=join(out,'assets/config.js');
 writeFileSync(config,readFileSync(config,'utf8').replace(/desktop_checkout_enabled\s*:\s*(true|false)/,'desktop_checkout_enabled: '+enabled));
+
+// Public origins are deployment configuration, never credentials. Override all
+// published first-party absolute links/SEO metadata so staging stays isolated.
+const publicOrigins=[['BRANDFORGE_APP_URL','https://app.brandforge-os.com'],['BRANDFORGE_MARKETING_URL','https://www.brandforge-os.com']];
+for(const [key,oldOrigin]of publicOrigins){
+ const raw=process.env[key];if(!raw)continue;
+ let url;try{url=new URL(raw);}catch{throw Error(key+' must be an HTTPS origin');}
+ if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash||url.pathname!=='/')throw Error(key+' must be an HTTPS origin without credentials, query or path');
+ const replacement=url.origin;
+ function rewrite(directory){for(const name of readdirSync(directory)){
+  const file=join(directory,name);if(statSync(file).isDirectory())rewrite(file);
+  else if(/\.(?:html|js|json|xml|txt)$/.test(name))writeFileSync(file,readFileSync(file,'utf8').replaceAll(oldOrigin,replacement));
+ }}
+ rewrite(out);
+}
+// Vercel previews are never search-indexing targets. Production canonical URLs
+// must only be set to the approved production marketing origin.
+if(process.env.VERCEL_ENV==='preview')writeFileSync(join(out,'robots.txt'),'User-agent: *\nDisallow: /\n');

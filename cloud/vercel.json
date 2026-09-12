@@ -1,8 +1,28 @@
 {
   "rewrites": [
     {
+      "source": "/canvas",
+      "destination": "/canvas/index.html"
+    },
+    {
+      "source": "/canvas/",
+      "destination": "/canvas/index.html"
+    },
+    {
       "source": "/api/(.*)",
       "destination": "/api/index.js"
+    },
+    {
+      "source": "/transfer",
+      "destination": "/transfer.html"
+    },
+    {
+      "source": "/review",
+      "destination": "/review.html"
+    },
+    {
+      "source": "/practice",
+      "destination": "/practice.html"
     },
     {
       "source": "/desktop-download",
@@ -48,6 +68,10 @@
         {
           "key": "Content-Security-Policy",
           "value": "default-src 'self'; script-src 'self' https://cdn.paddle.com https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.paddle.com; img-src 'self' data: blob: https://*.paddle.com; connect-src 'self' https://*.supabase.co wss://*.supabase.co https://*.paddle.com https://*.cloudflare.com; frame-src https://*.paddle.com https://paddle.com https://challenges.cloudflare.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; frame-ancestors 'none'"
+        },
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
         }
       ]
     },
@@ -83,6 +107,15 @@
     {
       "path": "/api/maintenance",
       "schedule": "0 3 * * *"
+    }
+  ],
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/index",
+      "destination": "/",
+      "permanent": true
     }
   ]
 }

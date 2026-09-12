@@ -1,6 +1,10 @@
+> Current complete source delivery: [1.14.0 scope and evidence](DELIVERY-1.14.0.md). Start with the [owner/staging handoff](OWNER-HANDOFF-1.14.md) and [Windows GitHub commands](PUSH-WINDOWS-CMD.txt). Earlier versioned handoffs are historical.
+
 # BrandForge OS
 
-> **1.4.2 runtime-audit revision:** the Source edition includes the integrated website/video/HTML tour, the supported Cloud backend and the full Desktop project. The Owner archive is a focused Desktop runtime with customer documentation, not operator runbooks. See [audit log](docs/FULL-AUDIT.md) and [owner setup/deployment guide](docs/OWNER-GUIDE.md) and [runtime verification follow-up](docs/RUNTIME-AUDIT-1.4.2.md). Live payment, delivery, platform and legal sign-off remain separate owner tasks.
+> **Current handoff: 1.12.0 complete source candidate.** See [delivery summary](DELIVERY-1.12.0.md), [exact fixes and remaining gaps](docs/audit/FOLLOW-UP-1.12.0.md), [all 91 statuses](docs/audit/91-ITEM-RECONCILIATION.md) and [owner instructions](docs/audit/OWNER-HANDOFF.md). Not production approval or completion of all acceptance criteria.
+
+> **Historical 1.4.2 runtime-audit revision:** the Source edition includes the integrated website/video/HTML tour, the supported Cloud backend and the full Desktop project. The Owner archive is a focused Desktop runtime with customer documentation, not operator runbooks. See [audit log](docs/FULL-AUDIT.md) and [owner setup/deployment guide](docs/OWNER-GUIDE.md) and [runtime verification follow-up](docs/RUNTIME-AUDIT-1.4.2.md). Live payment, delivery, platform and legal sign-off remain separate owner tasks.
 
 
 A reviewable campaign workspace with two **separate** products:

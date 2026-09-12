@@ -32,3 +32,27 @@ app/brandforge_memory.db
 app/active_client.json
 app/memory/
 app/agency_clients/
+
+# Machine-local setup and credentials
+app/setup-state.json
+app/local-capability.token
+app/.settings-transaction.json
+app/config.json
+app/license.json
+app/approvals.json
+qa-results/
+
+# Python wheel build outputs
+app/build/
+app/*.egg-info/
+
+# Disposable QA/build verification checkouts
+.cache/
+
+# Native runtime / installer build outputs
+/native-candidate/
+/installers/
+
+# Ignore environment symlinks as well as directories.
+node_modules
+.venv

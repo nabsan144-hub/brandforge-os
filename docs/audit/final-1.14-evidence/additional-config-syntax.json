@@ -1,0 +1,9 @@
+{
+  "parsed": [
+    "app/pyproject.toml",
+    "sales/netlify.toml",
+    ".github/workflows/ci.yml",
+    ".github/workflows/desktop-runtime.yml"
+  ],
+  "bat_iss_windows_execution": "not performed; owner OS gate"
+}

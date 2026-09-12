@@ -1,0 +1,62 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "uncertain_retry_same_id": true,
+    "canonical_fields_saved": true,
+    "omitted_fields_reported": true,
+    "review_required": true,
+    "free_watermark_svg_png": true,
+    "zip_sha256": "pass",
+    "restore_original_fields_and_bytes": true,
+    "copy_unchanged": true,
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "uncertain_retry_same_id": true,
+    "canonical_fields_saved": true,
+    "omitted_fields_reported": true,
+    "review_required": true,
+    "free_watermark_svg_png": true,
+    "zip_sha256": "pass",
+    "restore_original_fields_and_bytes": true,
+    "copy_unchanged": true,
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "uncertain_retry_same_id": true,
+    "canonical_fields_saved": true,
+    "omitted_fields_reported": true,
+    "review_required": true,
+    "free_watermark_svg_png": true,
+    "zip_sha256": "pass",
+    "restore_original_fields_and_bytes": true,
+    "copy_unchanged": true,
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "uncertain_retry_same_id": true,
+    "canonical_fields_saved": true,
+    "omitted_fields_reported": true,
+    "review_required": true,
+    "free_watermark_svg_png": true,
+    "zip_sha256": "pass",
+    "restore_original_fields_and_bytes": true,
+    "copy_unchanged": true,
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  }
+]

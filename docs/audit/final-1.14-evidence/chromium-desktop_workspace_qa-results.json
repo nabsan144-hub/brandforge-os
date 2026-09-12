@@ -1,0 +1,160 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "actual local app",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "Settings",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "My Campaigns",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "Ask BrandForge",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "failed session and reload recovery",
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "state": "actual no-AI generation and historical-artwork canvas bridge",
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "state": "actual local app",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "state": "Settings",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "state": "My Campaigns",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "state": "Ask BrandForge",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "state": "failed session and reload recovery",
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "state": "actual local app",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "state": "Settings",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "state": "My Campaigns",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "state": "Ask BrandForge",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "state": "failed session and reload recovery",
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "state": "actual local app",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "state": "Settings",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "state": "My Campaigns",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "state": "Ask BrandForge",
+    "axe": [],
+    "overflow": false,
+    "errors": []
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "state": "failed session and reload recovery",
+    "errors": []
+  }
+]

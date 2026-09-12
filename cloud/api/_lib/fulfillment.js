@@ -13,7 +13,7 @@ export async function recordDesktopTransaction(sb,data,occurredAt){
  dbCheck(await sb.rpc('record_desktop_order',{p_data:{transaction_id:data.id,customer_id:data.customer_id,email:customer.email.toLowerCase(),tier:match.plan,amount_total:Number(data.details?.totals?.total||0),currency:data.currency_code||'USD',release_path:path,release_sha256:checksum,release_bucket:bucket,occurred_at:occurredAt}}));
  return true;
 }
-export async function deliverDesktopOrder(sb,transactionId){
+export async function deliverDesktopOrder(sb,transactionId,{signal}={}){
  if(!dbCheck(await sb.rpc('claim_desktop_delivery',{p_id:transactionId})))return false;
  try{
   const order=dbCheck(await sb.from('desktop_orders').select('*').eq('transaction_id',transactionId).single());
@@ -28,7 +28,7 @@ export async function deliverDesktopOrder(sb,transactionId){
   // Verify the private release is accessible before sending a dead link.
   dbCheck(await sb.storage.from(order.release_bucket).createSignedUrl(order.release_path,60),'Private release is unavailable.');
   const text=`Thank you for choosing BrandForge OS Desktop ${order.tier==='owner'?'Owner':'Agency + Source'}.\n\nYour order: ${order.transaction_id}\nDownload (valid for 30 days): ${url}\n\nZIP SHA-256: ${checksum}\n\nUnzip the complete folder. On Windows, run SETUP-WINDOWS.bat once while online, then START-HERE.bat to launch. Follow START-HERE.md on macOS/Linux. First-time setup needs an internet connection to install dependencies. After setup, use Offline mode for local generation. Connected providers are optional and may have their own costs.\n\nDesktop is local ownership; it does not include or start a Cloud subscription. Read the included LICENSE for your tier's rights. Keep this email as proof of purchase.\n\nIf a download has expired, use ${base}/download-help or contact support@brandforge-os.com with this order ID. Refunds are reviewed under the published refund policy.\n`;
-  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${env('RESEND_API_KEY')}`,'Content-Type':'application/json','Idempotency-Key':`desktop/${order.transaction_id}/${order.delivery_nonce}`},body:JSON.stringify({from:env('DELIVERY_FROM_EMAIL'),to:[order.email],subject:'Your BrandForge OS Desktop download',text}),signal:AbortSignal.timeout(15000)});
+  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{Authorization:`Bearer ${env('RESEND_API_KEY')}`,'Content-Type':'application/json','Idempotency-Key':`desktop/${order.transaction_id}/${order.delivery_nonce}`},body:JSON.stringify({from:env('DELIVERY_FROM_EMAIL'),to:[order.email],subject:'Your BrandForge OS Desktop download',text}),signal:AbortSignal.any([signal,AbortSignal.timeout(15000)].filter(Boolean))});
   if(!r.ok)throw new Error('Delivery provider rejected the email');
   dbCheck(await sb.from('desktop_orders').update({delivered_at:new Date().toISOString(),delivery_error:null,delivery_claimed_until:null}).eq('transaction_id',transactionId).eq('delivery_nonce',order.delivery_nonce));
   return true;

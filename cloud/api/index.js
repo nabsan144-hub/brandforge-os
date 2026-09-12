@@ -1,3 +1,14 @@
+import generationProgress from './_lib/routes/generation-progress.js';
+import canvas from './_lib/routes/canvas.js';
+import usageMetrics from './_lib/routes/usage-metrics.js';
+import imageRecovery from './_lib/routes/image-recovery.js';
+import transfers from './_lib/routes/transfers.js';
+import review, {manageReview} from './_lib/routes/campaign-review.js';
+import opsStatus from './_lib/routes/ops-status.js';
+import campaignPreview from './_lib/routes/campaign-preview.js';
+import campVisuals from './_lib/routes/camp-visuals.js';
+import capabilities from './_lib/routes/capabilities.js';
+import campAssets from './_lib/routes/camp-assets.js';
 // BrandForge OS Cloud — single Vercel Function for every /api/* endpoint.
 // Routed to ALL /api/* paths by the "/api/(.*)" -> "/api/index.js" rewrite in
 // vercel.json (added after PR #a06486c: the [...slug].js filesystem catch-all
@@ -50,13 +61,21 @@ import deskResend from './_lib/routes/desk-resend.js';
 
 // Exact-path endpoints (same URLs the app and marketing site always called).
 const EXACT = new Map([
+  ['/api/capabilities', capabilities],
   ['/api/health', health],
+  ['/api/ops-status', opsStatus],
   ['/api/maintenance', maintenance],
   ['/api/waitlist', waitlist],
   ['/api/brands', brands],
   ['/api/campaigns', campaigns],
+  ['/api/generation-progress',generationProgress],
+  ['/api/campaign-preview', campaignPreview],
   ['/api/config', config],
   ['/api/feedback', feedback],
+  ['/api/review', review],
+  ['/api/transfers', transfers],
+  ['/api/canvas', canvas],
+  ['/api/usage-metrics', usageMetrics],
   ['/api/me', me],
   ['/api/me/export', meExport],
   ['/api/me/keys', meKeys],
@@ -77,6 +96,10 @@ const EXACT = new Map([
 // specific (deeper) patterns first. Each handler already parses req.url as a
 // fallback; ctx.params is supplied for parity with per-file Vercel routing.
 const DYNAMIC = [
+  [/^\/api\/campaigns\/([^/]+)\/image-recovery$/, 'id', imageRecovery],
+  [/^\/api\/campaigns\/([^/]+)\/review$/, 'id', manageReview],
+  [/^\/api\/campaigns\/([^/]+)\/visuals$/, 'id', campVisuals],
+  [/^\/api\/campaigns\/([^/]+)\/assets$/, 'id', campAssets],
   [/^\/api\/campaigns\/([^/]+)\/deliver$/, 'id', campIdDeliver],
   [/^\/api\/campaigns\/([^/]+)$/, 'id', campId],
 ];

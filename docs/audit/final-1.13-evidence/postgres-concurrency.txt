@@ -1,0 +1,13 @@
+{
+  "postgres": "127.0.0.1",
+  "checks": "PASS",
+  "parallel_campaign_attempts": 120,
+  "completed_exactly": 50,
+  "delete_refunds": 0,
+  "parallel_cost_attempts": 50,
+  "accepted_cost_reservations": 7,
+  "parallel_checkout_attempts": 30,
+  "accepted_checkouts": 1,
+  "seconds": 0.85
+}
+{"canvas_same_request_replays": 24, "distinct_projects": 1, "competing_revisions": 24, "successful_revisions": 1, "forced_free_attribution": true, "browser_role_denied": true}

@@ -1,4 +1,5 @@
 <script>
+  import { prepareCampaignReference } from './campaign-reference.js'
   import { createEventDispatcher, onMount } from 'svelte'
   import { Rocket, Check, Download, Sparkles, Palette, Ruler } from '@lucide/svelte'
   const dispatch = createEventDispatcher()
@@ -13,9 +14,19 @@
   let generateNewLogo = false
   let templates = []
   let selectedTemplate = 'blank'
+  let referenceImage = '', shareImageReferences = false, referenceBusy = false, referenceLoad = 0
+  async function loadReference(event) {
+    const request = ++referenceLoad
+    referenceImage = ''; shareImageReferences = false; referenceBusy = true
+    try { const file = event.target.files?.[0]; if (file) { const prepared = await prepareCampaignReference(file); if (request === referenceLoad) referenceImage = prepared } }
+    catch (e) { if (request === referenceLoad) error = e.message }
+    finally { if (request === referenceLoad) referenceBusy = false }
+  }
+  let noAI = false
   let loading = false
   let result = null
   let error = null
+  let progressText = ''
 
   // NEW: Custom sizes + Branding kit
   let showAdvanced = false
@@ -47,7 +58,7 @@
     productName = template.product_name || productName
     industry = template.industry || industry
     audience = template.target_audience || audience
-    benefits = template.key_benefits || benefits
+    benefits = template.key_benefits ?? ''
   }
 
   function addPreset() {
@@ -87,14 +98,30 @@
     loading = true
     result = null
     error = null
+    const requestId = crypto.randomUUID()
+    let stopped = false, timer
+    const controller = new AbortController()
+    async function poll() {
+      try {
+        const response = await fetch('/api/swarm/progress/' + requestId, {signal: controller.signal})
+        if(response.ok && !stopped) {
+          const data = await response.json()
+          if(!stopped) progressText = Object.entries(data.stages || {}).map(([key, value]) => key + ': ' + value).join(' · ')
+        }
+      } catch { /* Generation may still be running. */ }
+      if(!stopped) timer = setTimeout(poll, 2000)
+    }
+    progressText = 'Waiting for local engine progress. Reference: ' + requestId
+    timer = setTimeout(poll, 500)
     try {
-      const payload = { 
+      const payload = { request_id: requestId, no_ai: noAI, 
         campaign_name: campaignName || `${productName} Campaign`, 
         product_name: productName, 
         industry: industry || 'General', 
         target_audience: audience || 'your customers',
-        key_benefits: benefits || 'Add an approved benefit',
+        key_benefits: benefits.trim(),
         lang,
+        reference_image: referenceImage, share_image_references: shareImageReferences,
         custom_sizes: customSizes, offer, cta, url: destination, generate_new_logo: generateNewLogo
       }
       const res = await fetch('/api/swarm/run', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload) })
@@ -106,20 +133,23 @@
       result = data
       dispatch('campaignCreated')
     } catch (e) {
-      error = e.message
+      error = e.message + ' · Reference: ' + requestId + '. Check History before creating another pack.'
+    } finally {
+      stopped = true; clearTimeout(timer); controller.abort()
     }
+    if(result) progressText = 'Saved. Review the result before publishing. Reference: ' + requestId
     loading = false
   }
 </script>
 
-<div class="rounded-[20px] bg-card border border-line overflow-hidden">
+<div class="rounded-card bg-card border border-line overflow-hidden">
   <div class="p-6 border-b border-line">
     <div class="flex items-center gap-3 mb-1">
       <div class="w-8 h-8 rounded-full bg-gold text-bg flex items-center justify-center"><Rocket class="w-4 h-4" /></div>
-      <h3 class="font-bold text-[15px]">Create Your Campaign</h3>
+      <h2 class="font-bold text-[15px]">Create Your Campaign</h2>
       <span class="ml-auto px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[11px] font-bold">6 STAGES • DRAFTS</span>
     </div>
-    <p class="text-[12px] text-faint">Start with a clear brief, then receive strategy, copy, visual direction, <b class="text-ink">branding kit (logos)</b> and an audit in one campaign pack.</p>
+    <p class="text-[12px] text-faint">Start with a clear brief, then receive strategy, copy, visual direction, <b class="text-ink">branding kit (logos)</b> and SEO suggestions in one reviewable campaign pack.</p>
   </div>
 
   <div class="p-6 space-y-4">
@@ -216,7 +246,7 @@
               <input type="number" bind:value={customHeight} min="50" max="5000" placeholder="Height" aria-label="Custom banner height in pixels" class="w-24 px-3 py-2 rounded-lg border border-line bg-card text-ink text-[12px] outline-none" />
               <button on:click={addCustomSize} class="px-4 py-2 rounded-full border border-line text-[11px] font-bold hover:border-gold/50">Add custom</button>
             </div>
-            <p class="text-[11px] text-faint mt-1">Add up to 10 custom sizes or select from 25+ standard ad presets (Google Display, Meta, LinkedIn, YouTube, X).</p>
+            <p class="text-[11px] text-faint mt-1">Choose up to 21 extra sizes in total using custom dimensions or the listed presets. Review each platform’s current requirements.</p>
           </div>
 
           {#if customSizes.length > 0}
@@ -234,19 +264,29 @@
       {/if}
     </div>
     
-    <button on:click={runSwarm} disabled={loading} class="w-full py-3.5 rounded-full bg-ink text-bg font-bold text-[14px] disabled:opacity-50 hover:opacity-90 hover:translate-y-[-1px] transition-all flex items-center justify-center gap-2">
+    <div class="p-3 rounded-xl border border-line space-y-2">
+      <label class="text-sm block" for="campaign-reference">Product reference (optional PNG/JPEG; Gemini or OpenAI)</label>
+      <input id="campaign-reference" type="file" accept="image/png,image/jpeg" on:change={loadReference} disabled={loading || noAI} class="text-sm max-w-full" />
+      {#if referenceImage}<img src={referenceImage} alt="Prepared product reference" class="max-w-full h-28 object-contain" /><button type="button" on:click={() => { referenceLoad++; referenceImage = ''; shareImageReferences = false; referenceBusy = false }} class="text-sm underline">Remove reference</button>{/if}
+      <label class="flex gap-2 text-sm"><input type="checkbox" bind:checked={shareImageReferences} disabled={loading || noAI || referenceBusy}> I have permission to use these images and consent to sending this reference and my saved approved client logo, if present, to the image provider selected in Settings.</label>
+      <p class="text-[11px] text-faint">Images are prepared locally first. Provider fees and terms apply. Review likeness, packaging, spelling and claims before publishing. Reference sharing is off for no-AI campaigns.</p>
+    </div>
+    <label class="flex items-center gap-2 text-sm"><input id="campaign-no-ai" type="checkbox" bind:checked={noAI} on:change={() => { if (noAI) { referenceLoad++; referenceImage = ''; shareImageReferences = false; referenceBusy = false } }}> Use no AI providers for this campaign (including images and live search)</label>
+    <p class="text-[11px] text-faint">Otherwise, this campaign uses Settings: connected text providers receive the brief and brand context; configured keyed image providers receive design inputs for three AI advertisements. Failed AI artwork is not replaced silently with basic designs. Image lettering is raster; Canvas lets you add editable layers. Live search may share product/industry queries. Stored work remains local, but connected prompts leave this PC.</p>
+    <p class="text-sm text-mut my-3 break-words" role="status" aria-live="polite">{progressText}</p>
+    <button on:click={runSwarm} disabled={loading || referenceBusy} class="w-full py-3.5 rounded-full bg-ink text-bg font-bold text-[14px] disabled:opacity-50 hover:opacity-90 hover:translate-y-[-1px] transition-all flex items-center justify-center gap-2">
       {#if loading}
         <span class="w-4 h-4 border-2 border-bg/30 border-t-bg rounded-full animate-spin"></span>
-        Creating your campaign... (6 stages + branding kit working)
+        Creating your campaign...
       {:else}
-        Create My Campaign → (includes branding kit)
+        Create My Campaign →
       {/if}
     </button>
 
-    <p class="text-[11px] text-center text-faint">Local-first • Offline engine • Branding kit (logos) included • Up to 10 custom sizes</p>
+    <p class="text-[11px] text-center text-faint">Local-first • AI: three advertisement formats • Basic layouts: logo concepts and up to 21 extra sizes</p>
 
     {#if error}
-      <div class="p-3 rounded-xl bg-red-950/30 border border-red-900/50 text-[12px] text-red-300">{error}</div>
+      <div role="alert" class="p-3 rounded-xl bg-card border border-line text-[12px] text-red-300">{error}</div>
     {/if}
 
     {#if result}
@@ -254,24 +294,24 @@
         <div class="flex items-center gap-2 mb-3">
           <span class="w-7 h-7 rounded-full bg-emerald-500 flex items-center justify-center text-bg"><Check class="w-4 h-4" /></span>
           <div class="min-w-0">
-            <b class="text-ink text-[13px] block truncate">{result.campaign_name} Ready!</b>
-            <span class="text-[11px] text-faint">{result.deliverables?.length} files created — includes branding kit {result.meta?.branding_kit ? '✓' : ''} + custom sizes {result.meta?.custom_sizes || 0}</span>
+            <b class="text-ink text-[13px] block truncate">{result.campaign_name} · Draft saved</b>
+            <span class="text-[11px] text-faint">{result.deliverables?.length} files created — {result.meta?.ai_image ? 'three AI advertisement formats with portable Canvas source' : 'basic layouts and brand assets'}</span>
           </div>
           <span class="ml-auto px-2 py-1 rounded-full border text-[11px] font-bold {result.research_live ? 'bg-emerald-500/10 border-emerald-500/30 text-emerald-400' : 'bg-gold/10 border-gold/30 text-gold'}">
-            {result.research_live ? 'LIVE RESEARCH' : 'OFFLINE RESEARCH'}
+            {result.research_live ? 'LIVE RESEARCH' : 'NO LIVE RESEARCH'}
           </span>
         </div>
         {#if result.quality}
           <div class="flex items-center gap-3 mb-3 p-2.5 rounded-lg border {result.quality.status === 'ready_for_internal_review' ? 'bg-emerald-500/5 border-emerald-500/30' : 'bg-amber-500/5 border-amber-500/30'}">
             <span class="text-[22px] font-extrabold leading-none {result.quality.status === 'ready_for_internal_review' ? 'text-emerald-300' : 'text-amber-300'}">{result.quality.score}<span class="text-[11px] text-faint font-semibold">/100</span></span>
             <div class="text-[11px] leading-snug min-w-0">
-              <b class="text-ink block">Quality {result.quality.status === 'ready_for_internal_review' ? '— ready for internal review' : '— needs revision before review'}</b>
-              <span class="text-faint">{result.claim_review?.warning_count || 0} claim-guard warning{(result.claim_review?.warning_count || 0) === 1 ? '' : 's'} · review claims before publishing</span>
+              <b class="text-ink block">Automated draft checks {result.quality.status === 'ready_for_internal_review' ? '— ready for internal review' : '— needs revision before review'}</b>
+              <span class="text-faint">{result.claim_review?.warning_count || 0} claim-guard warning{(result.claim_review?.warning_count || 0) === 1 ? '' : 's'} · review claims before publishing; not an aesthetic or sales-quality score</span>
             </div>
           </div>
         {/if}
         {#if result.provider === 'offline'}
-          <p class="text-[11px] text-amber-300/90 bg-amber-500/5 border border-amber-500/20 rounded-lg p-2.5 mb-3 leading-relaxed">Offline template mode = private, draft-quality output. For production quality, connect a free Groq or Gemini key in Settings — your data stays on your PC either way.</p>
+          <p class="text-[11px] text-amber-300/90 bg-amber-500/5 border border-amber-500/20 rounded-lg p-2.5 mb-3 leading-relaxed">Offline template text is draft content without a text-model charge. Connected providers receive your brief and brand context; their terms and fees apply. Every result needs review. Text and image settings are separate.</p>
         {/if}
         <div class="grid grid-cols-3 gap-2 mb-3">
           {#each result.deliverables || [] as file}

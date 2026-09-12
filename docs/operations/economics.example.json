@@ -1,0 +1,12 @@
+{
+  "revenue_usd": 49,
+  "completed_packs": 50,
+  "cost_per_pack_usd": 0.10,
+  "payment_fee_usd": 2,
+  "hosting_usd": 3,
+  "support_hours": 0.5,
+  "support_hourly_usd": 10,
+  "acquisition_usd": 5,
+  "refund_fraction": 0.05,
+  "maintenance_reserve_usd": 2
+}

@@ -169,9 +169,9 @@ class MCPRegistry:
 
     def _tool_generate_copy(self, product: str, benefits: str, audience: str) -> Dict:
         product = _clean_text(product, 80) or "Your product"
-        benefits = _clean_text(benefits, 200) or "quality, value"
+        benefits = _clean_text(benefits, 200) or "Details to review"
         audience = _clean_text(audience, 80) or "your audience"
-        parts = [b.strip() for b in re.split(r"[,;\n]+", benefits) if b.strip()] or ["quality"]
+        parts = [b.strip() for b in re.split(r"[,;\n]+", benefits) if b.strip()] or ["Details to review"]
         b1, b2 = parts[0], parts[1] if len(parts) > 1 else parts[0]
         copy_text = f"""**AIDA Ad for {product}:**
 Attention: Still comparing {audience} options and second-guessing?
@@ -192,9 +192,9 @@ Body: Founder — here is a concise look at {product}: {b1} and {b2}. Add the ve
 
     def _tool_email_sequence(self, product: str, benefits: str, audience: str) -> Dict:
         product = _clean_text(product, 80) or "Your product"
-        benefits = _clean_text(benefits, 200) or "quality"
+        benefits = _clean_text(benefits, 200) or "Details to review"
         audience = _clean_text(audience, 80) or "your audience"
-        b = benefits.split(",")[0].strip() or "quality"
+        b = benefits.split(",")[0].strip() or "Details to review"
         seq = [
             {"day": 1, "subject": f"A clearer look at {product}", "body": f"Introduce {product} and the approved benefit: {b}. Add the correct welcome details and reply address before sending."},
             {"day": 3, "subject": f"How to compare {audience} options", "body": f"Explain the decision your audience is making and show how to evaluate {b}. Replace this draft with verified product details."},

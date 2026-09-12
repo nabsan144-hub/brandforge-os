@@ -1,0 +1,13 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/private-versions.test.js
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/private-versions.test.js (9 tests) 3622ms
+
+ Test Files  1 passed (1)
+      Tests  9 passed (9)
+   Start at  04:05:05
+   Duration  4.23s (transform 232ms, setup 0ms, import 471ms, tests 3.62s, environment 0ms)

@@ -12,20 +12,20 @@ function boolOf(x) {
  if(x && typeof x==='object' && Object.keys(x).length===1) return boolOf(Object.values(x)[0]);
  throw new Error('Invalid limiter result');
 }
-export async function rateLimit(bucket,key,limit,windowSec) {
+export async function rateLimit(bucket,key,limit,windowSec,{signal}={}) {
  if(!RATE_ENABLED()) throw new HttpError(503,'Rate protection is not configured. Please try later.','RATE_UNAVAILABLE');
  // Do not retain raw client IPs or email addresses in rate-limit tables.
  const hash=createHash('sha256').update(String(key)).digest('hex');
  try {
   if(!up()) {
-   const {data,error}=await admin().rpc('bf_rate_limit',{bucket,key:hash,lim:limit,win:windowSec});
+   const {data,error}=await admin({signal}).rpc('bf_rate_limit',{bucket,key:hash,lim:limit,win:windowSec});
    if(error) throw error;
    return boolOf(data);
   }
   const script="local n=redis.call('INCR',KEYS[1]); if n==1 then redis.call('EXPIRE',KEYS[1],ARGV[1]) end; return n";
   const r=await fetch(process.env.UPSTASH_REDIS_REST_URL.replace(/\/+$/,''),{
    method:'POST',headers:{Authorization:`Bearer ${process.env.UPSTASH_REDIS_REST_TOKEN}`,'Content-Type':'application/json'},
-   body:JSON.stringify(['EVAL',script,1,`bf:${bucket}:${hash}`,String(windowSec)]),signal:AbortSignal.timeout(5000)
+   body:JSON.stringify(['EVAL',script,1,`bf:${bucket}:${hash}`,String(windowSec)]),signal:AbortSignal.any([signal,AbortSignal.timeout(5000)].filter(Boolean))
   });
   if(!r.ok) throw new Error('Limiter unavailable');
   const value=(await r.json()).result;

@@ -1,0 +1,26 @@
+cd /d "D:\My creations\AI agent\Brandforge os\BrandForgeOS"
+git status
+REM STOP if this is not an existing clone. See OWNER-HANDOFF.md for fresh-clone instructions.
+
+git config user.name "nabsan144-hub"
+git config user.email "296047257+nabsan144-hub@users.noreply.github.com"
+git remote -v
+REM If origin exists:
+git remote set-url origin https://github.com/nabsan144-hub/brandforge-os.git
+REM If origin does not exist, use this instead of set-url:
+REM git remote add origin https://github.com/nabsan144-hub/brandforge-os.git
+
+git switch -c delivery/brandforge-1.13.0
+git add -A
+git diff --cached --stat
+git diff --cached
+REM STOP if private keys, .env, customer files, native build output or unrelated deletions appear.
+REM Continue only after reviewing every staged change:
+git commit -m "Deliver 1.13.0 reviewed workflows and explicit remaining acceptance gates"
+git push -u origin delivery/brandforge-1.13.0
+
+REM Open a pull request from delivery/brandforge-1.13.0 to the repository's normal deployment branch.
+REM Review CI and staging. Do not force-push or activate payments automatically.
+REM If that delivery branch already exists locally, pick a new branch name or switch to it deliberately.
+REM If starting from git init against an existing remote, clone the remote into a clean backup location
+REM first and apply these complete source files there, preserving shared history instead of forcing it.

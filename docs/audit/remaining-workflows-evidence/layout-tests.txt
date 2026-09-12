@@ -1,0 +1,14 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/private-versions.test.js tests/vector-corrections.test.js
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/vector-corrections.test.js (23 tests) 3935ms
+ ✓ tests/private-versions.test.js (6 tests) 3630ms
+
+ Test Files  2 passed (2)
+      Tests  29 passed (29)
+   Start at  18:58:11
+   Duration  8.61s (transform 294ms, setup 0ms, import 740ms, tests 7.57s, environment 2ms)

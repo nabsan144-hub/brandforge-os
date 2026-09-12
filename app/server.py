@@ -13,12 +13,14 @@ FastAPI server — honest features, real gating, local-first.
 import json
 import os
 from modules.runtime_paths import dashboard_dir
+from modules import generation_progress
+from modules.ai_campaign import ArtworkGenerationError, ArtworkConfigurationError
 import re
 import threading
 import difflib
 import functools
 import time
-from contextlib import nullcontext as _nullcontext
+from contextlib import nullcontext as _nullcontext, asynccontextmanager
 from datetime import datetime
 from typing import Optional, Dict, Any, List
 from urllib.parse import urlparse
@@ -54,7 +56,22 @@ FREE_CAMPAIGN_LIMIT = 3  # kept: referenced by cloud quota documentation
 # app/pyproject.toml and the CHANGELOG top entry at each release).
 from version_info import __version__
 
-app = FastAPI(
+@asynccontextmanager
+async def application_lifespan(app):
+    maintenance = None
+    if os.environ.get('BRANDFORGE_DAEMON', '0') == '1':
+        from daemon import BrandForgeDaemon
+        maintenance = BrandForgeDaemon()
+        if not maintenance.start():
+            raise RuntimeError('Requested local maintenance could not start. Check scheduler installation and logs.')
+    try:
+        yield
+    finally:
+        if maintenance is not None:
+            maintenance.stop()
+
+
+app = FastAPI(lifespan=application_lifespan,
     title="BrandForge OS - The Marketing OS",
     description="Your offline marketing department. 6-stage pipeline, local-first, owned forever.",
     version=__version__,
@@ -214,6 +231,90 @@ _CSRF_CHECK_DISABLED = False
 from modules.local_security import LocalSecurityMiddleware, local_capability
 _LOCAL_CAPABILITY = local_capability()
 app.add_middleware(LocalSecurityMiddleware, capability=_LOCAL_CAPABILITY)
+
+@app.get("/canvas/")
+@app.get("/canvas/{asset}")
+def canvas_assets(asset: str = "index.html"):
+    if asset not in {"index.html", "editor.js", "model.js", "style.css", "image-dimensions.js", "import-image.js", "launch.js", "semantic-tokens.css", "ui-font.woff2"}:
+        raise HTTPException(404, "Canvas asset not found")
+    return FileResponse(os.path.join(os.path.dirname(__file__), "brandforge_assets", "canvas", asset), headers={"Cache-Control":"no-store","X-Robots-Tag":"noindex"})
+
+
+@app.api_route("/api/canvas", methods=["GET", "POST", "DELETE"])
+async def canvas_projects(request: Request, id: str = ""):
+    from modules.canvas_projects import CanvasStore
+    _, pm, _, _ = get_core()
+    store = CanvasStore(pm.base_dir)
+    try:
+        if request.method == "GET":
+            return store.read(id) if id else {"projects": store.list(), "attribution_required": not bool(get_license_state().get("licensed"))}
+        if request.method == "DELETE":
+            store.delete(id)
+            return {"ok": True}
+        raw = bytearray()
+        async for chunk in request.stream():
+            if len(raw) + len(chunk) > 1050000:
+                raise HTTPException(413, "Canvas request exceeds 1 MB")
+            raw.extend(chunk)
+        return store.save(json.loads(raw))
+    except FileNotFoundError as exc:
+        raise HTTPException(404, "Canvas not found") from exc
+    except (ValueError, TypeError, AttributeError) as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@app.get("/transfer")
+@app.get("/transfer.js")
+@app.get("/portable-pack.js")
+@app.get("/review.css")
+def transfer_assets(request: Request):
+    name = "transfer.html" if request.url.path == "/transfer" else request.url.path.rsplit("/", 1)[-1]
+    return FileResponse(os.path.join(os.path.dirname(__file__), "brandforge_assets", "transfer", name), headers={"Cache-Control": "no-store", "X-Robots-Tag": "noindex"})
+
+
+@app.get("/api/transfers")
+def list_transfers(id: str = "", campaign: str = "", core: bool = False):
+    from modules.portable_pack import ArchiveStore, export_campaign, NOTICE
+    _, pm, _, _ = get_core()
+    try:
+        store = ArchiveStore(pm.base_dir)
+        if campaign:
+            return {"pack": export_campaign(pm, campaign, core), "notice": NOTICE}
+        return {"pack": store.read(id), "notice": NOTICE} if id else {"archives": store.list(), "notice": NOTICE}
+    except FileNotFoundError:
+        raise HTTPException(404, "Archive or campaign not found") from None
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@app.post("/api/transfers")
+async def import_transfer(request: Request):
+    from modules.portable_pack import ArchiveStore, NOTICE
+    raw = bytearray()
+    async for chunk in request.stream():
+        raw.extend(chunk)
+        if len(raw) > 3_100_000:
+            raise HTTPException(413, "Portable import exceeds 3 MB")
+    try:
+        body = json.loads(raw)
+        if not isinstance(body, dict) or body.get("consent") is not True:
+            raise ValueError("Confirm permission to store the archive")
+        _, pm, _, _ = get_core()
+        return {**ArchiveStore(pm.base_dir).save(body.get("pack"), body.get("request_id")), "notice": NOTICE}
+    except (ValueError, TypeError) as exc:
+        raise HTTPException(400, str(exc)) from exc
+
+
+@app.delete("/api/transfers")
+def delete_transfer(id: str):
+    from modules.portable_pack import ArchiveStore
+    _, pm, _, _ = get_core()
+    try:
+        ArchiveStore(pm.base_dir).delete(id)
+        return {"ok": True}
+    except ValueError as exc:
+        raise HTTPException(400, str(exc)) from exc
+
 
 @app.get("/api/session")
 def local_browser_session():
@@ -401,11 +502,15 @@ class BannerSize(BaseModel):
 
 
 class SwarmRequest(BaseModel):
+    reference_image: str = Field("", max_length=330000)
+    share_image_references: bool = False
+    no_ai: bool = False
+    request_id: Optional[str] = Field(None, pattern=r"^[0-9a-fA-F]{8}-(?:[0-9a-fA-F]{4}-){3}[0-9a-fA-F]{12}$")
     campaign_name: str = Field(..., min_length=1, max_length=80)
     product_name: str = Field(..., min_length=1, max_length=80)
     industry: str = Field("General", max_length=80)
     target_audience: str = Field("your customers", max_length=120)
-    key_benefits: str = Field("High quality", max_length=500)
+    key_benefits: str = Field("", max_length=500)
     client_id: Optional[str] = Field("default", max_length=40)
     lang: Optional[str] = Field("en", max_length=5, description="Campaign language: en, hi, ur, es, pt")
     tier: Optional[str] = Field(None, max_length=20, description="Ignored — tier is license-derived, not client-declared")
@@ -815,6 +920,14 @@ async def swarm_chat_stream(req: SwarmChatRequest, request: Request):
                              headers={"Cache-Control": "no-cache",
                                       "X-Accel-Buffering": "no"})
 
+@app.get("/api/swarm/progress/{request_id}")
+def swarm_progress(request_id: str):
+    result = generation_progress.read(request_id)
+    if not result:
+        raise HTTPException(status_code=404, detail="Request not found or expired")
+    return result
+
+
 @app.post("/api/swarm/run")
 def run_swarm(req: SwarmRequest, request: Request):
     client_ip = request.client.host if request.client else "unknown"
@@ -823,6 +936,10 @@ def run_swarm(req: SwarmRequest, request: Request):
 
     _, pm, cm, _ = get_core()
     eng = request_engine()
+    if req.no_ai:
+        eng.provider = "offline"
+        eng.model = "smart-offline-engine"
+        eng.api_key = ""
 
     # Tier gating — license-derived, NOT client-declared. The check-then-create
     # window is serialized for the free tier with a module lock held across the
@@ -841,6 +958,10 @@ def run_swarm(req: SwarmRequest, request: Request):
     if not cm.get_client(client_id):
         raise HTTPException(status_code=404, detail="Client not found")
 
+    try:
+        job_id = generation_progress.start(req.request_id)
+    except ValueError as exc:
+        raise HTTPException(status_code=409, detail=str(exc)) from exc
     try:
         with _gate:
             if free_gate:
@@ -865,7 +986,11 @@ def run_swarm(req: SwarmRequest, request: Request):
                 lang=req.lang or "en", custom_sizes=[size.model_dump() for size in req.custom_sizes],
                 offer=_safe_text(req.offer, 200), cta=_safe_text(req.cta, 40), url=req.url,
                 generate_new_logo=req.generate_new_logo,
+                reference_image=req.reference_image, share_image_references=req.share_image_references,
+                allow_ai_image=False if req.no_ai else None,
+                on_progress=lambda stage, state: generation_progress.update(job_id, stage, state),
             )
+            generation_progress.update(job_id, "packaging", "running")
             out_dir = pm.save_campaign(safe_campaign, result["strategy_data"], result["copy_data"],
                                        result["visual_files"], client_id=client_id,
                                        analysis_data=result.get("analysis_data", {}),
@@ -884,7 +1009,10 @@ def run_swarm(req: SwarmRequest, request: Request):
             except OSError:
                 deliverables = list(result["visual_files"].keys())
 
+        generation_progress.update(job_id, "packaging", "complete")
+        generation_progress.finish(job_id, "completed")
         return {
+            "request_id": job_id,
             "campaign_name": safe_campaign,
             "product": result["strategy_data"]["product_name"],
             "status": "completed",
@@ -894,6 +1022,7 @@ def run_swarm(req: SwarmRequest, request: Request):
             "research_live": result["meta"].get("research_live", False),
             # Phase 4: surface trust signals AT generation completion, not
             # only inside the campaign detail view.
+            "meta": result.get("meta", {}),
             "provider": result["meta"].get("provider", eng.provider),
             "quality": (result.get("analysis_data") or {}).get("quality_score"),
             "claim_review": (result.get("analysis_data") or {}).get("claim_review"),
@@ -910,10 +1039,18 @@ def run_swarm(req: SwarmRequest, request: Request):
             },
             "timestamp": datetime.now().isoformat(),
         }
+    except ArtworkConfigurationError as e:
+        generation_progress.finish(job_id, "failed")
+        raise HTTPException(status_code=400, detail=str(e)) from e
+    except ArtworkGenerationError as e:
+        generation_progress.finish(job_id, "failed")
+        raise HTTPException(status_code=502, detail=str(e)) from e
     except HTTPException:
+        generation_progress.finish(job_id, "failed")
         raise
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Swarm failed: {str(e)[:300]}") from e
+        generation_progress.finish(job_id, "failed")
+        raise HTTPException(status_code=500, detail=f"Campaign failed. Check History before retrying. Support reference: {job_id}") from e
 
 @app.get("/api/campaigns")
 def list_campaigns():
@@ -1495,6 +1632,8 @@ def update_settings(req: SettingsRequest):
                 if chosen not in IMAGE_PROVIDERS or len(req.image_api_key.strip())<8 or any(c in req.image_api_key for c in ('\r','\n','\0')):
                     raise HTTPException(400, 'Choose an image provider and enter a valid key.')
                 keys[IMAGE_PROVIDERS[chosen]['env']]=req.image_api_key.strip()
+            if chosen in IMAGE_PROVIDERS and not req.image_api_key and not current.has_key(chosen):
+                raise HTTPException(400, 'This image provider needs its own API key. Choose Basic layouts to use no image provider.')
             image_result={'image_provider':chosen,'image_model':image_model}
             changes.update(image_result)
         if not eng.update_configuration(changes,keys):
@@ -1596,18 +1735,6 @@ async def websocket_endpoint(websocket: WebSocket):
 if __name__ == "__main__":
     import argparse
     import uvicorn
-
-    # Opt-in background daemon (heartbeat + daily summary + memory rotation).
-    # Was dead code — nothing ever started it.
-    if os.environ.get("BRANDFORGE_DAEMON", "0") == "1":
-        try:
-            try:
-                from daemon import BrandForgeDaemon
-            except ImportError:
-                from daemon import VanguardDaemon as BrandForgeDaemon
-            BrandForgeDaemon().start()
-        except Exception as e:
-            print(f"daemon unavailable: {e}")
 
     parser = argparse.ArgumentParser(description="BrandForge OS server")
     parser.add_argument("--host", default="127.0.0.1",

@@ -36,7 +36,7 @@ def test_real_swarm_api_honors_dimensions_logo_and_new_text_revision(client):
     png=client.get(f'/api/campaigns/{name}/files/{png_name}')
     image=Image.open(io.BytesIO(png.content)).convert('RGB')
     assert image.size==(300,250)
-    assert sum(1 for r,g,b in image.getdata() if r>240 and g<20 and 150<b<190)>10
+    assert sum(1 for r,g,b in (image.get_flattened_data() if hasattr(image, 'get_flattened_data') else image.getdata()) if r>240 and g<20 and 150<b<190)>10
     landing=client.get(f'/api/campaigns/{name}/files/landing_page.html').text
     assert 'data:image/png;base64,' in landing
     document=client.get(f'/api/campaigns/{name}/export.docx')
@@ -150,3 +150,19 @@ def test_embedded_music_policy_is_limited_to_marketing(client):
     assert "frame-ancestors 'none'" in tour.headers['content-security-policy']
     api = client.get('/api/session')
     assert "media-src 'self' data:" not in api.headers['content-security-policy']
+
+
+def test_opted_in_maintenance_uses_asgi_lifecycle(monkeypatch):
+    from unittest.mock import Mock
+    import daemon
+    import server
+    from fastapi.testclient import TestClient
+    maintenance = Mock()
+    maintenance.start.return_value = True
+    maintenance.stop.return_value = True
+    monkeypatch.setattr(daemon, 'BrandForgeDaemon', lambda: maintenance)
+    monkeypatch.setenv('BRANDFORGE_DAEMON', '1')
+    with TestClient(server.app):
+        maintenance.start.assert_called_once()
+        maintenance.stop.assert_not_called()
+    maintenance.stop.assert_called_once()

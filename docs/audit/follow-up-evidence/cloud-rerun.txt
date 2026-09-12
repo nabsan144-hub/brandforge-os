@@ -1,0 +1,150 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/user/repo/cloud[39m
+
+ [32m✓[39m tests/engine.test.js [2m([22m[2m11 tests[22m[2m)[22m[33m 6262[2mms[22m[39m
+     [33m[2m✓[22m[39m retains successful provider stages if one request fails [33m 4508[2mms[22m[39m
+     [33m[2m✓[22m[39m backoff retries a 429 and binds the generated headline into every banner [33m 1547[2mms[22m[39m
+ [32m✓[39m tests/private-assets.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 5050[2mms[22m[39m
+   [33m[2m✓[22m[39m operator recovery writes oversized legacy bytes privately without mutation or overwriting a backup [33m 431[2mms[22m[39m
+ [32m✓[39m tests/delivery-queue.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3194[2mms[22m[39m
+ [32m✓[39m tests/billing.test.js [2m([22m[2m18 tests[22m[2m)[22m[33m 4414[2mms[22m[39m
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mpersists the order when email fails and safely retries delivery
+[22m[39mPaddle processing needs retry evt_2f393d505f184958b7b0d54dec DELIVERY_PENDING
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mbinds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+[22m[39mPaddle processing needs retry evt_946157ccb05b468faeb8f2648e REQUEST_FAILED
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mkeeps an unsuccessful event retryable after a database failure
+[22m[39mPaddle processing needs retry evt_a7cc33d332f2499d80b52a866a DATABASE_UNAVAILABLE
+
+ [32m✓[39m tests/paddle-webhook.test.js [2m([22m[2m8 tests[22m[2m)[22m[33m 3320[2mms[22m[39m
+ [32m✓[39m tests/campaigns.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 3434[2mms[22m[39m
+ [32m✓[39m tests/me-export.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3014[2mms[22m[39m
+ [32m✓[39m tests/database.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 4628[2mms[22m[39m
+ [32m✓[39m tests/id.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 4665[2mms[22m[39m
+ [32m✓[39m tests/me.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3136[2mms[22m[39m
+ [32m✓[39m tests/dashboard-a11y.test.js [2m([22m[2m5 tests[22m[2m)[22m[33m 1350[2mms[22m[39m
+     [33m[2m✓[22m[39m has zero axe violations (color-contrast disabled for jsdom) [33m 1073[2mms[22m[39m
+ [32m✓[39m tests/watermark-payload.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 333[2mms[22m[39m
+ [32m✓[39m tests/editorial-vector.test.js [2m([22m[2m37 tests[22m[2m)[22m[32m 264[2mms[22m[39m
+ [32m✓[39m tests/readiness-regressions.test.js [2m([22m[2m12 tests[22m[2m)[22m[32m 275[2mms[22m[39m
+ [32m✓[39m tests/scene-image.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 282[2mms[22m[39m
+ [32m✓[39m tests/i18n.test.js [2m([22m[2m15 tests[22m[2m)[22m[32m 128[2mms[22m[39m
+ [32m✓[39m tests/golden-i18n.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 119[2mms[22m[39m
+ [32m✓[39m tests/quota.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m tests/golden-en.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 60[2mms[22m[39m
+ [32m✓[39m tests/capabilities.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 48[2mms[22m[39m
+[90mstderr[2m | tests/waitlist.test.js[2m > [22m[2mwaitlist endpoint[2m > [22m[2mreturns 501 with an actionable message when the waitlist table is missing
+[22m[39mwaitlist upsert failed relation "public.waitlist" does not exist
+
+ [32m✓[39m tests/waitlist.test.js [2m([22m[2m7 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m tests/dispatcher.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 30[2mms[22m[39m
+ [32m✓[39m tests/final-hardening.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 40[2mms[22m[39m
+ [32m✓[39m tests/keys.test.js [2m([22m[2m18 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m tests/deliver.test.js [2m([22m[2m17 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m tests/vendor.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/limit.test.js [2m([22m[2m6 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/schema.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/allowance.test.js [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/dashboard-contrast.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/clientip.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Errors [49m[22m[31m⎯⎯⎯⎯⎯⎯[39m
+[31m[1m
+Vitest caught 6 unhandled errors during the test run.
+This might cause false positive tests. Resolve unhandled errors to make sure your tests are not affected.[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Unhandled Error [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+[31m[1mError[22m: [vitest-pool]: Worker forks emitted error.[39m
+[90m [2m❯[22m EventEmitter.onTaskError node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3526:21[22m[39m
+[90m [2m❯[22m EventEmitter.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3092:22[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m[1mCaused by: Error[22m: Worker exited unexpectedly[39m
+[90m [2m❯[22m ChildProcess.emitUnexpectedExit node_modules/vitest/dist/chunks/cli-api.CnMVyzaz.js:[2m3090:33[22m[39m
+[90m [2m❯[22m ChildProcess.emit node:events:[2m524:28[22m[39m
+[90m [2m❯[22m Process.ChildProcess._handle.onexit node:internal/child_process:[2m293:12[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[39m
+
+
+[2m Test Files [22m [1m[32m31 passed[39m[22m[90m (37)[39m
+[2m      Tests [22m [1m[32m328 passed[39m[22m[90m (380)[39m
+[2m     Errors [22m [1m[31m6 errors[39m[22m
+[2m   Start at [22m 16:41:43
+[2m   Duration [22m 72.79s[2m (transform 879ms, setup 0ms, import 6.37s, tests 44.23s, environment 5ms)[22m

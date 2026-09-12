@@ -78,16 +78,11 @@ console.log('RESULT: escaped-quote ✓ (no literal backslash-quotes in attribute
 // Catches the 3.4:1 amber-on-paper regression an external review found.
 {
   const css = fs.readFileSync(path.join(dir, 'assets', 'theme.css'), 'utf8');
-  const light = css.match(/\[data-theme="light"\]\s*\{([\s\S]*?)\n\}/);
+  const tokens = JSON.parse(fs.readFileSync(path.join(dir,'../shared/design-tokens.json'),'utf8'));
+  const generated = fs.readFileSync(path.join(dir,'assets/semantic-tokens.css'),'utf8');
   const must = (cond, msg) => { if (!cond) { console.error('RESULT: light-gold-contrast ✗ — ' + msg); process.exit(1); } };
-  must(light, 'light theme block not found in theme.css');
-  const varOf = (name) => {
-    const m = light[1].match(new RegExp('--' + name + '\\s*:\\s*#?([0-9A-Fa-f]{6})'));
-    must(m, `--${name} missing from light theme block`);
-    return m[1].toUpperCase();
-  };
-  const goldText = varOf('gold-text');
-  const goldInk = varOf('gold-ink');
+  must(generated.includes('--gold-text:var(--bf-accent)'), 'canonical gold text alias missing');
+  const goldText = tokens.light.accent.slice(1);
   const lum = (hex) => {
     const [r, g, b] = [0, 2, 4].map((i) => parseInt(hex.slice(i, i + 2), 16) / 255);
     const f = (v) => (v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4));

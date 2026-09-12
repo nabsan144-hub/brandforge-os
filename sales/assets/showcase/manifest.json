@@ -1,0 +1,24 @@
+{
+  "schema": 1,
+  "provenance": "AI-assisted fictional concepts created separately from BrandForge. Not output from the current BrandForge application or a verified customer integration. Product details can differ between concepts. No customer results or performance claims.",
+  "files": [
+    {
+      "name": "crunch-portrait.jpg",
+      "width": 928,
+      "height": 1152,
+      "sha256": "1feaace950f4db03d8037dd75779baffa6a3e750c1da5a63c188e904cd9cd65e"
+    },
+    {
+      "name": "crunch-landscape.jpg",
+      "width": 1376,
+      "height": 768,
+      "sha256": "dbcac4d17f66b8eab1dfadc66248b5bc5b8612c4d25baf69a5550e3cd118d8fb"
+    },
+    {
+      "name": "crunch-story.jpg",
+      "width": 768,
+      "height": 1376,
+      "sha256": "6ce43b039c725d63a69d08eab890812250534d5b443a85877a45607a2ab7c649"
+    }
+  ]
+}
