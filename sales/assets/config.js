@@ -39,7 +39,7 @@ window.BRANDFORGE_LAUNCH = {
   founder: {
     name: 'Nabeel Ali',
     role: 'Founder, BrandForge OS — also builds CopyForge AI',
-    blurb: 'Brand designer — 12+ years, 50+ brands across 8 countries. Same standard here: honest output, nothing invented.',
+    blurb: 'Building a reviewable campaign workspace for small businesses and marketers.',
     email: '',        // optional direct email; falls back to support@
     linkedin: 'https://www.linkedin.com/in/nabeel-ali-ops/'
   },
@@ -49,6 +49,7 @@ window.BRANDFORGE_LAUNCH = {
   //    enable this, ALSO add the provider origin to script-src + connect-src
   //    in sales/_headers (and any Vercel/Cloudflare header config), or CSP
   //    will block the script.
+  first_party_metrics_enabled: false,
   analytics: {
     provider: '',    // 'plausible' | 'umami'
     domain: '',      // 'brandforge-os.com' (plausible) or umami website ID
@@ -77,6 +78,7 @@ window.BRANDFORGE_LAUNCH = {
   get paddleReady() {
     return this.desktop_checkout_enabled === true;
   },
+  // Legacy metadata only. availability.js + server readiness own CTA state.
   configuredTiers() {
     const out = [];
     for (const n of ['owner','agency_source']) {

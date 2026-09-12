@@ -3,8 +3,8 @@
 ## Shipping local implementation contracts
 
 - **Cloud:** Free 3 lifetime; Pro 50/UTC calendar month, max 20/day; Agency proposed 300/month, max 50/day. Pro/Agency 2 concurrent runs. Completed usage is not restored by content deletion. Per-run model output caps and conservative operator budget reservations apply.
-- Three independently reported text stages, language instructions/checks, partial-result preservation, template fallback disclosure. No live SEO audit or AI image generation in Cloud.
-- Reusable brands (100/account), approved-logo composition, saved text revisions (last 10), search/paged history, copy actions, SVG/PNG/JPEG/ZIP export and paged account export. A text edit does not regenerate an image.
+- Three independently reported text stages, language instructions/checks, partial-result preservation, template fallback disclosure. No live SEO audit. Optional, explicitly opted-in Cloud AI hero imagery is implemented subject to provider/budget/configuration gates; resized banners remain vector-only.
+- Reusable brands (100/account), approved-logo composition, saved text revisions (last 10), search/paged history, copy actions, SVG/PNG/JPEG/ZIP export and paged account export. A text edit does not automatically regenerate an image. Default-off supported inline vector corrections and version-specific visual-review acknowledgments are documented in Phases 5A–6A.
 - **Desktop:** local review pipeline, validated custom dimensions, approved logos, retained drafts on incomplete refinement, editable new revisions, native Word/Unicode PDF and raster/vector outputs. No online activation in normal local mode.
 - Geometric logo concepts are visibly distinct **templates**, not unique/trademark-cleared identities. Small canvases omit secondary text and may use an abbreviated headline; full text stays in the copy file.
 - Original English/localized goldens were intentionally replaced: relevant customer-product copy and “not measured” SEO suggestions supersede marketing-software boilerplate and the fixed 78/100 score.

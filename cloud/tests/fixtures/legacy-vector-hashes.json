@@ -1,0 +1,405 @@
+{
+  "baseline": "46d4b27",
+  "cases": [
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": true,
+        "width": 1200,
+        "height": 630
+      },
+      "sha256": "b50937592d44a55a5c9245158648c0a3725774815cbc567155cb1958f8d1aeaa"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": true,
+        "width": 1080,
+        "height": 1920
+      },
+      "sha256": "a39efe03e052ba46c93ef20adb2a0dbe8fdc2097de2f4e9ada5ab8665b6bddd2"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": true,
+        "width": 300,
+        "height": 250
+      },
+      "sha256": "41eb8afe5fc0e81ad0b6e540d90420b723e319febcaf9b534b14d16668311cd8"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": true,
+        "width": 320,
+        "height": 50
+      },
+      "sha256": "0c849f56433b55051b5a2778b3f9be0f922bbab3387720f84b7a3eacbf0980f7"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": true,
+        "width": 50,
+        "height": 50
+      },
+      "sha256": "e18510c41edc9a33662140ca98081ac74ebe5bc052bca98e32a1d8792d12bd63"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": false,
+        "width": 1200,
+        "height": 630
+      },
+      "sha256": "05132cd4b9114acf6d856d40822501a4b1a4e72e7e08d07f61fc3f8749eccd63"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": false,
+        "width": 1080,
+        "height": 1920
+      },
+      "sha256": "2c03ff237bed422da438b744c3ce177daf9b65c149e5417a26eaa7a62a34c7d4"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": false,
+        "width": 300,
+        "height": 250
+      },
+      "sha256": "a1a0f321a3b763868807ec9d8bc66e115f65c30814904f71fac5129132cd5da0"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": false,
+        "width": 320,
+        "height": 50
+      },
+      "sha256": "559543ea39c076a2673ea0ac510cdceb1b30eb10baf0ef796c9068a57444d762"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "bold",
+        "watermark": false,
+        "width": 50,
+        "height": 50
+      },
+      "sha256": "451578b4229033a55497d2ec58b15b4db8c52c7b94b40f38313514d2f912d576"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": true,
+        "width": 1200,
+        "height": 630
+      },
+      "sha256": "29a12dfee7f70386fafa101c489e6b061f259f57136502c55e17e31d2d8aceca"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": true,
+        "width": 1080,
+        "height": 1920
+      },
+      "sha256": "8cb379c80a139da6cf0d126d6375dafe0432874b092ee4c4f35c76281c017c33"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": true,
+        "width": 300,
+        "height": 250
+      },
+      "sha256": "6387c65e7741d247717e373cd1d155cf63d3f3dc37af25f129b2ec7c20c4a7c0"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": true,
+        "width": 320,
+        "height": 50
+      },
+      "sha256": "0c849f56433b55051b5a2778b3f9be0f922bbab3387720f84b7a3eacbf0980f7"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": true,
+        "width": 50,
+        "height": 50
+      },
+      "sha256": "e18510c41edc9a33662140ca98081ac74ebe5bc052bca98e32a1d8792d12bd63"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": false,
+        "width": 1200,
+        "height": 630
+      },
+      "sha256": "627bad1fd1720897843b79f6468721d1120812a58e3861d4f28ac5e199d34490"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": false,
+        "width": 1080,
+        "height": 1920
+      },
+      "sha256": "1f862dc5363be35580107d8e17b6c40e58afcfdd25e0305fe51ac58aea3f1057"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": false,
+        "width": 300,
+        "height": 250
+      },
+      "sha256": "d0d971d6fc16d148fa559363a475e2d13e4ceaac50007a132b18c2fac7b5d43c"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": false,
+        "width": 320,
+        "height": 50
+      },
+      "sha256": "559543ea39c076a2673ea0ac510cdceb1b30eb10baf0ef796c9068a57444d762"
+    },
+    {
+      "options": {
+        "product": "Northline Coffee",
+        "headline": "Fresh roast, clear origins",
+        "subheadline": "Roasted for your morning",
+        "benefits": [
+          "Clear origins",
+          "Whole beans"
+        ],
+        "offer": "Rs 250 today",
+        "cta": "Order today",
+        "primary": "#BB4A2B",
+        "secondary": "#F8F1E5",
+        "style": "essential",
+        "watermark": false,
+        "width": 50,
+        "height": 50
+      },
+      "sha256": "451578b4229033a55497d2ec58b15b4db8c52c7b94b40f38313514d2f912d576"
+    }
+  ]
+}

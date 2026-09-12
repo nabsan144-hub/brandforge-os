@@ -1,0 +1,1 @@
+{"raster_checks": 18, "zip_watermarks": "passed", "manifest_checksums": "passed", "page_errors": 0}

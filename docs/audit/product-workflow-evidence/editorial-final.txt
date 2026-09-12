@@ -1,0 +1,2 @@
+{"renders":30,"withWarnings":10}
+{"renders": 30, "geometry": "pass", "raster": "pass", "with_omissions": 10}

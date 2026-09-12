@@ -1,0 +1,13 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/usage-metrics.test.js
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/usage-metrics.test.js (5 tests) 3806ms
+
+ Test Files  1 passed (1)
+      Tests  5 passed (5)
+   Start at  19:06:39
+   Duration  5.13s (transform 237ms, setup 0ms, import 1.17s, tests 3.81s, environment 0ms)

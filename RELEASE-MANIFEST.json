@@ -1,22 +1,59 @@
 {
-  "version": "1.4.2",
+  "schema": 2,
+  "version": "1.14.0",
   "tier": "source",
-  "commit": "a3f843abf133e35841c3768844554dc82fcf099a",
+  "commit": "9279ecb9cb22b317d831638e985477e0991ebb1b",
+  "scope": "Exact artifact bytes; excludes this manifest itself. Not production approval.",
   "files": [
     {
+      "name": "brandforge-os/.gitattributes",
+      "bytes": 133,
+      "sha256": "b62b125389298333a53825e466e1967bc2b4c4273124aff57356b017331f4583"
+    },
+    {
       "name": "brandforge-os/.github/workflows/ci.yml",
-      "bytes": 5560,
-      "sha256": "1b18231faa0fd05d4940c9cb29ea67ea324fc97cef5581c4c61b065df70a1476"
+      "bytes": 7533,
+      "sha256": "ddd2bcf4a5b98ddd1a6035eb7acec396aa94cd21f934b822f5797bbcbb9d3dc2"
+    },
+    {
+      "name": "brandforge-os/.github/workflows/desktop-runtime.yml",
+      "bytes": 1654,
+      "sha256": "47465cc5e0a2658aab364eb1a50d55d58c971358171f76fa7728ad21e44374ec"
     },
     {
       "name": "brandforge-os/.gitignore",
-      "bytes": 1078,
-      "sha256": "ebe2189a342c39c244e752039864f3b4dfeb0a157c22d9ae5c56091543767b3b"
+      "bytes": 970,
+      "sha256": "e9e8471ddab2af5f011dbc6db287d7d4f76a074efc5b419c86268a8f6a744312"
     },
     {
       "name": "brandforge-os/CHANGELOG.md",
-      "bytes": 20742,
-      "sha256": "df1d96f1ca16903e2e2acc9519b8aad18145e86fc3e9bb646592f8b596208848"
+      "bytes": 38931,
+      "sha256": "4627bba7ce05c4f6c9460a8fc4d67accb80100df0290203b7335693a749bbe40"
+    },
+    {
+      "name": "brandforge-os/DELIVERY-1.11.0.md",
+      "bytes": 1096,
+      "sha256": "9fc91aa47dad0f04ed166c9a51ce8dbfb6c526ec7f9f9c32ea5f576846966cb0"
+    },
+    {
+      "name": "brandforge-os/DELIVERY-1.12.0.md",
+      "bytes": 1155,
+      "sha256": "aa9bc7c062438ae5f936f59b3b70ee51b8b0e80e66a1250b7d70ee4e2c7dd8ac"
+    },
+    {
+      "name": "brandforge-os/DELIVERY-1.13.0.md",
+      "bytes": 5365,
+      "sha256": "2a7fcb16d0c968267bb260dd4a2cd238e6a632bd645a01bb1c0d3a54f11db480"
+    },
+    {
+      "name": "brandforge-os/DELIVERY-1.14.0.md",
+      "bytes": 2000,
+      "sha256": "be03e1afd12105f2cb104d2dfe1344e29277d35ccd6cd2ed686664c2d5400dd7"
+    },
+    {
+      "name": "brandforge-os/DEPLOY-INSTRUCTIONS.txt",
+      "bytes": 2244,
+      "sha256": "f21df2b85e985edfb47ce7b9f42a829f6321128c9f1118fd85dc922d6eb3703a"
     },
     {
       "name": "brandforge-os/DEPLOY_VERCEL_SUPABASE_START_TO_FINISH.md",
@@ -44,6 +81,11 @@
       "sha256": "6665a76534ba4ea6645b83f9fa8da76b434f43377ebd114949041581196417ae"
     },
     {
+      "name": "brandforge-os/OWNER-HANDOFF-1.14.md",
+      "bytes": 13669,
+      "sha256": "8e6b2eba30627747e66f1f20a9192fc5976481e06cf3ee795aeeafab37ddc984"
+    },
+    {
       "name": "brandforge-os/OWNER_LAUNCH_TO_DO.md",
       "bytes": 559,
       "sha256": "15bc7abb30537948abb52e028b6bc157382a1c4fd133546800e79615b906fa88"
@@ -54,9 +96,14 @@
       "sha256": "15bc7abb30537948abb52e028b6bc157382a1c4fd133546800e79615b906fa88"
     },
     {
+      "name": "brandforge-os/PUSH-WINDOWS-CMD.txt",
+      "bytes": 2766,
+      "sha256": "cc778d2008d82b0f82ac4ff0915d1ee1615f91b10f29d7b056c772cbb92731fc"
+    },
+    {
       "name": "brandforge-os/README.md",
-      "bytes": 2373,
-      "sha256": "142074ec49650f9c87e172dddbee12bbfd98f8b85f9b203330f2addeb0a25098"
+      "bytes": 3175,
+      "sha256": "2b07b6ff54f6dabe2f41e87a51d84fd7c239abea93e11b774edfda62bdfa0fa9"
     },
     {
       "name": "brandforge-os/RESALE-LICENSE.md",
@@ -95,8 +142,13 @@
     },
     {
       "name": "brandforge-os/app/.env.example",
-      "bytes": 2045,
-      "sha256": "dd53b8539cd2398900ef33017ed0576403882261596830d35de4c96de7a92aeb"
+      "bytes": 2052,
+      "sha256": "457f5fad2b6f7d8235c04f5d4d6415dcd0dc4df4d2bb332dbbc5116160b81471"
+    },
+    {
+      "name": "brandforge-os/app/agency_clients/default_studio.json",
+      "bytes": 413,
+      "sha256": "befe929af4e9fd9f8c40b1ba5d47e1cc6cba0e6e69b8eba36de4b015874f1ba5"
     },
     {
       "name": "brandforge-os/app/brandforge.bat",
@@ -124,14 +176,64 @@
       "sha256": "1256f749679253ecefff0cc04b94c498dfcd8a42debf9e272101090a646b04f9"
     },
     {
-      "name": "brandforge-os/app/brandforge_assets/dashboard/assets/index-C38YxSAK.js",
-      "bytes": 163758,
-      "sha256": "71d238acb0d2a02acbde0de7b6fb0fbfcf9ab00e43c0118abca063a154068dac"
+      "name": "brandforge-os/app/brandforge_assets/canvas/editor.js",
+      "bytes": 15861,
+      "sha256": "e954a1ee1a3acf3351fc72c1271f5be916e319cb5401c2d6d2643d2aecd0b602"
     },
     {
-      "name": "brandforge-os/app/brandforge_assets/dashboard/assets/index-tOXn3s8W.css",
-      "bytes": 26680,
-      "sha256": "367f3f11638da3f8fee34e3abffa3b0a84af5a86e366fcf98c4aba1f672126a1"
+      "name": "brandforge-os/app/brandforge_assets/canvas/image-dimensions.js",
+      "bytes": 791,
+      "sha256": "8457f852dca7f883d4b69f3210db2deb1e4ba84283adda2cb495d89e67b21ebe"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/import-image.js",
+      "bytes": 4826,
+      "sha256": "bf4d4a12dae63995f0c5957bd398649ba7fc75f771ddeed79daab7a776aebe95"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/index.html",
+      "bytes": 4729,
+      "sha256": "839f0e77121c5698e3437b304d9e04b5bf6fd63699de323d8c0f36eaf4ff29cb"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/launch.js",
+      "bytes": 1912,
+      "sha256": "9e6c122c399f577e241a94ea9620d61587ad394e176680ee031cfc3a35cf941d"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/model.js",
+      "bytes": 4738,
+      "sha256": "36c9d4f95bc988564604d2a15ca705051fab48be1a7107c8c886484a7ef89459"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/style.css",
+      "bytes": 1937,
+      "sha256": "ceeba4c5879e1351184b44088dab021970c0f84abcc40169f88442380ef79fd5"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/canvas/ui-font.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/dashboard/assets/geist-400-BgDaEnEv.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/dashboard/assets/index-B-sFTfI4.css",
+      "bytes": 31773,
+      "sha256": "d00fb921f4637537fe96c9b1602ff2891d57184c17559d478e69c62703f99d18"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/dashboard/assets/index-Bhf--8RD.js",
+      "bytes": 171915,
+      "sha256": "d8b605a9ab459157ceeef4356bc016767bead16c7bc24c5641b4d98c947e8190"
     },
     {
       "name": "brandforge-os/app/brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2",
@@ -145,8 +247,8 @@
     },
     {
       "name": "brandforge-os/app/brandforge_assets/dashboard/index.html",
-      "bytes": 907,
-      "sha256": "03e8c38e5919323cb199bc58dc70d630d8d4e1d73c7db67efbd237225ff3f2d7"
+      "bytes": 1078,
+      "sha256": "41a71c07aaea3c377aba3a644bf65352c6c163fd14a99f90e04e6ca7bc0b83da"
     },
     {
       "name": "brandforge-os/app/brandforge_assets/dashboard/logo-mark.svg",
@@ -155,8 +257,8 @@
     },
     {
       "name": "brandforge-os/app/brandforge_assets/fallbacks.json",
-      "bytes": 12200,
-      "sha256": "4d34541963c3d551e8b513bec4e4a445ce836c846ff6c253fa0b437db4129665"
+      "bytes": 12465,
+      "sha256": "f0f9231ab316e8cf10bd99fb9a720dd1404db8e3d7aca150efd2efa73e8d2c81"
     },
     {
       "name": "brandforge-os/app/brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf",
@@ -184,14 +286,44 @@
       "sha256": "6665a76534ba4ea6645b83f9fa8da76b434f43377ebd114949041581196417ae"
     },
     {
+      "name": "brandforge-os/app/brandforge_assets/licenses/Geist-OFL.txt",
+      "bytes": 4387,
+      "sha256": "1781d2806a07d91c4edf4740b88449fab7d0eadad53f7c351b94cd4d4eb8c00f"
+    },
+    {
       "name": "brandforge-os/app/brandforge_assets/licenses/InstrumentSerif-OFL.txt",
       "bytes": 4405,
       "sha256": "129ed7618959716959f2941fdd5b49e0ad6e6c1d78726761786a00253d865521"
     },
     {
+      "name": "brandforge-os/app/brandforge_assets/transfer/portable-pack.js",
+      "bytes": 3799,
+      "sha256": "3b4deab066278c7b6662139ec36b3798e20d7ff9ed29debf2db3528d77e44d1b"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/transfer/review.css",
+      "bytes": 1389,
+      "sha256": "7a0b5ca7bfae822a6211902775094bc1613dc139198a9a3825b1b7dff1080a8a"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/transfer/transfer.html",
+      "bytes": 1922,
+      "sha256": "ebb30bb56342cf8568b1fba74e87f8c40ae4f38fda567990b8a5ff7fc5d3c599"
+    },
+    {
+      "name": "brandforge-os/app/brandforge_assets/transfer/transfer.js",
+      "bytes": 4467,
+      "sha256": "a8edc098d150d34eb7d334f719a211ac9e2ed540a8907f780dd5a5cc7a269b4d"
+    },
+    {
       "name": "brandforge-os/app/daemon.py",
       "bytes": 4824,
       "sha256": "45a401109b9b6c14813b5eda6da6735b662a4855a1a672d00ece5f3aef68293b"
+    },
+    {
+      "name": "brandforge-os/app/desktop.spec",
+      "bytes": 1037,
+      "sha256": "4bf8a6c563c4b506804ee7c712512ba05434290b3de45a2c57c3575872c5c8cb"
     },
     {
       "name": "brandforge-os/app/engines/__init__.py",
@@ -200,8 +332,13 @@
     },
     {
       "name": "brandforge-os/app/engines/ai_engine.py",
-      "bytes": 44430,
-      "sha256": "95c96f9c340b316ff947c59227e1ca3deddb56bc1151106065da9eb11eacce20"
+      "bytes": 44401,
+      "sha256": "61ff4c52473d37b9075d6ee9bdf25a9c581bc4b6480602c1d91478d226a9979f"
+    },
+    {
+      "name": "brandforge-os/app/frozen_launcher.py",
+      "bytes": 1695,
+      "sha256": "058491f34ad65e2f11c5202386c4c300d8cde3d246fe88012da181b43f232e08"
     },
     {
       "name": "brandforge-os/app/gateway/__init__.py",
@@ -215,8 +352,8 @@
     },
     {
       "name": "brandforge-os/app/make_release_zip.py",
-      "bytes": 10576,
-      "sha256": "30607755cacc326e169d721c85b1ff4ebc9081c184d9d9cf9f46b4585d563629"
+      "bytes": 11757,
+      "sha256": "4d0acab7cc6ed57ea98f42fe0ab52ec471a3f18b69e692105a476881244a9e0d"
     },
     {
       "name": "brandforge-os/app/modules/__init__.py",
@@ -224,9 +361,14 @@
       "sha256": "c935f31a6ca8e886a7322a5789171610f53cd25d7d0280857281df50b8e25b5a"
     },
     {
+      "name": "brandforge-os/app/modules/ai_campaign.py",
+      "bytes": 3391,
+      "sha256": "33ae7bb14198bae51eeee55c7cd77e8abcbba66c20ccc8d15104196849e7b19b"
+    },
+    {
       "name": "brandforge-os/app/modules/ai_image_designer.py",
-      "bytes": 20135,
-      "sha256": "3c7febf1d1988655b2cfbc1b7e30162432cb7b4b858efa508bbfffcd6f883e24"
+      "bytes": 23077,
+      "sha256": "27841cdabeadd9bff8fd635b9b91042114899fe5257c2b4d946c685d581a07ad"
     },
     {
       "name": "brandforge-os/app/modules/approval_manager.py",
@@ -255,8 +397,13 @@
     },
     {
       "name": "brandforge-os/app/modules/campaign_templates.py",
-      "bytes": 4668,
-      "sha256": "63cbf07c03d40f3a7e17c173613a24912f77fbfe4f07fd1997e26878884ed5bc"
+      "bytes": 3952,
+      "sha256": "0bbd04b83de142dcc64c511bbd22a741b149e181bbcb07f3e09a1d885420bd6a"
+    },
+    {
+      "name": "brandforge-os/app/modules/canvas_projects.py",
+      "bytes": 7273,
+      "sha256": "afe448195732b15561fe8581866c82b4ac01459f53229b4d6d4043241d4f396a"
     },
     {
       "name": "brandforge-os/app/modules/claim_guard.py",
@@ -270,8 +417,8 @@
     },
     {
       "name": "brandforge-os/app/modules/copywriter.py",
-      "bytes": 1835,
-      "sha256": "e42f0fec762ba189138bbdcd2f84f1ad743c08b227e7fa5d0fa90412964e9255"
+      "bytes": 1823,
+      "sha256": "8aee137ffd5a77c69ad2923dbc1ac4102298ab0719f2bae885b7d35ce2cf6a80"
     },
     {
       "name": "brandforge-os/app/modules/desktop_launcher.py",
@@ -290,8 +437,13 @@
     },
     {
       "name": "brandforge-os/app/modules/fallback_copy.py",
-      "bytes": 2004,
-      "sha256": "c335b21a8a317097953eda78c6365155154acc08bac961b6b89057baff41c341"
+      "bytes": 2011,
+      "sha256": "f1c50c0926b43672e6ecff187e215bdd2eb7feffb995bc610e5661dcddbcaa2b"
+    },
+    {
+      "name": "brandforge-os/app/modules/generation_progress.py",
+      "bytes": 1458,
+      "sha256": "199fb6ddca6d73deec580ba84cf0a5b241f7ad108dedf4bc3b73e3d66f7ad82f"
     },
     {
       "name": "brandforge-os/app/modules/i18n.py",
@@ -309,19 +461,24 @@
       "sha256": "856448932f134899d6367f42e1287f66a77e515bec8b8c58e182373882990593"
     },
     {
+      "name": "brandforge-os/app/modules/instance_lock.py",
+      "bytes": 1043,
+      "sha256": "88974defaa761fef91a064e18390603874342edc1ce7079c071cef650dce7398"
+    },
+    {
       "name": "brandforge-os/app/modules/landing_layout.py",
       "bytes": 4531,
       "sha256": "52f4b73e28fe5c01c4bfc68514fb820981569dab5da4c4b53efd913271cb4a5d"
     },
     {
       "name": "brandforge-os/app/modules/local_security.py",
-      "bytes": 3751,
-      "sha256": "c7106690c26957a2cbdb9442e4fe5291351fd7707a37e09695e8182bd7f63768"
+      "bytes": 4677,
+      "sha256": "7a67c99ff527e7011cd6498560cedf21efae949950c5343ba6bbdb664356d3e3"
     },
     {
       "name": "brandforge-os/app/modules/mcp_registry.py",
-      "bytes": 32552,
-      "sha256": "38fb21bc58bfa968d79c48c63404189dd08ce31fa6d470e2de105ad7a1b23737"
+      "bytes": 32585,
+      "sha256": "cdb3aea5374789551137446f215aceb7ec7f24d22bb7d544df980e6d0c9141b7"
     },
     {
       "name": "brandforge-os/app/modules/memory_manager.py",
@@ -339,6 +496,11 @@
       "sha256": "5628533d0b55a683bb0749f4711996b3a194e00b70a078319b44e3c068dfd2d6"
     },
     {
+      "name": "brandforge-os/app/modules/portable_pack.py",
+      "bytes": 6035,
+      "sha256": "ae0a3fcfe3d2031200d244f25e0326e6288cb3c69c09bfa29781e6dfdbd21cca"
+    },
+    {
       "name": "brandforge-os/app/modules/project_manager.py",
       "bytes": 19917,
       "sha256": "6a9065e06542e270c6f0921b6423d25abdfa59e09df7a8293c0afd2f9899ede0"
@@ -350,13 +512,13 @@
     },
     {
       "name": "brandforge-os/app/modules/runtime_paths.py",
-      "bytes": 996,
-      "sha256": "6d592f9011232e301cfd195b3721ccf0cbd16e3f8292df962112d5ff26c470bb"
+      "bytes": 1034,
+      "sha256": "943be56d6042552dc0f08e981dd7635204f131f570df5ecd276546d58b9fe8bf"
     },
     {
       "name": "brandforge-os/app/modules/security.py",
-      "bytes": 5874,
-      "sha256": "debedd138fc760b15aad6b0365b6734008b743a8ffef4ac2168b3cd69139ee3b"
+      "bytes": 5885,
+      "sha256": "617f92cd563ca0f1543ad04b391f2fe4dd6cdbdfdb2874d05280ebec82fb2b34"
     },
     {
       "name": "brandforge-os/app/modules/settings_store.py",
@@ -385,23 +547,23 @@
     },
     {
       "name": "brandforge-os/app/modules/swarm_director.py",
-      "bytes": 24561,
-      "sha256": "1643b651a171bcc870dfc883f5cc5a4ad4e861b90ed520269a7e8ae7bbe8f05c"
+      "bytes": 27713,
+      "sha256": "b4c942fe7362cdee06464a9cd0829b9ccb3a2589dfbe98a7c94559dc5548bf60"
     },
     {
       "name": "brandforge-os/app/modules/update_check.py",
-      "bytes": 3250,
-      "sha256": "06d62494f250640b4d96eb799dbb3c5c09d9b50a4edc9bf3a2b63dcee19c3ac2"
+      "bytes": 3251,
+      "sha256": "2f81d50ccaf8dbc4e628bd73f96930d4fe9078d215ce33ffb08c4fab7cd8956c"
     },
     {
       "name": "brandforge-os/app/modules/visual_designer.py",
-      "bytes": 23213,
-      "sha256": "8bc87970386f857b9a3e131263807c943a800482b310198d2230d682ea8abc80"
+      "bytes": 23363,
+      "sha256": "74e0ecb641bd4cb09d87cc524acbf3d21fe9eda29dd9f8676340ef1f098f91a3"
     },
     {
       "name": "brandforge-os/app/modules/visual_layout.py",
-      "bytes": 10623,
-      "sha256": "36fb9d62c7329ac07464389bf03d5db71977adf238888bc75ba95231e5cd2614"
+      "bytes": 31608,
+      "sha256": "c6c832c34d39ad8d5cdbc598686c4ad297fb200abea41d91106b9cc485a2280f"
     },
     {
       "name": "brandforge-os/app/modules/web_searcher.py",
@@ -410,8 +572,8 @@
     },
     {
       "name": "brandforge-os/app/pyproject.toml",
-      "bytes": 2056,
-      "sha256": "989cd235a873e0afe770c4cda4e93837720ccedd3275dc03bdc9e35a33c36ee0"
+      "bytes": 2053,
+      "sha256": "6720979e768d9c1cf458565d8992483dec816ee536ab3ab2155ee136d4249af2"
     },
     {
       "name": "brandforge-os/app/requirements-full.txt",
@@ -425,8 +587,8 @@
     },
     {
       "name": "brandforge-os/app/server.py",
-      "bytes": 78548,
-      "sha256": "25045189e429a5c9c3fea856033522d8e31d236352526da982e26fb38bf08f22"
+      "bytes": 83625,
+      "sha256": "f993c8cb9918a3f4bbc78a5681aef8dd8b5e384002fe4c9039cf46ec9e9b624d"
     },
     {
       "name": "brandforge-os/app/setup_env.py",
@@ -434,9 +596,14 @@
       "sha256": "616f1e65125250e9251f57d3031add2d738a68be5940f4b43637973a30bfe18e"
     },
     {
+      "name": "brandforge-os/app/support_diagnostics.py",
+      "bytes": 1126,
+      "sha256": "80623fd9d6be60ae55e58037c9b51d7ee9316b66072699e075a9effc86226018"
+    },
+    {
       "name": "brandforge-os/app/tests/conftest.py",
-      "bytes": 2075,
-      "sha256": "1a97d441c409b452ede23d6c8482f454432dcb26c361f1d826c2fa01ef03bb10"
+      "bytes": 2037,
+      "sha256": "9cf3b7acf14ad95758c74c3b495df9a288243e08bc94ce5aba3505022d3f8f5e"
     },
     {
       "name": "brandforge-os/app/tests/golden/offline_copy.txt",
@@ -460,13 +627,13 @@
     },
     {
       "name": "brandforge-os/app/tests/test_ai_image_designer.py",
-      "bytes": 17603,
-      "sha256": "73240f01aa704eef3165d4b2443265b9f16ff54f48abea11bba0f8313e775b0e"
+      "bytes": 22104,
+      "sha256": "6160f8164eeeff2e6a6c2472c3a5f7e0b47b0b2a8f89be3ba2f101d188830a95"
     },
     {
       "name": "brandforge-os/app/tests/test_api.py",
-      "bytes": 4992,
-      "sha256": "610afee953bb8ab15242a5566efc4bfef8b1e2c7f017ab79327cba0c33f09a0f"
+      "bytes": 6031,
+      "sha256": "21482b64be14c7a88e77acbfee4169baf75556f7da873a0851be9dc22705a881"
     },
     {
       "name": "brandforge-os/app/tests/test_approval_edge.py",
@@ -524,6 +691,11 @@
       "sha256": "4292e14c5a81a3bf74897224135c5a125af6c5a0a427ba16673d39ce3e671cc6"
     },
     {
+      "name": "brandforge-os/app/tests/test_canvas_projects.py",
+      "bytes": 3325,
+      "sha256": "43bb699ae519f82b1210a6b83403e1d89f6fd9959ec5efce3281c2b9d6f32174"
+    },
+    {
       "name": "brandforge-os/app/tests/test_chat_context.py",
       "bytes": 2675,
       "sha256": "d66f16671ff6d37d1ca1f2e752eaf8d735a6ac8d5de101a18b9d7ceab2d1e7f6"
@@ -545,13 +717,18 @@
     },
     {
       "name": "brandforge-os/app/tests/test_fixpack_2026_08.py",
-      "bytes": 13238,
-      "sha256": "bb6cb393205280cc8397a9e256936d53f5fa13e00ea65e522bcafb7396d773ca"
+      "bytes": 13269,
+      "sha256": "495f3098f9550e8cccc0ea5cf3812b77e1b1846047814a010583c4a80dedb752"
     },
     {
       "name": "brandforge-os/app/tests/test_full_audit.py",
-      "bytes": 7219,
-      "sha256": "5d9c9710a8e5b19916ee568fe36b48857f02e19c51a5986bf82425a0d3e6461c"
+      "bytes": 7272,
+      "sha256": "60c0e22903b1b29f322935e5b638f53873909b79d4b53816cce183b6ee64f333"
+    },
+    {
+      "name": "brandforge-os/app/tests/test_generation_progress.py",
+      "bytes": 654,
+      "sha256": "99a8f37d884dec6723c99ad63500c788c1c09b937842e5846bb158f561d310c8"
     },
     {
       "name": "brandforge-os/app/tests/test_golden.py",
@@ -570,8 +747,13 @@
     },
     {
       "name": "brandforge-os/app/tests/test_image_gen.py",
-      "bytes": 5041,
-      "sha256": "1aaeaf050c8937718f6af3f1827bdbd82518bf24dc7f28632a9263ba7906a54e"
+      "bytes": 5058,
+      "sha256": "c03ac252587ceff450b4940d45e12d11ad9e09c701bc6edcc0d5892dbd5aaddd"
+    },
+    {
+      "name": "brandforge-os/app/tests/test_local_limits.py",
+      "bytes": 1341,
+      "sha256": "ee1d166bb6f3cf6a6739f364820db974e6e20342d0fdcdaf9b09957ad79e0276"
     },
     {
       "name": "brandforge-os/app/tests/test_logo_upload.py",
@@ -587,6 +769,11 @@
       "name": "brandforge-os/app/tests/test_native_exports.py",
       "bytes": 3346,
       "sha256": "f0720a48cf25e392c4eceb3e90c52e2786e780cf90b29af08ea7eb7e931a89ff"
+    },
+    {
+      "name": "brandforge-os/app/tests/test_native_packaging.py",
+      "bytes": 1833,
+      "sha256": "3eddc7f2094180ca8211058598da7397b6fde33c529fd93b8d484ceb9b0c0580"
     },
     {
       "name": "brandforge-os/app/tests/test_net_audit.py",
@@ -614,6 +801,11 @@
       "sha256": "cababa22f8e2bc63a7ed0ff2f73f4a9970938628842df8f824da04371791205e"
     },
     {
+      "name": "brandforge-os/app/tests/test_portable_pack.py",
+      "bytes": 4714,
+      "sha256": "6f6778010da6739bd8718a1d05146fce78befbf156aea8dc87a415b502c41c50"
+    },
+    {
       "name": "brandforge-os/app/tests/test_providers_mock.py",
       "bytes": 7700,
       "sha256": "45ad5d18907983c6112e99b32208a2660cb8c471d82bc5c34f8f7e128dc46071"
@@ -625,8 +817,13 @@
     },
     {
       "name": "brandforge-os/app/tests/test_readiness_regressions.py",
-      "bytes": 8954,
-      "sha256": "5455b3f034ba6f40663753115f0b829e69e2b8a5196c022e7759affbb6069710"
+      "bytes": 9608,
+      "sha256": "d4317c12edfbe9ad2b53f94e0e9d9f7b40efd5b8152219cbd01eafdeb9929a8a"
+    },
+    {
+      "name": "brandforge-os/app/tests/test_repository_audit.py",
+      "bytes": 4924,
+      "sha256": "f87681144ac3cb936c5d823731b956c6f8ca0244f6ffc558928a45aaf4c34939"
     },
     {
       "name": "brandforge-os/app/tests/test_review_fixes.py",
@@ -645,8 +842,8 @@
     },
     {
       "name": "brandforge-os/app/tests/test_sales_site.py",
-      "bytes": 6832,
-      "sha256": "65c393303f8c3361d5c571a1c86ca0239a87a599e4be75314f5f009341734185"
+      "bytes": 6825,
+      "sha256": "ff49ea3ffc4ac6481f6f017ff0638a8c3f4233edbe2b96e2869ce9259e26d323"
     },
     {
       "name": "brandforge-os/app/tests/test_sanitizers.py",
@@ -657,6 +854,11 @@
       "name": "brandforge-os/app/tests/test_ssrf.py",
       "bytes": 6589,
       "sha256": "4ed2217154d0cd0818adb172c2e06468fd90f699a595413ff774352725fb7334"
+    },
+    {
+      "name": "brandforge-os/app/tests/test_support_diagnostics.py",
+      "bytes": 859,
+      "sha256": "08c952024bab2cd7def6ad6dfd475dd4ef9193d734cf7a0f851b952f18d1ea2d"
     },
     {
       "name": "brandforge-os/app/tests/test_swarm.py",
@@ -674,9 +876,14 @@
       "sha256": "03c84aaef32cd2f5890d2e57ac9d9a0e10a2ffb8e5521c5e755696ac3e087a35"
     },
     {
+      "name": "brandforge-os/app/tests/test_unit_economics.py",
+      "bytes": 1164,
+      "sha256": "27cff92653462b3d2d50d881fb3143b5609d60dd6caeeb60c84a61f647cb001c"
+    },
+    {
       "name": "brandforge-os/app/tests/test_update_check.py",
-      "bytes": 5535,
-      "sha256": "3d21f0bcf3f88f597e46538fcfacc98e56059454c095d2f487ffb77c75200bfa"
+      "bytes": 6310,
+      "sha256": "c44cefcfa12c9ef653845e5f2e9dbc171bcbead675942beb2a13c65ff653be80"
     },
     {
       "name": "brandforge-os/app/tests/test_visual_designer.py",
@@ -700,8 +907,8 @@
     },
     {
       "name": "brandforge-os/app/web-modern/index.html",
-      "bytes": 808,
-      "sha256": "19bd99bb44adcc3775ff86673a6efc9d56da18528374af8f736669518701d997"
+      "bytes": 979,
+      "sha256": "5fe892df04c8de16e315863ab5d9b91a8f7987a13c611becc9454b3728a187df"
     },
     {
       "name": "brandforge-os/app/web-modern/package-lock.json",
@@ -725,13 +932,18 @@
     },
     {
       "name": "brandforge-os/app/web-modern/src/App.svelte",
-      "bytes": 22071,
-      "sha256": "094f2feb7dc61d1aed6076145d4a0b7b203054845ea25f495ca98a1d3b67c839"
+      "bytes": 22309,
+      "sha256": "79a2863831eaa5fcb3c9ffc49f11099e914731f3e0e6f2483d7e579aca14bcbb"
     },
     {
       "name": "brandforge-os/app/web-modern/src/app.css",
-      "bytes": 3839,
-      "sha256": "8e637aa5cbea2635df39f40967e0b936b52fb8e06826a1ae6630d334accf8f09"
+      "bytes": 4298,
+      "sha256": "24ed915b97133e7e8ab20b527405c31255efe14c970ede132328eacc3168b8d4"
+    },
+    {
+      "name": "brandforge-os/app/web-modern/src/assets/fonts/geist-400.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
     },
     {
       "name": "brandforge-os/app/web-modern/src/assets/fonts/instrument-serif-400-italic.woff2",
@@ -745,18 +957,18 @@
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/Campaigns.svelte",
-      "bytes": 31546,
-      "sha256": "d377868c068c8d35eb388f10964e451b536eff4a0afd0389375e5f7e58443eca"
+      "bytes": 33632,
+      "sha256": "b9a2558208c61bc4b2402c12bc364adb5e9ef29f8816ab8ecc5e2c767c9ac73f"
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/Chat.svelte",
-      "bytes": 9928,
-      "sha256": "db56cfefa0d8e22a52ad9ffb75d9dafcec5346bd027355ce10f3b65dcbbfc36d"
+      "bytes": 9924,
+      "sha256": "12caf57d081e593acfc46b6922c7fad02cd1f2256be98897b0705496321c78d3"
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/Settings.svelte",
-      "bytes": 25181,
-      "sha256": "f676c834ea5e0fd3029511cce82abd9e15e6cfd6e8a95f7a22ef9c2dc343a8dd"
+      "bytes": 25675,
+      "sha256": "b6f79e89338f600df59fe741389b826992945e027f1de7e49c3c886ae24a0087"
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/Status.svelte",
@@ -770,8 +982,13 @@
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/SwarmStudio.svelte",
-      "bytes": 18802,
-      "sha256": "5fd31c52de9481510cadc674cbf90e4f1d16b991bfd66cf7429736b2a100b7ca"
+      "bytes": 22786,
+      "sha256": "2ae3559e8a606a643ed864dd372277a4d1845ad926f0338500d3a3391e514c96"
+    },
+    {
+      "name": "brandforge-os/app/web-modern/src/lib/campaign-reference.js",
+      "bytes": 1182,
+      "sha256": "159a001700390b88ebc9c248f78863bc67fc2dfce9a37f631d33b9d8c8e55836"
     },
     {
       "name": "brandforge-os/app/web-modern/src/lib/markdown.js",
@@ -780,48 +997,28 @@
     },
     {
       "name": "brandforge-os/app/web-modern/src/main.js",
-      "bytes": 1092,
-      "sha256": "ce6b66bae06f43eaf567249f151814215060bcd3cf999992fc3f9e9431e9effd"
+      "bytes": 2057,
+      "sha256": "867b737c507b1cc97fdd5fd42c5c8358fb74b9f88aa48caca7bdeda5682ef015"
+    },
+    {
+      "name": "brandforge-os/app/web-modern/src/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
     },
     {
       "name": "brandforge-os/app/web-modern/tailwind.config.js",
-      "bytes": 640,
-      "sha256": "de9909517ff5b8ca4a19ba88813ecb2b73666f91cca11ce02b6a56f789f52e77"
+      "bytes": 884,
+      "sha256": "059989bf7bd853f2cdfb76fee831eee07876ad2bd8b7ad0d1bd259685f63f34e"
     },
     {
       "name": "brandforge-os/app/web-modern/vite.config.js",
-      "bytes": 913,
-      "sha256": "20813f3100eff3245ac50dba4d62997c93aa528f668e1ca0d91271cc61af59f4"
+      "bytes": 1054,
+      "sha256": "2d234adaee3c08051cc8dee0b9addd4864ca05a08d1f4e7abdfdc7d1cb46b729"
     },
     {
-      "name": "brandforge-os/app/web/dist/assets/index-C38YxSAK.js",
-      "bytes": 163758,
-      "sha256": "71d238acb0d2a02acbde0de7b6fb0fbfcf9ab00e43c0118abca063a154068dac"
-    },
-    {
-      "name": "brandforge-os/app/web/dist/assets/index-tOXn3s8W.css",
-      "bytes": 26680,
-      "sha256": "367f3f11638da3f8fee34e3abffa3b0a84af5a86e366fcf98c4aba1f672126a1"
-    },
-    {
-      "name": "brandforge-os/app/web/dist/assets/instrument-serif-400-DnYpCC2O.woff2",
-      "bytes": 21032,
-      "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
-    },
-    {
-      "name": "brandforge-os/app/web/dist/assets/instrument-serif-400-italic-DKMiL14s.woff2",
-      "bytes": 22128,
-      "sha256": "5a51946dfffa82972bc98745359c46761515641fda557c25116459a9f83da4a7"
-    },
-    {
-      "name": "brandforge-os/app/web/dist/index.html",
-      "bytes": 907,
-      "sha256": "03e8c38e5919323cb199bc58dc70d630d8d4e1d73c7db67efbd237225ff3f2d7"
-    },
-    {
-      "name": "brandforge-os/app/web/dist/logo-mark.svg",
-      "bytes": 1160,
-      "sha256": "8088ff23417dad1825b23775d9366c5ec0691259680d75982bd5ab1aa12e4cf8"
+      "name": "brandforge-os/branding/HISTORICAL-COLLATERAL.md",
+      "bytes": 468,
+      "sha256": "d88dccf0dd8b049cf88bb3363276e01de12cfd79f6f500f9096b0a19ca56689a"
     },
     {
       "name": "brandforge-os/branding/brand-guidelines.md",
@@ -839,89 +1036,9 @@
       "sha256": "8088ff23417dad1825b23775d9366c5ec0691259680d75982bd5ab1aa12e4cf8"
     },
     {
-      "name": "brandforge-os/branding/studioforge/cover-1584x396.png",
-      "bytes": 620552,
-      "sha256": "3d6342329b84227446fb06ba421292634642465141807086e818f7aab8fadc3a"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/cover-company-1128x191.png",
-      "bytes": 243540,
-      "sha256": "575b4e366b37d6bbe2596ce9f241fa76c71f09675abf6e99a342734f86f020e7"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/cover-editorial-1128x191.png",
-      "bytes": 219856,
-      "sha256": "e101f87c50e5909174eb8801e011f62ef09cb07e32a9c18908aef9dd4459c21f"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/cover-editorial-1584x396.png",
-      "bytes": 577792,
-      "sha256": "8115cb3c55079b785806cb463104acbf348e33494521ef772a657e056a056bd3"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/cover-editorial.png",
-      "bytes": 1201215,
-      "sha256": "e4e69495495ae991930b1d91858f4c20211830f0b82ffcae768331212119d41d"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/dash-signup-preview.png",
-      "bytes": 100680,
-      "sha256": "d5c09d1fbc9afbe7ca197f95e9bc099b2b10d24bb79220e8bb74e59d3c295edb"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/logo-1024.png",
-      "bytes": 20486,
-      "sha256": "14dd63a2916d4971f5882afcdd56cf0cd274589043dc6d77252076360ca81185"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/logo-300.png",
-      "bytes": 5365,
-      "sha256": "792b61c10128ab1a75b06a63749b86cd35f5fd81d82802e0beb9ec299d36e917"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/logo-400.png",
-      "bytes": 6908,
-      "sha256": "e3c6b8e55df720641aa1991186dc1236ed3aed80a6e34fa62a3d11801617c258"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/logo-mark.png",
-      "bytes": 20486,
-      "sha256": "14dd63a2916d4971f5882afcdd56cf0cd274589043dc6d77252076360ca81185"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/mark.py",
-      "bytes": 1514,
-      "sha256": "6575894b1b607185a95c7d035575fab89d1ed152a55867f3906462aa2e32c951"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/mock-dashboard-chat.png",
-      "bytes": 1189444,
-      "sha256": "0f06a79a69596e7d936f343076714774ef9d56d3ec62b29d12674916e0bdc0a0"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/profile-banner-1584x396.png",
-      "bytes": 26753,
-      "sha256": "05c61304653ec57451a5b620ce32c8180d9038888e6c0e6d52594d042d8a6e34"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/thumb-brandforge-1200x630.png",
-      "bytes": 700480,
-      "sha256": "34cd1bef6b539dda965e73fa29b04cad29361512a156b1057036a87b7cc6032a"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/thumb-studioforge-1200x630.png",
-      "bytes": 646642,
-      "sha256": "141735553fca137579071903888f7d12288512bed114e8525423a1d759a5729f"
-    },
-    {
-      "name": "brandforge-os/branding/studioforge/thumb-tools-1200x630.png",
-      "bytes": 780082,
-      "sha256": "0724a8cf22830c7ac84431a9e4cd2cfa579dd0dbfab7e31e67605e8a0563d855"
-    },
-    {
       "name": "brandforge-os/cloud/.env.example",
-      "bytes": 1588,
-      "sha256": "46dc24c1fd8385f6182dbf90f75a6007a2a5491a2d8289ac4d5052a2354c9992"
+      "bytes": 4019,
+      "sha256": "eb58e1e68b9e5bcdfefa96610332c0652cc4401fb085adffcc34f9e9bb29065f"
     },
     {
       "name": "brandforge-os/cloud/README.md",
@@ -930,8 +1047,8 @@
     },
     {
       "name": "brandforge-os/cloud/api/_assets/fallbacks.json",
-      "bytes": 12200,
-      "sha256": "4d34541963c3d551e8b513bec4e4a445ce836c846ff6c253fa0b437db4129665"
+      "bytes": 12465,
+      "sha256": "f0f9231ab316e8cf10bd99fb9a720dd1404db8e3d7aca150efd2efa73e8d2c81"
     },
     {
       "name": "brandforge-os/cloud/api/_assets/fonts/NotoNaskhArabic-Regular.ttf",
@@ -959,14 +1076,34 @@
       "sha256": "e4749363bcb0ffe628a13707b9bc933603abf68a604c82f7b8ccc408c96366d1"
     },
     {
+      "name": "brandforge-os/cloud/api/_lib/asset-migration.js",
+      "bytes": 2093,
+      "sha256": "63a29d5602eede52a75a3df38709c1190a31a250b48d0e27b50e0adba491a7a1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/assets.js",
+      "bytes": 7942,
+      "sha256": "25854d163d32ba052432da07dbe049fb6d922eca9674d3111dcd4dcdda59c578"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/campaign-artwork.js",
+      "bytes": 2782,
+      "sha256": "99ee17468280887bf2eae0d98226f08519fdeb12929da94adfbe8aaf341f0347"
+    },
+    {
       "name": "brandforge-os/cloud/api/_lib/commerce.js",
       "bytes": 13483,
       "sha256": "80d94380b847ba10f429bfc5b34e9d9e1373a658de4363dd22bba8a16bcc597c"
     },
     {
+      "name": "brandforge-os/cloud/api/_lib/composition-vector.js",
+      "bytes": 6762,
+      "sha256": "25e87250a424ca6fb53d3beedbd589f37fc502785a97d4d1fa1363e1cf75c7be"
+    },
+    {
       "name": "brandforge-os/cloud/api/_lib/cost.js",
-      "bytes": 1323,
-      "sha256": "4cca29587279f30a477d4faf772458234c0783275b22801b1b7eba19e30fc465"
+      "bytes": 2450,
+      "sha256": "23a364335d92364630e879feafebf355d104634fe27ce528a675302b67fd8be1"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/deliver.js",
@@ -974,184 +1111,319 @@
       "sha256": "c956adef90e4625c2a8b5f56fac7d08ce6ebb7c32c985323c1993d868674c72d"
     },
     {
+      "name": "brandforge-os/cloud/api/_lib/delivery-queue.js",
+      "bytes": 1908,
+      "sha256": "3456c39b7459ea728d49ddd285d622a0aad1371ec8d3a6a14d4c5d044c05bce5"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/editorial-vector.js",
+      "bytes": 6440,
+      "sha256": "641d3eb0b6e5a6797ef0eadcafff3cb26d95afca63e0a19ef85c5ed56ce09292"
+    },
+    {
       "name": "brandforge-os/cloud/api/_lib/engine.js",
-      "bytes": 10577,
-      "sha256": "98f7dd7e44922db09ef9532e254a8da9d0ef3d7a22584d6942da1c7b8cbd1568"
+      "bytes": 20025,
+      "sha256": "36e06cccd2148d9bc192c9c09afde3bd957388693de173343b25877401ab4a96"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/fulfillment.js",
-      "bytes": 6462,
-      "sha256": "3d00ab9611dbcc0a609eb96bddac6b7426c62f7672d963208566b035f3b8412a"
+      "bytes": 6516,
+      "sha256": "ce0d4b7ecc18ca164c5f41ce3ea7ff14c6253381ea6824ac95c072ae4db20ad0"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/http.js",
-      "bytes": 3285,
-      "sha256": "ca8075fde05c788cc268d359ca9dd76f0b03eac210b5284e65feaf58014200d8"
+      "bytes": 3627,
+      "sha256": "9dc926b2aca1f59a2605db688d5b69997579108c417e5881b3c88f1a29420008"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/i18n.js",
-      "bytes": 15605,
-      "sha256": "680d1f82ed0dd056f20ac3bc6b7885c3d7fb9f94ede968f95707c156874e7021"
+      "bytes": 15636,
+      "sha256": "98f0f918852a48daefa83660d5750176db9fbd0274cee293414035103e27d75b"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/image-providers.js",
+      "bytes": 3375,
+      "sha256": "0b3012cb41c615dfd1f937020b6ae9335ac4f4399fe98db08b069a8c1040b765"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/keys.js",
-      "bytes": 5086,
-      "sha256": "0bd81b46f0f6767b5cad31a1ff40b061220d78d6744101b146eb6c0a41c1856a"
+      "bytes": 5161,
+      "sha256": "1c660013ab7795cdf6c076ba47f3f1b19b68b854b47d297f14d5190f0103df7e"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/limit.js",
-      "bytes": 2130,
-      "sha256": "b563e4237dc6628e7095beb763f714c0bd60c4b486332b23a28c5017b0141e01"
+      "bytes": 2192,
+      "sha256": "9389e8f3b2650947e2ce29df2bffba5915c9c1246522690f5a585615ea71e943"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/payload.js",
+      "bytes": 1061,
+      "sha256": "2281ae108ec5b8155c04aef8e6c9abc215267d8af093a227f832b2f121ac1562"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/plans.js",
       "bytes": 1338,
-      "sha256": "ce34787abc62eb275f4c01a05f8b4d57f9ab7cd663ca7051d026c0496b7b0e9f"
+      "sha256": "2f0abbc75279251398c09f47c7c6a756be265a40a6164f9205fa8319551d88a6"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/product-photo.js",
+      "bytes": 1331,
+      "sha256": "9f4e4269078e2a09f7a6babbdbda8740f5cc5a725b88fce075c2aa1140007e9c"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-cancel-pending.js",
+      "bytes": 660,
+      "sha256": "26040c7aa5584ba2c9847987172205e5d6ce9d2fbaa59870a20bdb3bd9927af1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-change.js",
+      "bytes": 4396,
+      "sha256": "33ac14e5675ec18f617c5efae3526db7e419547a02e9d7b4674b07f217244690"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-checkout.js",
+      "bytes": 3082,
+      "sha256": "866e6a876732fac96ace8c23612ebbd4e37af65a8cab5425d0e48431fc40c868"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-client-token.js",
+      "bytes": 809,
+      "sha256": "ff4704835961bc24da50a72c761500dc97fbc1c1e4416fa3b6ab3750b806cd0f"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-portal.js",
+      "bytes": 1285,
+      "sha256": "ebd84660f75cfdecfb029f385101a2f3a0f11c29e686b29057f80272014b6d2e"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-reconcile.js",
+      "bytes": 997,
+      "sha256": "113c40a18b98934c29fe74448769f8a60fc9daf4d58cccc3da3a1b6fbb016c23"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/bill-status.js",
+      "bytes": 1510,
+      "sha256": "7dc31f991809f3f3c3554aa3dc0989bbb9396151339f215a6bfe1425236747c1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/brands.js",
+      "bytes": 2319,
+      "sha256": "77947f0e99d46e7c53a132cee74c20bc70f9dc6faf0625ddd5ca6d9d136e7187"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/camp-assets.js",
+      "bytes": 1118,
+      "sha256": "2c8ccfb23d25a440e45cde645a9149dcd99b9d207b135742151d6d0c0bc7cf1a"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/camp-id-deliver.js",
+      "bytes": 5193,
+      "sha256": "ede739712d7bedb625eb96f52d447ce5cf0893cd28e437933b545eb295e959be"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/camp-id.js",
+      "bytes": 4292,
+      "sha256": "d8847df10688c81e9c1885988f6ee1698bc908a66a97855cec17b4bb2fabd373"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/camp-visuals.js",
+      "bytes": 3792,
+      "sha256": "c653ee6ee195ceb8d128cc1c8f093e2280bf2ab1ef28d82575d936f8d924add7"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/campaign-preview.js",
+      "bytes": 1806,
+      "sha256": "74934acfcc38da9b67da440483480a271ea7c1c9be80bdd5e56aa8b6270c0ba1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/campaign-review.js",
+      "bytes": 4721,
+      "sha256": "c39352c6a1445ac4e77001d152aa00e8301657effe1aa83e01062d083fb8f318"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/campaigns.js",
+      "bytes": 13775,
+      "sha256": "1b2dca8bed88fee0cd16245471f306d9011f3d0ec69cf3372125bbd00a7bda3f"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/canvas.js",
+      "bytes": 3872,
+      "sha256": "4726ca207f852e0b7e67401b5e21256b5a7b0aa85d901219a5252fc11966b7f5"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/capabilities.js",
+      "bytes": 1701,
+      "sha256": "8ecb16a0689f7f238e60927072c54371157080c1f5312277fb60168f78ba66f3"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/config.js",
+      "bytes": 3109,
+      "sha256": "b8d5d9e4ee7b4d7d670f2fcba86ca544278fde3f7bf61726f3a344f51a177ad1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/desk-checkout.js",
+      "bytes": 1486,
+      "sha256": "40e0169d5030038dd1530c8a68df71e3c2ab13369af79729041f82323c8448c9"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/desk-download.js",
+      "bytes": 560,
+      "sha256": "ceda8f48b03d19126717fa15766af54a5a83cf673f68dd0381a9b3390fb3fed5"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/desk-resend.js",
+      "bytes": 1409,
+      "sha256": "7ec192473ad017a55a940a01d601982e240d63416b7ed13b468f54c5f639f1a1"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/feedback.js",
+      "bytes": 1298,
+      "sha256": "22171f092e14aba7d6cfec45e899bbfdee0135ec3881641dd78c96f2a9666f2e"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/generation-progress.js",
+      "bytes": 1134,
+      "sha256": "5ee87cd7464e9df9938b501ce2f5318483e8e6f8283c51d4dbe21d49a31bde52"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/health.js",
+      "bytes": 682,
+      "sha256": "01a335c761c77ea0acdaa17e40d8102c4627121479e54cf1f32379b66e7215ae"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/image-recovery.js",
+      "bytes": 6125,
+      "sha256": "86c806bfd04474d4232f39cad8695f921e9fa6c0d96cdd6758165bd0671213a0"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/maintenance.js",
+      "bytes": 3550,
+      "sha256": "ceba2b6378ca14e5b51e9c6d81310dc59b9c86f9db3d2e893533394f4b2fdf36"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/me-export.js",
+      "bytes": 4658,
+      "sha256": "155d4af7fe84870d4373941d352c6053c54c749686e681c7dc2e29f5a8ee8447"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/me-keys.js",
+      "bytes": 3408,
+      "sha256": "8080e992563dacbeb046b468d635685d1fc5bd83cbdb34492cbae6d8ed2b9a40"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/me.js",
+      "bytes": 1337,
+      "sha256": "7fe150a7af5600b1df8b0338d5babf8b7659901f24ff52ccf05055a833d85bba"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/ops-status.js",
+      "bytes": 2615,
+      "sha256": "30fde4f43d0b6f9d0b6f713f67d1e662fee552e7de2e5b5e398f94d803f3f2cd"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/paddle-webhook.js",
+      "bytes": 5844,
+      "sha256": "8e6e4b79a6b9a7cb69b96a27c63588b1b60a8e4cf0fedc900b311b934e965a74"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/transfers.js",
+      "bytes": 2187,
+      "sha256": "0d887dcaf29dfab60813bb45c55697edb01f221d0c3699ba6c85ab2f8068d56d"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/usage-metrics.js",
+      "bytes": 2010,
+      "sha256": "236f4d2b0b52a6eda6256a2554462e0932cade44a908e3a69c006f412be85ca5"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/routes/waitlist.js",
+      "bytes": 4520,
+      "sha256": "9eff6899a240b68f3961bc4476d02b28d4589820cb86fffc26b61ac4d196e044"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/sb.js",
-      "bytes": 836,
-      "sha256": "c4eec46aaf2e80c1ce16a8448b5a086e7831ec1d83760364b0fc80cf2466afb6"
+      "bytes": 1431,
+      "sha256": "f1a75cce52c86b4d5ce9e93f54e01c33206625bbbd7837d26798227c1eb2e2ef"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/scene-image.js",
+      "bytes": 2653,
+      "sha256": "6f67e298aadb513447a90757c31ab0c8266d9b540c9563a5a227faf4b6688ced"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/serve.js",
-      "bytes": 4954,
-      "sha256": "18a460e8f3d492021ebdf40925b0557a387105704f21fc2db4c64a7d888a2f15"
+      "bytes": 5545,
+      "sha256": "f2b644c398c2d994983136ef808a9142c363442b1d0f17a30dc0cc545610f30e"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/vector-corrections.js",
+      "bytes": 8795,
+      "sha256": "68cb8559f3313ae9eb551a0eb30150353110a13dc1727b6988c3dc8b31cbe894"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/visual-plan.js",
+      "bytes": 3183,
+      "sha256": "239effdec7d88f1219798dae35b01bedd6614b588d2b204b4df4e652ec98b890"
+    },
+    {
+      "name": "brandforge-os/cloud/api/_lib/visual-review.js",
+      "bytes": 841,
+      "sha256": "cc15c1bda60e8f06ab580794ca16ccbd18b0c2ce9b28258ac9629d3d35b7226d"
     },
     {
       "name": "brandforge-os/cloud/api/_lib/visuals.js",
-      "bytes": 9225,
-      "sha256": "62800420eca5cabaf36e415cd1cde27dd7fd82bf902439b907cb12068770d800"
+      "bytes": 30579,
+      "sha256": "8160f9d16be744add6f03befd37f84848127ecca41b2ce48665b59a521fc4588"
     },
     {
-      "name": "brandforge-os/cloud/api/billing/cancel-pending.js",
-      "bytes": 680,
-      "sha256": "bff92e33207605f1cb691fe503d7bb4d93139c9df73cd738e30d799d93156732"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/change.js",
-      "bytes": 4421,
-      "sha256": "93f2fc60edfaa5ca9222869e41c1e0e17c774d6c745a529810f15588a55238d0"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/checkout.js",
-      "bytes": 3107,
-      "sha256": "45dc4ab1e81285de68ba51de4551d29d255cd5a66423fb0bb9ccaf26d46c8dab"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/paddle-client-token.js",
-      "bytes": 824,
-      "sha256": "05bea45cbf5de55c805eacf0373569cbde88d9af33909c71a0250c98962f4234"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/portal.js",
-      "bytes": 1310,
-      "sha256": "e30a02dfa1550cf0202848ebd19a559d6ac4003a48d4a7ba90321d6114c9bc82"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/reconcile.js",
-      "bytes": 1017,
-      "sha256": "8247334d4f760e47c202ca14cc05372ddcea1ee323e16e8578b2b9a9e2e12c7b"
-    },
-    {
-      "name": "brandforge-os/cloud/api/billing/status.js",
-      "bytes": 1535,
-      "sha256": "61c1533437d3f3fc6f9c79f64fe9151acccc5522d0554566e7e0a83a3a9ccaeb"
-    },
-    {
-      "name": "brandforge-os/cloud/api/brands.js",
-      "bytes": 2339,
-      "sha256": "ee437a4c755e97d31f242da021c9ac839aa642d87346a47b8ea508bbe4676c1c"
-    },
-    {
-      "name": "brandforge-os/cloud/api/campaigns.js",
-      "bytes": 8872,
-      "sha256": "655963c445b43e7e6f5b188e3c539f4ea9095465f855894e66c1c8df8dda4636"
-    },
-    {
-      "name": "brandforge-os/cloud/api/campaigns/[id].js",
-      "bytes": 2852,
-      "sha256": "c71b1e295b39aa7dd0e19d772738a33f27a8fd31e421a38d93212922fa571a13"
-    },
-    {
-      "name": "brandforge-os/cloud/api/campaigns/[id]/deliver.js",
-      "bytes": 5225,
-      "sha256": "be0e234f675d0e900b7ebc823370411102d984639b7fe1814944705a450a7cfd"
-    },
-    {
-      "name": "brandforge-os/cloud/api/config.js",
-      "bytes": 2185,
-      "sha256": "782451a5df7577b9b2f7b2a214a55ee17e5d16ec18c9b659f2e6fa1b46e4e0d9"
-    },
-    {
-      "name": "brandforge-os/cloud/api/desktop/checkout.js",
-      "bytes": 1517,
-      "sha256": "835a0480ab606c5efa1af767d8f6fa46d2b44e3e1e55a584ef97fe8107c29b25"
-    },
-    {
-      "name": "brandforge-os/cloud/api/desktop/download.js",
-      "bytes": 580,
-      "sha256": "9ac021fd7e62ade60ede89665e1a4d9c03e41d91d040e4def910ab051355348e"
-    },
-    {
-      "name": "brandforge-os/cloud/api/desktop/resend.js",
-      "bytes": 1435,
-      "sha256": "a76b0cede1cec1eb3707ea75b9147bcfc70d6627ebc1cb63cfe78a195c1ded73"
-    },
-    {
-      "name": "brandforge-os/cloud/api/feedback.js",
-      "bytes": 1314,
-      "sha256": "227133d4bf27a5fdb811fc55c126caf6189044be59e537dc0101ce00f9b5b3ae"
+      "name": "brandforge-os/cloud/api/_lib/visuals_ai.js",
+      "bytes": 10336,
+      "sha256": "f83f40c903bd1a95a70b495008ad2e6608ebe9075ef05cebed54d38abff6c982"
     },
     {
       "name": "brandforge-os/cloud/api/health.js",
-      "bytes": 686,
-      "sha256": "ceb8305a933c3f0b9faa14173a6cbdd411bf9452b7723e64dc498af50f2573bc"
+      "bytes": 302,
+      "sha256": "14ab5d4d13e9a419a06606310f45ce1f6967f88c1a1a8cd521b16e2ca7555692"
+    },
+    {
+      "name": "brandforge-os/cloud/api/index.js",
+      "bytes": 6826,
+      "sha256": "e685daf21d69a8e16ef5d05188857679e3e728da06ba38c29075fa11929cbb48"
     },
     {
       "name": "brandforge-os/cloud/api/maintenance.js",
-      "bytes": 2708,
-      "sha256": "aab37ff360b489b6746e4734ddebb1ab820c6272f96662d4920c06ec2cd51233"
-    },
-    {
-      "name": "brandforge-os/cloud/api/me.js",
-      "bytes": 1357,
-      "sha256": "df6a4880af7a4f616c0ab6a4223a0190f17769b41986a2c27af806a34906f804"
-    },
-    {
-      "name": "brandforge-os/cloud/api/me/export.js",
-      "bytes": 2454,
-      "sha256": "b319517c412e2416d86efa598e34201d112c01252b924787ae112afe5d4cceed"
-    },
-    {
-      "name": "brandforge-os/cloud/api/me/keys.js",
-      "bytes": 3423,
-      "sha256": "739e174482d3abe8e5c1f599159f35c11b94039a176c37a77f3bfb63bf49abc0"
+      "bytes": 317,
+      "sha256": "a3c22b834da8ac71797850cd2cc562a211411794153a53ab44ab5b8c4b54694a"
     },
     {
       "name": "brandforge-os/cloud/api/paddle-webhook.js",
-      "bytes": 5864,
-      "sha256": "c389d71bd8b905a06cc8ede7cce30808e7a71e5b8c9f8131fa535fffd7a42dbb"
+      "bytes": 288,
+      "sha256": "e188362737ff4a80135de0ba3f84c6f8ebbc5ba345dc037da4da164cacb9885b"
     },
     {
       "name": "brandforge-os/cloud/api/waitlist.js",
-      "bytes": 4536,
-      "sha256": "aa1cf7b6a045a9d874735f323469e65d55d6c20712e4047d1df6b97ee40a3159"
+      "bytes": 343,
+      "sha256": "6d7d410d8a8ef99f49496f7f6806f686bc857356096f0d1266c58595e6f0c99d"
     },
     {
       "name": "brandforge-os/cloud/package-lock.json",
-      "bytes": 67509,
-      "sha256": "d65f8d04bbf49757a4f4707966ab80e4deeaf9e018b231109bf3f7d211afe1f1"
+      "bytes": 86688,
+      "sha256": "5ce9905187eff813cd36afdc79a64fe33fb6755d3089d560735d92a9b1247124"
     },
     {
       "name": "brandforge-os/cloud/package.json",
-      "bytes": 416,
-      "sha256": "454d7f5e4df1ff491c167bf3a2bfa2ffc4e25f73334f614cca2f777c7f818cc8"
+      "bytes": 459,
+      "sha256": "e8106b6538822f07aef414121ea84556a67846adafb7c43f62331e73d58484b3"
+    },
+    {
+      "name": "brandforge-os/cloud/public/allowance.js",
+      "bytes": 1418,
+      "sha256": "d78a8a83a2181b1812c899109a172ae40100b62d6e49a4e5298b82eaa722ea83"
     },
     {
       "name": "brandforge-os/cloud/public/app.js",
-      "bytes": 57399,
-      "sha256": "8797a5e9c4b2d0821e022968254b43d37e3738edca632a2b1ed21c252dd5c4c3"
+      "bytes": 85548,
+      "sha256": "3dd074bc4355ff1c1c338c384dde488d30bec7bcc588e5d1834a2d7ce4fb2550"
     },
     {
       "name": "brandforge-os/cloud/public/apple-touch-icon.png",
@@ -1179,19 +1451,79 @@
       "sha256": "8088ff23417dad1825b23775d9366c5ec0691259680d75982bd5ab1aa12e4cf8"
     },
     {
+      "name": "brandforge-os/cloud/public/assets/practice/manifest.json",
+      "bytes": 641,
+      "sha256": "96ff70eba410389c390293477d3e429268a53ebc849e7d0ef7aa02af091fbea9"
+    },
+    {
+      "name": "brandforge-os/cloud/public/assets/practice/original.json",
+      "bytes": 220622,
+      "sha256": "eadc2a0450303efb517b0d303bd5776c0563299038859bf6e9abf301b17b00e5"
+    },
+    {
+      "name": "brandforge-os/cloud/public/assets/practice/revised.json",
+      "bytes": 220879,
+      "sha256": "62ac57058251a2e400ee1fb227bc7c9acb04f6d840de78b23f9ffa191257e897"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/editor.js",
+      "bytes": 15861,
+      "sha256": "e954a1ee1a3acf3351fc72c1271f5be916e319cb5401c2d6d2643d2aecd0b602"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/image-dimensions.js",
+      "bytes": 791,
+      "sha256": "8457f852dca7f883d4b69f3210db2deb1e4ba84283adda2cb495d89e67b21ebe"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/import-image.js",
+      "bytes": 4826,
+      "sha256": "bf4d4a12dae63995f0c5957bd398649ba7fc75f771ddeed79daab7a776aebe95"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/index.html",
+      "bytes": 4729,
+      "sha256": "839f0e77121c5698e3437b304d9e04b5bf6fd63699de323d8c0f36eaf4ff29cb"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/launch.js",
+      "bytes": 1912,
+      "sha256": "9e6c122c399f577e241a94ea9620d61587ad394e176680ee031cfc3a35cf941d"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/model.js",
+      "bytes": 4738,
+      "sha256": "36c9d4f95bc988564604d2a15ca705051fab48be1a7107c8c886484a7ef89459"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/style.css",
+      "bytes": 1937,
+      "sha256": "ceeba4c5879e1351184b44088dab021970c0f84abcc40169f88442380ef79fd5"
+    },
+    {
+      "name": "brandforge-os/cloud/public/canvas/ui-font.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
       "name": "brandforge-os/cloud/public/desktop-download.html",
-      "bytes": 742,
-      "sha256": "b884752bfa334e9c6da8d76e8fa790f651f35918bd67cbd4912b8f8bbca86022"
+      "bytes": 976,
+      "sha256": "14f50537bfdc7a8aab0d8204e1a737e1e5b9005b27f14f13ddc060092f0d8a2e"
     },
     {
       "name": "brandforge-os/cloud/public/desktop-download.js",
-      "bytes": 779,
-      "sha256": "af391fd016e62bf9ab027b805f51f1f13e28b04ab4a04997ac2ed6e804ed1724"
+      "bytes": 1644,
+      "sha256": "9feb0fa8a907e5049e548f725252ee7a5b5ad42214553f68a191020e76255ff1"
     },
     {
       "name": "brandforge-os/cloud/public/download-help.html",
-      "bytes": 1829,
-      "sha256": "7f7d129e93b7b4b2de61c071d7598d06843814515ff80317bbcabbcf837d4999"
+      "bytes": 1988,
+      "sha256": "0082f6b97245a578f36b7040fc673f3686b257eb4acc045a4ce32d4c0d4fd959"
     },
     {
       "name": "brandforge-os/cloud/public/download-help.js",
@@ -1205,13 +1537,83 @@
     },
     {
       "name": "brandforge-os/cloud/public/index.html",
-      "bytes": 27982,
-      "sha256": "ea17c1447eef43e2bbcf17f35cf5bf7cb9d068890d0c17dd9bb05faa34d920c2"
+      "bytes": 34807,
+      "sha256": "412e5cd21cf1dc01e950101282358564262628f1b91dce6bd5a07b68ec1ad9df"
+    },
+    {
+      "name": "brandforge-os/cloud/public/portable-pack.js",
+      "bytes": 3799,
+      "sha256": "3b4deab066278c7b6662139ec36b3798e20d7ff9ed29debf2db3528d77e44d1b"
+    },
+    {
+      "name": "brandforge-os/cloud/public/practice.css",
+      "bytes": 1638,
+      "sha256": "15d0f57d68b5c1aea2e6df1aba30789ea16f094098e0a43da05dd2747ab03bcf"
+    },
+    {
+      "name": "brandforge-os/cloud/public/practice.html",
+      "bytes": 2726,
+      "sha256": "9d0143cdbc35e0cba475adb49ebe2fe53ae6488789e29149905ee57e3614085f"
+    },
+    {
+      "name": "brandforge-os/cloud/public/practice.js",
+      "bytes": 3272,
+      "sha256": "dc813d8d734b241590963e25496795eb14073f9fc952e0d8317e13dcca130c60"
+    },
+    {
+      "name": "brandforge-os/cloud/public/private-assets.js",
+      "bytes": 3491,
+      "sha256": "b96bca849666fdc4fa0ac5504c6136600170fd93df4424053bf287d397c8e082"
+    },
+    {
+      "name": "brandforge-os/cloud/public/review.css",
+      "bytes": 1389,
+      "sha256": "7a0b5ca7bfae822a6211902775094bc1613dc139198a9a3825b1b7dff1080a8a"
+    },
+    {
+      "name": "brandforge-os/cloud/public/review.html",
+      "bytes": 2009,
+      "sha256": "ab606ba393090ab3a8e278869b416dd931d92d6426a0aa555af51cdfc9ed34ab"
+    },
+    {
+      "name": "brandforge-os/cloud/public/review.js",
+      "bytes": 3648,
+      "sha256": "7554c65158fc90370a453a9bc376040ae0d723e6120635739854f9747ea23115"
+    },
+    {
+      "name": "brandforge-os/cloud/public/robots.txt",
+      "bytes": 26,
+      "sha256": "331ea9090db0c9f6f597bd9840fd5b171830f6e0b3ba1cb24dfa91f0c95aedc1"
+    },
+    {
+      "name": "brandforge-os/cloud/public/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
     },
     {
       "name": "brandforge-os/cloud/public/theme-boot.js",
-      "bytes": 743,
-      "sha256": "838060e4e973f00bc3e0f2266a33a471f018c975cb09a234695045050a8a7887"
+      "bytes": 656,
+      "sha256": "a74009cc77b0b4381fd878f0074075f35d2a01aa73b4db4536a7217a3af5c754"
+    },
+    {
+      "name": "brandforge-os/cloud/public/transfer.html",
+      "bytes": 1920,
+      "sha256": "7e4ec4afb902ab91a183d837c290cdbc69c7b0cd01d318cb0a383ca95469c8a3"
+    },
+    {
+      "name": "brandforge-os/cloud/public/transfer.js",
+      "bytes": 4467,
+      "sha256": "a8edc098d150d34eb7d334f719a211ac9e2ed540a8907f780dd5a5cc7a269b4d"
+    },
+    {
+      "name": "brandforge-os/cloud/public/usage-metrics.js",
+      "bytes": 2270,
+      "sha256": "c3dc438e5eae8dc941ec468985b8ad8b483b6ffb7c8bbe0162672911384f95bf"
+    },
+    {
+      "name": "brandforge-os/cloud/public/vector-quality.js",
+      "bytes": 1462,
+      "sha256": "292dd7e8872cdb6b8895ec77e230c53c26c57d5ff5e80aa663563a30eb80c969"
     },
     {
       "name": "brandforge-os/cloud/public/vendor/fflate-LICENSE.txt",
@@ -1229,14 +1631,19 @@
       "sha256": "96c0dae92ed78bcf4197c422e371f6c482ec30d5077d8fefbc17c7534a5ffc9f"
     },
     {
+      "name": "brandforge-os/cloud/public/visual-review.js",
+      "bytes": 1483,
+      "sha256": "2e14a8044b0562339f93c2f67ff859d933bddddd37846e2efa9b1c48585c5379"
+    },
+    {
       "name": "brandforge-os/cloud/public/workspace-tools.js",
-      "bytes": 4230,
-      "sha256": "8f7b6e757b7da609c00d5068ff109d1da7452380e4a1d231c8a30be3dc081f2b"
+      "bytes": 8505,
+      "sha256": "45ba0660fca7378cefefa999bf5cbf8e91a1d5994e4f35d1b36332b9f2bdf7a7"
     },
     {
       "name": "brandforge-os/cloud/schema.sql",
-      "bytes": 56907,
-      "sha256": "cc59342ac472d77d591214c1e0d4eaebe6b8b06efa3714ea8061120b6c3dd359"
+      "bytes": 132861,
+      "sha256": "3a1e967ed5ff4f186e2526cd522b6649d29c997b7dca9dda1798e60c426c74f6"
     },
     {
       "name": "brandforge-os/cloud/scripts/commerce-readiness.mjs",
@@ -1244,24 +1651,59 @@
       "sha256": "6aac6811d0afb4ef5dfe8d85798c83cc7429c787a080afca7a3ef7ad02468877"
     },
     {
+      "name": "brandforge-os/cloud/scripts/migrate-private-assets.mjs",
+      "bytes": 1742,
+      "sha256": "44130e0bb3baaff8722602b24e69b8a3ce7d2c97464901f0b8951aa8699519c6"
+    },
+    {
       "name": "brandforge-os/cloud/scripts/sync-schema.mjs",
       "bytes": 566,
       "sha256": "fd944e45ad3d0a005ca6590d62a9fb1c356dd3100e2f7fb4d853d8e10739d098"
     },
     {
+      "name": "brandforge-os/cloud/tests/ai-campaign.test.js",
+      "bytes": 6603,
+      "sha256": "c798d5c3beebab0afb6c563f0eda8f69034b1f7fea8a9d973616e3c4a626380e"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/allowance.test.js",
+      "bytes": 1189,
+      "sha256": "0c5422290e764c3b926c50ffd0004ee19b23077332d0dccca7904c9c214e810d"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/auth-availability.test.js",
+      "bytes": 589,
+      "sha256": "66d89747137160b8e89e0a73a8fd4496b5472326545bd1f7cf99f88e971f9b68"
+    },
+    {
       "name": "brandforge-os/cloud/tests/billing.test.js",
-      "bytes": 7337,
-      "sha256": "2b492ac7cc7f1a9c3a4d844431b2f8620ffb83c1c63afe877860f5b1c50a79b8"
+      "bytes": 7396,
+      "sha256": "4c4ff0bc13a2ed1169c1ef4784c877314120c9450886d75953860693d44925cd"
     },
     {
       "name": "brandforge-os/cloud/tests/campaigns.test.js",
-      "bytes": 6640,
-      "sha256": "04110a082e2e6cb9ca0c13f49d76782318b1758ea12c3c72c1f79795833542b4"
+      "bytes": 10865,
+      "sha256": "a61b04958e23c091b512d2541c456481f54cfe6f9f282ae4d304d23f34dc5d76"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/canvas.test.js",
+      "bytes": 5352,
+      "sha256": "63f533b16af0f10cf9beccc718cf92b4db7736bcb156a4d5144fe4e59e033ab1"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/capabilities.test.js",
+      "bytes": 3911,
+      "sha256": "8cd5d4236007b6f7968b32915ad921dcaae31908be2841bc34081b466e256fbe"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/client-review.test.js",
+      "bytes": 5456,
+      "sha256": "b32e8a9dffa7d7c8646f79e2f8fcbc12ae6eea6934c86bc103ebc97fe9a9fec3"
     },
     {
       "name": "brandforge-os/cloud/tests/clientip.test.js",
-      "bytes": 1317,
-      "sha256": "d8e1908645fae4ee1f2f00afa59a6a5ed62d074dfb11f78bf1271a2f4467cf09"
+      "bytes": 1329,
+      "sha256": "5023f4ec4f554d0907a35805b3ad53ebe5f0f84a154f2bc895ec114b37255865"
     },
     {
       "name": "brandforge-os/cloud/tests/dashboard-a11y.test.js",
@@ -1269,9 +1711,14 @@
       "sha256": "c8861bd0063016d71f28bd039a84cc2188b7c34efd3eb2062b749ef8b12ca370"
     },
     {
+      "name": "brandforge-os/cloud/tests/dashboard-contrast.test.js",
+      "bytes": 1778,
+      "sha256": "ab408fb7aaeedc0944a43884759002f1f0d12188f5f88adadb2b39d625407d74"
+    },
+    {
       "name": "brandforge-os/cloud/tests/database-upgrade.test.js",
-      "bytes": 1668,
-      "sha256": "0af2f8e96b62519df320aa00a61f52bf4c33a40483507008da172ef5ce079ead"
+      "bytes": 2149,
+      "sha256": "fd3046e7f61f03cf8c72876ace0195b86eb54cf9cee7311fa87812f60c1935e9"
     },
     {
       "name": "brandforge-os/cloud/tests/database.test.js",
@@ -1280,18 +1727,43 @@
     },
     {
       "name": "brandforge-os/cloud/tests/deliver.test.js",
-      "bytes": 11093,
-      "sha256": "a0f411781e7e41c09e9d83a89c11a930d1566cff1bdb360a3815f22f400e1c22"
+      "bytes": 11098,
+      "sha256": "717b3599448f6d34562b36e1af382d96d09a4f053d7479fdab78e48e297ae79b"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/delivery-queue.test.js",
+      "bytes": 3613,
+      "sha256": "f99c6c6ffbcd4c28983241b890c942b4b8eac21272af8319db14e5149491b5e2"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/dispatcher.test.js",
+      "bytes": 3947,
+      "sha256": "a35e999c8bf71c5ac0fa4bd354e0ec012c08096d597c4d6d6c91305336049f24"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/editorial-vector.test.js",
+      "bytes": 7644,
+      "sha256": "05c7c7df47285b3243c83ac233970b4f95476f22bde76e01c1e8a0f93f0675bf"
     },
     {
       "name": "brandforge-os/cloud/tests/engine.test.js",
-      "bytes": 4064,
-      "sha256": "89cb339b3004ad1531730a94fcbe91856adcb1164b399ae37844500916655e2f"
+      "bytes": 11352,
+      "sha256": "89d0ed82ac22d48f8f9fa69d6fcdcb6e0ceb59d658868d6147c29876fc17abc7"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/final-hardening.test.js",
+      "bytes": 2724,
+      "sha256": "9ca085e7be6d6c462836b9d81a1ae26928fed79ffb10f5f97edbf590eba7950b"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/fixtures/legacy-vector-hashes.json",
+      "bytes": 11485,
+      "sha256": "fed1906ec353db49e46dd4a6224af0d8fddab2c8882fe26ac0de3843839bddd7"
     },
     {
       "name": "brandforge-os/cloud/tests/full-audit.test.js",
-      "bytes": 5316,
-      "sha256": "27e6f17e404cf6a046bb680c57b1f5dd8cb45ee2c367cc9bbfe6a7f039a9b932"
+      "bytes": 5328,
+      "sha256": "401d0d08f4e6b7757d77e8c3c9bda88ff5cd02c96d5ac4a0363e9b6c84074c22"
     },
     {
       "name": "brandforge-os/cloud/tests/golden-en.test.js",
@@ -1345,13 +1817,28 @@
     },
     {
       "name": "brandforge-os/cloud/tests/id.test.js",
-      "bytes": 3125,
-      "sha256": "23027571b5903b293e8a22b49987dc6baaa2b84cfeba472927d7e82cca1a24b3"
+      "bytes": 3307,
+      "sha256": "1e8f73f203a03c048de7bfcc3ac1c739eef2a17ede0b7e559132589f2396db9d"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/image-providers.test.js",
+      "bytes": 3076,
+      "sha256": "02d6619362aed58269cf6ceb7a4a93ae9acedf754545a502c2566d23508d4959"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/image-recovery.test.js",
+      "bytes": 5911,
+      "sha256": "3ff006f34d245da5fac89bb4bb9452593a8d555098bf687ecf9347d8d4cc49ec"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/image-safety.test.js",
+      "bytes": 9121,
+      "sha256": "fe0f86293bfc09ddea83669f9e76339fab87306b224bc9972264e75f0d28e7ad"
     },
     {
       "name": "brandforge-os/cloud/tests/keys.test.js",
-      "bytes": 7874,
-      "sha256": "79def3c4b16698860d09d4ba3248f74bb7e5b7756c4e8bbfbc36712640bcfca1"
+      "bytes": 7886,
+      "sha256": "6eedb00650731e3030b235600576a4a66fd5794c650f27ec6d586c6586517790"
     },
     {
       "name": "brandforge-os/cloud/tests/limit.test.js",
@@ -1359,19 +1846,54 @@
       "sha256": "0888c92432261e6f6340189424ca795eb3abceff3a97fa2cd7d11fbee01f086b"
     },
     {
+      "name": "brandforge-os/cloud/tests/logo-crop.test.js",
+      "bytes": 1613,
+      "sha256": "0991acb725805229148fd84046c61b65609ac83f6605a8caeb6a2ab885c7dc33"
+    },
+    {
       "name": "brandforge-os/cloud/tests/me-export.test.js",
-      "bytes": 1771,
-      "sha256": "1ba8b8d6fc9b83cc70bb6296945f062d0e4531851abb4552e38b002567528ed4"
+      "bytes": 1783,
+      "sha256": "6cfbe8f1e9370c00d1f1f238ef73bbe3811f4c1d5227a039a35ab0fa4294943e"
     },
     {
       "name": "brandforge-os/cloud/tests/me.test.js",
-      "bytes": 2460,
-      "sha256": "f9f75ee31fc17d3ca931288b27fb745601b3e0d860113055085a31a53f169a64"
+      "bytes": 2472,
+      "sha256": "5de915bb43f540509f0a4210645a48d970f7c2aceaf73ebf59385d37100d8d82"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/ops-status.test.js",
+      "bytes": 1668,
+      "sha256": "2285350c0ca196c68f68fdeae90f18fae01977de32fa2dee5639acf5a3a097f5"
     },
     {
       "name": "brandforge-os/cloud/tests/paddle-webhook.test.js",
-      "bytes": 7386,
-      "sha256": "4232df756103b46eeab3751b83b28b0599967e62f8f64b9614c5cb7bf8afb7da"
+      "bytes": 7398,
+      "sha256": "156e978f3436190d46816030e6cecebe76a6d24453003e7cb99dc23fea014b42"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/payload-routes.test.js",
+      "bytes": 2993,
+      "sha256": "5104b1e357421aae814f76735e4465a290e32902a592da10d0ae17498bcc8383"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/portable-pack.test.js",
+      "bytes": 3550,
+      "sha256": "89eeed24f581cf0318c47dfdc9676670c2f9b44e86096408a508ad9fcd104299"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/private-assets.test.js",
+      "bytes": 16156,
+      "sha256": "7f058d8b21b119437c4f295fd951431078aa6d54da7fcf7fb54ac96c85e8b2e5"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/private-versions.test.js",
+      "bytes": 12224,
+      "sha256": "b24fe3bd6c7a4428ec8bcb978a4660d7909e56e024969170d0186c1151aea055"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/product-workflows.test.js",
+      "bytes": 7930,
+      "sha256": "b9b8002097e20beb3f0c72854f7817d63fedfdc1b53f32dacbe9ba9bff735e80"
     },
     {
       "name": "brandforge-os/cloud/tests/quota.test.js",
@@ -1380,8 +1902,13 @@
     },
     {
       "name": "brandforge-os/cloud/tests/readiness-regressions.test.js",
-      "bytes": 4410,
-      "sha256": "d312694f38cf01aa11933f6ced2831e31cd2818cf8178d55e86054cf134a80ab"
+      "bytes": 6004,
+      "sha256": "6fd2c215bbd5720897b77a54e442dec6fdadcfef480f1c5df78729b66c05a0a0"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/scene-image.test.js",
+      "bytes": 2645,
+      "sha256": "f93e40446395e2c45ca45f9c053eb7bf42b0f6b2a25f813db69a992049492d9a"
     },
     {
       "name": "brandforge-os/cloud/tests/schema.test.js",
@@ -1389,14 +1916,39 @@
       "sha256": "f225a8f7c25b1aa53b3046625e54e7783f8ec677fa47f54783408329b628b129"
     },
     {
+      "name": "brandforge-os/cloud/tests/signup-protection.test.js",
+      "bytes": 572,
+      "sha256": "1d0a2c54f332384a5a605c2d50613e4ae26c9e8fa2f53dd782a502ef4c3b0419"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/usage-metrics.test.js",
+      "bytes": 4579,
+      "sha256": "31379a59e80a56cc574a1f382b5c3192e2a93561227e4858fbcd26e425429df9"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/vector-corrections.test.js",
+      "bytes": 12436,
+      "sha256": "230755d2fd763277751ef8d57d85578faeb909e3a733051cf8355d9a80318756"
+    },
+    {
       "name": "brandforge-os/cloud/tests/vendor.test.js",
       "bytes": 2810,
       "sha256": "e716871b1e05647d2081ce6ee7f0f81a33f0b13089907201f3be1b5e76d3c7c8"
     },
     {
+      "name": "brandforge-os/cloud/tests/visual-review.test.js",
+      "bytes": 6992,
+      "sha256": "42df5a7c5d7133eec866affb30bca5be6eb6a1db1fd46953a2e4effdeed95aec"
+    },
+    {
       "name": "brandforge-os/cloud/tests/waitlist.test.js",
-      "bytes": 3588,
-      "sha256": "12c134136e39e6a68a1592e78567971d9e38e30d3dc0a0cff321ccb28808487e"
+      "bytes": 3600,
+      "sha256": "7b368f9cb3cc50845ae0139e858350c38e01144bb594694a5307afca32cac1c8"
+    },
+    {
+      "name": "brandforge-os/cloud/tests/watermark-payload.test.js",
+      "bytes": 5538,
+      "sha256": "05e262c51076d4bb9fcdff062e4909bbbacef3202732ada7c3a1636e843ae30b"
     },
     {
       "name": "brandforge-os/cloud/vendor-entry.js",
@@ -1405,18 +1957,23 @@
     },
     {
       "name": "brandforge-os/cloud/vercel.json",
-      "bytes": 2227,
-      "sha256": "4896cdaecf616be16cf1b1bf0072603c70bdde139b6dcc4ae43eebca9911c6a3"
+      "bytes": 2954,
+      "sha256": "a24db96361a22e50aa86305c8dd94b5590367f3d182d36fa73f554470d8c400a"
     },
     {
       "name": "brandforge-os/cloud/vitest.config.js",
-      "bytes": 309,
-      "sha256": "48b53e839d374530a34b82b1d28ff3ee397a44b9cd220cdbcf8b2eee6ab4f54e"
+      "bytes": 581,
+      "sha256": "ed22612a285a844011d393aee352efd361b512f86f5fa41bd2209246ff1c5592"
+    },
+    {
+      "name": "brandforge-os/docs/AUDIT-2026-09-11.md",
+      "bytes": 6373,
+      "sha256": "fdce43466dc99ff985b7431e97c53ab467aa992691e501de74ceba919e197da3"
     },
     {
       "name": "brandforge-os/docs/AUDIT-IMPLEMENTATION.md",
-      "bytes": 6510,
-      "sha256": "9ca752dd277c0a68a22d6ac0439554c7f630ddec7bcc46caeb25e4e70da06bb1"
+      "bytes": 6696,
+      "sha256": "0e8a0267583d2074a214d140a2cc7f60e8cabf1bec9e247e46c1e49c8ea1bccb"
     },
     {
       "name": "brandforge-os/docs/DESKTOP-USER-GUIDE.md",
@@ -1425,13 +1982,18 @@
     },
     {
       "name": "brandforge-os/docs/FULL-AUDIT.md",
-      "bytes": 13796,
-      "sha256": "f40a13895406c299a392456d9ab52e056f286ce5cedf89ee37f449be5b8a710b"
+      "bytes": 13982,
+      "sha256": "669fc9bb8abe955229d95e8d763c144752bae058e386efc0aed809e7461b0495"
     },
     {
       "name": "brandforge-os/docs/LAUNCH-RUNBOOK.md",
-      "bytes": 14758,
-      "sha256": "a4f6dca5325f2ebee58580a856b6db2deba52d56fea5292ea87cefe7cf0bfb5e"
+      "bytes": 14962,
+      "sha256": "19e19d04a7a7cf2a64a774b9ad7d4a5a0eb392c796695ace08d376c8fcd4ffca"
+    },
+    {
+      "name": "brandforge-os/docs/NATIVE-RUNTIME.md",
+      "bytes": 1954,
+      "sha256": "a9cf192d011dd021231d3d31403882d0ee87e14694dc5719b6b8c086edfe06dc"
     },
     {
       "name": "brandforge-os/docs/NETWORK-PRIVACY.md",
@@ -1440,18 +2002,18 @@
     },
     {
       "name": "brandforge-os/docs/OWNER-GUIDE.md",
-      "bytes": 12510,
-      "sha256": "656fe759f1947520ffcbc33116eecbd4a7d96de4855798f7d7d7185bb73927bf"
+      "bytes": 12671,
+      "sha256": "9b389b60944fb3a0753e8099b96000f9b3674da803bccb0cb7616c07593e5f6e"
     },
     {
-      "name": "brandforge-os/docs/OWNER_DEPLOY_GUIDE_2026-08-31.md",
-      "bytes": 161,
-      "sha256": "f13c8bab8613f5b1b4e6844ae45ab1ed80512c0e48c30f962542ac9b5ff329c7"
+      "name": "brandforge-os/docs/OWNER-VALUE-DASHBOARD.md",
+      "bytes": 2996,
+      "sha256": "c6de46d8681f574b0631671db1c561fac54c33d9f0efecddd1a6026107da43bf"
     },
     {
       "name": "brandforge-os/docs/PRODUCT-ACCEPTANCE.md",
-      "bytes": 3599,
-      "sha256": "a6d54dc64b998a6bb8a133d5e34b2d295124ffbd1e0e0c457d4f8fa19826ef59"
+      "bytes": 3865,
+      "sha256": "a3f00dfd0250a63b9d8ad0162e25f947ad1f2aff2bb6723bddb19886258beb85"
     },
     {
       "name": "brandforge-os/docs/PRODUCT-DEMO.md",
@@ -1459,9 +2021,14 @@
       "sha256": "162276e30b1fc4c941e17c1c5f239c85842c77a30482754282f5974548266b16"
     },
     {
+      "name": "brandforge-os/docs/RELEASE-VERIFICATION.e2e.json",
+      "bytes": 560,
+      "sha256": "d3e2de414126f4ac7bf4f4e067ae3bd55b90cd9476415a4535e431c4e7e0347f"
+    },
+    {
       "name": "brandforge-os/docs/RELEASE-VERIFICATION.example.json",
-      "bytes": 700,
-      "sha256": "b4523cd6794934583c734e2565b71615787a6767f6df30091c594787ba66bbec"
+      "bytes": 916,
+      "sha256": "e921852c654b90a6df6ffb8f7440aa9c7fd53ffbba9a01c774474ac04f5d9eaf"
     },
     {
       "name": "brandforge-os/docs/RIGHTS-MATRIX.md",
@@ -1475,13 +2042,1278 @@
     },
     {
       "name": "brandforge-os/docs/UNIT-ECONOMICS.md",
-      "bytes": 1902,
-      "sha256": "e60329ed07877780c468c75b61cbe10d878a22e80c9ee2bb2dfb68d9e0576478"
+      "bytes": 1865,
+      "sha256": "8cca4ec5e411e83b929b90e0219da675b7084373f526d10f6b4bb6f99e414e0f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/91-ITEM-RECONCILIATION.md",
+      "bytes": 29747,
+      "sha256": "89c984872d2aa649c2b036858cb2b3a227b197b91d0d781700947e32b41e9b26"
+    },
+    {
+      "name": "brandforge-os/docs/audit/DUPLICATE-TREE.json",
+      "bytes": 59967,
+      "sha256": "aab8d6eec25ef588693dfa95323aac209dfa91fa46b388fc94a6edd786faeb8b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FINAL-AUDIT-1.14.md",
+      "bytes": 10338,
+      "sha256": "97d3c0f5b8df23967bc174c19465fe38baab39a7a106a2b5c897b7ae7f0f5662"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FINAL-AUDIT.md",
+      "bytes": 11732,
+      "sha256": "3baff95a255d1b85e4725c0fec90c442b1291462b8374e0a29fa52596b8d1480"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FOLLOW-UP-1.10.0.md",
+      "bytes": 8853,
+      "sha256": "d5eeefdf34070d52f6acc507312c326ee19e5b623512c4ad2da45bfbafc58a21"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FOLLOW-UP-1.11.0.md",
+      "bytes": 7541,
+      "sha256": "a1fedbefc641e4d1724a2c66150f9bc14daa1c62a1574671a41d1272abac238c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FOLLOW-UP-1.12.0.md",
+      "bytes": 3352,
+      "sha256": "fc19938fe4acb978fda2d938919443f8f140f59037b867761c257dadfa9fb671"
+    },
+    {
+      "name": "brandforge-os/docs/audit/FOLLOW-UP-1.9.1.md",
+      "bytes": 11060,
+      "sha256": "76905262798d61beba20788e9ab691fc30e0f7642d6d791c964b3d2938e36fa0"
+    },
+    {
+      "name": "brandforge-os/docs/audit/HISTORICAL-ARCHIVE-LOCATION.md",
+      "bytes": 771,
+      "sha256": "5f4b3fadb4f9d9f4eac936cf7973d7f7efaa8baa69f0c940f1b6c87322a14c83"
+    },
+    {
+      "name": "brandforge-os/docs/audit/OWNER-HANDOFF.md",
+      "bytes": 261,
+      "sha256": "09e3ddcae175a7780ead86c660a430c4fa5157082fcaf08839a5afe1d3532d2b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/PROVIDER-CATALOG-REVIEW-1.13.md",
+      "bytes": 1819,
+      "sha256": "bbe017363ba2f22726fd58f85a2190eb5096bc3d73c77116810e6dac69b6ee27"
+    },
+    {
+      "name": "brandforge-os/docs/audit/PUSH-WINDOWS-CMD.txt",
+      "bytes": 1408,
+      "sha256": "dab3a38aa01691cdfc2ea93e978ebff9c5bc2d8c7334b4fc31162d9c362fd3ec"
+    },
+    {
+      "name": "brandforge-os/docs/audit/continuation-1.12-evidence/continuation-release-gates.txt",
+      "bytes": 13980,
+      "sha256": "660f8b8d219fe2e9aa09dd026502b83a677d181b37f73b067f9a184fd2b6d374"
+    },
+    {
+      "name": "brandforge-os/docs/audit/continuation-1.12-evidence/corrections-browser-current.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/continuation-1.12-evidence/private-scene-final.txt",
+      "bytes": 340,
+      "sha256": "86038b4b42d3a853de31e99f50901220b64729a2dfcd47a79f38e2ed71a9f64e"
+    },
+    {
+      "name": "brandforge-os/docs/audit/continuation-1.12-evidence/product-browser-current.txt",
+      "bytes": 33,
+      "sha256": "c885382fd88b7821a1376281f4e49c70aa57a28172128c5fb959e43b14503cb7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/continuation-1.12-evidence/scene-browser-current.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/cloud-dependencies.json",
+      "bytes": 364,
+      "sha256": "4495255f7574a7267b7b3530510385da66227ce2ae840ceac105c14372aa7779"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/cloud-tests-final.txt",
+      "bytes": 5876,
+      "sha256": "2d065dd0c001bb100b0d9550b13793b03b44570649645db5ea4c9c42187a2870"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/dashboard-dependencies.json",
+      "bytes": 364,
+      "sha256": "563e41f6754f6e8a8dbccfbe39ef4365c03c70115fc4f4fc5eca0fbe1148ee31"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/desktop-light-390.png",
+      "bytes": 78616,
+      "sha256": "ae478ffb86d3fb23c7afcf1d8248d04c60450aa479eef9f87d01cfdd9b036e86"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/desktop-workspace.json",
+      "bytes": 2606,
+      "sha256": "c856bd0511387762b7819823d083a38db622221190f1a1a88fca4e1a362f9b1c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/desktop-workspace.txt",
+      "bytes": 37,
+      "sha256": "dd1782d8eda60a9983b7a5357cd53c1740697a69d35d715660df63dc844f393d"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/editorial_quality_qa.json",
+      "bytes": 9132,
+      "sha256": "7b947e922a3873912bf58b25bd35d1523c10783d7b780155e9000b7016a64c1b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/editorial_workspace_qa.json",
+      "bytes": 1110,
+      "sha256": "c60837f35e8736a4deb26e3339b2315879f516894c4d7f59f3d122c09ed4ff6a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/image_consent_qa.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/index-light-390.png",
+      "bytes": 59049,
+      "sha256": "e747c395c6cab986553df4aed1f51baa61fb5f439f941a681ca9133b1169fb5e"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/prelaunch.txt",
+      "bytes": 46,
+      "sha256": "bd17ddeb596cd87cd069966052fad188d5566ef92379a2a56d9a1452d2f9a1ee"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/pricing-dark-1440.png",
+      "bytes": 101344,
+      "sha256": "8e78d2524aef6cfa2a78887e4bcb526f31648e2ec5bd18e3271a52bdb2616904"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/private_assets_qa.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/python-dependencies.json",
+      "bytes": 2239,
+      "sha256": "56d8074829d297b56af811669cd50d610e0b9e312afab465b67af7712a45327a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/python-lint.txt",
+      "bytes": 19,
+      "sha256": "82b3e6a6c090a57601d22943bd23fca9218d1031dbe5a7b754092f9a156b4f18"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/python-tests-final.txt",
+      "bytes": 7626,
+      "sha256": "edbf9a06ef9cee4840b2ec7cbddbb40be64960220694bd5c88c04b3251133897"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/release-quality.txt",
+      "bytes": 15397,
+      "sha256": "4f6a4fd1e56627d6affcd09a09732c674fca9af06935e1f1dc5851914d92aebf"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/sales-56-views.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/sales-dependencies.json",
+      "bytes": 362,
+      "sha256": "542f76e62f212fd44ff9b59356b2f5180235faede8945f4c47ef788d2dd072ba"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/sales_availability_qa.json",
+      "bytes": 9733,
+      "sha256": "3aa90333dd64a53ab32e697fd3386df99e97f1c3eb55d03c124f664933d7d792"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/site-browser.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/vector_corrections_qa.json",
+      "bytes": 1542,
+      "sha256": "d342f981921c4a4558650b3acc0b2383868afc33b55cf647592070f2be1d7ac3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/visual_review_qa.json",
+      "bytes": 1334,
+      "sha256": "6c6e00956dd3cdb489860b40d897bae0066c7b3d3b92b5935df8a9c298fc2ca7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/watermark_export_qa.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/audit/evidence/wheel-build.txt",
+      "bytes": 24883,
+      "sha256": "eaac4641df09fecc002bd0f2334097df69b7d6d929d536ed15c32995c9c19b5f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/canvas-security.txt",
+      "bytes": 474,
+      "sha256": "50fc0cc716420d297a707894fb8e0ba047a27ed3edfee7b65b329afbaa339add"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/chromium-canvas-cloud-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/chromium-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/chromium-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/chromium-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-chromium-canvas-cloud.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-chromium-canvas_qa.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-chromium-desktop_workspace_qa.txt",
+      "bytes": 37,
+      "sha256": "befec2e7c4866434363d857cd1e35bd040cc629cf67fdec9c6401613440aacf9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-chromium-repository_site_qa.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-firefox-canvas-cloud.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-firefox-canvas_qa.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-firefox-desktop_workspace_qa.txt",
+      "bytes": 37,
+      "sha256": "befec2e7c4866434363d857cd1e35bd040cc629cf67fdec9c6401613440aacf9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-firefox-repository_site_qa.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-release-gate.txt",
+      "bytes": 17795,
+      "sha256": "dd4d6bcff6eb0eec9311dfc349eeeb0685a55accfd7b5f9d83f7c8305429da3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-webkit-canvas-cloud.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-webkit-canvas_qa.txt",
+      "bytes": 115,
+      "sha256": "57b660ad3632439948e4bb353a8effdaaef24d0d18e7020c03aa84f24848f383"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-webkit-desktop_workspace_qa.txt",
+      "bytes": 37,
+      "sha256": "befec2e7c4866434363d857cd1e35bd040cc629cf67fdec9c6401613440aacf9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/final-webkit-repository_site_qa.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/firefox-canvas-cloud-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/firefox-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/firefox-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/firefox-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/full-regression.txt",
+      "bytes": 17796,
+      "sha256": "c35ee462595a83c5e0a56e9a5023407540162ac4a0b790ff3fae967ef4e97467"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/inventory-summary.json",
+      "bytes": 424,
+      "sha256": "8a4243d01512e5ba49de6006701f655053170e313d0400a385151031c8063671"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/local-database-restore.txt",
+      "bytes": 3172,
+      "sha256": "0a7c504c9b2a239308ee90c646c379ca522083a6a0028ce40cdb8b4580af0074"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/native-final-build.txt",
+      "bytes": 26865,
+      "sha256": "62ddc0a00d01e835dc743aede59d5418614f8889da51f46ee8902590126aa866"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/native-final-install-smoke.txt",
+      "bytes": 522,
+      "sha256": "5a5b240c6d77ffc5f270cb3281f0c2cb5a3a64b5a11609f39cdc4fe12bebf4a2"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/native-final-package.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/native-final-smoke.txt",
+      "bytes": 221,
+      "sha256": "ca1b1cea86f4aafcc5d39b7c3338d9e10e1cb2a89adeac604d5152c19d0f88b0"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/postgres-concurrency.txt",
+      "bytes": 462,
+      "sha256": "a674faa456752179fcb664740c45fdbebc470e0ca61c946f304477d73c091d0c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/scene-corrections.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/source-inventory.json",
+      "bytes": 261187,
+      "sha256": "333230f9e666bcb9a708c48317deee21fdfef695562b5ee7aabc639a833072ad"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/webkit-canvas-cloud-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/webkit-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/webkit-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.13-evidence/webkit-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/additional-config-syntax.json",
+      "bytes": 213,
+      "sha256": "7d326c5f3f79e4db2aa2eeeca939e3fe0d8047838b21b43507f8e7754f37719f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/ai-campaign-consent-results.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/ai-campaign-consent.txt",
+      "bytes": 94,
+      "sha256": "95b8b2d5e0ff958ffe8a95501251c400eb7e4fc4d0ad22ee7167eaa272e6fa6a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-broad-browser.txt",
+      "bytes": 76,
+      "sha256": "1b2c53e4ad6c0862b864aec55d28f1bb419bbe5f4617c6167fab97c7d703e00b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-image_consent_qa-results.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-private_assets_qa-results.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-product_workspace_qa-results.json",
+      "bytes": 1646,
+      "sha256": "c970ff452e7532e58cf5d63b24af18516840c719acd1e71b3605366a0ad55640"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-review_transfer_qa-results.json",
+      "bytes": 618,
+      "sha256": "11a5c8c5e0fa04fe1746acca61e28e1e14539d9afce03aa73771a5d15da72d25"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-vector_corrections_qa-results.json",
+      "bytes": 1542,
+      "sha256": "d342f981921c4a4558650b3acc0b2383868afc33b55cf647592070f2be1d7ac3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/chromium-watermark_export_qa-results.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-app-web-modern.json",
+      "bytes": 364,
+      "sha256": "563e41f6754f6e8a8dbccfbe39ef4365c03c70115fc4f4fc5eca0fbe1148ee31"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-clean-environment.txt",
+      "bytes": 30,
+      "sha256": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-cloud.json",
+      "bytes": 364,
+      "sha256": "ccf15df712fbf44b82a7e1dd5b530fd5b83c7d3a8379e286e0c7e69087aba32c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-python-audit.json",
+      "bytes": 2239,
+      "sha256": "56d8074829d297b56af811669cd50d610e0b9e312afab465b67af7712a45327a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-python-audit.txt",
+      "bytes": 31,
+      "sha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/dependencies-sales.json",
+      "bytes": 362,
+      "sha256": "542f76e62f212fd44ff9b59356b2f5180235faede8945f4c47ef788d2dd072ba"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/firefox-broad-browser.txt",
+      "bytes": 76,
+      "sha256": "1b2c53e4ad6c0862b864aec55d28f1bb419bbe5f4617c6167fab97c7d703e00b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/firefox-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/firefox-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/firefox-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/inventory-summary.json",
+      "bytes": 96,
+      "sha256": "9830c497ffd076095c617a7a247312728e956972be4f7d7b2322376384812849"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/native-build.txt",
+      "bytes": 26924,
+      "sha256": "490d53c58e6a1b1581a3081257aa706e21cc75ec74fbe8ec57b94d809739a6a8"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/native-installer-smoke.txt",
+      "bytes": 522,
+      "sha256": "8c7dc8f1d80ffea08c032135c745a4dd49486cf43b4a6c388ab8e5d264af6c51"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/native-maintenance-smoke.txt",
+      "bytes": 221,
+      "sha256": "8e68a019cc8335930d7bdef9627ea676765e9ed4581bd385c321f53fa95de4f6"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/native-smoke.txt",
+      "bytes": 221,
+      "sha256": "8e68a019cc8335930d7bdef9627ea676765e9ed4581bd385c321f53fa95de4f6"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/postgres-concurrency.txt",
+      "bytes": 491,
+      "sha256": "3a9578061e543b7fe5fe5de298898a3ca220e70fc7e418f46c7abfc63b277299"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/postgres-restore.json",
+      "bytes": 3139,
+      "sha256": "317b6b95663b0ff6ffe4d8115a6c4495567464336994da254d7e3362157a2875"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/release-quality.txt",
+      "bytes": 14221,
+      "sha256": "19f5185fde7a4da523656d323826bd5586d26ef8a840ec68ffca7b57bb4c35f9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/showcase.txt",
+      "bytes": 54,
+      "sha256": "f2179c8586ef1de62a02ea555d6bf56d9b1d8b3a81fa12c3076373d408243588"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/source-inventory.json",
+      "bytes": 286257,
+      "sha256": "ece248697c3adfb7ab1ca0332079e9607861c3a790b73112bfe7a8a75ebdb693"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/webkit-broad-browser.txt",
+      "bytes": 76,
+      "sha256": "1b2c53e4ad6c0862b864aec55d28f1bb419bbe5f4617c6167fab97c7d703e00b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/webkit-canvas_qa-results.json",
+      "bytes": 274,
+      "sha256": "f56546c5a25d0186cf61d582ffe1ae75832c0d649607b2cd37fb22b15749c41b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/webkit-desktop_workspace_qa-results.json",
+      "bytes": 2749,
+      "sha256": "cba4348dc89d801a2a8b57d1fbd70bdec70dd7fb6eaff2fdc1f6f58bd101d8c7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/final-1.14-evidence/webkit-repository_site_qa-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/cloud-clean-tmp.txt",
+      "bytes": 6077,
+      "sha256": "053c8879e7362125b3d59a3be0e39459ce3d194e716bb3d3ed5203f6f26ecc8b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/cloud-dependencies.json",
+      "bytes": 364,
+      "sha256": "ccf15df712fbf44b82a7e1dd5b530fd5b83c7d3a8379e286e0c7e69087aba32c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/cloud-rerun.txt",
+      "bytes": 11707,
+      "sha256": "f6062d9a84daf917104766471127ef24d4aff1902dc030fc0d0cee211adc2408"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/consent.txt",
+      "bytes": 94,
+      "sha256": "95b8b2d5e0ff958ffe8a95501251c400eb7e4fc4d0ad22ee7167eaa272e6fa6a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/desktop-dependencies.json",
+      "bytes": 364,
+      "sha256": "563e41f6754f6e8a8dbccfbe39ef4365c03c70115fc4f4fc5eca0fbe1148ee31"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/desktop.txt",
+      "bytes": 37,
+      "sha256": "dd1782d8eda60a9983b7a5357cd53c1740697a69d35d715660df63dc844f393d"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/editorial_quality_qa.txt",
+      "bytes": 109,
+      "sha256": "aec29d7918e37accf9aea63644e2fd145edb323e16a1ded0cf5a2aa92d539784"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/editorial_workspace_qa.txt",
+      "bytes": 119,
+      "sha256": "5571d68ff725f57f184c1a181606aae110f284422908ebbd88491aee76e31663"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/inventory.txt",
+      "bytes": 96,
+      "sha256": "2a3f976296c34b5450917913290ef4d371e52cde94e571277891c7e869778134"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/oom-diagnostic.txt",
+      "bytes": 1869,
+      "sha256": "10937618a34cb677a429c635ab82001d8c49caab8a537b96c395995a43e69d25"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/practice-browser.json",
+      "bytes": 1287,
+      "sha256": "3822dcb321b81808b330d8cfce59ccbd57e842029abcdda39bd2dec90de12653"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/practice-final.txt",
+      "bytes": 90,
+      "sha256": "098276d762c582c9fc105b041703cffc7202e71171d30f30026514a88372f5f9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/practice.txt",
+      "bytes": 90,
+      "sha256": "098276d762c582c9fc105b041703cffc7202e71171d30f30026514a88372f5f9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/private_assets_qa.txt",
+      "bytes": 433,
+      "sha256": "ec54ff4995e022a9ccc9a97d2f910376c437bc49529aa84786c131f1c44a107e"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/release-quality-final.txt",
+      "bytes": 3415,
+      "sha256": "78874d39bbb652915179d5737a84f0809996e4b7abd3aa7b5dd6359974d29748"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/release-quality-verified.txt",
+      "bytes": 15901,
+      "sha256": "787b6d8508a0af76d8f0c2c1b685c285f5f7bdb75e790e6c201439e270f53d93"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/release-quality.txt",
+      "bytes": 11910,
+      "sha256": "a23acae1b5419fc935269a69fd2380fb5b6144e1c102cfb600ceea1bb3758632"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/sales-browser.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/sales-browser.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/sales-dependencies.json",
+      "bytes": 362,
+      "sha256": "542f76e62f212fd44ff9b59356b2f5180235faede8945f4c47ef788d2dd072ba"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/sales-tests.txt",
+      "bytes": 6641,
+      "sha256": "4c1a0081e2164d87e72efa4af1b2a136e148e06aaa88e7c353050340aa6463fa"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/sales_availability_qa.txt",
+      "bytes": 102,
+      "sha256": "968329253073e3921a59a252b2102d843fd80f7abe3d66c5ddd365c15bce5a20"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/vector_corrections_qa.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/version-regression.txt",
+      "bytes": 99,
+      "sha256": "6d89a400f246ca021e12b57ece07006898a1f507b0d1b59bedadfacb76441c67"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/visual-review-browser.json",
+      "bytes": 1334,
+      "sha256": "6c6e00956dd3cdb489860b40d897bae0066c7b3d3b92b5935df8a9c298fc2ca7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/visual-review-final.txt",
+      "bytes": 102,
+      "sha256": "045617b8763bfc445508fe30ea86f66aebbdf2fe9dc3e2bb131fe694e34e3722"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/visual_review_qa.txt",
+      "bytes": 1554,
+      "sha256": "360c1fc359bbca42b43d6f956490f7fa35597a551b8d5635b2d3aa1c3fb12c87"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/visual_review_retry.txt",
+      "bytes": 1554,
+      "sha256": "360c1fc359bbca42b43d6f956490f7fa35597a551b8d5635b2d3aa1c3fb12c87"
+    },
+    {
+      "name": "brandforge-os/docs/audit/follow-up-evidence/watermark_export_qa.txt",
+      "bytes": 100,
+      "sha256": "e8c6d83ce323c4714753309198ade450c1ae62375fe27b7c0819accb0d389fe4"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/cloud-audit.txt",
+      "bytes": 24,
+      "sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/corrections-final.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/dashboard-audit.txt",
+      "bytes": 24,
+      "sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/deadline-tests.txt",
+      "bytes": 330,
+      "sha256": "3236afdff0eff7e125e384feeb9e0b0470abac2183b9dccbb012f0aa3009c2eb"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/desktop-browser-final.txt",
+      "bytes": 37,
+      "sha256": "dd1782d8eda60a9983b7a5357cd53c1740697a69d35d715660df63dc844f393d"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/editorial-final.txt",
+      "bytes": 109,
+      "sha256": "aec29d7918e37accf9aea63644e2fd145edb323e16a1ded0cf5a2aa92d539784"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/editorial_workspace_qa-final.txt",
+      "bytes": 119,
+      "sha256": "5571d68ff725f57f184c1a181606aae110f284422908ebbd88491aee76e31663"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/image_consent_qa-final.txt",
+      "bytes": 94,
+      "sha256": "95b8b2d5e0ff958ffe8a95501251c400eb7e4fc4d0ad22ee7167eaa272e6fa6a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/ops-tests.txt",
+      "bytes": 322,
+      "sha256": "ca4c810932c97d09226b42a072b0bfb1bed5bee68f4c76c52fb5ab36c561ef2b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/practice_workspace_qa-final.txt",
+      "bytes": 90,
+      "sha256": "098276d762c582c9fc105b041703cffc7202e71171d30f30026514a88372f5f9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/private_assets_qa-final.txt",
+      "bytes": 433,
+      "sha256": "ec54ff4995e022a9ccc9a97d2f910376c437bc49529aa84786c131f1c44a107e"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/product-browser-final.txt",
+      "bytes": 33,
+      "sha256": "c885382fd88b7821a1376281f4e49c70aa57a28172128c5fb959e43b14503cb7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/product-tests.txt",
+      "bytes": 340,
+      "sha256": "1cb892d035cd84bbb17639c366b4eac4766e2d13dd0e24f6eba428f4b7312448"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/python-audit.txt",
+      "bytes": 31,
+      "sha256": "15950a68a7ed99c59779717acefdceb3f69cfd31bde67d2c954f2a3cea4d7955"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/release-gate.txt",
+      "bytes": 13164,
+      "sha256": "651c66b4470fca1ac36f6e82269d5204fa9e017ed8d20e7d1fc648185765e75c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/sales-audit.txt",
+      "bytes": 24,
+      "sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/sales_availability_qa-final.txt",
+      "bytes": 102,
+      "sha256": "968329253073e3921a59a252b2102d843fd80f7abe3d66c5ddd365c15bce5a20"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/site-final.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/visual_review_qa-final.txt",
+      "bytes": 102,
+      "sha256": "045617b8763bfc445508fe30ea86f66aebbdf2fe9dc3e2bb131fe694e34e3722"
+    },
+    {
+      "name": "brandforge-os/docs/audit/product-workflow-evidence/watermark_export_qa-final.txt",
+      "bytes": 100,
+      "sha256": "e8c6d83ce323c4714753309198ade450c1ae62375fe27b7c0819accb0d389fe4"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/README.md",
+      "bytes": 419,
+      "sha256": "a08a682604b8bf72e4a149171ad959a700972639bd7e504f906f22722b32cc4e"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/cloud-audit.txt",
+      "bytes": 24,
+      "sha256": "6d8c5c8f3d7684adb070417bd608d01ae90aa3dc26a65af03ffda4955f38d9a3"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/corrections-browser.txt",
+      "bytes": 110,
+      "sha256": "cd21cc4feb7f7f9b21786fc04b5ae6ff3ff5a0a9086304e88842a0714ad06354"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/desktop-browser.txt",
+      "bytes": 37,
+      "sha256": "dd1782d8eda60a9983b7a5357cd53c1740697a69d35d715660df63dc844f393d"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/layout-tests.txt",
+      "bytes": 431,
+      "sha256": "073bb46c0ea90937c594b445885501e843e918a43803daa885aced9bb1106c4a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/metrics-final.txt",
+      "bytes": 334,
+      "sha256": "fe926a6d43336121c948b129113946623dbd9370027a47bc3a4f1ac8810abd06"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/native-smoke.txt",
+      "bytes": 187,
+      "sha256": "5978a5c398a6e08c63f9c85161a340b1da589543db286e7283e273651d705f4b"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/portable-python.txt",
+      "bytes": 99,
+      "sha256": "f70b82f37dc75847129076622633fd9832b3b6a9ea1999cb135c518585e8fa7c"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/private-versions.txt",
+      "bytes": 340,
+      "sha256": "637510e5a05d8f95226c55663db870bc9ff02d2524bba73db4d2b04440eb0e0a"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/product-browser.txt",
+      "bytes": 33,
+      "sha256": "c885382fd88b7821a1376281f4e49c70aa57a28172128c5fb959e43b14503cb7"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/release-gates.txt",
+      "bytes": 13303,
+      "sha256": "278d2e6371325958726115ef2bc61e20a2a676d4c996d711a4911319fead6ce9"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/review-browser.txt",
+      "bytes": 79,
+      "sha256": "e875828a45293a0046241ef51646e820e72739a5e2f2529e0035e133e63ffd44"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/sales-tests.txt",
+      "bytes": 6760,
+      "sha256": "9410f1a174ca557dd9fa2dd8f0125cf71b0fa8c9517c7eb1a5c17f8c17562a83"
+    },
+    {
+      "name": "brandforge-os/docs/audit/remaining-workflows-evidence/site-browser.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/MASTER-PLAN.md",
+      "bytes": 84829,
+      "sha256": "2f11131ced5be84d2e030c79907d82d036a75100c6c31275d603467d43c9c572"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/OUTPUT-QUALITY-STANDARD.md",
+      "bytes": 6366,
+      "sha256": "663623e54bdece9e61a211b7db0b650a4f473ab388d6985f6341f9611b190357"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-1.md",
+      "bytes": 9610,
+      "sha256": "a3be0c0d35e2d41c443f451c481361678b8543dd9e3bf530025e26a5a1218ffc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-2.md",
+      "bytes": 7435,
+      "sha256": "32703cc9838cefa812f710f33a4e1dc47f58110f8f1537129a7d8f6b9f8fadb0"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-3.md",
+      "bytes": 10505,
+      "sha256": "93a9507bde362d8b0600f49f393c6e961aaa4d818e2c8f2ad801e85e2edb1f88"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-4.md",
+      "bytes": 9371,
+      "sha256": "9dc3eed20ed91d333c7b44b229cea16835ff437e6dabc6f06827e2035783204d"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-5.md",
+      "bytes": 9720,
+      "sha256": "0b7001f3a66d1586eded27844adb5af8e2866d4491f6fb291a95ab23f49973f2"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-5B.md",
+      "bytes": 11619,
+      "sha256": "9e2330f20e30487e373e12b25dac57d09f91f02dadf49c58f3f3eb88d09f4366"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PHASE-6A.md",
+      "bytes": 8098,
+      "sha256": "a066fdd6706fb2dccf0b3a9208304067cb1e9b0074b7986631a5e9da86a5bcf1"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/PROGRESS.csv",
+      "bytes": 28509,
+      "sha256": "cc57a2af621f1a678cbb0ca6e329e22895f41f8e2c748144d996a60ef6fda3c3"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/STATUS.md",
+      "bytes": 1095,
+      "sha256": "66b93889906bffdba8fe2e8e38756db9c3ab843a28c085c27887491ed1bb1783"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/cloud-regression.txt",
+      "bytes": 7347,
+      "sha256": "4b467a66c9e3889897e2a72389f90ea68777754cbed95ec96857d86e6ad3c788"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/desktop-regression.txt",
+      "bytes": 1136,
+      "sha256": "84a30315fcdd078161033b8e198afcee8fe3de36d81b746d510e3f5ea43cfc17"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/chromium-site-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/firefox-site-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/interaction-results.json",
+      "bytes": 2642,
+      "sha256": "32c5c91d9454896e28c2ca41d52f28792cf3a42d7b2ace1ecc90da36cd32582b"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-browser.txt",
+      "bytes": 35,
+      "sha256": "1fdd820b09af6c97a5b4b2ea2f797b0dcc90a148e8b3932110e9a01a56333a9a"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-interactions.txt",
+      "bytes": 54,
+      "sha256": "f2179c8586ef1de62a02ea555d6bf56d9b1d8b3a81fa12c3076373d408243588"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-sales-tests.txt",
+      "bytes": 6760,
+      "sha256": "e8c4272db7e9e147bda83ee973229ccfbc38fd4b1063e70ac560d847a71188c6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-sites-chromium.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-sites-firefox.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/showcase-sites-webkit.txt",
+      "bytes": 36,
+      "sha256": "da1c5c371ec3b1e738652bca1a7179b85023cb46350ff66de170ae69e544a595"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/ai-first/showcase-evidence/webkit-site-results.json",
+      "bytes": 7726,
+      "sha256": "0cc870a41862f30648b53f00375c072d295613307acf62ce9f948a3837f46a3f"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/browser-results.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/cloud-tests.txt",
+      "bytes": 2686,
+      "sha256": "63ae6e9afc4402c0161720cdb731fcbde5d0f4a12ca1bf19ac52a47d92c7dee6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/consent-dark-1440.png",
+      "bytes": 123838,
+      "sha256": "7d831f22e577ede8d4e1b60403430b0223ac0ac399696e10402b760f5add1a0c"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/consent-dark-390.png",
+      "bytes": 80230,
+      "sha256": "68d76bce9107859d20aea7cefff274affe9329c4611ff89ac1bc013975bae200"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/consent-light-1440.png",
+      "bytes": 108242,
+      "sha256": "3c998c5ac5f65a06e4c10b12b2cfc658a08763b71cd38576e0d17ce87299186e"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/consent-light-390.png",
+      "bytes": 66361,
+      "sha256": "5e9a367a5436a1186bc163d3588a27f0ad67fa7a8933de7e95ee42292d9157f2"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-2/Watermark-Preview.html",
+      "bytes": 123232,
+      "sha256": "89c4d5f46ed3b4b924a717a6e9e51521b382dc57e17b00c0504900926e40acae"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-2/Watermark-Preview.png",
+      "bytes": 345528,
+      "sha256": "8235b7549d21443d24578ad5d207e15405e0ea4e82f8e00638f61a32ea81791e"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-2/cloud-tests.txt",
+      "bytes": 2882,
+      "sha256": "7c731393d0be19526c0a907349d8be4d201dbd7891ab3946fe1628cc8ca037df"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-2/consent-results.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-2/results.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-3-consent-browser.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-3-private-browser.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-3-tests.log",
+      "bytes": 3047,
+      "sha256": "0620e85db1f3994ff77c729ab0ef6fd20b7feed1bcc596a62aed46c440481e7d"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-3-watermark-browser.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-cloud-tests.txt",
+      "bytes": 3189,
+      "sha256": "f44e79ae2dfce62e27704de43dcfb75093866e440a49f493dd4c47aa551f53b9"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-index-contrast.png",
+      "bytes": 21292,
+      "sha256": "9842460fc578607a3864969847671895a8b6512e77ba1790d46e29ef9413a37b"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-pricing-contrast.png",
+      "bytes": 5390,
+      "sha256": "bb5170b0c6430c78748592e4799cb79d5da4220bba3ebb7ab429d118fd9b0624"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-results.json",
+      "bytes": 9733,
+      "sha256": "3aa90333dd64a53ab32e697fd3386df99e97f1c3eb55d03c124f664933d7d792"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-sales-tests.txt",
+      "bytes": 6525,
+      "sha256": "c19ca0bcbc49b44896659ebfe992920cdfa7cc0cc113b5d106c9a362b59ef1c9"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-4-static-build.txt",
+      "bytes": 232,
+      "sha256": "6de3177fc5db90c8b76758a92198ddc114017be25949f7cfa0f6f22d60e5f41e"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-consent-browser.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-private-assets-browser.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-review-browser.json",
+      "bytes": 1334,
+      "sha256": "6c6e00956dd3cdb489860b40d897bae0066c7b3d3b92b5935df8a9c298fc2ca7"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-review-light-mobile.png",
+      "bytes": 95839,
+      "sha256": "713eb6c9241d7af40687c992ece6ea9226bd4c41376fb08f4139e41f63f10fa6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-tests.txt",
+      "bytes": 3146,
+      "sha256": "c3bc61a7ccb77747356c1339409c1e22033fe6869ab291e823b2bb1dd6ace656"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5-watermark-browser.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-consent-browser.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-corrected-hero.png",
+      "bytes": 772020,
+      "sha256": "d882a5efa4cdbc61affb21fb73b8b139566d3134eb2bf16c9fe73e972becf02e"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-corrections-browser.json",
+      "bytes": 1542,
+      "sha256": "d342f981921c4a4558650b3acc0b2383868afc33b55cf647592070f2be1d7ac3"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-form-light-mobile.png",
+      "bytes": 75935,
+      "sha256": "c60c2977537c0ab8a48413aea2b5f24cd56590e4c0305f58ce8075cef69ba1ff"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-private-assets-browser.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-review-browser.json",
+      "bytes": 1334,
+      "sha256": "6c6e00956dd3cdb489860b40d897bae0066c7b3d3b92b5935df8a9c298fc2ca7"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-tests.txt",
+      "bytes": 3200,
+      "sha256": "21704cf4d6301c1d54af025d39807fce109c3751f1cb527ab8f216ba1f6a25b5"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-5b-watermark-browser.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-coffee-display.png",
+      "bytes": 25427,
+      "sha256": "0e4b4e49810bb7a07e5b9306a90a970832cb15971529149bf109d91a80b97aeb"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-coffee-hero.png",
+      "bytes": 78129,
+      "sha256": "85384ee8fe355f797e6ef560e421f7f195b51cd9fa720b4dd67beba44db35161"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-consent.json",
+      "bytes": 1334,
+      "sha256": "1a08204f4a4781cab1d3a822b95de0fc4ccf42a37177c75ac7d1d67c3a93e8b6"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-corrections.json",
+      "bytes": 1542,
+      "sha256": "d342f981921c4a4558650b3acc0b2383868afc33b55cf647592070f2be1d7ac3"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-private-assets.json",
+      "bytes": 432,
+      "sha256": "d71d374770c8b73fe984675e035170459ed54fb886bdabf2237d119667e9aabd"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-rejected-long.png",
+      "bytes": 6039,
+      "sha256": "ba0547cefe6aff9c1692f0c4022ac0146659b72098b22adb09f777c57c94e249"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-renders.json",
+      "bytes": 9132,
+      "sha256": "7b947e922a3873912bf58b25bd35d1523c10783d7b780155e9000b7016a64c1b"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-review.html",
+      "bytes": 2358598,
+      "sha256": "be114d6da3b07740f0200abf27acb2ead2d909de24caa00b83c9dd886195960a"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-review.json",
+      "bytes": 1334,
+      "sha256": "6c6e00956dd3cdb489860b40d897bae0066c7b3d3b92b5935df8a9c298fc2ca7"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-tests.txt",
+      "bytes": 3254,
+      "sha256": "efdcbf5a7c6f1114a4297a869d00691c89563c5069018a40031f0d7babe6f9f4"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-watermark.json",
+      "bytes": 2713,
+      "sha256": "18dd6d16f6c4bcba34cb82e7195c67437a632bb8b9cb00803dd0ea26978806cc"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-workspace-mobile.png",
+      "bytes": 93189,
+      "sha256": "4cf45bc0af7b276fc54d63a96658d40c6033de0b6570616e7548188f93881d6d"
+    },
+    {
+      "name": "brandforge-os/docs/implementation/evidence/phase-6a-workspace.json",
+      "bytes": 1110,
+      "sha256": "c60837f35e8736a4deb26e3339b2315879f516894c4d7f59f3d122c09ed4ff6a"
+    },
+    {
+      "name": "brandforge-os/docs/operations/OWNER-OPERATIONS.md",
+      "bytes": 7374,
+      "sha256": "00247e962509d903231cc4f98eac1e4b28222396bd312fd785c5c3eff634642c"
+    },
+    {
+      "name": "brandforge-os/docs/operations/economics.example.json",
+      "bytes": 257,
+      "sha256": "8d2515df000f265b9ebca4f37be13d67e629cf8f3cc29fc1d6ca0d36846201c2"
+    },
+    {
+      "name": "brandforge-os/packaging/linux-install.sh",
+      "bytes": 2925,
+      "sha256": "7bdf3d55e4171e227c6449076394f34676439b7304b81afe484e36bd9270d2e4"
+    },
+    {
+      "name": "brandforge-os/packaging/windows/BrandForge.iss",
+      "bytes": 1418,
+      "sha256": "ee8f0e5e5c0f846310395ad60685c4b90475be75c665da8d5262c73394672294"
     },
     {
       "name": "brandforge-os/sales/404.html",
-      "bytes": 2913,
-      "sha256": "5bc9849b2f245c44c69a003959d2bf8cfb886f9c8a3fb487c5f859b381649de6"
+      "bytes": 3192,
+      "sha256": "d5e9b8d162db647041bd11fc199042585c9e61abd5a1f34f579dc9343175bd41"
     },
     {
       "name": "brandforge-os/sales/_headers",
@@ -1490,13 +3322,13 @@
     },
     {
       "name": "brandforge-os/sales/_redirects",
-      "bytes": 118,
-      "sha256": "51d55de04a60eaf99fce016e76d7f3de12225769e32b5918a8fb246186ee4346"
+      "bytes": 41,
+      "sha256": "eee6ca68f976ace34c80b415fa31d044723b91ee48af1f4dfe3458671041ae7f"
     },
     {
       "name": "brandforge-os/sales/agents.html",
-      "bytes": 20155,
-      "sha256": "0e054ecdc8c3d22b097b5775532bd42a67c94dcbc11c14eac469c4ee8acd7a48"
+      "bytes": 20794,
+      "sha256": "c7c394f092645b84f69d84049a38dcf27b82393199f6da1d664c7994695c34dd"
     },
     {
       "name": "brandforge-os/sales/apple-touch-icon.png",
@@ -1504,19 +3336,39 @@
       "sha256": "5ae2d8a568578bf4079ec266d5d113828ec7fb299bed141886258b165a1c223e"
     },
     {
+      "name": "brandforge-os/sales/assets/art/hero-forge.webp",
+      "bytes": 34814,
+      "sha256": "76fa1ea9c6044504014601eb096a2c739f429cfb210364e5aa36232d0c43e5cf"
+    },
+    {
+      "name": "brandforge-os/sales/assets/art/sample-apex-coffee.webp",
+      "bytes": 116636,
+      "sha256": "183e9a61c6d8425f38a789cde4253082a6df3037fba5579022321257655293e5"
+    },
+    {
+      "name": "brandforge-os/sales/assets/availability.js",
+      "bytes": 4270,
+      "sha256": "e1d18d62bc5ea93b1bacb9e546f10f204c05dae3cc43525909d8b6438bde57c1"
+    },
+    {
       "name": "brandforge-os/sales/assets/buy.js",
-      "bytes": 3967,
-      "sha256": "3a070d47373fbecaa291694e21d9bfa7679826b0b241df546efd10a8a10717fd"
+      "bytes": 4835,
+      "sha256": "58771fa4edecfaf4c2693a42df2a38bc1271805d667258fe95bd7252895c4612"
+    },
+    {
+      "name": "brandforge-os/sales/assets/cloud-cta.js",
+      "bytes": 112,
+      "sha256": "13deeb50d0291d88b5a6a6b578f0ef52a66aef587e327ae06944b56e18094be7"
     },
     {
       "name": "brandforge-os/sales/assets/config.js",
-      "bytes": 4650,
-      "sha256": "991d57fe66d383b7b77c9fb53b0aa5d4a5d6a7d937288052318fb9b5aa434a70"
+      "bytes": 5863,
+      "sha256": "b971f47e4d89cf035ae52c5cb9f3c0ce10571b456bc3bf6e88faa0efa3ab68cf"
     },
     {
       "name": "brandforge-os/sales/assets/domain.js",
-      "bytes": 4437,
-      "sha256": "e6670ce53dcc341150dc270f74cb63e4a5f21503494951122e90d5a3b6395f5c"
+      "bytes": 4487,
+      "sha256": "9604c17edd8c5e792a207af41860cd33ff27710eb013c721797c18372e99eb71"
     },
     {
       "name": "brandforge-os/sales/assets/fonts.css",
@@ -1544,6 +3396,76 @@
       "sha256": "5eb09b5ac0e28b67c2f041c8ba6d244604ca0c0980d65912ab2d47fed84ddc31"
     },
     {
+      "name": "brandforge-os/sales/assets/gallery/bold-vector-karak.svg",
+      "bytes": 46935,
+      "sha256": "82d51536fc0c35a5bec2188999ed07a58c330263657cbd0946587d265446f74a"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/coffee-reference.jpg",
+      "bytes": 13832,
+      "sha256": "98152a1cf62d20e4ce1949bc8f7303afc9cd86d7f6c6ad5663f4811179243e28"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/coffee.svg",
+      "bytes": 47391,
+      "sha256": "97d47af7380ec4d8c280c3d4b3899f43a4ba9071816e0e631298a43f6da6b016"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/fitness.svg",
+      "bytes": 49562,
+      "sha256": "17e1b37184e5d7ec2afff09e7d95fd449fb1f5171186a1e0e0be4221b0855c7c"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/karak-type.svg",
+      "bytes": 25191,
+      "sha256": "680ea0d211d36140590dd72e734cce85c1e6daf11ca17beda857404152c5e407"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/realty.svg",
+      "bytes": 53428,
+      "sha256": "76aadb03934ee8f3a3915bbbc57950cf8bfd9797afcadcaeed671cd5ec25e544"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/reviewed-manifest.json",
+      "bytes": 15324,
+      "sha256": "ef4d672ef3b86b3a117762c9171db4f3f0586ba634b2e6dd216e0a044df352bb"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/saas.svg",
+      "bytes": 37315,
+      "sha256": "50c067ee6c2873bd4dddbbd864d430de955d1f371598bf589140c0b0e44fb96c"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/skin-reference.jpg",
+      "bytes": 11407,
+      "sha256": "2b10f05a99ea0846e341c5c605d43bec8931c97ee74f6cc7b1f4788b3a485050"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/skin.svg",
+      "bytes": 42511,
+      "sha256": "d346b63cb53f6743fc19ed0d46232976061b0bbd501cb2d770453f6a2804725d"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/story.svg",
+      "bytes": 43097,
+      "sha256": "b24da4b09e57d680c8e059f1bf1893dfe2c5f14bc4b2da53f9f2bbb6be16ccac"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/tea-reference.jpg",
+      "bytes": 16236,
+      "sha256": "09e4d69ffe7af16b545c2e0861a1d7bf368bf2a78395d19aaf121cd936dcf729"
+    },
+    {
+      "name": "brandforge-os/sales/assets/gallery/urdu.svg",
+      "bytes": 26709,
+      "sha256": "91f6565eb3c997fb6c039a6126b3dc3af1e3f5526f53be8b302122db8b56295e"
+    },
+    {
+      "name": "brandforge-os/sales/assets/hero-swarm.js",
+      "bytes": 7439,
+      "sha256": "eec099dc9c1b75b0d9835b3f94db1479e22fca1d2f2aa488ba59c944e1dd414c"
+    },
+    {
       "name": "brandforge-os/sales/assets/logo-mark.svg",
       "bytes": 1160,
       "sha256": "8088ff23417dad1825b23775d9366c5ec0691259680d75982bd5ab1aa12e4cf8"
@@ -1560,8 +3482,8 @@
     },
     {
       "name": "brandforge-os/sales/assets/nav.js",
-      "bytes": 1533,
-      "sha256": "6cf787b6a83f38b693790d24adc9cef758d78fa98f9ed0df8a594168b727da8b"
+      "bytes": 2366,
+      "sha256": "a65aa4dc0f7f8ead3cf6a72fbc05bb9a9285dd4d8d9570668c9e4b60dfa67695"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/ASSET-NOTICE.md",
@@ -1575,18 +3497,18 @@
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/captions.srt",
-      "bytes": 994,
-      "sha256": "cf779562d2c2893a4b35a38cd595935c7f4a6f6513c4bc46bd205aea8167d77f"
+      "bytes": 612,
+      "sha256": "8bdcc511f7a93954c3371fa89c363417da0f64285e03a620897d58f6ced68038"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/captions.vtt",
-      "bytes": 986,
-      "sha256": "3cf1d475df3310736a09d660b9186dbb1431ff80c73ba989a663c590fff535ba"
+      "bytes": 564,
+      "sha256": "f23a2696f7fe5b616a3788a39f2ededddceba02bef9c00d639177557d363923b"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/demo.mp4",
-      "bytes": 5485436,
-      "sha256": "55841b22bc4ed863fbf44390d4b00f694de480b995d6699c4d416263c341acbe"
+      "bytes": 7746379,
+      "sha256": "465feeb957f8cfa274c6172877acc142d766a066bf6729a1ca78d18fa5eab794"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/geist-OFL.txt",
@@ -1600,18 +3522,18 @@
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/manifest.json",
-      "bytes": 1678,
-      "sha256": "249d8c89efd6a3d188c1789d72c714973a4a75c082262d7e838598dc0c0dc2ec"
+      "bytes": 1547,
+      "sha256": "f502b277083e8fbffcf7dab6a8eca230d2915544cf65edcbc11a7d30631dfd50"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/poster.jpg",
-      "bytes": 261079,
-      "sha256": "1dffd9f18e7ccd750caa888f3a8cd3b3ac1be08731341db9326bf082b72c1943"
+      "bytes": 30209,
+      "sha256": "f7077bdb0120c3802617d8fe8c5fd8749eecf2e5aa4035324c2722b263089e2c"
     },
     {
       "name": "brandforge-os/sales/assets/product-demo/tour.html",
-      "bytes": 2445253,
-      "sha256": "af2a64ec0a45dff09cfa1cb04dbb33d7539b34c4f7e83ff4e6e57d910c2a5ce7"
+      "bytes": 609054,
+      "sha256": "a7f48d9c5d7256fcc4e41f72b531a75477149b24417de77f65654a71248c0398"
     },
     {
       "name": "brandforge-os/sales/assets/product-tour.css",
@@ -1625,33 +3547,38 @@
     },
     {
       "name": "brandforge-os/sales/assets/sample/campaign.pdf",
-      "bytes": 24608,
-      "sha256": "abeaa5b45030f66356039a42bf97746806b5971dafc0ff5b70550d212be012df"
+      "bytes": 24430,
+      "sha256": "517a49e7cca13220840969c36f0766817b44283c30fdb3656df3fb1bfd2e38c3"
     },
     {
       "name": "brandforge-os/sales/assets/sample/campaign_report.md",
-      "bytes": 2959,
-      "sha256": "41741bdfc6c7dd5d61e2993281b623a8c057107605e44ac54dd3638f04112e3f"
+      "bytes": 2682,
+      "sha256": "1bdbfeeba570ce32a6c2b34040e4b74b86fe34207a0c7e155f383f0d4271a3c6"
     },
     {
       "name": "brandforge-os/sales/assets/sample/hero.png",
-      "bytes": 34746,
-      "sha256": "90633fed47ac5592f3883452d18e4808b8cb0d155520a44cd330e3bed3def772"
+      "bytes": 292125,
+      "sha256": "863bb16a4875ea39512b1b74844ea8339e0812122fd6ea5abe84213e5cc16920"
+    },
+    {
+      "name": "brandforge-os/sales/assets/sample/hero.webp",
+      "bytes": 26114,
+      "sha256": "b577def752591bc4d768438e413d188411ba164b6fcde7f32c7b4a63a4972f9d"
     },
     {
       "name": "brandforge-os/sales/assets/sample/hero_banner.svg",
-      "bytes": 32795,
-      "sha256": "e332c0b93c45e412624c930a0946e08145c7b0decc06da4310a5eedadecfd2b9"
+      "bytes": 35305,
+      "sha256": "8b17ef3db8406cafa821a366aee8c1491814511fe4e39c105716e2393fd757bb"
     },
     {
       "name": "brandforge-os/sales/assets/sample/manifest.json",
-      "bytes": 6906,
-      "sha256": "3b12272b5ec974fa23708a51a50628bcc35380d4dac8c25bf058d93991db6baf"
+      "bytes": 6974,
+      "sha256": "bc01cbaebdc051528ee111b4f4392d920cc997928362b9cf5f012c82f6110490"
     },
     {
       "name": "brandforge-os/sales/assets/sample/northline-campaign.zip",
-      "bytes": 1204369,
-      "sha256": "af626459fea177c8d7a132f3fd5e0c95a68372f0f074c26acf24781c4da254f5"
+      "bytes": 2952330,
+      "sha256": "8897c6fc27f8b0f948ae0a0874131ffcad3ffa971b1155190558bfecc02fdfe3"
     },
     {
       "name": "brandforge-os/sales/assets/screens/campaign-brief.webp",
@@ -1684,14 +3611,49 @@
       "sha256": "c78e8e95b8566f243374bd79ec446cf11a6bc7842f98fd4a2f17d61380530b2f"
     },
     {
+      "name": "brandforge-os/sales/assets/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase.css",
+      "bytes": 4083,
+      "sha256": "f42683ea0e0206c7a3c3e41030b52c0d4f297631ef1ee547032115df8152012b"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase.js",
+      "bytes": 1086,
+      "sha256": "adcba03fb3a867075bf085eaa8ccbfbe62141bf5a0a5b9337fbe3050e7c1518a"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase/crunch-landscape.jpg",
+      "bytes": 217627,
+      "sha256": "dbcac4d17f66b8eab1dfadc66248b5bc5b8612c4d25baf69a5550e3cd118d8fb"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase/crunch-portrait.jpg",
+      "bytes": 238717,
+      "sha256": "1feaace950f4db03d8037dd75779baffa6a3e750c1da5a63c188e904cd9cd65e"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase/crunch-story.jpg",
+      "bytes": 223529,
+      "sha256": "6ce43b039c725d63a69d08eab890812250534d5b443a85877a45607a2ab7c649"
+    },
+    {
+      "name": "brandforge-os/sales/assets/showcase/manifest.json",
+      "bytes": 819,
+      "sha256": "a2384592e0ec708036247721197cae57f6684f9cad45cbeeed65ccc9d0a30732"
+    },
+    {
       "name": "brandforge-os/sales/assets/tailwind.css",
-      "bytes": 22104,
-      "sha256": "340766058ce0c9f53d09f752f4edab27a950fe51fc768a221a44cc07001dcf59"
+      "bytes": 23951,
+      "sha256": "ab73bf89077717faf87e2bffe16186408dbaf282156e6c993f81e7b94076805a"
     },
     {
       "name": "brandforge-os/sales/assets/theme.css",
-      "bytes": 9833,
-      "sha256": "7a1fe962633ed648fdd7699ccab420f97d60fc8188672b94d546ae543f43f462"
+      "bytes": 9900,
+      "sha256": "f7418e139eb5fbcd7830b7d84a7b7b3a61e6da49f16c60fce15ae9087b4b4913"
     },
     {
       "name": "brandforge-os/sales/assets/theme.js",
@@ -1699,24 +3661,44 @@
       "sha256": "c5750c458c08b54ac96f4b7ceadaf4924612066d0035072ece4c66f738ff386b"
     },
     {
+      "name": "brandforge-os/sales/assets/usage-bootstrap.js",
+      "bytes": 437,
+      "sha256": "ebebaa5fd9ddfbc765e5e197da5fb3972bc3a8b851078306913a8a3747442bc1"
+    },
+    {
+      "name": "brandforge-os/sales/assets/usage-metrics.js",
+      "bytes": 2270,
+      "sha256": "c3dc438e5eae8dc941ec468985b8ad8b483b6ffb7c8bbe0162672911384f95bf"
+    },
+    {
       "name": "brandforge-os/sales/assets/waitlist.js",
       "bytes": 4207,
       "sha256": "34311139bb550929df2058e9a4d4461f6ada610379684b00b5651df132e100d2"
     },
     {
+      "name": "brandforge-os/sales/best-ad-copy-generator.html",
+      "bytes": 12664,
+      "sha256": "28667db8ca62ebc475413248216aaa5b193ccccbe366a3de8da0952bf0c5ecdc"
+    },
+    {
       "name": "brandforge-os/sales/build.mjs",
-      "bytes": 1756,
-      "sha256": "c09bf0ccda6aa2b83aa83a1883ea3fb002546f8fbfc8a90be175915f36b8ce0c"
+      "bytes": 3670,
+      "sha256": "f2a45a419dec719ca03137260e159719e7231a3bf69947d1346fae0eb2a51d49"
+    },
+    {
+      "name": "brandforge-os/sales/changelog.html",
+      "bytes": 14247,
+      "sha256": "173bd2b99b88c7b50b521bc4e55e9658030e1086ec2188dcafa37322fa0221df"
     },
     {
       "name": "brandforge-os/sales/demo.html",
-      "bytes": 8668,
-      "sha256": "f0780df0aee13fb4d3fbb2aad8d20c80b2f38daddc6e7c87cdabfee980290588"
+      "bytes": 9022,
+      "sha256": "5818b38152cc5c6a6a030842cfb8c340b13fd253c7f0f3e6c303e6434a0be52c"
     },
     {
       "name": "brandforge-os/sales/docs.html",
-      "bytes": 16424,
-      "sha256": "d5a13e792dc846c1c23516a1dc2c3edd0399dc81f9a9e75343955897f1bba065"
+      "bytes": 17302,
+      "sha256": "ae4dfd979aa5105537da916e663e46f69f58382c1fd5aa968188a74a624a28ea"
     },
     {
       "name": "brandforge-os/sales/favicon.ico",
@@ -1724,19 +3706,14 @@
       "sha256": "4a400509ac9e73ec402ee843afe29df93be1f5cddb674c353d81cb27e2a596e1"
     },
     {
-      "name": "brandforge-os/sales/googlef10f1791451f8252.html",
-      "bytes": 53,
-      "sha256": "1dace743431c458d3f3e16eeabb3db9c51706993b8cbbae83f37bfb474dbbd57"
-    },
-    {
       "name": "brandforge-os/sales/index.html",
-      "bytes": 24957,
-      "sha256": "7ec44e8afeb5bf0a9bc212addd9e1f07ad5aa29cd4ecb73e6c8262884630b6f5"
+      "bytes": 40044,
+      "sha256": "2f72ee8f1e94bbf715e922e90f00bab30bebab2e84d76ab430b8c174216e093a"
     },
     {
       "name": "brandforge-os/sales/netlify.toml",
-      "bytes": 1506,
-      "sha256": "8c6f6b31577ce51ad9b5b60e026405259d7a3d8ae5bbdf7f9f454c4da316f630"
+      "bytes": 1397,
+      "sha256": "13517b7ce7902753545afb9bb0f55651a3876a2d163a4ae5fb755c18a7a5a733"
     },
     {
       "name": "brandforge-os/sales/og-image.jpg",
@@ -1750,23 +3727,23 @@
     },
     {
       "name": "brandforge-os/sales/package.json",
-      "bytes": 694,
-      "sha256": "6ff72c8dab7d5c0f23efa99f381ce03123e33ccfcdcd016a25fd60e914938da6"
+      "bytes": 807,
+      "sha256": "722c79c1313429c49e0b1f64630cae2d965247eeabd45bd610c2fa33b51582e1"
     },
     {
       "name": "brandforge-os/sales/pricing.html",
-      "bytes": 36743,
-      "sha256": "5b1eefa1574d8f6323c11fd982c5322f717f07ddc17ffab97c91829208428163"
+      "bytes": 39501,
+      "sha256": "ae34edec343f4a35090b8f645de6118065612658cc3ec1477465dab454ccec19"
     },
     {
       "name": "brandforge-os/sales/privacy.html",
-      "bytes": 11190,
-      "sha256": "1ee3d13482b58eb90822338757fb9a724228e1f7b1c3591e5e1a7312b3cd35bf"
+      "bytes": 12194,
+      "sha256": "2684bb4213413bf998c1084adb614996fbef10f0ff8945280b5167209c9695ed"
     },
     {
       "name": "brandforge-os/sales/refund.html",
-      "bytes": 8774,
-      "sha256": "35ddac66276d85edb5a6ce2925e87acdc1c5d07e92cbf0dde58bad2367c3b3ad"
+      "bytes": 9053,
+      "sha256": "0a89897b28a72ec92ba8d55d2b7c57b596485eac3b712a3efaf0402c1e366e96"
     },
     {
       "name": "brandforge-os/sales/robots.txt",
@@ -1775,8 +3752,8 @@
     },
     {
       "name": "brandforge-os/sales/sitemap.xml",
-      "bytes": 1243,
-      "sha256": "1fa0f2b04ea2f965877d0e2d43aee3e5ae8c9d8663149721cd2e2c88fde811d6"
+      "bytes": 1617,
+      "sha256": "9a9ef65e648e594768c0496beb51c23636e82461a6eb9949919c53d391296cb0"
     },
     {
       "name": "brandforge-os/sales/tailwind.config.js",
@@ -1790,53 +3767,103 @@
     },
     {
       "name": "brandforge-os/sales/terms.html",
-      "bytes": 11912,
-      "sha256": "b4860b860e0ebeb4a5bc884e2d60d75d72fa731e694228a3a300705782efe333"
+      "bytes": 12267,
+      "sha256": "ba5b6228c839f2d1711e41801baeb34afd1b6c33edf7812b708b922105d05f1c"
     },
     {
       "name": "brandforge-os/sales/tests/a11y.test.js",
-      "bytes": 2884,
-      "sha256": "fe08eda8232a107404810bb415b978a402e04865ef9f16a825866a1d7459c724"
+      "bytes": 2967,
+      "sha256": "54d795ae3097b88f0d702dae393dc8a5e2062e4fb99e093cd675221a4f6d6067"
     },
     {
       "name": "brandforge-os/sales/tests/css-coverage.js",
-      "bytes": 2388,
-      "sha256": "353c2ccd08218a9b80b95b4ea90851de33abc26df5f7aa43295689d38905373b"
+      "bytes": 2367,
+      "sha256": "b6f294e1772d532e8d75231b150170246995a73556045cccdd793d9431ca701a"
     },
     {
       "name": "brandforge-os/sales/tests/demo.test.js",
-      "bytes": 5078,
-      "sha256": "b0e9401b76468906e03ebd5a84a0d3f2f339601ac40201de66b1710bbce6741e"
+      "bytes": 7434,
+      "sha256": "870d52e8301eef6417b3a2e6333d4fa22078d5828e29a6a5251c7fd7293b1fb6"
+    },
+    {
+      "name": "brandforge-os/sales/tests/deployment-config.test.mjs",
+      "bytes": 1849,
+      "sha256": "70984fff16abb31ca82d541d3dbedc5763ebb522fcccd1241ddc087d6f5e0beb"
     },
     {
       "name": "brandforge-os/sales/tests/funnel.test.js",
-      "bytes": 11537,
-      "sha256": "4cac2ef7b360ca11ad83fc3c254a06e245da8c1ae49b3fc437f3099c875ca565"
+      "bytes": 13489,
+      "sha256": "ae7f2fa4a2df51884e82c458ad9c97e80ab44995343bb944e4f73e16233eb838"
+    },
+    {
+      "name": "brandforge-os/sales/tests/hero-motion.test.mjs",
+      "bytes": 1941,
+      "sha256": "4ba161dda3e364d0eedcb05182973679f156b5d583219a53a05c2a1526060f95"
+    },
+    {
+      "name": "brandforge-os/sales/tests/site-integrity.test.js",
+      "bytes": 2190,
+      "sha256": "c1a8e2d2d895e07bb6c815296946b0e52939334e1ccf1a9c73ab71225a56abaf"
     },
     {
       "name": "brandforge-os/sales/tests/theme-contrast.test.js",
-      "bytes": 5313,
-      "sha256": "6c4819c0d6e1a8cf971b9aa516bdfb13b5190a3d1f83ab0e883f2c8e7ad47753"
+      "bytes": 5796,
+      "sha256": "789795b18ca317418ff171484a0b79840cc97d9544af902ba5316907e3d7166b"
     },
     {
       "name": "brandforge-os/sales/tools.html",
-      "bytes": 21082,
-      "sha256": "b3ac4c18dcc4cb0916f256e34df5503a42c4113157b2dcb2101683206392b654"
+      "bytes": 22948,
+      "sha256": "746713dd12219cbfa9917ebda5f784d881ab32a8a461889a9bac85674fbbd865"
     },
     {
       "name": "brandforge-os/sales/vercel.json",
-      "bytes": 1987,
-      "sha256": "b5042d87fc4f5f2d42da92b3a19eb52d195bb54eee1f4898f2bacecbbb0520e2"
+      "bytes": 1758,
+      "sha256": "7d7b884d5439081c45900e154f107458355feb7e02de318a44d60849294e90d7"
+    },
+    {
+      "name": "brandforge-os/sales/vs-canva-ad-creator.html",
+      "bytes": 14804,
+      "sha256": "ffbe130e74ec7c8ee69aed771552156d56b8ded96c4abfc43a91e31513704210"
     },
     {
       "name": "brandforge-os/sales/workspace.html",
-      "bytes": 15183,
-      "sha256": "41701f72b7e11f646289bc3f0d2af2180b0396641df867ff0aa9cd42445856bb"
+      "bytes": 15858,
+      "sha256": "434bdd88f1e30eda309ea3185aa87cf1ee67d7d2904f6e6c8095557fb0255548"
+    },
+    {
+      "name": "brandforge-os/scripts/ai_campaign_consent_qa.py",
+      "bytes": 5926,
+      "sha256": "db922482ec69087470d0b582ba9389ec86c8345246b4d1ff6655de7b6a722507"
     },
     {
       "name": "brandforge-os/scripts/browser_regressions.py",
-      "bytes": 11457,
-      "sha256": "70c1801b4ac9c5252cdc13d77b5806a904b326bc142bb7c7df802071bbe4b41e"
+      "bytes": 12513,
+      "sha256": "5636b6ee963c1be4e2590a2cb52db89b1ee7de5112676faaad0ab99f86c84d00"
+    },
+    {
+      "name": "brandforge-os/scripts/build_desktop_runtime.py",
+      "bytes": 2014,
+      "sha256": "29b7527efbce2f160ce858c002f394bffb2dcc9ac2c378d2164038d265a85839"
+    },
+    {
+      "name": "brandforge-os/scripts/build_practice_sample.mjs",
+      "bytes": 1953,
+      "sha256": "f119bb1e97330ca789aa6bcfa9c9f74c94e34c69377bfe047b8ef3bb8edbdc9e"
+    },
+    {
+      "name": "brandforge-os/scripts/build_reviewed_gallery.mjs",
+      "bytes": 5608,
+      "sha256": "74aa24159ea1d79361bb32246cc8e0622d79f90e514696cc7ab1d42cea573daf"
+    },
+    {
+      "name": "brandforge-os/scripts/canvas_qa.py",
+      "bytes": 8066,
+      "sha256": "580b315014a1666fb8614a7434c3916b3328f5e94d7ed6645744e7e482e3d338"
+    },
+    {
+      "name": "brandforge-os/scripts/canvas_security_qa.py",
+      "bytes": 3032,
+      "sha256": "9684040d8e5d996e3a238e4df44acd7b7897374f7b1c1ecdbd8cb4795066fc8c"
     },
     {
       "name": "brandforge-os/scripts/check_integrated_demo.py",
@@ -1845,13 +3872,23 @@
     },
     {
       "name": "brandforge-os/scripts/check_release_quality.py",
-      "bytes": 1469,
-      "sha256": "883e94fc41f19947620a400b65377dcf6c2f80a3e34fc144d6c5d784a57961b4"
+      "bytes": 2034,
+      "sha256": "510ebce1bde0fd4063b24dc6f27d096ab1db16976d8f4fc1c453b81ac1d78e7f"
     },
     {
       "name": "brandforge-os/scripts/check_site_url.sh",
       "bytes": 2731,
       "sha256": "9fcba04bdf77aa2051946fd3856991b25b790956e9bdc1624e9da1b0dd1bc013"
+    },
+    {
+      "name": "brandforge-os/scripts/collect_runtime_notices.py",
+      "bytes": 3777,
+      "sha256": "31e2cb2ab907933a17b1c235e37bbdb39ed1631f0a51d2457db5cf042e7c4c34"
+    },
+    {
+      "name": "brandforge-os/scripts/consolidate_workspace_history.py",
+      "bytes": 3826,
+      "sha256": "d5f898352da363f03290aaff102a96c93c193a100181c6446d3ce8c8ae8b3fe2"
     },
     {
       "name": "brandforge-os/scripts/convert_clean_urls.py",
@@ -1864,9 +3901,44 @@
       "sha256": "ff94ace4f24c533c1621d3277c4c74d7e60116acd208a6c9a6a1bcc513f49c38"
     },
     {
+      "name": "brandforge-os/scripts/deduplicate_history_containers.py",
+      "bytes": 2996,
+      "sha256": "fa122beb0b9a23ac609e92113f640d24d7c8686a0469a6d05bf1f11dfb558439"
+    },
+    {
+      "name": "brandforge-os/scripts/deduplicate_history_git.py",
+      "bytes": 4179,
+      "sha256": "72afa1d1e2f5497a495f0a62d43ef7e509c9f20dfb70470f77792c4bde42bf8d"
+    },
+    {
+      "name": "brandforge-os/scripts/desktop_workspace_qa.py",
+      "bytes": 6578,
+      "sha256": "cf111afa857542e0525f5cba44d550e8fcdb1bd3cf4798c0d288edddfefa899d"
+    },
+    {
+      "name": "brandforge-os/scripts/editorial_quality_qa.py",
+      "bytes": 4549,
+      "sha256": "efb5ee3fde28e5db610f2eb10477b4a6aa18c1d0f426c82580b6e0fddefeaacc"
+    },
+    {
+      "name": "brandforge-os/scripts/editorial_workspace_qa.py",
+      "bytes": 5350,
+      "sha256": "936a1a69053f8d5b08e7b637b707ee1631b2dced2fb62afbe279e4fff4ec2d9e"
+    },
+    {
+      "name": "brandforge-os/scripts/image_consent_qa.py",
+      "bytes": 5592,
+      "sha256": "73c8a8026964a0e8feddff20a553eb129fb05d49113f920858c6149b03e095b7"
+    },
+    {
+      "name": "brandforge-os/scripts/live_api_smoke.mjs",
+      "bytes": 4405,
+      "sha256": "7e01cc904d6faa1bae196cbddcc1d8415e067ca6961eee492219b5896b1757ae"
+    },
+    {
       "name": "brandforge-os/scripts/live_site_smoke.js",
-      "bytes": 5478,
-      "sha256": "c44b448959fb21246d4e2dbcb44f35333ea6c227b481f6022333c3d83a9ec460"
+      "bytes": 6259,
+      "sha256": "a2948d2bd65a613019d94e087111e6c40c59e5c24511a9a59ce6945ade16ca19"
     },
     {
       "name": "brandforge-os/scripts/make_browser_fixture.mjs",
@@ -1874,14 +3946,84 @@
       "sha256": "fc07399720b2703355067d7126a48756a688b5d6b0cefb20fffc7e26de7dfe71"
     },
     {
+      "name": "brandforge-os/scripts/make_editorial_fixture.mjs",
+      "bytes": 3831,
+      "sha256": "102783739a5b872aa5486cd19f71435bd6a15bc8a471a747a263568e333fe102"
+    },
+    {
+      "name": "brandforge-os/scripts/make_gallery.mjs",
+      "bytes": 101,
+      "sha256": "c5e0cffda4fbfbb56fb7589174c7b2ef3dd63f14e71ebcfea595a40ee911f011"
+    },
+    {
+      "name": "brandforge-os/scripts/make_vector_correction_fixture.mjs",
+      "bytes": 2763,
+      "sha256": "a7d8cb223c94dd9ff4da3b87b3a573d89b6c91542bc2a975b754cc3bf4e1ac68"
+    },
+    {
+      "name": "brandforge-os/scripts/make_watermark_fixture.mjs",
+      "bytes": 2610,
+      "sha256": "64cc6cd61d2359666fa2a9c29d57d111dee95aa42d48e3aac6879773503ce7e6"
+    },
+    {
+      "name": "brandforge-os/scripts/package_native_installer.py",
+      "bytes": 4522,
+      "sha256": "9ea9eec7ec82d6a25ce54678efc4c35ddb9b8f5dfb1303ac4c6c213ad9a0cab2"
+    },
+    {
       "name": "brandforge-os/scripts/perf_probe.py",
       "bytes": 1271,
       "sha256": "ccff75dabf24601ba67aecdc127b26fc840091b3288dc064fc8f2c1fde85ee27"
     },
     {
+      "name": "brandforge-os/scripts/practice_workspace_qa.py",
+      "bytes": 4563,
+      "sha256": "3fb2bfa112251d18bbc42a4b0735ce340715d05763b6963359fb15355142fa13"
+    },
+    {
+      "name": "brandforge-os/scripts/private_assets_qa.py",
+      "bytes": 6055,
+      "sha256": "265b83751d5ff1f7fe3fe6c430b95a4f26a88fbc7fd4195ee3792479192c0d3e"
+    },
+    {
+      "name": "brandforge-os/scripts/product_workspace_qa.py",
+      "bytes": 7559,
+      "sha256": "6722c3ddabd1de1634d8ceb88db4f6be7a09a2b9df7249ac18738efb5e60bf4b"
+    },
+    {
       "name": "brandforge-os/scripts/regenerate_sitemap.py",
-      "bytes": 2929,
-      "sha256": "6cd5fa5fba00ac236369fb1f527d20140ebea8fc34ffb620c0a6e17f0556b6ba"
+      "bytes": 3056,
+      "sha256": "37914e9eceab1c6f3088970f3bc426439613b3fb3941863769e2b3748ba06a39"
+    },
+    {
+      "name": "brandforge-os/scripts/render_product_fixture.mjs",
+      "bytes": 934,
+      "sha256": "7edce18fc20fd553f82937ce4791266acd71d00d082b27fdbd2032fb669dc252"
+    },
+    {
+      "name": "brandforge-os/scripts/repository_inventory.py",
+      "bytes": 4074,
+      "sha256": "9a71386e6f2e50cd1def1485331496b5d2813d8dde706c96072981f713b1040d"
+    },
+    {
+      "name": "brandforge-os/scripts/repository_site_qa.py",
+      "bytes": 3249,
+      "sha256": "391edd49d4807adf73d1793cc4f56f5933738c598ce065afba14f0d144d0f8b1"
+    },
+    {
+      "name": "brandforge-os/scripts/restore_workspace_history.py",
+      "bytes": 3888,
+      "sha256": "6c75444a6deee582f496a5fc54b967d4a3d323c4a3f7b7865bebb0b1e31d1eb6"
+    },
+    {
+      "name": "brandforge-os/scripts/review_transfer_qa.py",
+      "bytes": 6287,
+      "sha256": "503295886e3c3e6cab88a513926b8321be8e98b1cabed86b1a2ce2e3cbde79e2"
+    },
+    {
+      "name": "brandforge-os/scripts/sales_availability_qa.py",
+      "bytes": 6417,
+      "sha256": "4ae17cfc29c2308726575642435a84a7771bd8847661baa2241dbbc936dc849b"
     },
     {
       "name": "brandforge-os/scripts/serve_sales_preview.py",
@@ -1899,19 +4041,124 @@
       "sha256": "e82325a9528acbf7d109012a4336333f2bbf83b73a9d12729a30530648e7cc8c"
     },
     {
+      "name": "brandforge-os/scripts/showcase_qa.py",
+      "bytes": 6488,
+      "sha256": "b7e698d9730a3638c9c37aeecc1d2c6d0dae17f7c08dcefcedf9d07956aaec44"
+    },
+    {
+      "name": "brandforge-os/scripts/smoke_linux_installer.py",
+      "bytes": 2805,
+      "sha256": "e9e305bbdb5d232709a8c2c27188ebc88b4aaa1422e43f2337578d6126f81f3f"
+    },
+    {
+      "name": "brandforge-os/scripts/smoke_native_runtime.py",
+      "bytes": 3778,
+      "sha256": "dbc99f8ca6640c0344f1a360191619877a69a73d3018aae4d580d7699dbef0e0"
+    },
+    {
+      "name": "brandforge-os/scripts/sync_canvas.py",
+      "bytes": 782,
+      "sha256": "4d25f9f964c3de029f336121e0fad69701fbe3eb47df0e7ecff8d240e022d2aa"
+    },
+    {
+      "name": "brandforge-os/scripts/sync_design_tokens.py",
+      "bytes": 3127,
+      "sha256": "25035486e06cf344e92b113b93c19c1100b23a9ce9399fea704350391263a18a"
+    },
+    {
+      "name": "brandforge-os/scripts/sync_pricing_faq_jsonld.py",
+      "bytes": 3085,
+      "sha256": "a07f66d7664a196d1841992a3c66411c2c0520f590c243b7dabb46e5ba3ed050"
+    },
+    {
       "name": "brandforge-os/scripts/test_postgres_concurrency.py",
-      "bytes": 4449,
-      "sha256": "2be8f52bf2b0e2692cfc53543784cc8dfdfb251a456f24f05f0414b6d5e4a0f5"
+      "bytes": 6069,
+      "sha256": "c0b1bf507ab0b74bc117ea07e48c7b41121ff84bd35e6a711c05234029601020"
+    },
+    {
+      "name": "brandforge-os/scripts/unit_economics.py",
+      "bytes": 2552,
+      "sha256": "8bde40a93880eb60cde7c1bc81e3c79489a96084ffd6fe1c393f6990593f0c19"
     },
     {
       "name": "brandforge-os/scripts/validate_launch_config.py",
-      "bytes": 4038,
-      "sha256": "696ac63dbd6f6b3093e5f06c2bc5765750fff96bdb1d579853cd0e56b1bbbce6"
+      "bytes": 4094,
+      "sha256": "695a26e8ed7e18938458ec0dfb28544cfa057d80727f83739d21f67e52abf915"
+    },
+    {
+      "name": "brandforge-os/scripts/value_dashboard_qa.py",
+      "bytes": 2317,
+      "sha256": "e6fae1a7a419473f3d76458985d373b221b454c8c135354c324f9f97db96d30f"
+    },
+    {
+      "name": "brandforge-os/scripts/vector_corrections_qa.py",
+      "bytes": 8024,
+      "sha256": "0a432f0033f361960a70777c46294156b44d6a235dc8bef831e8036eb1e08a2e"
     },
     {
       "name": "brandforge-os/scripts/visual_qa.py",
       "bytes": 463,
       "sha256": "ff94ace4f24c533c1621d3277c4c74d7e60116acd208a6c9a6a1bcc513f49c38"
+    },
+    {
+      "name": "brandforge-os/scripts/visual_review_qa.py",
+      "bytes": 8035,
+      "sha256": "8ba09c47cebafe71ba86f575e178507d02f7c83285e7384366894866cb460870"
+    },
+    {
+      "name": "brandforge-os/scripts/watermark_export_qa.py",
+      "bytes": 4615,
+      "sha256": "1ee3dad0934cc2b39b00e935a8a7d03178565663b57a9e396372d1e7f5bfe051"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/editor.js",
+      "bytes": 15861,
+      "sha256": "e954a1ee1a3acf3351fc72c1271f5be916e319cb5401c2d6d2643d2aecd0b602"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/image-dimensions.js",
+      "bytes": 791,
+      "sha256": "8457f852dca7f883d4b69f3210db2deb1e4ba84283adda2cb495d89e67b21ebe"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/import-image.js",
+      "bytes": 4826,
+      "sha256": "bf4d4a12dae63995f0c5957bd398649ba7fc75f771ddeed79daab7a776aebe95"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/index.html",
+      "bytes": 4729,
+      "sha256": "839f0e77121c5698e3437b304d9e04b5bf6fd63699de323d8c0f36eaf4ff29cb"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/launch.js",
+      "bytes": 1912,
+      "sha256": "9e6c122c399f577e241a94ea9620d61587ad394e176680ee031cfc3a35cf941d"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/model.js",
+      "bytes": 4738,
+      "sha256": "36c9d4f95bc988564604d2a15ca705051fab48be1a7107c8c886484a7ef89459"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/semantic-tokens.css",
+      "bytes": 3676,
+      "sha256": "caeb047244b9b20f3070e5ddfde737ee6db99cd1b836b8598cb183a3b90fd424"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/style.css",
+      "bytes": 1937,
+      "sha256": "ceeba4c5879e1351184b44088dab021970c0f84abcc40169f88442380ef79fd5"
+    },
+    {
+      "name": "brandforge-os/shared/canvas/ui-font.woff2",
+      "bytes": 29400,
+      "sha256": "19f9c92546aa300c312235e3125af1b81394d8db9a4bc4a425cd5b641d2d54e1"
+    },
+    {
+      "name": "brandforge-os/shared/design-tokens.json",
+      "bytes": 1153,
+      "sha256": "b0235dcc5ef877aa989b11c0a90ff7e763a4c5db8e25de2c3de70760beabf23b"
     },
     {
       "name": "brandforge-os/supabase/CHECK_FIRST.sql",
@@ -1982,6 +4229,81 @@
       "name": "brandforge-os/supabase/migrations/0011_delivery_integrity.sql",
       "bytes": 3191,
       "sha256": "1f1e53e7362498dd5ddf6498a6e93c3f9f60103ee57e8dbc9daaf939fa41ed25"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0012_visual_status.sql",
+      "bytes": 2460,
+      "sha256": "b36bb3e5d1e83f94082d3a34c52c7a64acb341be8c39531814cb42e8c8a0c1ed"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0013_private_campaign_assets.sql",
+      "bytes": 7307,
+      "sha256": "4a046c0d7e8252ee258fd35e3b599f0adc0fe181fd56c4952ebabfdde0b9518b"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0014_visual_review.sql",
+      "bytes": 3539,
+      "sha256": "6786a542f95f62ae669abfdeeb2e476cfa87beec5b7e1083b1eed48bb7ea3aee"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0015_vector_corrections.sql",
+      "bytes": 13126,
+      "sha256": "2d4cdb381f5243303089394a02d73819bb1165df331d303bc99cc2bdd1411aa5"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0016_client_review.sql",
+      "bytes": 5788,
+      "sha256": "18fd06391f4612d0e3a7f25a44a3c565c5d865d9a09a3dd9e8132f1680694cdb"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0017_portable_archives.sql",
+      "bytes": 1860,
+      "sha256": "c0b6cb7e4e5c9cbacd70f3332b45e35e908f80f06cbe649176ca7ca25916af7c"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0018_image_recovery.sql",
+      "bytes": 8126,
+      "sha256": "7e12f6fad5b9e8c6932ddb6ce01b1fbddb547ff0dc11e3f38f54bebd80b898c0"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0019_optional_metrics.sql",
+      "bytes": 2260,
+      "sha256": "0004e855322594698c5858eb08d4a7e00cb7deb66627a8ecf9ac20638a103569"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0020_private_vector_versions.sql",
+      "bytes": 7018,
+      "sha256": "061c6d7625a1aae148c4c77f98b3f482ebdb039cad3b4c0f966e3ab8ef26c061"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0021_private_image_recovery.sql",
+      "bytes": 5681,
+      "sha256": "4857d3b4fde3a1f5951ebf491af152dc8fde144de50709f42e458f21f74bc159"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0022_visual_layout_edits.sql",
+      "bytes": 4217,
+      "sha256": "fad65dede1e677690b616152746a0dc76786e644547c9604236b92a61de0e8fb"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0023_scene_preserving_corrections.sql",
+      "bytes": 8147,
+      "sha256": "60391d37c39cceec0be9357c4a71e8e187308df5dafd3bcd8286972b5f22a2c2"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0024_canvas_projects.sql",
+      "bytes": 5434,
+      "sha256": "25f13dd19f269bf72341820e051b9b2a838ba4bc80024c1692ea17ffa955053a"
+    },
+    {
+      "name": "brandforge-os/supabase/migrations/0025_generation_progress.sql",
+      "bytes": 963,
+      "sha256": "74562c174994d796221181cdb18b2a4be679fccd7c6143c16cfe150a0a9bd888"
+    },
+    {
+      "name": "brandforge-os/tools/value-dashboard.html",
+      "bytes": 9703,
+      "sha256": "ce423e21bb143ebc5817063e2c5b4997cbcf992421c4c80197106948ebb68789"
     }
   ]
 }

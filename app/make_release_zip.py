@@ -47,6 +47,7 @@ matching private Supabase Storage release path — verify the file and manifest 
 publishing the release.
 """
 import argparse
+import stat
 import os
 import re
 import subprocess
@@ -81,7 +82,7 @@ FORBIDDEN = [
     r"egg-info/",
     r"build/lib/",
     r"bdist\.",
-    r"node_modules/",
+    r"(?:^|/)(?:node_modules|\.venv|venv)(?:/|$)",
     r"output/",                      # campaign runtime state
     r"memory/",                      # chat/long-term memory
     r"config\.json$",                # dev-machine provider config
@@ -92,7 +93,7 @@ FORBIDDEN = [
 FORBIDDEN_RES = [re.compile(p) for p in FORBIDDEN]
 
 REQUIRED_COMMON = [
-    "app/server.py", "app/brandforge.py", "app/requirements.txt", "app/web/dist/index.html",
+    "app/server.py", "app/brandforge.py", "app/requirements.txt",
     "app/brandforge_assets/dashboard/index.html", "app/brandforge_assets/fonts/NotoSans-Regular.ttf",
     "START-HERE.bat", "SETUP-WINDOWS.bat", "START-HERE.md", "README.md", "LICENSE",
     "app/setup_env.py", "docs/DESKTOP-USER-GUIDE.md", "docs/NETWORK-PRIVACY.md",
@@ -131,6 +132,27 @@ def run(cmd, **kw):
     return subprocess.run(cmd, cwd=REPO, capture_output=True, text=True, **kw)
 
 
+def write_release_manifest(out_path, tier, commit):
+    """Append one manifest, excluding itself; never duplicate an archived one."""
+    name = TOP_DIR + '/RELEASE-MANIFEST.json'
+    with zipfile.ZipFile(out_path, 'a', zipfile.ZIP_DEFLATED) as archive:
+        if name in archive.namelist():
+            raise ValueError('Existing release manifest must be excluded before packaging')
+        if len(archive.namelist()) != len(set(archive.namelist())):
+            raise ValueError('Duplicate ZIP entries are not allowed')
+        records = [{'name': i.filename, 'bytes': i.file_size,
+                    'sha256': hashlib.sha256(archive.read(i.filename)).hexdigest()}
+                   for i in archive.infolist() if not i.is_dir()]
+        manifest = {'schema': 2, 'version': __version__, 'tier': tier, 'commit': commit,
+                    'scope': 'Exact artifact bytes; excludes this manifest itself. Not production approval.',
+                    'files': records}
+        archive.writestr(name, json.dumps(manifest, indent=2))
+    with zipfile.ZipFile(out_path) as archive:
+        for item in records:
+            if hashlib.sha256(archive.read(item['name'])).hexdigest() != item['sha256']:
+                raise ValueError('Post-write artifact verification failed')
+
+
 def main():
     ap = argparse.ArgumentParser(description="Build a BrandForge OS customer release zip")
     ap.add_argument("--tier", required=True, choices=TIERS + tuple(TIER_ALIASES))
@@ -166,9 +188,11 @@ def main():
     with zipfile.ZipFile(tmp_path) as zin, \
          zipfile.ZipFile(out_path, "w", zipfile.ZIP_DEFLATED) as zout:
         for info in zin.infolist():
-            if not included_in_tier(info.filename, tier):
+            if info.filename == TOP_DIR + "/RELEASE-MANIFEST.json" or not included_in_tier(info.filename, tier):
                 continue
             payload = zin.read(info.filename)
+            if stat.S_ISLNK(info.external_attr >> 16):
+                raise ValueError('Source releases must not contain filesystem symlinks: '+info.filename)
             if tier == 'owner' and info.filename == TOP_DIR+'/README.md':
                 payload = zin.read(TOP_DIR+'/app/brandforge_assets/OWNER-README.md')
             zout.writestr(info.filename, payload)
@@ -187,11 +211,11 @@ def main():
         for req in required:
             if f"{TOP_DIR}/{req}" not in files:
                 problems.append(f"missing required file: {TOP_DIR}/{req}")
-        html_path=f"{TOP_DIR}/app/web/dist/index.html"
+        html_path=f"{TOP_DIR}/app/brandforge_assets/dashboard/index.html"
         if html_path in files:
             html=zf.read(html_path).decode("utf-8")
             for asset in re.findall(r'(?:src|href)="(?:\./|/)?(assets/[^"?]+)',html):
-                if f"{TOP_DIR}/app/web/dist/{asset}" not in files:
+                if f"{TOP_DIR}/app/brandforge_assets/dashboard/{asset}" not in files:
                     problems.append("missing built dashboard asset: "+asset)
         demo_manifest = f"{TOP_DIR}/sales/assets/product-demo/manifest.json"
         if demo_manifest in files:
@@ -222,10 +246,7 @@ def main():
     print(f"    entries: {len(final)}  size: {size/1024:.0f} KB  top dir: {TOP_DIR}/")
     print("    self-audit: 0 forbidden entries, tier contents correct")
 
-    with zipfile.ZipFile(out_path,"a",zipfile.ZIP_DEFLATED) as archive:
-        records=[{"name":info.filename,"bytes":info.file_size,"sha256":hashlib.sha256(archive.read(info.filename)).hexdigest()} for info in archive.infolist() if not info.is_dir()]
-        manifest={"version":__version__,"tier":tier,"commit":run(["git","rev-parse","HEAD"]).stdout.strip(),"files":records}
-        archive.writestr(TOP_DIR+"/RELEASE-MANIFEST.json",json.dumps(manifest,indent=2))
+    write_release_manifest(out_path, tier, run(["git","rev-parse","HEAD"]).stdout.strip())
     Path(out_path+".sha256").write_text(hashlib.sha256(Path(out_path).read_bytes()).hexdigest()+"  "+os.path.basename(out_path)+"\n")
 
 

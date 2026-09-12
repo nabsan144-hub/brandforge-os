@@ -1,0 +1,74 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "version": "original",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "light",
+    "width": 390,
+    "version": "revised",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "version": "original",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "version": "revised",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "version": "original",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "version": "revised",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "version": "original",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "version": "revised",
+    "previews": 10,
+    "axe": [],
+    "overflow": false,
+    "zip_hashes": "passed"
+  }
+]

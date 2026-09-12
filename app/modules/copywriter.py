@@ -18,7 +18,7 @@ class Copywriter:
         def _clean(s, n=80):
             return _re.sub(r"<[^>]*>", "", str(s or ""))[:n].strip()
         product_name = _clean(product_name, 80) or "Brand"
-        key_benefits = _clean(key_benefits, 200) or "High quality"
+        key_benefits = _clean(key_benefits, 200) or ""
         target_audience = _clean(target_audience, 80) or "Founders"
 
         prompt = f"""Write high-converting copy for:

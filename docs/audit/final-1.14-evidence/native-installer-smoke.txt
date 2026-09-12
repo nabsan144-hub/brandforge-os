@@ -1,0 +1,2 @@
+{"canvas_assets_and_save": "pass", "native_start": "pass", "health_version": "1.14.0", "dashboard": "pass", "offline_campaign": "pass", "ZIP": "pass", "PDF": "pass", "portable_core_export": "pass", "data_isolated": true}
+{"real_linux_install": "pass", "installed_runtime_smoke": "pass", "repair": "pass", "rollback": "pass", "copy_failure_preserves_runtime": "pass", "tamper_rejected": "pass", "uninstall": "pass", "customer_data_preserved": "pass", "home_with_spaces": "pass", "windows_macos_execution": "not performed"}

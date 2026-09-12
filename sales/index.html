@@ -88,6 +88,7 @@ body.loaded .lm>span{transform:none}
 .term{background:#05070B;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 40px 80px -30px rgba(0,0,0,.6)}
 [data-theme="light"] .term{background:#0B0F17}
 .term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:rgba(255,255,255,.02)}
+.term-bar{--inverse-muted:#A6B1C2}
 .term-bar .dot{width:11px;height:11px;border-radius:50%}
 .term-body{padding:20px 22px;font-family:'Geist Mono',monospace;font-size:13.5px;line-height:2;min-height:150px;color:#D6DEE8}
 .term-body .p{color:var(--gold);margin-right:8px}
@@ -131,7 +132,7 @@ body.loaded .lm>span{transform:none}
 
 .bf-hero,.bf-section{max-width:1100px;margin:auto;padding:64px 24px}.bf-hero{text-align:center;padding-top:86px;padding-bottom:62px;position:relative}.bf-hero>*{position:relative;z-index:2}
 #hero-swarm{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;z-index:1}.bf-kicker{font-size:12px;letter-spacing:.12em;font-weight:700;color:var(--gold);margin:0 0 20px}.bf-hero h1{font-size:clamp(42px,7.2vw,80px);line-height:1.03;letter-spacing:-.045em;font-weight:800}.bf-hero h1 .serif{color:var(--gold)}.bf-lead{font-size:18px;line-height:1.75;max-width:700px;margin:28px auto}.bf-actions{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin:24px 0}.bf-hero .bf-actions,.bf-last .bf-actions{justify-content:center}.bf-actions>a,.bf-panel>a,.bf-section .ghost-btn{display:inline-block;padding:14px 22px;border-radius:30px;font-size:14px;font-weight:700}.bf-small{font-size:12px!important;line-height:1.75;color:var(--muted);margin-top:16px}.bf-product-line{display:flex;justify-content:center;gap:32px;flex-wrap:wrap;border-top:1px solid var(--line);padding-top:26px;margin-top:34px;font-size:13px;color:var(--muted)}.bf-section{border-top:1px solid var(--line)}.bf-section h2{font-size:clamp(30px,4vw,46px);line-height:1.13;font-weight:800;letter-spacing:-.035em;margin-bottom:22px}.bf-section h3{font-size:24px;font-weight:700;margin:12px 0 18px}.bf-section p{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:14px}.bf-split{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:42px}.bf-split figure img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:18px}.bf-split figcaption{font-size:11px;color:var(--muted);margin:12px 0}.bf-two{display:grid;grid-template-columns:1fr 1fr;gap:22px}.bf-panel{background:var(--surface);padding:28px;border:1px solid var(--line);border-radius:20px;min-width:0}.bf-panel ul{padding-left:20px;font-size:13px;line-height:1.85;margin:20px 0;color:var(--muted)}.bf-panel li{margin-bottom:8px}.bf-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:34px}.bf-steps b{font-size:16px;display:block;margin-bottom:12px}.bf-last{text-align:center}.bf-last>p{max-width:680px;margin:0 auto}.bf-section a:not(.cta-gold):not(.ghost-btn):not(.tile){text-decoration:underline}.bf-hero p,.bf-section p{overflow-wrap:anywhere}
-@media(max-width:720px){.bf-split,.bf-two,.bf-steps{grid-template-columns:1fr}.bf-hero,.bf-section{padding:44px 20px}.bf-hero{padding-top:58px}.bf-lead{font-size:16px}.bf-panel{padding:23px}.bf-product-line{gap:14px}.bf-actions>a{width:100%;text-align:center}.bf-split{gap:24px}}
+@media(max-width:720px){.bf-split,.bf-two,.bf-steps{grid-template-columns:1fr}.bf-hero,.bf-section{padding:44px 20px}.bf-hero{padding-top:32px}.bf-lead{font-size:16px}.bf-panel{padding:23px}.bf-product-line{gap:14px}.bf-actions>a{width:100%;text-align:center}.bf-split{gap:24px}}
 .bf-gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}
 @media(max-width:900px){.bf-gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.bf-gallery{grid-template-columns:1fr}}
@@ -178,15 +179,18 @@ body.loaded .lm>span{transform:none}
 
 <script>(function(){try{var m=document.cookie.match(/(?:^|;\s*)brandforge-theme=([^;]+)/);var t=m?decodeURIComponent(m[1]):localStorage.getItem('brandforge-theme');if(t==='light')document.documentElement.setAttribute('data-theme','light')}catch(e){}})();</script>
 <noscript><style>[data-rv]{opacity:1 !important;transform:none !important}.lm>span{transform:none !important}</style></noscript>
+<link rel="stylesheet" href="assets/semantic-tokens.css">
+<link rel="stylesheet" href="assets/showcase.css"/>
+<script src="assets/showcase.js" defer></script>
 </head>
 <body class="antialiased">
 <a class="skip-link" href="#content">Skip to content</a>
 
-<div class="bf-announce" role="region" aria-label="Launch announcement"><span class="bf-ann-dot" aria-hidden="true"></span><span><b>Desktop early access open</b> — from $199 once &nbsp;·&nbsp; <b>Cloud</b> — 3 free campaigns, no card &nbsp;·&nbsp; AI artwork scenes arrive with Pro &amp; Agency</span><a href="pricing#feature-matrix">Compare →</a></div>
+<div class="bf-announce" role="region" aria-label="Launch announcement"><span class="bf-ann-dot" aria-hidden="true"></span><span><span data-release-summary>Free Cloud: 3 lifetime campaigns, no card. Paid availability is checked in the workspace. Desktop waitlist — purchases not open.</span></span><a href="pricing#feature-matrix">Compare →</a></div>
 <nav class="sticky top-0 z-50 backdrop-blur-xl" style="background:color-mix(in srgb, var(--bg) 78%, transparent);border-bottom:1px solid var(--line)">
 <div class="max-w-[1160px] mx-auto px-6 h-[64px] flex items-center justify-between gap-4">
 <a class="flex items-center gap-2.5 flex-shrink-0" href="/">
-<img alt="BrandForge OS Logo — Marketing Pipeline" class="w-9 h-9 rounded-[10px]" src="assets/logo-mark.svg"/>
+<img width="120" height="120" alt="BrandForge OS Logo — Marketing Pipeline" class="w-9 h-9 rounded-[10px]" src="assets/logo-mark.svg"/>
 <span class="font-bold tracking-tight text-[16px]">BrandForge <span style="color:var(--gold)">OS</span></span>
 </a>
 <div class="hidden md:flex items-center gap-5 text-[13.5px]" style="color:var(--muted)">
@@ -226,50 +230,25 @@ body.loaded .lm>span{transform:none}
 </div>
 </nav>
 <main id="content">
-<header class="bf-hero">
-<canvas aria-hidden="true" id="hero-swarm"></canvas>
-<p class="bf-kicker">FROM CLIENT BRIEF TO REVIEWABLE CAMPAIGN</p>
-<h1>Less blank-page work.<br/><span class="serif">More ready to review.</span></h1>
-<p class="bf-lead">Bring a brand, a clear offer and real customer benefits. Draft the copy, create branded visuals, refine the message and hand over a complete pack.</p>
-<div class="bf-actions"><a class="cta-gold" href="https://app.brandforge-os.com/signup">Try 3 free Cloud campaigns</a><a class="ghost-btn" href="#tour">Watch the 60-second tour</a><a class="ghost-btn" href="demo#sample-pack">Inspect a real sample pack</a></div>
-<p class="bf-small">No card needed for Free. Join the Desktop waitlist for availability updates.</p>
-<p class="bf-orb-hint"><span class="orb-dot" aria-hidden="true"></span><span>The six drifting orbs above are your campaign agents — click anywhere in this hero and watch them scatter.</span></p>
-<div class="bf-product-line"><span><b>Cloud</b> · browser workspace · recurring plans</span><span><b>Desktop</b> · local ownership · from $199 once</span></div>
-<p class="bf-small" style="max-width:680px;margin:14px auto 0">Cloud drafts <b>3 text stages</b> (strategy, copy, SEO). Visuals are deterministic vector; <b>Pro and Agency add AI artwork scenes</b> (operator-enabled provider) with the same exact vector text. The <b>six-stage Desktop pipeline</b> — research and quality review included — is a separate product. <a href="pricing#feature-matrix">Compare the exact formats →</a></p>
-<ul aria-label="What you get" class="bf-trust"><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> One brief → strategy, copy and visuals</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Review every claim before you publish</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Free to try — no card required</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Your output is yours — no lock-in</li></ul>
-<figure style="max-width:980px;margin:46px auto 0">
-<div style="border:1px solid var(--line);border-radius:18px;overflow:hidden;background:var(--surface);box-shadow:0 50px 100px -40px rgba(0,0,0,.6)">
-<div aria-hidden="true" style="display:flex;align-items:center;gap:7px;padding:11px 15px;border-bottom:1px solid var(--line)"><span style="width:10px;height:10px;border-radius:50%;background:#2A3447"></span><span style="width:10px;height:10px;border-radius:50%;background:#2A3447"></span><span style="width:10px;height:10px;border-radius:50%;background:#2A3447"></span><span class="mono" style="margin-left:10px;font-size:11px;color:var(--muted)">brandforge — workspace</span></div>
-<img alt="Actual screenshot of the BrandForge workspace: offline status, campaign launch action, tools count and first-campaign checklist" loading="lazy" src="assets/screens/dashboard-home.webp" style="display:block;width:100%;height:auto"/>
-</div>
-<figcaption style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center">The actual workspace (Desktop build shown). Cloud runs the same review flow in your browser — tour below.</figcaption>
-</figure>
+<header class="bf-hero bf-art-hero">
+<canvas id="hero-swarm" aria-hidden="true"></canvas>
+<div class="bf-art-copy"><p class="bf-kicker">BRANDFORGE OS · CAMPAIGN WORKSPACE</p>
+<h1>Make the brand<br/><span class="serif">impossible to ignore.</span></h1>
+<p class="bf-lead">A bold idea. A distinctive visual world. Explore the Crunch Club concept campaign, from the hero artwork to a full-height story.</p>
+<div class="bf-actions"><a class="cta-gold" href="#gallery">Explore the campaign <span aria-hidden="true">↗</span></a><a class="ghost-btn" href="#demo">See the workspace</a></div>
+<p class="bf-art-disclosure"><strong>AI-assisted concept showcase.</strong> Created separately from BrandForge, not by the current app. These are fictional products, not customer results. Current workspace capabilities are described below.</p>
+<div class="bf-art-meta"><span>01 / FOOD &amp; BEVERAGE</span><span>CRUNCH CLUB — CONCEPT</span></div></div>
+<figure class="bf-art-feature"><a class="showcase-open" href="assets/showcase/crunch-portrait.jpg" data-title="Crunch Club — original portrait concept" target="_blank" rel="noopener"><img src="assets/showcase/crunch-portrait.jpg" width="928" height="1152" alt="Crunch Club chicken burger concept: orange and ivory branding, dramatic product imagery and the headline Loud by Nature" fetchpriority="high" decoding="async"/><span class="bf-art-expand">Explore full-size artwork <span aria-hidden="true">↗</span></span></a></figure>
 </header>
-<section class="bf-section" id="proof" aria-labelledby="proof-h">
-<p class="bf-kicker">SAME BRIEF · TWO ENGINES — SEE THE DIFFERENCE</p>
-<h2 id="proof-h">The same brief, rendered two ways.</h2>
-<p>Left is the deterministic vector build every campaign ships with. Right adds an AI artwork scene (Pro &amp; Agency) beneath the <b>same exact vector text</b> — the headline, benefits, CTA and logo are never AI-rendered, so nothing is misspelled.</p>
-<div class="bf-compare">
-<figure>
- <div class="lab"><span>Vector build — every plan</span><span class="tag base">BASELINE</span></div>
- <img alt="Bold vector banner for the fictional Karak Theory brief: oversized headline with a gold brand underline on navy, an elevated solid-gold benefits panel, an offer chip and a glass CTA pill" loading="lazy" src="assets/gallery/bold-vector-karak.svg"/>
- <figcaption>Engine output · the deterministic bold build every plan ships with.</figcaption>
-</figure>
-<figure>
- <div class="lab"><span>AI scene — Pro &amp; Agency</span><span class="tag ai">AI SCENE</span></div>
- <img alt="Same Karak Theory brief with an AI coffee scene behind the exact same vector text" loading="lazy" src="assets/gallery/ai-karak.jpg"/>
- <figcaption>Same brief · scene from the operator-enabled provider, text still exact.</figcaption>
-</figure>
-</div>
-<p class="bf-small" style="text-align:center;max-width:760px;margin:22px auto 0">Both tiles are real engine output, not mockups. Scenes are generated per campaign, then the exact vector text is composed on top. The provider choice is the operator&rsquo;s; Free plans stay on the vector build.</p>
-<div class="bf-chips" aria-label="Providers the engine works with">
-<span class="bf-chip"><span class="dot" aria-hidden="true"></span>Text <b>Groq</b> <span class="cap">live catalog</span></span>
-<span class="bf-chip"><span class="dot" aria-hidden="true"></span>Scenes <b>Gemini</b> <span class="cap">default</span></span>
-<span class="bf-chip"><span class="dot" aria-hidden="true"></span>Scenes <b>OpenAI</b> <span class="cap">option</span></span>
-<span class="bf-chip"><span class="dot" aria-hidden="true"></span>Scenes <b>xAI Grok</b> <span class="cap">option</span></span>
-<span class="bf-chip"><span class="dot" aria-hidden="true"></span>Your own key <b>BYOK</b> <span class="cap">optional</span></span>
-</div>
-</section>
+<section class="bf-section bf-art-section" id="proof" aria-labelledby="proof-h"><div class="bf-art-section-head"><div><p class="bf-kicker">ONE CAMPAIGN. ONE VISUAL WORLD.</p><h2 id="proof-h">Loud by nature.<br/><span class="serif">Distinctive by design.</span></h2></div><p>Orange, ivory and charcoal. Oversized type. Tactile food imagery. A single brand direction, recomposed into three formats rather than squeezed into the same template.</p></div>
+<div id="gallery" class="bf-art-grid" aria-label="Crunch Club concept artwork"><figure class="bf-art-tile bf-art-wide"><a class="showcase-open" href="assets/showcase/crunch-landscape.jpg" data-title="01 / Landscape" target="_blank" rel="noopener"><img src="assets/showcase/crunch-landscape.jpg" width="1376" height="768" alt="Wide Crunch Club concept with headline on the left and the chicken burger on the right" loading="lazy" decoding="async"/><span class="bf-art-expand">View full size ↗</span></a><figcaption><strong>01 / Landscape</strong><span>1376 × 768 · AI-assisted concept</span></figcaption></figure><figure class="bf-art-tile "><a class="showcase-open" href="assets/showcase/crunch-portrait.jpg" data-title="02 / Portrait" target="_blank" rel="noopener"><img src="assets/showcase/crunch-portrait.jpg" width="928" height="1152" alt="Original Crunch Club portrait concept with a large burger and bold orange brand graphics" loading="lazy" decoding="async"/><span class="bf-art-expand">View full size ↗</span></a><figcaption><strong>02 / Portrait</strong><span>928 × 1152 · AI-assisted concept</span></figcaption></figure><figure class="bf-art-tile bf-art-story"><a class="showcase-open" href="assets/showcase/crunch-story.jpg" data-title="03 / Story" target="_blank" rel="noopener"><img src="assets/showcase/crunch-story.jpg" width="768" height="1376" alt="Tall Crunch Club concept with recomposed headline, burger and call to action" loading="lazy" decoding="async"/><span class="bf-art-expand">View full size ↗</span></a><figcaption><strong>03 / Story</strong><span>768 × 1376 · AI-assisted concept</span></figcaption></figure></div><p class="bf-small">Fictional campaign concepts, not automated BrandForge output. The adaptations are separate AI generations; small product details can differ. Real customer work requires approved product assets and review. <a href="assets/showcase/manifest.json">Artwork provenance and file details</a>.</p></section>
+<section class="bf-section" id="demo" aria-labelledby="workspace-heading"><div class="bf-art-section-head"><div><p class="bf-kicker">THE WORKSPACE · SEPARATE FROM THE SHOWCASE</p><h2 id="workspace-heading">Keep the work<br/><span class="serif">in one place.</span></h2></div><p>Organize briefs, review copy, keep versions and export your work. This is the current application—not a claim that it generated the concept artwork above.</p></div>
+<figure class="bf-workspace-shot"><img width="2160" height="1350" src="assets/screens/dashboard-home.webp" alt="Actual Desktop workspace with campaign controls, offline status and a first-campaign checklist" loading="lazy"/><figcaption>Actual Desktop build. Cloud has a separate browser workflow.</figcaption></figure>
+<div class="bf-actions"><a class="ghost-btn" href="https://app.brandforge-os.com/signup">Try the current Cloud workspace</a><a class="ghost-btn" href="pricing#feature-matrix">Compare current capabilities</a><a class="ghost-btn" href="#tour">Watch the workspace tour</a></div>
+<p class="bf-small">Free includes 3 lifetime campaigns using basic vector layouts, not artwork matching this concept showcase. No card required. <span data-desktop-status>Desktop waitlist — purchases not open</span>.</p><details class="bf-small"><summary>Compare workflow and image options</summary><p class="bf-small" style="max-width:680px;margin:14px auto 0">Cloud drafts <b>3 text stages</b> (strategy, copy, SEO). Visuals are deterministic vector; <b>Pro and Agency can optionally add AI artwork to the hero only</b>, with explicit opt-in when enabled; resized banners remain vector-only with the same exact vector text. The <b>six-stage Desktop pipeline</b> — research and quality review included — is a separate product. <a href="pricing#feature-matrix">Compare the exact formats →</a></p>
+<p class="bf-small" data-image-status>Cloud uses vector visuals by default. Optional AI artwork requires Pro/Agency, explicit opt-in and operator availability; hero only, with resized banners remaining vector-only.</p><p class="bf-small" data-generation-status role="status"></p>
+<ul aria-label="What you get" class="bf-trust"><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> One brief → strategy, copy and visuals</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Review every claim before you publish</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Free to try — no card required</li><li><span aria-hidden="true" style="color:var(--gold);font-weight:800">✓</span> Your output is yours — no lock-in</li></ul>
+</details></section>
 <section aria-labelledby="tour-heading" class="bf-section bf-tour" id="tour" tabindex="-1">
 <div class="bf-tour-intro"><div><p class="bf-kicker">SEE THE WORKFLOW, THEN INSPECT THE WORK</p><h2 id="tour-heading">Your next campaign<br/>starts with a brief.</h2><p>Watch Desktop creation, review and export—then meet the separate Cloud workspace.</p></div><span class="bf-tour-time">60 SEC · 1080P</span></div>
 <div class="bf-tour-media" data-bf-tour="">
@@ -284,23 +263,6 @@ body.loaded .lm>span{transform:none}
 <p class="bf-tour-caption"><strong>Music optional. Captions included.</strong> Fictional offline sample; Cloud screens use example account data. This is an illustrated walkthrough, not a live AI or payment session.</p>
 <div class="bf-tour-links"><a href="tour?paused=1">Open the animated HTML tour</a><a download="" href="assets/product-demo/demo.mp4">Download the 1080p video</a><a href="pricing#feature-matrix">Compare Desktop and Cloud</a></div>
 </section>
-<section class="bf-section" id="demo">
-<div class="bf-split"><div><p class="bf-kicker">SHOW THE OUTPUT, NOT JUST THE PROMISE</p><h2>A campaign you<br/>can actually open.</h2><p>This fictional coffee brief was run through the Desktop offline engine. You can inspect the copy, vector and raster visuals, Word/PDF documents, review notes and file manifest.</p><p class="bf-small">This is template output, not a customer testimonial or an AI-provider quality benchmark. No performance or trademark claims are implied.</p><div class="bf-actions"><a class="cta-gold cta-sample" download="" href="assets/sample/northline-campaign.zip">Download the complete sample ZIP</a><a class="ghost-btn" href="assets/sample/campaign.pdf">Read the PDF</a></div></div><figure><img alt="Bold Northline Coffee banner generated offline from a fictional brief: oversized headline with a gold underline, benefit icons and a glass CTA pill" height="630" src="assets/sample/hero.webp" width="1200"/><figcaption>Actual offline output of the bold engine · fictional Northline Coffee brief</figcaption></figure></div>
-</section>
-<section aria-labelledby="gallery-h" class="bf-section" id="gallery">
-<p class="bf-kicker">REAL ENGINE OUTPUT · FICTIONAL BRANDS</p>
-<h2 id="gallery-h">One brief in.<br/>A branded pack out.</h2>
-<p>Every tile below is a real file produced by the shipped Cloud engine — vector builds and, on paid plans, AI artwork scenes — not a design mockup. Your brief sets the colors, headline, benefits and call to action; the vector text stays exact in every language (Urdu and Hindi included).</p>
-<div class="bf-gallery">
-<figure style="margin:0"><img alt="Karak Theory banner: AI coffee scene on navy with gold accent and exact vector headline" loading="lazy" src="assets/gallery/ai-karak.jpg" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Karak Theory · AI scene on navy</figcaption></figure>
-<figure style="margin:0"><img alt="Pulse Studio banner: moody gym scene with emerald accent and exact vector headline" loading="lazy" src="assets/gallery/ai-fitness.jpg" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Pulse Studio · emerald AI scene</figcaption></figure>
-<figure style="margin:0"><img alt="Aurelia Skincare banner: warm light scene with copper accents and exact vector headline" loading="lazy" src="assets/gallery/ai-skin.jpg" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Aurelia Skincare · light AI scene</figcaption></figure>
-<figure style="margin:0"><img alt="Northline Homes banner: golden-hour architecture scene with copper accents and exact vector headline" loading="lazy" src="assets/gallery/ai-realty.jpg" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Northline Homes · warm light AI scene</figcaption></figure>
-<figure style="margin:0"><img alt="Generated Urdu-language coffee banner with right-to-left layout, produced by the BrandForge engine" loading="lazy" src="assets/gallery/urdu.svg" style="display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Urdu · right-to-left, built in</figcaption></figure>
-<figure style="margin:0"><img alt="Generated skincare story-format vertical banner, produced by the BrandForge engine" loading="lazy" src="assets/gallery/story.svg" style="display:block;width:100%;height:auto;max-height:520px;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:14px"/><figcaption style="font-size:11px;color:var(--muted);margin-top:8px">Story 9:16 · any preset size</figcaption></figure>
-</div>
-<p class="bf-small">Deterministic vector drafts — stance, colors and claims come from your brief and stay editable. Inspect the full companion documents in the sample pack above.</p>
-</section>
 <section class="bf-section" id="products"><p class="bf-kicker">SEPARATE PRODUCTS. CLEAR EXPECTATIONS.</p><h2>Choose where your work lives.</h2>
 <div class="bf-two"><article class="bf-panel"><span class="bf-kicker">BRANDFORGE CLOUD</span><h3>Your browser workspace</h3><p>Reusable client brands, three text-generation stages, transparent provider status, editable copy, saved versions, searchable history and portable exports.</p><ul><li>Free: 3 lifetime campaigns, watermarked</li><li>Pro: $49/month or $490/year · 50 campaigns/month</li><li>Agency: $99/month · 300 campaigns/month</li><li>Hosted storage; connected providers receive your brief</li></ul><a class="ghost-btn" href="pricing#cloud-plans">Review Cloud plans</a></article>
 <article class="bf-panel"><span class="bf-kicker">BRANDFORGE DESKTOP</span><h3>Keep the local version</h3><p>Local campaign storage, client profiles, a review pipeline, native Word/PDF exports and optional connected tools. Offline templates need no AI key after setup.</p><ul><li>Owner: $199 once · your own business/brands</li><li>Agency + Source: $499 once · client work and defined resale rights</li><li>No included Cloud subscription or hosted AI allowance</li><li>First setup needs internet; provider charges can apply</li></ul><a class="ghost-btn" href="pricing#waitlist" onclick="brandforgeBuy('owner');return false;"><span data-cta-price="199" data-cta-tier="owner">Join the Desktop waitlist</span></a></article></div>
@@ -312,21 +274,21 @@ body.loaded .lm>span{transform:none}
 <div class="bf-split">
 <div>
 <p class="bf-kicker">WHO BUILDS THIS</p>
-<h2 id="founder-h">Designed by a designer,<br/>not a template.</h2>
+<h2 id="founder-h">Meet the designer<br/>behind the product.</h2>
 <div class="bf-founder">
 <a class="tile" href="https://www.linkedin.com/in/nabeel-ali-ops/" target="_blank" rel="noopener noreferrer" aria-label="Nabeel Ali on LinkedIn (opens in a new tab)">NA</a>
 <div><b>Nabeel Ali</b><span class="role">Founder, BrandForge OS — also builds CopyForge AI</span></div>
 </div>
-<p>Brand designer — 12+ years, 50+ brands across 8 countries. Same standard here: honest output, nothing invented. <a href="https://nabeel-ali-design.vercel.app/" target="_blank" rel="noopener">See the design portfolio</a> · <a href="https://www.linkedin.com/in/nabeel-ali-ops/" target="_blank" rel="noopener">LinkedIn</a></p>
+<p>Explore the design work behind BrandForge OS and decide whether the approach fits your business. <a href="https://nabeel-ali-design.vercel.app/" target="_blank" rel="noopener">See the design portfolio</a> · <a href="https://www.linkedin.com/in/nabeel-ali-ops/" target="_blank" rel="noopener">LinkedIn</a></p>
 </div>
 <div>
 <p class="bf-kicker">QUICK START</p>
-<h3>Desktop, running in one command.</h3>
-<div class="term"><div class="term-bar"><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span class="mono" style="margin-left:10px;font-size:11px;color:var(--muted)">brandforge — desktop setup</span></div>
+<h3>Set up once. Launch locally.</h3>
+<div class="term"><div class="term-bar"><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span style="width:11px;height:11px;border-radius:50%;background:#2A3447"></span><span class="mono" style="margin-left:10px;font-size:11px;color:var(--inverse-muted)">brandforge — desktop setup</span></div>
 <div class="term-body">
 <span class="p">›</span>SETUP-WINDOWS.bat<span class="c">   # one-time install (Windows)</span><br/>
-<span class="p">›</span>pip install -r requirements.txt<span class="c">   # macOS / Linux</span><br/>
-<span class="p">›</span>cd app &amp;&amp; python server.py<span class="c">   # local engine + UI</span><br/>
+<span class="p">›</span>python3 app/setup_env.py --install<span class="c">   # macOS / Linux</span><br/>
+<span class="p">›</span>app/.venv/bin/python app/brandforge.py --server<span class="c">   # local engine + UI</span><br/>
 <span class="p">›</span>open http://localhost:8000<span class="cursor" aria-hidden="true"></span>
 </div></div>
 <p class="bf-small">Needs Python 3.10+. Cloud needs nothing installed — your browser is the workspace.</p>
@@ -338,11 +300,11 @@ body.loaded .lm>span{transform:none}
 <p class="bf-kicker">STRAIGHT ANSWERS</p>
 <h2 id="faq-h">Questions, answered.</h2>
 <div class="bf-faq">
-<details><summary>What is the difference between Cloud and Desktop?</summary><p>Cloud is a browser workspace: strategy, copy and SEO text plus visuals. Free ships deterministic vector builds; Pro and Agency add AI artwork scenes. Desktop is the full six-stage pipeline on your own PC — research, strategy, copy, quality review, visuals and SEO — from $199 once. <a href="pricing#feature-matrix">Compare the exact formats →</a></p></details>
+<details><summary>What is the difference between Cloud and Desktop?</summary><p>Cloud is a browser workspace: strategy, copy and SEO text plus visuals. Free ships watermarked vector builds. Pro and Agency can request optional AI hero artwork when enabled and explicitly selected; resized banners remain vector-only. Desktop is the full six-stage pipeline on your own PC — research, strategy, copy, quality review, visuals and SEO — from $199 once. <a href="pricing#feature-matrix">Compare the exact formats →</a></p></details>
 <details><summary>Do I need my own AI key?</summary><p>No. Cloud runs on the providers the operator configures — Groq for text, and Gemini (default), OpenAI or xAI Grok for artwork scenes when enabled. BYOK is optional, for your own budget and model choices.</p></details>
-<details><summary>Will the design actually look professional?</summary><p>Copy is written against craft rules — no clichés, no invented claims, short sentences you would publish. Visuals are exact vector text over either the deterministic layout or an AI artwork scene, so the headline can never be misspelled. You review every claim before publishing.</p></details>
+<details><summary>Will the design actually look professional?</summary><p>These are drafts, not a guarantee of publishable design or accurate copy. Typography is composed separately from the artwork, rather than asking the image model to draw the words. This preserves supplied text; it does not proofread it. Review spelling, claims and layout before publishing.</p></details>
 <details><summary>Does it write Urdu and Hindi?</summary><p>Yes — English, Urdu, Hindi, Spanish and Portuguese are built in, with right-to-left layouts for Urdu. Templates preserve your supplied text; language checks are heuristic, not translation certification.</p></details>
-<details><summary>What does it cost?</summary><p>Cloud Free: 3 lifetime campaigns, no card. Pro $49/mo, Agency $99/mo — both include AI scenes. Desktop: $199 once (Owner) or $499 once (Agency + Source), with a 14-day refund policy.</p></details>
+<details><summary>What does it cost?</summary><p>Cloud Free: 3 lifetime campaigns, no card. Pro $49/mo, Agency $99/mo — optional AI hero artwork requires opt-in and operator availability; resized banners remain vector-only. Desktop: $199 once (Owner) or $499 once (Agency + Source), with a 14-day refund policy.</p></details>
 <details><summary>Is the work mine?</summary><p>Yes. Everything exports — Cloud downloads a ZIP with a SHA-256 manifest, Desktop keeps files on your machine. No lock-in: keep the files wherever you like.</p></details>
 </div>
 </section>
@@ -350,7 +312,7 @@ body.loaded .lm>span{transform:none}
 <section class="bf-section" id="release" aria-labelledby="release-h">
 <p class="bf-kicker">LATEST RELEASE</p>
 <h2 id="release-h">What just shipped.</h2>
-<p><b>v1.9</b> — the bold creative engine: premium, business-specific ad compositions for every generated banner on Cloud and Desktop (soft radial brand washes, oversized headlines with a brand underline, a structured benefits rail, card or solid panel — four layout personalities picked deterministically from your brief, offer chips and glass CTA pills), with a calm "style: essential" option preserved from the previous design. Text stays exact vector copy in English, Urdu/Arabic and Hindi.</p>
+<p><b>v1.9</b> — the bold creative engine: premium, business-specific ad compositions for every generated banner on Cloud and Desktop (soft radial brand washes, oversized headlines with a brand underline, a structured benefits rail, card or solid panel — four layout personalities picked deterministically from your brief, offer chips and glass CTA pills), with a calm "style: essential" option preserved from the previous design. Text is outlined for portability; supported scripts still need proofing and actual-size review.</p>
 <p class="bf-small">Full history on the <a href="changelog">changelog</a>.</p>
 </section>
 
@@ -360,7 +322,7 @@ body.loaded .lm>span{transform:none}
 <div class="max-w-[1160px] mx-auto px-6 space-y-6">
 <div class="flex flex-col md:flex-row items-center justify-between gap-5">
 <div class="flex items-center gap-2.5">
-<img alt="BrandForge OS Logo — Marketing Pipeline" class="w-7 h-7 rounded-[8px]" src="assets/logo-mark.svg"/>
+<img width="120" height="120" alt="BrandForge OS Logo — Marketing Pipeline" class="w-7 h-7 rounded-[8px]" src="assets/logo-mark.svg"/>
 <span class="text-[13px] font-bold" style="color:var(--ink)">BrandForge OS</span>
 <span class="text-[12px]" style="color:var(--muted)">— The Marketing OS · Local-first · Owned forever</span>
 </div>
@@ -390,11 +352,14 @@ body.loaded .lm>span{transform:none}
 </div>
 </footer>
 <script src="assets/config.js"></script>
+<script src="assets/availability.js"></script>
 <script src="assets/domain.js"></script>
 <script src="assets/buy.js"></script>
 <script src="assets/theme.js"></script>
 <script src="assets/nav.js"></script>
 <script src="assets/hero-swarm.js"></script>
 <script src="assets/product-tour.js"></script>
+<script type="module" src="assets/usage-bootstrap.js"></script>
+<dialog id="artwork-viewer" aria-labelledby="artwork-title"><div class="artwork-toolbar"><h2 id="artwork-title">Campaign artwork</h2><button type="button" id="artwork-close" aria-label="Close full-size artwork">Close ✕</button></div><div class="artwork-image"><img id="artwork-full" alt=""/></div><p>AI-assisted fictional concept · not generated by the current BrandForge app.</p><a id="artwork-original" href="assets/showcase/crunch-portrait.jpg" target="_blank" rel="noopener">Open original file ↗</a></dialog>
 </body>
 </html>

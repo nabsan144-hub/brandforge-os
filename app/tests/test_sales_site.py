@@ -73,9 +73,9 @@ def test_waitlist_form_is_wired():
 def test_pricing_config_loads_before_launch_state_script():
     html = _sales("pricing.html")
     cfg_pos = html.find('src="assets/config.js"')
-    swap_pos = html.find("Launch-state badge")
+    swap_pos = html.find('src="assets/availability.js"')
     assert cfg_pos != -1 and swap_pos != -1
-    assert cfg_pos < swap_pos, "config.js must load BEFORE the launch-state script reads BRANDFORGE_LAUNCH"
+    assert cfg_pos < swap_pos, "config.js must load BEFORE the shared availability reader"
 
 
 def test_nav_shows_signin_startfree_no_version_pill():

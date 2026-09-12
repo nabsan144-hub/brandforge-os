@@ -1,0 +1,2122 @@
+[
+  {
+    "duplicate": "bfos/.github/workflows/ci.yml",
+    "canonical": ".github/workflows/ci.yml",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/.gitignore",
+    "canonical": ".gitignore",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/CHANGELOG.md",
+    "canonical": "CHANGELOG.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/DEPLOY-INSTRUCTIONS.txt",
+    "canonical": "DEPLOY-INSTRUCTIONS.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/DEPLOY_VERCEL_SUPABASE_START_TO_FINISH.md",
+    "canonical": "DEPLOY_VERCEL_SUPABASE_START_TO_FINISH.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/DOMAIN_SETUP.md",
+    "canonical": "DOMAIN_SETUP.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/END-CUSTOMER-LICENSE.md",
+    "canonical": "END-CUSTOMER-LICENSE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/LAUNCH_GUIDE.md",
+    "canonical": "LAUNCH_GUIDE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/LICENSE",
+    "canonical": "LICENSE",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/OWNER_LAUNCH_TO_DO.md",
+    "canonical": "OWNER_LAUNCH_TO_DO.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/PADDLE_SETUP_GUIDE.md",
+    "canonical": "PADDLE_SETUP_GUIDE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/README.md",
+    "canonical": "README.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/RELEASE-MANIFEST.json",
+    "canonical": "RELEASE-MANIFEST.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/RESALE-LICENSE.md",
+    "canonical": "RESALE-LICENSE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/ROADMAP.md",
+    "canonical": "ROADMAP.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/SECURITY.md",
+    "canonical": "SECURITY.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/SETUP-WINDOWS.bat",
+    "canonical": "SETUP-WINDOWS.bat",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/START-HERE.bat",
+    "canonical": "START-HERE.bat",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/START-HERE.md",
+    "canonical": "START-HERE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/SUPABASE_VERCEL_SETUP.md",
+    "canonical": "SUPABASE_VERCEL_SETUP.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/.env.example",
+    "canonical": "app/.env.example",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge.bat",
+    "canonical": "app/brandforge.bat",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge.py",
+    "canonical": "app/brandforge.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge.sh",
+    "canonical": "app/brandforge.sh",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/OWNER-README.md",
+    "canonical": "app/brandforge_assets/OWNER-README.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/__init__.py",
+    "canonical": "app/brandforge_assets/__init__.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/assets/index-Bt4UuhtG.js",
+    "canonical": "app/brandforge_assets/dashboard/assets/index-Bt4UuhtG.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/assets/index-tOXn3s8W.css",
+    "canonical": "app/brandforge_assets/dashboard/assets/index-tOXn3s8W.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2",
+    "canonical": "app/brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/assets/instrument-serif-400-italic-DKMiL14s.woff2",
+    "canonical": "app/brandforge_assets/dashboard/assets/instrument-serif-400-italic-DKMiL14s.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/index.html",
+    "canonical": "app/brandforge_assets/dashboard/index.html",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/dashboard/logo-mark.svg",
+    "canonical": "app/brandforge_assets/dashboard/logo-mark.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/fallbacks.json",
+    "canonical": "app/brandforge_assets/fallbacks.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf",
+    "canonical": "app/brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/fonts/NotoSans-Regular.ttf",
+    "canonical": "app/brandforge_assets/fonts/NotoSans-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/fonts/NotoSansDevanagari-Regular.ttf",
+    "canonical": "app/brandforge_assets/fonts/NotoSansDevanagari-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/fonts/OFL.txt",
+    "canonical": "app/brandforge_assets/fonts/OFL.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/licenses/BRANDFORGE-LICENSE.txt",
+    "canonical": "app/brandforge_assets/licenses/BRANDFORGE-LICENSE.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/brandforge_assets/licenses/InstrumentSerif-OFL.txt",
+    "canonical": "app/brandforge_assets/licenses/InstrumentSerif-OFL.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/daemon.py",
+    "canonical": "app/daemon.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/engines/__init__.py",
+    "canonical": "app/engines/__init__.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/engines/ai_engine.py",
+    "canonical": "app/engines/ai_engine.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/gateway/__init__.py",
+    "canonical": "app/gateway/__init__.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/gateway/telegram_bot.py",
+    "canonical": "app/gateway/telegram_bot.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/make_release_zip.py",
+    "canonical": "app/make_release_zip.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/__init__.py",
+    "canonical": "app/modules/__init__.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/ai_image_designer.py",
+    "canonical": "app/modules/ai_image_designer.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/approval_manager.py",
+    "canonical": "app/modules/approval_manager.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/audit_scorecard.py",
+    "canonical": "app/modules/audit_scorecard.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/brand_planner.py",
+    "canonical": "app/modules/brand_planner.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/campaign_pack.py",
+    "canonical": "app/modules/campaign_pack.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/campaign_quality.py",
+    "canonical": "app/modules/campaign_quality.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/campaign_templates.py",
+    "canonical": "app/modules/campaign_templates.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/claim_guard.py",
+    "canonical": "app/modules/claim_guard.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/client_manager.py",
+    "canonical": "app/modules/client_manager.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/copywriter.py",
+    "canonical": "app/modules/copywriter.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/desktop_launcher.py",
+    "canonical": "app/modules/desktop_launcher.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/document_exporter.py",
+    "canonical": "app/modules/document_exporter.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/draft_integrity.py",
+    "canonical": "app/modules/draft_integrity.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/fallback_copy.py",
+    "canonical": "app/modules/fallback_copy.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/i18n.py",
+    "canonical": "app/modules/i18n.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/image_export.py",
+    "canonical": "app/modules/image_export.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/image_generator.py",
+    "canonical": "app/modules/image_generator.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/landing_layout.py",
+    "canonical": "app/modules/landing_layout.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/local_security.py",
+    "canonical": "app/modules/local_security.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/mcp_registry.py",
+    "canonical": "app/modules/mcp_registry.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/memory_manager.py",
+    "canonical": "app/modules/memory_manager.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/net_audit.py",
+    "canonical": "app/modules/net_audit.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/performance_tracker.py",
+    "canonical": "app/modules/performance_tracker.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/project_manager.py",
+    "canonical": "app/modules/project_manager.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/public_http.py",
+    "canonical": "app/modules/public_http.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/runtime_paths.py",
+    "canonical": "app/modules/runtime_paths.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/security.py",
+    "canonical": "app/modules/security.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/settings_store.py",
+    "canonical": "app/modules/settings_store.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/state_io.py",
+    "canonical": "app/modules/state_io.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/state_locks.py",
+    "canonical": "app/modules/state_locks.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/static_site.py",
+    "canonical": "app/modules/static_site.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/swarm_council.py",
+    "canonical": "app/modules/swarm_council.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/swarm_director.py",
+    "canonical": "app/modules/swarm_director.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/update_check.py",
+    "canonical": "app/modules/update_check.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/visual_designer.py",
+    "canonical": "app/modules/visual_designer.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/visual_layout.py",
+    "canonical": "app/modules/visual_layout.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/modules/web_searcher.py",
+    "canonical": "app/modules/web_searcher.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/pyproject.toml",
+    "canonical": "app/pyproject.toml",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/requirements-full.txt",
+    "canonical": "app/requirements-full.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/requirements.txt",
+    "canonical": "app/requirements.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/server.py",
+    "canonical": "app/server.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/setup_env.py",
+    "canonical": "app/setup_env.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/conftest.py",
+    "canonical": "app/tests/conftest.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/golden/offline_copy.txt",
+    "canonical": "app/tests/golden/offline_copy.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/golden/offline_generic.txt",
+    "canonical": "app/tests/golden/offline_generic.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/golden/offline_roi.txt",
+    "canonical": "app/tests/golden/offline_roi.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/golden/offline_strategy.txt",
+    "canonical": "app/tests/golden/offline_strategy.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_ai_image_designer.py",
+    "canonical": "app/tests/test_ai_image_designer.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_api.py",
+    "canonical": "app/tests/test_api.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_approval_edge.py",
+    "canonical": "app/tests/test_approval_edge.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_approvals.py",
+    "canonical": "app/tests/test_approvals.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_approvals_v2.py",
+    "canonical": "app/tests/test_approvals_v2.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_audit_fixes.py",
+    "canonical": "app/tests/test_audit_fixes.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_brand_brain.py",
+    "canonical": "app/tests/test_brand_brain.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_compare.py",
+    "canonical": "app/tests/test_campaign_compare.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_pack.py",
+    "canonical": "app/tests/test_campaign_pack.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_quality.py",
+    "canonical": "app/tests/test_campaign_quality.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_revisions.py",
+    "canonical": "app/tests/test_campaign_revisions.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_status.py",
+    "canonical": "app/tests/test_campaign_status.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_campaign_templates.py",
+    "canonical": "app/tests/test_campaign_templates.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_chat_context.py",
+    "canonical": "app/tests/test_chat_context.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_chat_race.py",
+    "canonical": "app/tests/test_chat_race.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_csrf_origin.py",
+    "canonical": "app/tests/test_csrf_origin.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_final_hardening.py",
+    "canonical": "app/tests/test_final_hardening.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_fixpack_2026_08.py",
+    "canonical": "app/tests/test_fixpack_2026_08.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_full_audit.py",
+    "canonical": "app/tests/test_full_audit.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_golden.py",
+    "canonical": "app/tests/test_golden.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_i18n.py",
+    "canonical": "app/tests/test_i18n.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_image_export.py",
+    "canonical": "app/tests/test_image_export.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_image_gen.py",
+    "canonical": "app/tests/test_image_gen.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_logo_upload.py",
+    "canonical": "app/tests/test_logo_upload.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_memory_conn.py",
+    "canonical": "app/tests/test_memory_conn.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_native_exports.py",
+    "canonical": "app/tests/test_native_exports.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_net_audit.py",
+    "canonical": "app/tests/test_net_audit.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_offline_engine.py",
+    "canonical": "app/tests/test_offline_engine.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_pass3_fixes.py",
+    "canonical": "app/tests/test_pass3_fixes.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_pass5_fixes.py",
+    "canonical": "app/tests/test_pass5_fixes.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_performance.py",
+    "canonical": "app/tests/test_performance.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_providers_mock.py",
+    "canonical": "app/tests/test_providers_mock.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_public_http.py",
+    "canonical": "app/tests/test_public_http.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_readiness_regressions.py",
+    "canonical": "app/tests/test_readiness_regressions.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_review_fixes.py",
+    "canonical": "app/tests/test_review_fixes.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_roi.py",
+    "canonical": "app/tests/test_roi.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_runtime_142.py",
+    "canonical": "app/tests/test_runtime_142.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_sales_site.py",
+    "canonical": "app/tests/test_sales_site.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_sanitizers.py",
+    "canonical": "app/tests/test_sanitizers.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_ssrf.py",
+    "canonical": "app/tests/test_ssrf.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_swarm.py",
+    "canonical": "app/tests/test_swarm.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_sweep10_council.py",
+    "canonical": "app/tests/test_sweep10_council.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_tools.py",
+    "canonical": "app/tests/test_tools.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_update_check.py",
+    "canonical": "app/tests/test_update_check.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_visual_designer.py",
+    "canonical": "app/tests/test_visual_designer.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_week4.py",
+    "canonical": "app/tests/test_week4.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/tests/test_white_label_pack.py",
+    "canonical": "app/tests/test_white_label_pack.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/version_info.py",
+    "canonical": "app/version_info.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/index.html",
+    "canonical": "app/web-modern/index.html",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/package-lock.json",
+    "canonical": "app/web-modern/package-lock.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/package.json",
+    "canonical": "app/web-modern/package.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/postcss.config.js",
+    "canonical": "app/web-modern/postcss.config.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/public/logo-mark.svg",
+    "canonical": "app/web-modern/public/logo-mark.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/App.svelte",
+    "canonical": "app/web-modern/src/App.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/app.css",
+    "canonical": "app/web-modern/src/app.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/assets/fonts/instrument-serif-400-italic.woff2",
+    "canonical": "app/web-modern/src/assets/fonts/instrument-serif-400-italic.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/assets/fonts/instrument-serif-400.woff2",
+    "canonical": "app/web-modern/src/assets/fonts/instrument-serif-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/Campaigns.svelte",
+    "canonical": "app/web-modern/src/lib/Campaigns.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/Chat.svelte",
+    "canonical": "app/web-modern/src/lib/Chat.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/Settings.svelte",
+    "canonical": "app/web-modern/src/lib/Settings.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/Status.svelte",
+    "canonical": "app/web-modern/src/lib/Status.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/SwarmConstellation.svelte",
+    "canonical": "app/web-modern/src/lib/SwarmConstellation.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/SwarmStudio.svelte",
+    "canonical": "app/web-modern/src/lib/SwarmStudio.svelte",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/lib/markdown.js",
+    "canonical": "app/web-modern/src/lib/markdown.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/src/main.js",
+    "canonical": "app/web-modern/src/main.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/tailwind.config.js",
+    "canonical": "app/web-modern/tailwind.config.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/app/web-modern/vite.config.js",
+    "canonical": "app/web-modern/vite.config.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/brand-guidelines.md",
+    "canonical": "branding/brand-guidelines.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/logo-lockup.svg",
+    "canonical": "branding/logo-lockup.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/logo-mark.svg",
+    "canonical": "branding/logo-mark.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/cover-1584x396.png",
+    "canonical": "branding/studioforge/cover-1584x396.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/cover-company-1128x191.png",
+    "canonical": "branding/studioforge/cover-company-1128x191.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/cover-editorial-1128x191.png",
+    "canonical": "branding/studioforge/cover-editorial-1128x191.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/cover-editorial-1584x396.png",
+    "canonical": "branding/studioforge/cover-editorial-1584x396.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/cover-editorial.png",
+    "canonical": "branding/studioforge/cover-editorial.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/dash-signup-preview.png",
+    "canonical": "branding/studioforge/dash-signup-preview.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/logo-1024.png",
+    "canonical": "branding/studioforge/logo-1024.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/logo-300.png",
+    "canonical": "branding/studioforge/logo-300.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/logo-400.png",
+    "canonical": "branding/studioforge/logo-400.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/logo-mark.png",
+    "canonical": "branding/studioforge/logo-mark.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/mark.py",
+    "canonical": "branding/studioforge/mark.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/mock-dashboard-chat.png",
+    "canonical": "branding/studioforge/mock-dashboard-chat.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/profile-banner-1584x396.png",
+    "canonical": "branding/studioforge/profile-banner-1584x396.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/thumb-brandforge-1200x630.png",
+    "canonical": "branding/studioforge/thumb-brandforge-1200x630.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/thumb-studioforge-1200x630.png",
+    "canonical": "branding/studioforge/thumb-studioforge-1200x630.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/branding/studioforge/thumb-tools-1200x630.png",
+    "canonical": "branding/studioforge/thumb-tools-1200x630.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/.env.example",
+    "canonical": "cloud/.env.example",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/README.md",
+    "canonical": "cloud/README.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_assets/fallbacks.json",
+    "canonical": "cloud/api/_assets/fallbacks.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_assets/fonts/NotoNaskhArabic-Regular.ttf",
+    "canonical": "cloud/api/_assets/fonts/NotoNaskhArabic-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_assets/fonts/NotoSans-Regular.ttf",
+    "canonical": "cloud/api/_assets/fonts/NotoSans-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_assets/fonts/NotoSansDevanagari-Regular.ttf",
+    "canonical": "cloud/api/_assets/fonts/NotoSansDevanagari-Regular.ttf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_assets/fonts/OFL.txt",
+    "canonical": "cloud/api/_assets/fonts/OFL.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/account-deletion.js",
+    "canonical": "cloud/api/_lib/account-deletion.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/commerce.js",
+    "canonical": "cloud/api/_lib/commerce.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/cost.js",
+    "canonical": "cloud/api/_lib/cost.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/deliver.js",
+    "canonical": "cloud/api/_lib/deliver.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/engine.js",
+    "canonical": "cloud/api/_lib/engine.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/fulfillment.js",
+    "canonical": "cloud/api/_lib/fulfillment.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/http.js",
+    "canonical": "cloud/api/_lib/http.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/i18n.js",
+    "canonical": "cloud/api/_lib/i18n.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/keys.js",
+    "canonical": "cloud/api/_lib/keys.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/limit.js",
+    "canonical": "cloud/api/_lib/limit.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/plans.js",
+    "canonical": "cloud/api/_lib/plans.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-cancel-pending.js",
+    "canonical": "cloud/api/_lib/routes/bill-cancel-pending.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-change.js",
+    "canonical": "cloud/api/_lib/routes/bill-change.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-checkout.js",
+    "canonical": "cloud/api/_lib/routes/bill-checkout.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-client-token.js",
+    "canonical": "cloud/api/_lib/routes/bill-client-token.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-portal.js",
+    "canonical": "cloud/api/_lib/routes/bill-portal.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-reconcile.js",
+    "canonical": "cloud/api/_lib/routes/bill-reconcile.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/bill-status.js",
+    "canonical": "cloud/api/_lib/routes/bill-status.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/brands.js",
+    "canonical": "cloud/api/_lib/routes/brands.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/camp-id-deliver.js",
+    "canonical": "cloud/api/_lib/routes/camp-id-deliver.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/camp-id.js",
+    "canonical": "cloud/api/_lib/routes/camp-id.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/campaigns.js",
+    "canonical": "cloud/api/_lib/routes/campaigns.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/config.js",
+    "canonical": "cloud/api/_lib/routes/config.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/desk-checkout.js",
+    "canonical": "cloud/api/_lib/routes/desk-checkout.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/desk-download.js",
+    "canonical": "cloud/api/_lib/routes/desk-download.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/desk-resend.js",
+    "canonical": "cloud/api/_lib/routes/desk-resend.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/feedback.js",
+    "canonical": "cloud/api/_lib/routes/feedback.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/health.js",
+    "canonical": "cloud/api/_lib/routes/health.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/maintenance.js",
+    "canonical": "cloud/api/_lib/routes/maintenance.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/me-export.js",
+    "canonical": "cloud/api/_lib/routes/me-export.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/me-keys.js",
+    "canonical": "cloud/api/_lib/routes/me-keys.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/me.js",
+    "canonical": "cloud/api/_lib/routes/me.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/paddle-webhook.js",
+    "canonical": "cloud/api/_lib/routes/paddle-webhook.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/routes/waitlist.js",
+    "canonical": "cloud/api/_lib/routes/waitlist.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/sb.js",
+    "canonical": "cloud/api/_lib/sb.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/serve.js",
+    "canonical": "cloud/api/_lib/serve.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/visuals.js",
+    "canonical": "cloud/api/_lib/visuals.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/_lib/visuals_ai.js",
+    "canonical": "cloud/api/_lib/visuals_ai.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/health.js",
+    "canonical": "cloud/api/health.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/index.js",
+    "canonical": "cloud/api/index.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/api/maintenance.js",
+    "canonical": "cloud/api/maintenance.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/paddle-webhook.js",
+    "canonical": "cloud/api/paddle-webhook.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/api/waitlist.js",
+    "canonical": "cloud/api/waitlist.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/package-lock.json",
+    "canonical": "cloud/package-lock.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/package.json",
+    "canonical": "cloud/package.json",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/public/app.js",
+    "canonical": "cloud/public/app.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/public/apple-touch-icon.png",
+    "canonical": "cloud/public/apple-touch-icon.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/assets/fonts/geist-400.woff2",
+    "canonical": "cloud/public/assets/fonts/geist-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/assets/fonts/instrument-serif-400-italic.woff2",
+    "canonical": "cloud/public/assets/fonts/instrument-serif-400-italic.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/assets/fonts/instrument-serif-400.woff2",
+    "canonical": "cloud/public/assets/fonts/instrument-serif-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/assets/logo-mark.svg",
+    "canonical": "cloud/public/assets/logo-mark.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/desktop-download.html",
+    "canonical": "cloud/public/desktop-download.html",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/desktop-download.js",
+    "canonical": "cloud/public/desktop-download.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/download-help.html",
+    "canonical": "cloud/public/download-help.html",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/download-help.js",
+    "canonical": "cloud/public/download-help.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/favicon.ico",
+    "canonical": "cloud/public/favicon.ico",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/index.html",
+    "canonical": "cloud/public/index.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/public/theme-boot.js",
+    "canonical": "cloud/public/theme-boot.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/vendor/fflate-LICENSE.txt",
+    "canonical": "cloud/public/vendor/fflate-LICENSE.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/vendor/fflate.mjs",
+    "canonical": "cloud/public/vendor/fflate.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/vendor/supabase.mjs",
+    "canonical": "cloud/public/vendor/supabase.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/public/workspace-tools.js",
+    "canonical": "cloud/public/workspace-tools.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/schema.sql",
+    "canonical": "cloud/schema.sql",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/scripts/commerce-readiness.mjs",
+    "canonical": "cloud/scripts/commerce-readiness.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/scripts/run-tests.mjs",
+    "canonical": "cloud/scripts/run-tests.mjs",
+    "status": "unique"
+  },
+  {
+    "duplicate": "bfos/cloud/scripts/sync-schema.mjs",
+    "canonical": "cloud/scripts/sync-schema.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/billing.test.js",
+    "canonical": "cloud/tests/billing.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/campaigns.test.js",
+    "canonical": "cloud/tests/campaigns.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/clientip.test.js",
+    "canonical": "cloud/tests/clientip.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/dashboard-a11y.test.js",
+    "canonical": "cloud/tests/dashboard-a11y.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/dashboard-contrast.test.js",
+    "canonical": "cloud/tests/dashboard-contrast.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/database-upgrade.test.js",
+    "canonical": "cloud/tests/database-upgrade.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/database.test.js",
+    "canonical": "cloud/tests/database.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/deliver.test.js",
+    "canonical": "cloud/tests/deliver.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/dispatcher.test.js",
+    "canonical": "cloud/tests/dispatcher.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/engine.test.js",
+    "canonical": "cloud/tests/engine.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/full-audit.test.js",
+    "canonical": "cloud/tests/full-audit.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden-en.test.js",
+    "canonical": "cloud/tests/golden-en.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden-i18n.test.js",
+    "canonical": "cloud/tests/golden-i18n.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden/en.json",
+    "canonical": "cloud/tests/golden/en.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden/es.json",
+    "canonical": "cloud/tests/golden/es.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden/hi.json",
+    "canonical": "cloud/tests/golden/hi.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden/pt.json",
+    "canonical": "cloud/tests/golden/pt.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/golden/ur.json",
+    "canonical": "cloud/tests/golden/ur.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/helpers/db.js",
+    "canonical": "cloud/tests/helpers/db.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/helpers/paddle.js",
+    "canonical": "cloud/tests/helpers/paddle.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/i18n.test.js",
+    "canonical": "cloud/tests/i18n.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/id.test.js",
+    "canonical": "cloud/tests/id.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/keys.test.js",
+    "canonical": "cloud/tests/keys.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/limit.test.js",
+    "canonical": "cloud/tests/limit.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/me-export.test.js",
+    "canonical": "cloud/tests/me-export.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/me.test.js",
+    "canonical": "cloud/tests/me.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/paddle-webhook.test.js",
+    "canonical": "cloud/tests/paddle-webhook.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/quota.test.js",
+    "canonical": "cloud/tests/quota.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/readiness-regressions.test.js",
+    "canonical": "cloud/tests/readiness-regressions.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/schema.test.js",
+    "canonical": "cloud/tests/schema.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/vendor.test.js",
+    "canonical": "cloud/tests/vendor.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/tests/waitlist.test.js",
+    "canonical": "cloud/tests/waitlist.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/vendor-entry.js",
+    "canonical": "cloud/vendor-entry.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/vercel.json",
+    "canonical": "cloud/vercel.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/cloud/vitest.config.js",
+    "canonical": "cloud/vitest.config.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/docs/AUDIT-2026-09-11.md",
+    "canonical": "docs/AUDIT-2026-09-11.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/AUDIT-IMPLEMENTATION.md",
+    "canonical": "docs/AUDIT-IMPLEMENTATION.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/DESKTOP-USER-GUIDE.md",
+    "canonical": "docs/DESKTOP-USER-GUIDE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/FULL-AUDIT.md",
+    "canonical": "docs/FULL-AUDIT.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/LAUNCH-RUNBOOK.md",
+    "canonical": "docs/LAUNCH-RUNBOOK.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/NETWORK-PRIVACY.md",
+    "canonical": "docs/NETWORK-PRIVACY.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/OWNER-GUIDE.md",
+    "canonical": "docs/OWNER-GUIDE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/PRODUCT-ACCEPTANCE.md",
+    "canonical": "docs/PRODUCT-ACCEPTANCE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/PRODUCT-DEMO.md",
+    "canonical": "docs/PRODUCT-DEMO.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/RELEASE-VERIFICATION.e2e.json",
+    "canonical": "docs/RELEASE-VERIFICATION.e2e.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/RELEASE-VERIFICATION.example.json",
+    "canonical": "docs/RELEASE-VERIFICATION.example.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/RIGHTS-MATRIX.md",
+    "canonical": "docs/RIGHTS-MATRIX.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/RUNTIME-AUDIT-1.4.2.md",
+    "canonical": "docs/RUNTIME-AUDIT-1.4.2.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/docs/UNIT-ECONOMICS.md",
+    "canonical": "docs/UNIT-ECONOMICS.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/404.html",
+    "canonical": "sales/404.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/_headers",
+    "canonical": "sales/_headers",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/_redirects",
+    "canonical": "sales/_redirects",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/agents.html",
+    "canonical": "sales/agents.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/apple-touch-icon.png",
+    "canonical": "sales/apple-touch-icon.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/art/hero-forge.webp",
+    "canonical": "sales/assets/art/hero-forge.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/art/sample-apex-coffee.webp",
+    "canonical": "sales/assets/art/sample-apex-coffee.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/buy.js",
+    "canonical": "sales/assets/buy.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/assets/cloud-cta.js",
+    "canonical": "sales/assets/cloud-cta.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/assets/config.js",
+    "canonical": "sales/assets/config.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/assets/domain.js",
+    "canonical": "sales/assets/domain.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/fonts.css",
+    "canonical": "sales/assets/fonts.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/fonts/geist-400.woff2",
+    "canonical": "sales/assets/fonts/geist-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/fonts/geist-mono-400.woff2",
+    "canonical": "sales/assets/fonts/geist-mono-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/fonts/instrument-serif-400-italic.woff2",
+    "canonical": "sales/assets/fonts/instrument-serif-400-italic.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/fonts/instrument-serif-400.woff2",
+    "canonical": "sales/assets/fonts/instrument-serif-400.woff2",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/ai-fitness.jpg",
+    "canonical": "sales/assets/gallery/ai-fitness.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/ai-karak.jpg",
+    "canonical": "sales/assets/gallery/ai-karak.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/ai-realty.jpg",
+    "canonical": "sales/assets/gallery/ai-realty.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/ai-skin.jpg",
+    "canonical": "sales/assets/gallery/ai-skin.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/before-vector-karak.svg",
+    "canonical": "sales/assets/gallery/before-vector-karak.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/bold-vector-karak.svg",
+    "canonical": "sales/assets/gallery/bold-vector-karak.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/coffee.svg",
+    "canonical": "sales/assets/gallery/coffee.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/fitness.svg",
+    "canonical": "sales/assets/gallery/fitness.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/realty.svg",
+    "canonical": "sales/assets/gallery/realty.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/saas.svg",
+    "canonical": "sales/assets/gallery/saas.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/story.svg",
+    "canonical": "sales/assets/gallery/story.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/gallery/urdu.svg",
+    "canonical": "sales/assets/gallery/urdu.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/hero-swarm.js",
+    "canonical": "sales/assets/hero-swarm.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/logo-mark.svg",
+    "canonical": "sales/assets/logo-mark.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/motion.css",
+    "canonical": "sales/assets/motion.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/motion.js",
+    "canonical": "sales/assets/motion.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/nav.js",
+    "canonical": "sales/assets/nav.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/ASSET-NOTICE.md",
+    "canonical": "sales/assets/product-demo/ASSET-NOTICE.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/MUSIC-NOTE.txt",
+    "canonical": "sales/assets/product-demo/MUSIC-NOTE.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/captions.srt",
+    "canonical": "sales/assets/product-demo/captions.srt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/captions.vtt",
+    "canonical": "sales/assets/product-demo/captions.vtt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/demo.mp4",
+    "canonical": "sales/assets/product-demo/demo.mp4",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/geist-OFL.txt",
+    "canonical": "sales/assets/product-demo/geist-OFL.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/instrumentserif-OFL.txt",
+    "canonical": "sales/assets/product-demo/instrumentserif-OFL.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/manifest.json",
+    "canonical": "sales/assets/product-demo/manifest.json",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/poster.jpg",
+    "canonical": "sales/assets/product-demo/poster.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-demo/tour.html",
+    "canonical": "sales/assets/product-demo/tour.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-tour.css",
+    "canonical": "sales/assets/product-tour.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/product-tour.js",
+    "canonical": "sales/assets/product-tour.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/campaign.pdf",
+    "canonical": "sales/assets/sample/campaign.pdf",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/campaign_report.md",
+    "canonical": "sales/assets/sample/campaign_report.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/hero.png",
+    "canonical": "sales/assets/sample/hero.png",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/hero.webp",
+    "canonical": "sales/assets/sample/hero.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/hero_banner.svg",
+    "canonical": "sales/assets/sample/hero_banner.svg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/manifest.json",
+    "canonical": "sales/assets/sample/manifest.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/sample/northline-campaign.zip",
+    "canonical": "sales/assets/sample/northline-campaign.zip",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/campaign-brief.webp",
+    "canonical": "sales/assets/screens/campaign-brief.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/campaign-visuals.webp",
+    "canonical": "sales/assets/screens/campaign-visuals.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/campaigns-list.webp",
+    "canonical": "sales/assets/screens/campaigns-list.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/chat-engine.webp",
+    "canonical": "sales/assets/screens/chat-engine.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/dashboard-home.webp",
+    "canonical": "sales/assets/screens/dashboard-home.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/screens/settings.webp",
+    "canonical": "sales/assets/screens/settings.webp",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/tailwind.css",
+    "canonical": "sales/assets/tailwind.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/theme.css",
+    "canonical": "sales/assets/theme.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/theme.js",
+    "canonical": "sales/assets/theme.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/assets/waitlist.js",
+    "canonical": "sales/assets/waitlist.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/best-ad-copy-generator.html",
+    "canonical": "sales/best-ad-copy-generator.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/build.mjs",
+    "canonical": "sales/build.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/changelog.html",
+    "canonical": "sales/changelog.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/demo.html",
+    "canonical": "sales/demo.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/docs.html",
+    "canonical": "sales/docs.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/favicon.ico",
+    "canonical": "sales/favicon.ico",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/index.html",
+    "canonical": "sales/index.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/netlify.toml",
+    "canonical": "sales/netlify.toml",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/og-image.jpg",
+    "canonical": "sales/og-image.jpg",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/package-lock.json",
+    "canonical": "sales/package-lock.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/package.json",
+    "canonical": "sales/package.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/pricing.html",
+    "canonical": "sales/pricing.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/privacy.html",
+    "canonical": "sales/privacy.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/refund.html",
+    "canonical": "sales/refund.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/robots.txt",
+    "canonical": "sales/robots.txt",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/sitemap.xml",
+    "canonical": "sales/sitemap.xml",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/tailwind.config.js",
+    "canonical": "sales/tailwind.config.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/tailwind.src.css",
+    "canonical": "sales/tailwind.src.css",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/terms.html",
+    "canonical": "sales/terms.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/tests/a11y.test.js",
+    "canonical": "sales/tests/a11y.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/tests/css-coverage.js",
+    "canonical": "sales/tests/css-coverage.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/tests/demo.test.js",
+    "canonical": "sales/tests/demo.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/tests/funnel.test.js",
+    "canonical": "sales/tests/funnel.test.js",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/tests/theme-contrast.test.js",
+    "canonical": "sales/tests/theme-contrast.test.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/tools.html",
+    "canonical": "sales/tools.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/vercel.json",
+    "canonical": "sales/vercel.json",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/sales/vs-canva-ad-creator.html",
+    "canonical": "sales/vs-canva-ad-creator.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/sales/workspace.html",
+    "canonical": "sales/workspace.html",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/scripts/browser_regressions.py",
+    "canonical": "scripts/browser_regressions.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/check_integrated_demo.py",
+    "canonical": "scripts/check_integrated_demo.py",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/scripts/check_release_quality.py",
+    "canonical": "scripts/check_release_quality.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/check_site_url.sh",
+    "canonical": "scripts/check_site_url.sh",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/scripts/convert_clean_urls.py",
+    "canonical": "scripts/convert_clean_urls.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/dashboard_qa.py",
+    "canonical": "scripts/dashboard_qa.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/live_api_smoke.mjs",
+    "canonical": "scripts/live_api_smoke.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/live_site_smoke.js",
+    "canonical": "scripts/live_site_smoke.js",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/make_browser_fixture.mjs",
+    "canonical": "scripts/make_browser_fixture.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/make_gallery.mjs",
+    "canonical": "scripts/make_gallery.mjs",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/perf_probe.py",
+    "canonical": "scripts/perf_probe.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/regenerate_sitemap.py",
+    "canonical": "scripts/regenerate_sitemap.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/serve_sales_preview.py",
+    "canonical": "scripts/serve_sales_preview.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/set_site_url.py",
+    "canonical": "scripts/set_site_url.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/set_site_url.sh",
+    "canonical": "scripts/set_site_url.sh",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/sync_pricing_faq_jsonld.py",
+    "canonical": "scripts/sync_pricing_faq_jsonld.py",
+    "status": "different"
+  },
+  {
+    "duplicate": "bfos/scripts/test_postgres_concurrency.py",
+    "canonical": "scripts/test_postgres_concurrency.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/validate_launch_config.py",
+    "canonical": "scripts/validate_launch_config.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/scripts/visual_qa.py",
+    "canonical": "scripts/visual_qa.py",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/CHECK_FIRST.sql",
+    "canonical": "supabase/CHECK_FIRST.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/README.md",
+    "canonical": "supabase/README.md",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/VERIFY_0001_0004.sql",
+    "canonical": "supabase/VERIFY_0001_0004.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0001_init.sql",
+    "canonical": "supabase/migrations/0001_init.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0002_seed.sql",
+    "canonical": "supabase/migrations/0002_seed.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0003_rls_and_functions.sql",
+    "canonical": "supabase/migrations/0003_rls_and_functions.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0004_byok_pk_repair.sql",
+    "canonical": "supabase/migrations/0004_byok_pk_repair.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0005_waitlist.sql",
+    "canonical": "supabase/migrations/0005_waitlist.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0006_rate_limit.sql",
+    "canonical": "supabase/migrations/0006_rate_limit.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0007_generation_ledger.sql",
+    "canonical": "supabase/migrations/0007_generation_ledger.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0008_commerce.sql",
+    "canonical": "supabase/migrations/0008_commerce.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0009_workspace.sql",
+    "canonical": "supabase/migrations/0009_workspace.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0010_cost_guard.sql",
+    "canonical": "supabase/migrations/0010_cost_guard.sql",
+    "status": "identical"
+  },
+  {
+    "duplicate": "bfos/supabase/migrations/0011_delivery_integrity.sql",
+    "canonical": "supabase/migrations/0011_delivery_integrity.sql",
+    "status": "identical"
+  }
+]

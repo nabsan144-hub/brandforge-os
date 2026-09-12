@@ -1,0 +1,60 @@
+BRANDFORGE OS 1.14 — WINDOWS CMD
+Do not paste both alternatives. Back up private data and the original .git first.
+A GitHub push may trigger connected deployment services. Configure staging first.
+Review staged files before committing; never commit keys or customer data.
+
+A. EXISTING GENUINE CLONE (after safely applying the complete release)
+
+cd /d "D:\My creations\AI agent\Brandforge os\BrandForgeOS"
+git rev-parse --show-toplevel
+git status --short
+git remote -v
+git remote set-url origin https://github.com/nabsan144-hub/brandforge-os.git
+git config user.name "Nabeel Ali"
+git config user.email "296047257+nabsan144-hub@users.noreply.github.com"
+git switch -c release/brandforge-1.14.0
+git add -A
+git diff --cached --stat
+git diff --cached
+
+STOP and review. Press Q to leave the diff pager. If correct, continue:
+
+git commit -m "Release 1.14: AI campaign workflow, restored showcase orbs and verified source"
+git push -u origin release/brandforge-1.14.0
+
+Open GitHub and create a pull request from release/brandforge-1.14.0.
+Do not force-push. If that branch already exists, choose a new unused release branch name.
+If origin is missing, use git remote add origin URL instead of set-url.
+
+B. FRESH CLONE (if the extracted source has no .git)
+
+First back up/rename your existing BrandForgeOS folder using Explorer. The target
+BrandForgeOS directory below must not exist. Extract the ZIP into:
+D:\My creations\AI agent\Brandforge os\release-extracted
+The extracted source should be release-extracted\brandforge-os\README.md.
+
+cd /d "D:\My creations\AI agent\Brandforge os"
+git clone https://github.com/nabsan144-hub/brandforge-os.git BrandForgeOS
+cd /d "D:\My creations\AI agent\Brandforge os\BrandForgeOS"
+git switch -c release/brandforge-1.14.0
+git config user.name "Nabeel Ali"
+git config user.email "296047257+nabsan144-hub@users.noreply.github.com"
+
+Only in this NEW, clean clone: stage removal of its old tracked source so a file
+overlay cannot leave retired files behind. This is not a command for a dirty PC project.
+
+git rm -r -- .
+robocopy "D:\My creations\AI agent\Brandforge os\release-extracted\brandforge-os" "." /E /XD .git node_modules .venv /XF .env
+git add -A
+git diff --cached --stat
+git diff --cached
+
+Review before proceeding. Robocopy codes 0–7 are normally success/nonfatal;
+8 or higher means copying failed—stop and fix it before committing.
+
+git commit -m "Release 1.14: AI campaign workflow, restored showcase orbs and verified source"
+git push -u origin release/brandforge-1.14.0
+
+This preserves the remote's genuine ancestry. Do not substitute git init + force push.
+Your owner-created commit hash may differ from the preparation commit; verify source
+content against the ZIP manifest, not an assumption that hashes must match.

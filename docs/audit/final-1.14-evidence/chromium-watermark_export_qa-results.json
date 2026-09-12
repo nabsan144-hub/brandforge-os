@@ -1,0 +1,115 @@
+{
+  "raster_checks": [
+    {
+      "file": "free-hero.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "free-hero.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "paid-hero.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "paid-hero.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "free-story.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "free-story.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "paid-story.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "paid-story.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "free-strip.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "free-strip.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "paid-strip.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "paid-strip.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "free-micro.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "free-micro.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "paid-micro.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "paid-micro.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "not added (SVG assertion)"
+    },
+    {
+      "file": "free-logo.svg",
+      "format": "image/png",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    },
+    {
+      "file": "free-logo.svg",
+      "format": "image/jpeg",
+      "dimensions": "pass",
+      "watermark_pixels": "pass"
+    }
+  ],
+  "zip_watermarks": "passed",
+  "manifest_checksums": "passed",
+  "page_errors": []
+}

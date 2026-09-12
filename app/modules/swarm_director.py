@@ -42,7 +42,7 @@ class SwarmDirector:
     @staticmethod
     def _split_benefits(key_benefits: str) -> List[str]:
         if not key_benefits:
-            return ["Quality you can verify", "Transparent pricing", "No fine print"]
+            return ["Details to review"]
         parts = re.split(r"[,;\n]+", key_benefits)
         seen, out = set(), []
         for p in parts:
@@ -59,18 +59,27 @@ class SwarmDirector:
                                allow_ai_image: Optional[bool] = None,
                                custom_sizes: Optional[List[Dict[str, int]]] = None,
                                lang: str = "en", offer: str = "", cta: str = "", url: str = "",
-                               generate_new_logo: bool = False) -> Dict[str, Any]:
+                               generate_new_logo: bool = False, on_progress=None,
+                               reference_image: str = "", share_image_references: bool = False) -> Dict[str, Any]:
         """Execute a full 6-stage campaign + branding kit + custom sizes.
 
         custom_sizes: optional list like [{"width": 300, "height": 250, "preset": "medium_rectangle"}, ...]
         If not provided, generates default hero 1200x630 + instagram 1080x1080.
         Branding kit always generated (logos, favicon, avatar, guidelines) — high-end design focus.
         """
+        def report(stage, state):
+            try:
+                if on_progress:
+                    on_progress(stage, state)
+            except Exception:
+                pass  # Observability cannot fail a campaign.
+
         product_name = _safe_text(product_name, 80) or "Your Product"
         industry = _safe_text(industry, 80) or "General"
         target_audience = _safe_text(target_audience, 120) or "your customers"
-        key_benefits = _safe_text(key_benefits, 500) or "Quality, transparent pricing"
+        key_benefits = _safe_text(key_benefits, 500) or ""
 
+        active = {}
         brand_brain = {
             "brand_promise": "", "proof_points": "", "prohibited_claims": "", "tone_of_voice": "",
             "agency_brand": "BRANDFORGE OS", "agency_footer": "", "show_brandforge_branding": True,
@@ -89,6 +98,31 @@ class SwarmDirector:
                 })
         except Exception:
             pass
+        from modules.ai_image_designer import AIImageDesigner
+        from modules.ai_campaign import ArtworkConfigurationError, validate_reference_uri
+        image_ai = AIImageDesigner(ai_engine=self.ai)
+        provider = getattr(self.ai, 'provider', 'offline')
+        connected = provider not in ('offline', 'ollama') and bool(self.ai.has_key(provider))
+        ai_artwork_requested = allow_ai_image is not False and image_ai.network_allowed(online_connected=connected) and image_ai.has_any_key()
+        references = []
+        if reference_image and not share_image_references:
+            raise ArtworkConfigurationError('Confirm your rights and permission to share the reference image with the selected image provider.')
+        if share_image_references:
+            if not ai_artwork_requested:
+                raise ArtworkConfigurationError('Reference-image generation needs a configured image provider and an AI-enabled campaign.')
+            if reference_image:
+                references.append(validate_reference_uri(reference_image))
+            if active.get('logo_path'):
+                from modules.visual_layout import logo_data_uri
+                references.append(validate_reference_uri(logo_data_uri(active['logo_path'], self.ai.clients.clients_dir)))
+            if not references:
+                raise ArtworkConfigurationError('Upload a product reference or save an approved client logo before enabling reference sharing.')
+            if image_ai._provider_order() == ['xai_grok']:
+                raise ArtworkConfigurationError('The selected adapter does not accept reference images. Choose Gemini or OpenAI, or remove reference sharing.')
+        if ai_artwork_requested and generate_new_logo:
+            raise ArtworkConfigurationError('Separate logo-concept generation uses Basic layouts. Uncheck new logo concepts for an AI advertisement campaign.')
+        if ai_artwork_requested and custom_sizes:
+            raise ArtworkConfigurationError('AI campaign mode includes hero, square and story formats. Additional custom sizes use Basic layouts; remove the extra sizes or explicitly choose no-AI mode.')
         brand_rules = (
             f"Brand promise: {brand_brain['brand_promise'] or 'Not supplied'}\n"
             f"Approved proof points: {brand_brain['proof_points'] or 'Not supplied — do not invent proof'}\n"
@@ -112,6 +146,7 @@ class SwarmDirector:
             c["agent"] = agent
             return c
 
+        report("research", "running")
         # Agent 5: Market Researcher — live search only when online provider
         research_text = "Live web research unavailable in offline mode — no trend data was fabricated."
         research_live = False
@@ -133,6 +168,8 @@ class SwarmDirector:
             except Exception:
                 research_text = "Live web search unavailable (network-limited) — no live trend data in this campaign."
 
+        report("research", "complete")
+        report("strategy", "running")
         # Agent 1: Brand Strategist
         try:
             strat_prompt = (
@@ -153,6 +190,8 @@ class SwarmDirector:
             strategy_text = (f"Positioning: For {target_audience} who want {b1}, {product_name} is the "
                              f"{industry} option that verifies before it promises. Archetype: Sage + Creator.")
 
+        report("strategy", "complete")
+        report("copy", "running")
         # Agent 2: Copywriter
         try:
             copy_prompt = (
@@ -174,6 +213,8 @@ class SwarmDirector:
                           f"PAS: Problem — overpromising {industry} options. Agitate — the cost of a bad pick "
                           f"outlives the invoice. Solution — {product_name}, {bens[0]}.")
 
+        report("copy", "complete")
+        report("review", "running")
         # Agent 3: Quality Sentinel
         try:
             verify_prompt = (
@@ -194,6 +235,8 @@ class SwarmDirector:
         if not refinement_preserved:
             refined_copy = draft_copy
 
+        report("review", "complete")
+        report("visuals", "running")
         # Agent 4: Visual Architect — now with branding kit + custom sizes
         primary, secondary, brand_text = "#E8B54A", "#0F172A", "BRANDFORGE OS"
         try:
@@ -297,6 +340,8 @@ class SwarmDirector:
         except Exception:
             custom_banner_files = {}
 
+        report("visuals", "complete")
+        report("seo", "running")
         # Agent 6: SEO & ROI Analyst
         try:
             seo_prompt = (
@@ -360,70 +405,54 @@ class SwarmDirector:
         except Exception:
             png_export_status = "error"
 
-        # Brand-aware AI image design. Quality providers (Gemini / Grok /
-        # OpenAI, via the user's API keys) generate the brand photo; the
-        # compositor lays the brand typography on top and resvg renders the
-        # final PNG/JPEG. Offline promise intact: no network call unless an
-        # image API key exists OR the campaign is already online. Any
-        # failure keeps the deterministic SVG deliverables above.
+        report("seo", "complete")
+        report("artwork", "running")
+        # Keyed image generation is the primary artwork path. Failure is an
+        # error, never permission to quietly deliver the basic templates.
         ai_image_used = False
         ai_image_provider = None
-        try:
-            if allow_ai_image is not False:
-                from modules.ai_image_designer import AIImageDesigner
-                image_ai = AIImageDesigner(ai_engine=self.ai)
-                # Offline campaigns stay fully offline (auto mode); an
-                # explicitly chosen image provider is the user's opt-in.
-                may_call_network = image_ai.network_allowed(online_connected)
-                if may_call_network:
-                    svg_for = _t(lang, "svgFor")
-                    cta_label = _t(lang, "svgCta")
-                    for kind, w, h in (("hero", 1200, 630), ("square", 1080, 1080)):
-                        shot = image_ai.generate_design_image(
-                            product_name=product_name, industry=industry,
-                            target_audience=target_audience, benefits=benefits,
-                            primary_color=primary, secondary_color=secondary,
-                            width=w, height=h, allow_network=online_connected,
-                        )
-                        if not shot or not shot.get("bytes"):
-                            continue
-                        raw = shot["bytes"]
-                        if kind == "hero":
-                            visual_files["hero_image.jpg"] = raw
-                        else:
-                            visual_files["instagram_image.jpg"] = raw
-                        ai_image_used = True
-                        ai_image_provider = shot.get("provider") or ai_image_provider
-                        # Compose the brand design over the photo and render
-                        # raster deliverables (PNG + JPEG).
-                        try:
-                            from modules.image_export import svg_to_png_bytes, png_bytes_to_jpeg_bytes
-                            if kind == "hero":
-                                comp = self.designer.generate_photo_hero_svg(
-                                    raw, product_name,
-                                    f"{svg_for} {target_audience}",
-                                    primary_color=primary, secondary_color=secondary,
-                                    brand_text=brand_text, benefits=benefits,
-                                    cta_text=cta_label, width=w, height=h)
-                            else:
-                                comp = self.designer.generate_photo_square_svg(
-                                    raw, product_name, benefits[0] if benefits else "Built different",
-                                    primary_color=primary, secondary_color=secondary,
-                                    brand_text=brand_text, benefits=benefits,
-                                    cta_text=cta_label, width=w, height=h)
-                            png = svg_to_png_bytes(comp)
-                            suffix = "hero_ai" if kind == "hero" else "instagram_ai"
-                            visual_files[suffix + ".png"] = png
-                            try:
-                                visual_files[suffix + ".jpg"] = png_bytes_to_jpeg_bytes(png)
-                            except Exception:
-                                pass  # PNG twin is enough; JPEG is a bonus
-                        except Exception:
-                            pass  # raw photo already saved; template visuals remain
-        except Exception:
-            ai_image_used = ai_image_used
+        if allow_ai_image is not False:
+            if image_ai.has_any_key() and image_ai.network_allowed(online_connected):
+                from modules.ai_campaign import artwork_documents, ArtworkGenerationError
+                from modules.image_export import svg_to_png_bytes
+                from concurrent.futures import ThreadPoolExecutor
+                def generate_format(spec):
+                    name, canvas_name, w, h = spec
+                    shot = image_ai.generate_design_image(
+                        product_name=product_name, industry=industry,
+                        target_audience=target_audience, benefits=benefits,
+                        primary_color=primary, secondary_color=secondary,
+                        width=w, height=h, allow_network=online_connected,
+                        finished=True, offer=offer or '', cta=cta or '', reference_images=references, lang=lang,
+                    )
+                    if not shot or not shot.get('bytes'):
+                        raise ArtworkGenerationError('AI campaign artwork could not be completed. No basic artwork was substituted. Provider fees may still apply; review settings before retrying, or explicitly choose no-AI mode.')
+                    svg, source_json, _ = artwork_documents(
+                        shot['bytes'], product_name, w, h,
+                        brand_brain['show_brandforge_branding'],
+                        {'strategy': strategy_text, 'copy': refined_copy, 'seo': seo_analysis},
+                    )
+                    return {name: svg, canvas_name: source_json, name.replace('.svg', '.png'): svg_to_png_bytes(svg)}, shot.get('provider')
+                specs = [('hero_banner.svg', 'canvas_hero.json', 1200, 630),
+                         ('instagram_square.svg', 'canvas_square.json', 1080, 1080),
+                         ('story.svg', 'canvas_story.json', 1080, 1920)]
+                generated_art = {}
+                # Bounded parallel calls avoid tripling the per-request deadline.
+                with ThreadPoolExecutor(max_workers=3) as pool:
+                    for files_for_format, used_provider in pool.map(generate_format, specs):
+                        generated_art.update(files_for_format)
+                        ai_image_provider = used_provider
+                # Remove basic visual variants from this AI campaign's output.
+                visual_files = {k: v for k, v in visual_files.items() if k == 'branding/approved_logo.svg' or not k.lower().endswith(('.svg', '.png', '.jpg', '.jpeg', '.webp'))}
+                visual_files.update(generated_art)
+                visual_files['branding/brand_guidelines.md'] = '# Campaign artwork\n\nThree separately composed AI advertisements. The image and its lettering are raster, not recovered editable type. Open the portable Canvas JSON to add or replace editable layers.\n\nReview spelling, product likeness, prices, claims and safe areas before publishing. These are bounded web exports, not print-ready or 4K masters. Supplied approved logos remain separate assets; generated logo concepts are not trademark clearance. The HTML landing page is a basic page layout, not an AI-designed website.\n'
+                visual_files['ad_card.html'] = '<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Campaign artwork</title><body style="margin:0">' + generated_art['hero_banner.svg'] + '</body></html>'
+                if 'landing_page.html' in visual_files:
+                    visual_files['landing_page.html'] = visual_files['landing_page.html'].replace(hero_svg, generated_art['hero_banner.svg'])
+                ai_image_used = True
 
         actual_provider = getattr(self.ai, "last_provider", provider)
+        report("artwork", "complete")
         return {
             "strategy_data": {
                 "product_name": product_name, "approved_logo": approved_logo, "offer": offer, "cta": cta, "url": url,
@@ -463,6 +492,8 @@ class SwarmDirector:
                 "research_live": research_live,
                 "ai_image": ai_image_used,
                 "image_provider": ai_image_provider,
+                "artwork_state": "generated" if ai_image_used else "basic",
+                "artwork_scope": "three_ai_formats" if ai_image_used else "basic_layouts",
                 "branding_kit": bool(branding_files),
                 "custom_sizes": len(custom_banner_files),
             },

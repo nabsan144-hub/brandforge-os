@@ -9,7 +9,7 @@ on:
 
 jobs:
   python:
-    name: Python — lint + 412 test suite
+    name: Python — lint and regression suite
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -53,6 +53,7 @@ jobs:
           cache-dependency-path: sales/package-lock.json
       - run: npm ci --prefix sales
       - run: npm test --prefix sales
+      - run: python scripts/sync_pricing_faq_jsonld.py --check
 
   dashboard:
     name: Dashboard — Svelte/Vite build
@@ -77,3 +78,128 @@ jobs:
           python-version: "3.13"
       - run: python -m pip install -r app/requirements.txt
       - run: python scripts/validate_launch_config.py --prelaunch
+
+  image-consent-browser:
+    name: Cloud image consent — offline Chromium regression
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: cloud/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: npm ci --prefix cloud
+      - run: python -m pip install playwright==1.62.0 Pillow==12.3.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Build and inspect the actual local Desktop workspace
+        run: |
+          python -m pip install -r app/requirements.txt
+          npm ci --prefix app/web-modern
+          npm run build --prefix app/web-modern
+          python scripts/desktop_workspace_qa.py
+      - name: Verify review-link and portable-archive browser flows
+        run: python scripts/review_transfer_qa.py
+      - name: Verify product-photo permission, real renderer previews and ZIP exports
+        run: python scripts/product_workspace_qa.py
+      - name: Verify no-allowance practice, revision previews and checked exports
+        run: python scripts/practice_workspace_qa.py
+      - name: Verify consent, request payloads, image status and responsive accessibility
+        run: python scripts/image_consent_qa.py
+      - name: Verify watermarks survive PNG, JPEG and ZIP export
+        run: python scripts/watermark_export_qa.py
+      - name: Verify editorial geometry, diagnostic exports and unchanged defaults
+        run: |
+          python scripts/editorial_quality_qa.py
+          python scripts/editorial_workspace_qa.py
+      - name: Verify no-charge vector corrections, retry and exact visual restore
+        run: python scripts/vector_corrections_qa.py
+      - name: Verify scene-preserving correction and replacement logo
+        run: python scripts/vector_corrections_qa.py
+        env:
+          BF_QA_SCENE: '1'
+          BRANDFORGE_QA_DIR: qa-results/scene-corrections
+      - name: Verify copy edits require version-specific visual review before export
+        run: python scripts/visual_review_qa.py
+      - name: Verify private bundles preserve portable exports and watermark pixels
+        run: python scripts/private_assets_qa.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: image-consent-browser-evidence
+          path: |
+            qa-results/image-consent/
+            qa-results/watermark/
+            qa-results/private-assets/
+            qa-results/visual-review/
+            qa-results/vector-corrections/
+            qa-results/scene-corrections/
+            qa-results/editorial/
+            qa-results/editorial-workspace/
+            qa-results/desktop-workspace/
+            qa-results/practice/
+            qa-results/product/
+            qa-results/review-transfer/
+
+  sales-availability-browser:
+    name: Sales — release labels and rendered contrast
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+          cache-dependency-path: sales/package-lock.json
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: npm ci --prefix sales
+      - run: python -m pip install playwright==1.62.0
+      - run: python -m playwright install --with-deps chromium
+      - name: Verify all sales pages under the shipped CSP
+        run: python scripts/repository_site_qa.py
+      - name: Verify closed, independent paid, failed and timed-out availability
+        run: python scripts/sales_availability_qa.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: sales-availability-browser-evidence
+          path: |
+            qa-results/sales-availability/
+            qa-results/repository-site/
+
+  cross-engine-canvas:
+    name: Shared editing and themes — ${{ matrix.browser }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        browser: [chromium, firefox, webkit]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+      - run: npm ci --prefix cloud && npm ci --prefix sales && npm ci --prefix app/web-modern
+      - run: python -m pip install -r app/requirements.txt playwright==1.62.0
+      - run: python -m playwright install --with-deps ${{ matrix.browser }}
+      - run: npm run build --prefix app/web-modern
+      - run: python scripts/repository_site_qa.py && python scripts/desktop_workspace_qa.py && python scripts/canvas_qa.py
+        env:
+          BF_BROWSER: ${{ matrix.browser }}
+      - run: python scripts/canvas_qa.py
+        env:
+          BF_BROWSER: ${{ matrix.browser }}
+          BF_CANVAS_CLOUD: "1"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cross-engine-${{ matrix.browser }}
+          path: qa-results/

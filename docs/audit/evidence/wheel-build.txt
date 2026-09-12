@@ -1,0 +1,435 @@
+* Creating isolated environment: venv+pip...
+* Installing packages in isolated environment:
+  - setuptools>=68
+  - wheel
+* Getting build dependencies for wheel...
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/config/_apply_pyprojecttoml.py:82: SetuptoolsDeprecationWarning: `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        By 2027-Feb-18, you need to update your project and remove deprecated calls
+        or your builds will no longer be supported.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+  corresp(dist, value, root_dir)
+running egg_info
+creating brandforge_os.egg-info
+writing brandforge_os.egg-info/PKG-INFO
+writing dependency_links to brandforge_os.egg-info/dependency_links.txt
+writing entry points to brandforge_os.egg-info/entry_points.txt
+writing requirements to brandforge_os.egg-info/requires.txt
+writing top-level names to brandforge_os.egg-info/top_level.txt
+writing manifest file 'brandforge_os.egg-info/SOURCES.txt'
+reading manifest file 'brandforge_os.egg-info/SOURCES.txt'
+writing manifest file 'brandforge_os.egg-info/SOURCES.txt'
+* Installed build dependency versions:
+  - setuptools==84.0.0
+  - wheel==0.48.0
+* Building wheel...
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/config/_apply_pyprojecttoml.py:82: SetuptoolsDeprecationWarning: `project.license` as a TOML table is deprecated
+!!
+
+        ********************************************************************************
+        Please use a simple string containing a SPDX expression for `project.license`. You can also use `project.license-files`. (Both options available on setuptools>=77.0.0).
+
+        By 2027-Feb-18, you need to update your project and remove deprecated calls
+        or your builds will no longer be supported.
+
+        See https://packaging.python.org/en/latest/guides/writing-pyproject-toml/#license for details.
+        ********************************************************************************
+
+!!
+  corresp(dist, value, root_dir)
+running bdist_wheel
+running build
+running build_py
+creating build/lib
+copying ./brandforge.py -> build/lib
+copying ./server.py -> build/lib
+copying ./daemon.py -> build/lib
+copying ./version_info.py -> build/lib
+creating build/lib/engines
+copying ./engines/__init__.py -> build/lib/engines
+copying ./engines/ai_engine.py -> build/lib/engines
+creating build/lib/modules
+copying ./modules/__init__.py -> build/lib/modules
+copying ./modules/ai_image_designer.py -> build/lib/modules
+copying ./modules/approval_manager.py -> build/lib/modules
+copying ./modules/audit_scorecard.py -> build/lib/modules
+copying ./modules/brand_planner.py -> build/lib/modules
+copying ./modules/campaign_pack.py -> build/lib/modules
+copying ./modules/campaign_quality.py -> build/lib/modules
+copying ./modules/campaign_templates.py -> build/lib/modules
+copying ./modules/claim_guard.py -> build/lib/modules
+copying ./modules/client_manager.py -> build/lib/modules
+copying ./modules/copywriter.py -> build/lib/modules
+copying ./modules/desktop_launcher.py -> build/lib/modules
+copying ./modules/document_exporter.py -> build/lib/modules
+copying ./modules/draft_integrity.py -> build/lib/modules
+copying ./modules/fallback_copy.py -> build/lib/modules
+copying ./modules/i18n.py -> build/lib/modules
+copying ./modules/image_export.py -> build/lib/modules
+copying ./modules/image_generator.py -> build/lib/modules
+copying ./modules/landing_layout.py -> build/lib/modules
+copying ./modules/local_security.py -> build/lib/modules
+copying ./modules/mcp_registry.py -> build/lib/modules
+copying ./modules/memory_manager.py -> build/lib/modules
+copying ./modules/net_audit.py -> build/lib/modules
+copying ./modules/performance_tracker.py -> build/lib/modules
+copying ./modules/project_manager.py -> build/lib/modules
+copying ./modules/public_http.py -> build/lib/modules
+copying ./modules/runtime_paths.py -> build/lib/modules
+copying ./modules/security.py -> build/lib/modules
+copying ./modules/settings_store.py -> build/lib/modules
+copying ./modules/state_io.py -> build/lib/modules
+copying ./modules/state_locks.py -> build/lib/modules
+copying ./modules/static_site.py -> build/lib/modules
+copying ./modules/swarm_council.py -> build/lib/modules
+copying ./modules/swarm_director.py -> build/lib/modules
+copying ./modules/update_check.py -> build/lib/modules
+copying ./modules/visual_designer.py -> build/lib/modules
+copying ./modules/visual_layout.py -> build/lib/modules
+copying ./modules/web_searcher.py -> build/lib/modules
+creating build/lib/gateway
+copying ./gateway/__init__.py -> build/lib/gateway
+copying ./gateway/telegram_bot.py -> build/lib/gateway
+creating build/lib/brandforge_assets
+copying ./brandforge_assets/__init__.py -> build/lib/brandforge_assets
+running egg_info
+writing brandforge_os.egg-info/PKG-INFO
+writing dependency_links to brandforge_os.egg-info/dependency_links.txt
+writing entry points to brandforge_os.egg-info/entry_points.txt
+writing requirements to brandforge_os.egg-info/requires.txt
+writing top-level names to brandforge_os.egg-info/top_level.txt
+reading manifest file 'brandforge_os.egg-info/SOURCES.txt'
+writing manifest file 'brandforge_os.egg-info/SOURCES.txt'
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/command/build_py.py:215: _Warning: Package 'brandforge_assets.dashboard' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'brandforge_assets.dashboard' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'brandforge_assets.dashboard' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'brandforge_assets.dashboard' to be distributed and are
+        already explicitly excluding 'brandforge_assets.dashboard' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/command/build_py.py:215: _Warning: Package 'brandforge_assets.dashboard.assets' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'brandforge_assets.dashboard.assets' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'brandforge_assets.dashboard.assets' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'brandforge_assets.dashboard.assets' to be distributed and are
+        already explicitly excluding 'brandforge_assets.dashboard.assets' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/command/build_py.py:215: _Warning: Package 'brandforge_assets.fonts' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'brandforge_assets.fonts' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'brandforge_assets.fonts' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'brandforge_assets.fonts' to be distributed and are
+        already explicitly excluding 'brandforge_assets.fonts' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+/tmp/build-env-qbg8e9wn/lib/python3.13/site-packages/setuptools/command/build_py.py:215: _Warning: Package 'brandforge_assets.licenses' is absent from the `packages` configuration.
+!!
+
+        ********************************************************************************
+        ############################
+        # Package would be ignored #
+        ############################
+        Python recognizes 'brandforge_assets.licenses' as an importable package[^1],
+        but it is absent from setuptools' `packages` configuration.
+
+        This leads to an ambiguous overall configuration. If you want to distribute this
+        package, please make sure that 'brandforge_assets.licenses' is explicitly added
+        to the `packages` configuration field.
+
+        Alternatively, you can also rely on setuptools' discovery methods
+        (for example by using `find_namespace_packages(...)`/`find_namespace:`
+        instead of `find_packages(...)`/`find:`).
+
+        You can read more about "package discovery" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/package_discovery.html
+
+        If you don't want 'brandforge_assets.licenses' to be distributed and are
+        already explicitly excluding 'brandforge_assets.licenses' via
+        `find_namespace_packages(...)/find_namespace` or `find_packages(...)/find`,
+        you can try to use `exclude_package_data`, or `include-package-data=False` in
+        combination with a more fine grained `package-data` configuration.
+
+        You can read more about "package data files" on setuptools documentation page:
+
+        - https://setuptools.pypa.io/en/latest/userguide/datafiles.html
+
+
+        [^1]: For Python, any directory (with suitable naming) can be imported,
+              even if it does not contain any `.py` files.
+              On the other hand, currently there is no concept of package data
+              directory, all directories are treated like packages.
+        ********************************************************************************
+
+!!
+  check.warn(importable)
+copying ./brandforge_assets/fallbacks.json -> build/lib/brandforge_assets
+creating build/lib/brandforge_assets/dashboard
+copying ./brandforge_assets/dashboard/index.html -> build/lib/brandforge_assets/dashboard
+copying ./brandforge_assets/dashboard/logo-mark.svg -> build/lib/brandforge_assets/dashboard
+creating build/lib/brandforge_assets/dashboard/assets
+copying ./brandforge_assets/dashboard/assets/index-Bt4UuhtG.js -> build/lib/brandforge_assets/dashboard/assets
+copying ./brandforge_assets/dashboard/assets/index-tOXn3s8W.css -> build/lib/brandforge_assets/dashboard/assets
+copying ./brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2 -> build/lib/brandforge_assets/dashboard/assets
+copying ./brandforge_assets/dashboard/assets/instrument-serif-400-italic-DKMiL14s.woff2 -> build/lib/brandforge_assets/dashboard/assets
+creating build/lib/brandforge_assets/fonts
+copying ./brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf -> build/lib/brandforge_assets/fonts
+copying ./brandforge_assets/fonts/NotoSans-Regular.ttf -> build/lib/brandforge_assets/fonts
+copying ./brandforge_assets/fonts/NotoSansDevanagari-Regular.ttf -> build/lib/brandforge_assets/fonts
+copying ./brandforge_assets/fonts/OFL.txt -> build/lib/brandforge_assets/fonts
+creating build/lib/brandforge_assets/licenses
+copying ./brandforge_assets/licenses/BRANDFORGE-LICENSE.txt -> build/lib/brandforge_assets/licenses
+copying ./brandforge_assets/licenses/InstrumentSerif-OFL.txt -> build/lib/brandforge_assets/licenses
+installing to build/bdist.linux-x86_64/wheel
+running install
+running install_lib
+creating build/bdist.linux-x86_64/wheel
+copying build/lib/brandforge.py -> build/bdist.linux-x86_64/wheel/.
+copying build/lib/server.py -> build/bdist.linux-x86_64/wheel/.
+copying build/lib/daemon.py -> build/bdist.linux-x86_64/wheel/.
+copying build/lib/version_info.py -> build/bdist.linux-x86_64/wheel/.
+creating build/bdist.linux-x86_64/wheel/engines
+copying build/lib/engines/__init__.py -> build/bdist.linux-x86_64/wheel/./engines
+copying build/lib/engines/ai_engine.py -> build/bdist.linux-x86_64/wheel/./engines
+creating build/bdist.linux-x86_64/wheel/modules
+copying build/lib/modules/__init__.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/ai_image_designer.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/approval_manager.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/audit_scorecard.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/brand_planner.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/campaign_pack.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/campaign_quality.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/campaign_templates.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/claim_guard.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/client_manager.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/copywriter.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/desktop_launcher.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/document_exporter.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/draft_integrity.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/fallback_copy.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/i18n.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/image_export.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/image_generator.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/landing_layout.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/local_security.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/mcp_registry.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/memory_manager.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/net_audit.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/performance_tracker.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/project_manager.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/public_http.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/runtime_paths.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/security.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/settings_store.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/state_io.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/state_locks.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/static_site.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/swarm_council.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/swarm_director.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/update_check.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/visual_designer.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/visual_layout.py -> build/bdist.linux-x86_64/wheel/./modules
+copying build/lib/modules/web_searcher.py -> build/bdist.linux-x86_64/wheel/./modules
+creating build/bdist.linux-x86_64/wheel/gateway
+copying build/lib/gateway/__init__.py -> build/bdist.linux-x86_64/wheel/./gateway
+copying build/lib/gateway/telegram_bot.py -> build/bdist.linux-x86_64/wheel/./gateway
+creating build/bdist.linux-x86_64/wheel/brandforge_assets
+copying build/lib/brandforge_assets/__init__.py -> build/bdist.linux-x86_64/wheel/./brandforge_assets
+copying build/lib/brandforge_assets/fallbacks.json -> build/bdist.linux-x86_64/wheel/./brandforge_assets
+creating build/bdist.linux-x86_64/wheel/brandforge_assets/dashboard
+copying build/lib/brandforge_assets/dashboard/index.html -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard
+copying build/lib/brandforge_assets/dashboard/logo-mark.svg -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard
+creating build/bdist.linux-x86_64/wheel/brandforge_assets/dashboard/assets
+copying build/lib/brandforge_assets/dashboard/assets/index-Bt4UuhtG.js -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard/assets
+copying build/lib/brandforge_assets/dashboard/assets/index-tOXn3s8W.css -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard/assets
+copying build/lib/brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2 -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard/assets
+copying build/lib/brandforge_assets/dashboard/assets/instrument-serif-400-italic-DKMiL14s.woff2 -> build/bdist.linux-x86_64/wheel/./brandforge_assets/dashboard/assets
+creating build/bdist.linux-x86_64/wheel/brandforge_assets/fonts
+copying build/lib/brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf -> build/bdist.linux-x86_64/wheel/./brandforge_assets/fonts
+copying build/lib/brandforge_assets/fonts/OFL.txt -> build/bdist.linux-x86_64/wheel/./brandforge_assets/fonts
+copying build/lib/brandforge_assets/fonts/NotoSans-Regular.ttf -> build/bdist.linux-x86_64/wheel/./brandforge_assets/fonts
+copying build/lib/brandforge_assets/fonts/NotoSansDevanagari-Regular.ttf -> build/bdist.linux-x86_64/wheel/./brandforge_assets/fonts
+creating build/bdist.linux-x86_64/wheel/brandforge_assets/licenses
+copying build/lib/brandforge_assets/licenses/BRANDFORGE-LICENSE.txt -> build/bdist.linux-x86_64/wheel/./brandforge_assets/licenses
+copying build/lib/brandforge_assets/licenses/InstrumentSerif-OFL.txt -> build/bdist.linux-x86_64/wheel/./brandforge_assets/licenses
+running install_egg_info
+Copying brandforge_os.egg-info to build/bdist.linux-x86_64/wheel/./brandforge_os-1.9.0-py3.13.egg-info
+running install_scripts
+creating build/bdist.linux-x86_64/wheel/brandforge_os-1.9.0.dist-info/WHEEL
+creating '/home/user/final-audit/.cache/wheels/.tmp-o8tunbco/brandforge_os-1.9.0-py3-none-any.whl' and adding 'build/bdist.linux-x86_64/wheel' to it
+adding 'brandforge.py'
+adding 'daemon.py'
+adding 'server.py'
+adding 'version_info.py'
+adding 'brandforge_assets/__init__.py'
+adding 'brandforge_assets/fallbacks.json'
+adding 'brandforge_assets/dashboard/index.html'
+adding 'brandforge_assets/dashboard/logo-mark.svg'
+adding 'brandforge_assets/dashboard/assets/index-Bt4UuhtG.js'
+adding 'brandforge_assets/dashboard/assets/index-tOXn3s8W.css'
+adding 'brandforge_assets/dashboard/assets/instrument-serif-400-DnYpCC2O.woff2'
+adding 'brandforge_assets/dashboard/assets/instrument-serif-400-italic-DKMiL14s.woff2'
+adding 'brandforge_assets/fonts/NotoNaskhArabic-Regular.ttf'
+adding 'brandforge_assets/fonts/NotoSans-Regular.ttf'
+adding 'brandforge_assets/fonts/NotoSansDevanagari-Regular.ttf'
+adding 'brandforge_assets/fonts/OFL.txt'
+adding 'brandforge_assets/licenses/BRANDFORGE-LICENSE.txt'
+adding 'brandforge_assets/licenses/InstrumentSerif-OFL.txt'
+adding 'engines/__init__.py'
+adding 'engines/ai_engine.py'
+adding 'gateway/__init__.py'
+adding 'gateway/telegram_bot.py'
+adding 'modules/__init__.py'
+adding 'modules/ai_image_designer.py'
+adding 'modules/approval_manager.py'
+adding 'modules/audit_scorecard.py'
+adding 'modules/brand_planner.py'
+adding 'modules/campaign_pack.py'
+adding 'modules/campaign_quality.py'
+adding 'modules/campaign_templates.py'
+adding 'modules/claim_guard.py'
+adding 'modules/client_manager.py'
+adding 'modules/copywriter.py'
+adding 'modules/desktop_launcher.py'
+adding 'modules/document_exporter.py'
+adding 'modules/draft_integrity.py'
+adding 'modules/fallback_copy.py'
+adding 'modules/i18n.py'
+adding 'modules/image_export.py'
+adding 'modules/image_generator.py'
+adding 'modules/landing_layout.py'
+adding 'modules/local_security.py'
+adding 'modules/mcp_registry.py'
+adding 'modules/memory_manager.py'
+adding 'modules/net_audit.py'
+adding 'modules/performance_tracker.py'
+adding 'modules/project_manager.py'
+adding 'modules/public_http.py'
+adding 'modules/runtime_paths.py'
+adding 'modules/security.py'
+adding 'modules/settings_store.py'
+adding 'modules/state_io.py'
+adding 'modules/state_locks.py'
+adding 'modules/static_site.py'
+adding 'modules/swarm_council.py'
+adding 'modules/swarm_director.py'
+adding 'modules/update_check.py'
+adding 'modules/visual_designer.py'
+adding 'modules/visual_layout.py'
+adding 'modules/web_searcher.py'
+adding 'brandforge_os-1.9.0.dist-info/METADATA'
+adding 'brandforge_os-1.9.0.dist-info/WHEEL'
+adding 'brandforge_os-1.9.0.dist-info/entry_points.txt'
+adding 'brandforge_os-1.9.0.dist-info/top_level.txt'
+adding 'brandforge_os-1.9.0.dist-info/RECORD'
+removing build/bdist.linux-x86_64/wheel
+Successfully built brandforge_os-1.9.0-py3-none-any.whl

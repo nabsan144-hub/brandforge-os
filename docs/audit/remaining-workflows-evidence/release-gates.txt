@@ -1,0 +1,255 @@
+QUALITY: /usr/local/bin/python scripts/sync_design_tokens.py --check
+Shared UI semantic tokens match source.
+QUALITY: /usr/local/bin/python -m pytest app/tests -q
+........................................................................ [ 16%]
+........................................................................ [ 32%]
+........................................................................ [ 49%]
+........................................................................ [ 65%]
+........................................................................ [ 82%]
+........................................................................ [ 98%]
+......                                                                   [100%]
+=============================== warnings summary ===============================
+tests/test_readiness_regressions.py::test_real_swarm_api_honors_dimensions_logo_and_new_text_revision
+  /home/user/repo/app/tests/test_readiness_regressions.py:39: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+    assert sum(1 for r,g,b in image.getdata() if r>240 and g<20 and 150<b<190)>10
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+438 passed, 1 warning in 152.48s (0:02:32)
+QUALITY: /usr/local/bin/python -m ruff check app
+All checks passed!
+QUALITY: npm test --prefix cloud
+
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /home/user/repo/cloud
+
+ ✓ tests/engine.test.js (11 tests) 6326ms
+     ✓ retains successful provider stages if one request fails  4515ms
+     ✓ backoff retries a 429 and binds the generated headline into every banner  1535ms
+ ✓ tests/private-assets.test.js (19 tests) 4378ms
+   ✓ operator recovery writes oversized legacy bytes privately without mutation or overwriting a backup  829ms
+ ✓ tests/vector-corrections.test.js (23 tests) 3917ms
+ ✓ tests/billing.test.js (18 tests) 3684ms
+ ✓ tests/database.test.js (19 tests) 3194ms
+ ✓ tests/payload-routes.test.js (3 tests) 3716ms
+   ✓ large high-entropy legacy account exports fail with a controlled support path  420ms
+ ✓ tests/image-recovery.test.js (6 tests) 3310ms
+ ✓ tests/campaigns.test.js (16 tests) 3414ms
+ ✓ tests/private-versions.test.js (6 tests) 3519ms
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > persists the order when email fails and safely retries delivery
+Paddle processing needs retry evt_d33ff20922fc47d0a3011dc822 DELIVERY_PENDING
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > binds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+Paddle processing needs retry evt_8778be3e5f3144e8bc46400ee4 REQUEST_FAILED
+
+stderr | tests/paddle-webhook.test.js > verified payment events and durable fulfillment > keeps an unsuccessful event retryable after a database failure
+Paddle processing needs retry evt_4343eb108ca2485f8624fe614e DATABASE_UNAVAILABLE
+
+ ✓ tests/paddle-webhook.test.js (8 tests) 3280ms
+ ✓ tests/image-safety.test.js (24 tests) 3154ms
+ ✓ tests/client-review.test.js (6 tests) 3258ms
+ ✓ tests/visual-review.test.js (16 tests) 3389ms
+ ✓ tests/product-workflows.test.js (12 tests) 3233ms
+ ✓ tests/delivery-queue.test.js (4 tests) 3117ms
+ ✓ tests/id.test.js (6 tests) 3029ms
+ ✓ tests/full-audit.test.js (7 tests) 3027ms
+ ✓ tests/database-upgrade.test.js (1 test) 3113ms
+   ✓ upgrade preserves larger known monthly usage and closes legacy waitlist grants  3110ms
+ ✓ tests/me-export.test.js (3 tests) 3137ms
+ ✓ tests/portable-pack.test.js (4 tests) 4051ms
+ ✓ tests/me.test.js (6 tests) 3124ms
+ ✓ tests/ops-status.test.js (2 tests) 3079ms
+ ✓ tests/usage-metrics.test.js (5 tests) 3300ms
+ ✓ tests/dashboard-a11y.test.js (5 tests) 1374ms
+     ✓ has zero axe violations (color-contrast disabled for jsdom)  1114ms
+ ✓ tests/watermark-payload.test.js (16 tests) 389ms
+ ✓ tests/editorial-vector.test.js (37 tests) 293ms
+ ✓ tests/readiness-regressions.test.js (12 tests) 297ms
+ ✓ tests/scene-image.test.js (9 tests) 321ms
+ ✓ tests/i18n.test.js (15 tests) 149ms
+ ✓ tests/golden-i18n.test.js (4 tests) 137ms
+ ✓ tests/quota.test.js (4 tests) 76ms
+ ✓ tests/golden-en.test.js (1 test) 68ms
+ ✓ tests/final-hardening.test.js (9 tests) 35ms
+stderr | tests/waitlist.test.js > waitlist endpoint > returns 501 with an actionable message when the waitlist table is missing
+waitlist upsert failed relation "public.waitlist" does not exist
+
+ ✓ tests/waitlist.test.js (7 tests) 36ms
+ ✓ tests/capabilities.test.js (8 tests) 36ms
+ ✓ tests/dispatcher.test.js (9 tests) 34ms
+ ✓ tests/signup-protection.test.js (1 test) 34ms
+ ✓ tests/deliver.test.js (17 tests) 21ms
+ ✓ tests/vendor.test.js (4 tests) 19ms
+ ✓ tests/keys.test.js (18 tests) 17ms
+ ✓ tests/limit.test.js (6 tests) 10ms
+ ✓ tests/schema.test.js (4 tests) 8ms
+ ✓ tests/clientip.test.js (5 tests) 5ms
+ ✓ tests/dashboard-contrast.test.js (4 tests) 7ms
+ ✓ tests/allowance.test.js (3 tests) 4ms
+
+ Test Files  45 passed (45)
+      Tests  423 passed (423)
+   Start at  19:14:28
+   Duration  98.45s (transform 1.07s, setup 0ms, import 8.04s, tests 84.12s, environment 8ms)
+
+QUALITY: npm test --prefix sales
+
+> brandforge-sales-tests@0.0.0 test
+> node tests/funnel.test.js && node tests/demo.test.js && node tests/a11y.test.js && node tests/css-coverage.js && node tests/theme-contrast.test.js && node tests/site-integrity.test.js && node tests/hero-motion.test.mjs
+
+
+=== STATE A — current repo state (honest pre-launch: Paddle off, waitlist live) ===
+  ✓ config exposes window.BRANDFORGE_LAUNCH
+  ✓ no FormSubmit placeholder inbox remains
+  ✓ waitlist posts to the cloud /api/waitlist backend
+  ✓ waitlistReady === true (endpoint is wired)
+  ✓ paddle_client_token empty → paddleReady === false
+  ✓ configuredTiers() === []
+  ✓ default state → Owner CTA promises the waitlist, never checkout
+  ✓ valid email posts to the waitlist endpoint
+  ✓ payload carries email + tier (no FormSubmit keys)
+  ✓ backend success → confirmation shown (waitlist is live pre-launch)
+  ✓ no unhandled native form navigation occurred
+  ✓ backend 501 → actionable "not enabled / email support" message
+  ✓ backend 5xx → honest failure message
+  ✓ invalid email → validation message
+  ✓ honeypot filled → fake success, still no fetch
+
+=== STATE A2 — domain integrity (regression guard, audit 2026-08-28) ===
+  ✓ support_email domain === production site domain
+  ✓ no shipped sales file references dead domain brandforgeos.com
+
+=== STATE B — operator-configured (simulates pasting real values) ===
+  ✓ waitlistReady === true (endpoint resolved)
+  ✓ waitlist endpoint resolves to the cloud backend
+  ✓ posts to the cloud /api/waitlist backend
+  ✓ payload carries email + selected tier
+  ✓ backend success → confirmation shown
+  ✓ backend 501 → honest "not enabled" message
+  ✓ public token + prices alone cannot enable paid checkout
+  ✓ both desktop tiers configured
+  ✓ public flag + prices do not promise checkout without server state
+  ✓ fully configured → CTAs promise checkout, not the waitlist
+  ✓ Owner opens the authorized transaction, not a raw price
+  ✓ Source opens its own authorized transaction
+  ✓ server receives only an allowlisted edition request
+  ✓ partial config → configuredTiers drops agency_source
+  ✓ legacy price metadata cannot override verified server state
+  ✓ server closure is rechecked before SDK or transaction
+  ✓ network failure does not retain an old buy label
+
+=== STATE C — homepage fallback (index.html has no waitlist form) ===
+  ✓ index.html has no #waitlist element
+  ✓ unconfigured buy CTA attempts redirect (to pricing.html#waitlist)
+  ✓ waitlist fallback preserves the selected Desktop tier
+
+RESULT: 37 passed, 0 failed
+  ✓ index.html: one integrated video, not an eager duplicate iframe
+  ✓ index.html: native controls, inline playback and muted by default
+  ✓ index.html: no autoplay or preload download
+  ✓ index.html: named accessible video
+  ✓ index.html: shipped assets/product-demo/demo.mp4
+  ✓ index.html: shipped assets/product-demo/captions.vtt
+  ✓ index.html: shipped poster
+  ✓ index.html: no duplicate default caption overlay
+  ✓ index.html: animated alternative and video download present
+  ✓ index.html: still explains fictional/example footage
+  ✓ index.html: initialization never starts playback
+  ✓ index.html: explicit click plays and hides the poster control
+  ✓ index.html: ending offers replay
+  ✓ index.html: media failure provides HTML/download alternatives
+  ✓ demo.html: one integrated video, not an eager duplicate iframe
+  ✓ demo.html: native controls, inline playback and muted by default
+  ✓ demo.html: no autoplay or preload download
+  ✓ demo.html: named accessible video
+  ✓ demo.html: shipped assets/product-demo/demo.mp4
+  ✓ demo.html: shipped assets/product-demo/captions.vtt
+  ✓ demo.html: shipped poster
+  ✓ demo.html: no duplicate default caption overlay
+  ✓ demo.html: animated alternative and video download present
+  ✓ demo.html: still explains fictional/example footage
+  ✓ demo.html: initialization never starts playback
+  ✓ demo.html: explicit click plays and hides the poster control
+  ✓ demo.html: ending offers replay
+  ✓ demo.html: media failure provides HTML/download alternatives
+  ✓ manifest declares 1080p, 30fps, fictional/non-live footage
+  ✓ asset hash/size: ASSET-NOTICE.md
+  ✓ asset hash/size: MUSIC-NOTE.txt
+  ✓ asset hash/size: captions.srt
+  ✓ asset hash/size: captions.vtt
+  ✓ asset hash/size: demo.mp4
+  ✓ asset hash/size: geist-OFL.txt
+  ✓ asset hash/size: instrumentserif-OFL.txt
+  ✓ asset hash/size: poster.jpg
+  ✓ asset hash/size: tour.html
+  ✓ video is a nonempty MP4
+  ✓ HTML alternative embeds music and has accessible real next steps
+  ✓ standalone font notices retained
+  ✓ homepage watch link and demo sample anchor are real
+  ✓ marketing CSP permits embedded audio without allowing frames
+  ✓ Netlify and Cloudflare marketing policies also allow the self-contained soundtrack
+  ✓ checkout still off
+  ✓ vercel.json: no tour asset redirect competes with the /tour rewrite
+  ✓ netlify.toml: single 200 /tour rewrite, no legacy tour 301s
+  ✓ _redirects: only the /tour 200 rewrite remains
+  ✓ publish build mirrors the self-contained tour at the site root
+  ✓ Desktop CTAs promise the waitlist until a tier is configured for sale
+  ✓ workspace CTA matches the honest waitlist wording
+  ✓ free plan copy matches the engine (hero + 1 preset)
+  ✓ FAQ JSON-LD mirrors the visible answers (no absolute offline overclaim)
+  ✓ homepage hero shows real benefits and still states the honest limits
+RESULT: 54 demo integration checks passed
+=== Accessibility gate (axe-core) — shipped sales pages ===
+  ✓ index.html — no axe violations
+  ✓ pricing.html — no axe violations
+  ✓ agents.html — no axe violations
+  ✓ docs.html — no axe violations
+  ✓ changelog.html — no axe violations
+  ✓ tools.html — no axe violations
+  ✓ workspace.html — no axe violations
+  ✓ privacy.html — no axe violations
+  ✓ terms.html — no axe violations
+  ✓ refund.html — no axe violations
+  ✓ 404.html — no axe violations
+  ✓ demo.html — no axe violations
+  ✓ vs-canva-ad-creator.html — no axe violations
+  ✓ best-ad-copy-generator.html — no axe violations
+
+RESULT: 14 passed, 0 failed
+RESULT: css coverage ✓ (393 class tokens all present)
+RESULT: theme-contrast ✓ (20 files scanned, all gold backgrounds use theme-aware ink)
+RESULT: escaped-quote ✓ (no literal backslash-quotes in attributes)
+RESULT: light-gold-contrast ✓ (text 4.60:1 on paper, buttons 16.19:1 dark-pill)
+Site integrity: 14 pages; canonical URLs, metadata, IDs, links/assets passed.
+Hero motion: reduced-motion changes, off-screen and hidden-tab pause/resume passed.
+QUALITY: npm run build --prefix sales
+
+> brandforge-sales-tests@0.0.0 build
+> node build.mjs
+
+Static publication assembled in sales/public (no tests, package files or operator-only media notes).
+Animated tour mirrored to the publish root as /tour.html (served at /tour).
+QUALITY: npm run build --prefix app/web-modern
+
+> brandforge-os-dashboard@1.0.0 build
+> vite build
+
+7:16:15 PM [vite-plugin-svelte] no Svelte config found at /home/user/repo/app/web-modern - using default configuration.
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 3940 modules transformed.
+rendering chunks...
+computing gzip size...
+../web/dist/index.html                                           1.07 kB │ gzip:  0.67 kB
+../web/dist/assets/instrument-serif-400-DnYpCC2O.woff2          21.03 kB
+../web/dist/assets/instrument-serif-400-italic-DKMiL14s.woff2   22.12 kB
+../web/dist/assets/index-D-8GOLwZ.css                           29.01 kB │ gzip:  7.00 kB
+../web/dist/assets/index-CWNOEJNj.js                           165.86 kB │ gzip: 52.63 kB
+
+✓ built in 4.47s
+QUALITY: node cloud/scripts/sync-schema.mjs --check
+QUALITY: /usr/local/bin/python scripts/validate_launch_config.py --prelaunch
+Mode: PRELAUNCH SAFE (not revenue-ready)
+PASS

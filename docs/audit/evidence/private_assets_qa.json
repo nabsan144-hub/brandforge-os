@@ -1,0 +1,14 @@
+{
+  "backend_encoder": "actual",
+  "browser": "Chromium",
+  "network": "offline mocked private storage",
+  "hydrated_files": 5,
+  "raster_watermark_checks": 10,
+  "zip_sources_and_sha256": "pass",
+  "portable_account_bytes": "pass",
+  "signed_urls_not_persisted": "pass",
+  "no_storage_credentials_or_referrer": "pass",
+  "unresolved_files_rejected": "pass",
+  "expired_and_corrupt_downloads_rejected": "pass",
+  "page_errors": []
+}

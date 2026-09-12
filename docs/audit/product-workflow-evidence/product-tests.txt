@@ -1,0 +1,13 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/product-workflows.test.js
+
+
+ RUN  v4.1.11 <checkout>/cloud
+
+ ✓ tests/product-workflows.test.js (11 tests) 3420ms
+
+ Test Files  1 passed (1)
+      Tests  11 passed (11)
+   Start at  17:22:39
+   Duration  4.08s (transform 230ms, setup 0ms, import 523ms, tests 3.42s, environment 0ms)

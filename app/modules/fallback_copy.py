@@ -12,7 +12,7 @@ def bundles():
 
 def fallback(stage, context, lang='en'):
     b = bundles().get(lang, bundles()['en'])
-    benefits = context.get('benefits') or context.get('key_benefits') or 'quality'
+    benefits = context.get('benefits') or context.get('key_benefits') or b['no_benefits']
     if isinstance(benefits, list): benefits = ', '.join(benefits)
     fields = {'product': context.get('product') or 'Your product', 'industry': context.get('industry') or 'your market',
               'audience': context.get('audience') or context.get('target_audience') or 'your customers', 'benefits': benefits,

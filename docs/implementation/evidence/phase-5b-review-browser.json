@@ -1,0 +1,54 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "unreviewed_zip_source_png_blocked": true,
+    "archive_warning_cancel_accept": true,
+    "ack_cancel_accept": true,
+    "review_note_in_zip": true,
+    "original_visual_bytes_preserved": true,
+    "zip_sha256": "pass",
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "unreviewed_zip_source_png_blocked": true,
+    "archive_warning_cancel_accept": true,
+    "ack_cancel_accept": true,
+    "review_note_in_zip": true,
+    "original_visual_bytes_preserved": true,
+    "zip_sha256": "pass",
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "unreviewed_zip_source_png_blocked": true,
+    "archive_warning_cancel_accept": true,
+    "ack_cancel_accept": true,
+    "review_note_in_zip": true,
+    "original_visual_bytes_preserved": true,
+    "zip_sha256": "pass",
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "unreviewed_zip_source_png_blocked": true,
+    "archive_warning_cancel_accept": true,
+    "ack_cancel_accept": true,
+    "review_note_in_zip": true,
+    "original_visual_bytes_preserved": true,
+    "zip_sha256": "pass",
+    "page_errors": [],
+    "axe": [],
+    "overflow": false
+  }
+]

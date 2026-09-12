@@ -1,0 +1,13 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run --run tests/delivery-queue.test.js
+
+
+ RUN  v4.1.11 <checkout>/cloud
+
+ ✓ tests/delivery-queue.test.js (4 tests) 3012ms
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  17:39:58
+   Duration  3.33s (transform 65ms, setup 0ms, import 183ms, tests 3.01s, environment 0ms)

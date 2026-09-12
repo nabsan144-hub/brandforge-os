@@ -23,7 +23,7 @@
 @font-face{font-family:'Instrument Serif';font-style:italic;font-weight:400;font-display:swap;src:url('/assets/fonts/instrument-serif-400-italic.woff2') format('woff2');}
 @font-face{font-family:'Instrument Serif';font-style:normal;font-weight:400;font-display:swap;src:url('/assets/fonts/instrument-serif-400.woff2') format('woff2');}
 #nav-plan:empty{display:none}
-:root{--bg:#070d11;--card:#0F172A;--line:#1E293B;--ink:#F8FAFC;--mut:#94A3B8;--gold:#E8B54A;--good:#10B981;--bad:#F87171;--ease:cubic-bezier(.19,1,.22,1)}
+:root{--ease:cubic-bezier(.19,1,.22,1)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--ink);font-family:'Geist',system-ui,-apple-system,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased}
 .serif{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;letter-spacing:-.01em}
@@ -37,7 +37,7 @@ a{color:var(--gold)}button{font:inherit;cursor:pointer}input,textarea{font:inher
 .pill.gold{border-color:rgba(232,181,74,.4);color:var(--gold)}
 .spacer{flex:1}
 .btn{border:none;border-radius:999px;padding:10px 22px;font-weight:700;font-size:13px;transition:all .3s var(--ease)}
-.btn.gold{background:var(--gold);color:#0A0D14}.btn.gold:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(232,181,74,.55)}
+.btn.gold{background:var(--bf-action);color:var(--bf-on_action)}.btn.gold:hover{background:var(--gold);transform:translateY(-2px);box-shadow:0 14px 34px -12px rgba(232,181,74,.55)}
 .btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}.btn.ghost:hover{border-color:rgba(232,181,74,.4);transform:translateY(-1px)}
 .btn:disabled{opacity:.5;cursor:default;transform:none;box-shadow:none}
 .card{background:linear-gradient(180deg,color-mix(in srgb,var(--card) 96%,transparent),color-mix(in srgb,var(--card) 88%,transparent));border:1px solid var(--line);border-radius:20px;padding:24px;box-shadow:0 24px 60px -30px rgba(0,0,0,.55)}
@@ -87,20 +87,20 @@ footer{padding:40px 0;border-top:1px solid var(--line);color:var(--mut);font-siz
 .chip.on{border-color:rgba(232,181,74,.6);background:rgba(232,181,74,.12)}
 .chip input:disabled+span{opacity:.45}
 /* Light theme (audit §4.4) — mirrors sales/assets/theme.css canonical palette */
-[data-theme="light"]{--bg:#F4F6F8;--card:#FFFFFF;--line:#E2E8F0;--ink:#0F172A;--mut:#52637A;--gold:#805C09;--good:#047857;--bad:#B91C1C}
+
 [data-theme="light"] body{background:var(--bg)}
 [data-theme="light"] .nav{background:rgba(244,246,248,.85)}
 [data-theme="light"] pre,[data-theme="light"] svg.file{background:#FFFFFF;color:#334155}
-[data-theme="light"] .btn.gold{background:#E8B54A;color:#0A0D14}
-[data-theme="light"] .err{background:#FEE2E2;border-color:#FCA5A5;color:#991B1B}
-[data-theme="light"] .ok{background:#D1FAE5;border-color:#6EE7B7;color:#065F46}
+[data-theme="light"] .btn.gold{background:var(--bf-action);color:var(--bf-on_action)}
+
+
 
 /* Audited responsive/accessibility contracts; no global overflow clipping. */
 .card,.grid>*{min-width:0}.hero{overflow:clip}.hero::before{max-width:100%}
 input,textarea,select{border-color:#718096}select{font:inherit}button,input,select,summary{min-height:44px}
 button:focus-visible,a:focus-visible,summary:focus-visible,pre:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:3px solid var(--gold);outline-offset:4px}
 a:not(.btn):not(.logo){text-decoration:underline;text-underline-offset:3px}.btn:disabled{opacity:.65}
-.field-row{display:flex;gap:10px;align-items:end;min-width:0}.field-row>div,.field-row>input{flex:1;min-width:0}.action-row,.detail-heading{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.detail-heading h3{overflow-wrap:anywhere;flex:1;min-width:100px}
+.field-row{display:flex;gap:10px;align-items:end;min-width:0}.field-row>div,.field-row>input{flex:1;min-width:0}.action-row,.detail-heading{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin:12px 0}.detail-heading h2{overflow-wrap:anywhere;flex:1;min-width:100px}
 .help{font-size:12px;color:var(--mut);line-height:1.65;margin:8px 0;overflow-wrap:anywhere}
 .check-label{display:flex;gap:9px;align-items:center;letter-spacing:0;text-transform:none}.check-label input{width:auto}
 .brand-preview{max-width:150px;max-height:90px;object-fit:contain;margin:12px 0}input[type=color]{height:44px;padding:5px}
@@ -111,6 +111,7 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
 @media(max-width:430px){.wrap{padding:0 14px}.card{padding:18px}.field-row{flex-wrap:wrap}.field-row>*{flex-basis:100%}.action-row .btn{flex:1 1 140px}.tabs button{flex:1;padding-inline:10px}#view-billing.wrap{padding:0}}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
 </style>
+<link rel="stylesheet" href="/semantic-tokens.css">
 </head>
 <body>
 <nav class="nav"><div class="wrap">
@@ -119,7 +120,7 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
   <span class="pill gold" id="nav-plan"></span>
   <span class="spacer"></span>
   <button class="btn ghost" id="nav-theme" aria-label="Toggle light/dark theme" title="Toggle light/dark theme">☾</button>
-  <button class="btn ghost" id="nav-billing">Upgrade</button>
+  <button class="btn ghost" id="nav-billing">Plans &amp; billing</button>
   <button class="btn ghost hidden" id="nav-logout">Log out</button>
 </div></nav>
 
@@ -148,7 +149,7 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
     <div style="margin-top:10px;display:none" id="resend-wrap">
       <button class="btn ghost" style="width:100%" id="auth-resend">Resend confirmation email</button>
     </div>
-    <p style="font-size:11px;color:var(--mut);margin-top:12px">Your work is private to your account and stored securely. Free plan: 3 lifetime campaigns, watermarked.</p>
+    <p style="font-size:11px;color:var(--mut);margin-top:12px">Your saved workspace is scoped to your account. Free plan: 3 lifetime campaigns, watermarked.</p>
   </div>
 </main>
 
@@ -169,16 +170,18 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
 </main>
 
 <!-- ============ APP ============ -->
+<div id="metrics-controls" class="wrap help"></div>
 <main id="view-app" class="wrap hidden">
   <div style="padding:36px 0 10px">
     <h1 style="font-size:28px">Workspace</h1>
-    <p class="sub" id="app-usage"></p>
+    <p class="sub" id="app-usage"></p><p class="help"><a href="/canvas/" class="canvas-entry">Editable canvas projects</a></p>
   </div>
   <div class="grid cols2">
     <div class="card">
-      <h3 style="margin-bottom:4px">Launch a campaign</h3>
+      <h2 style="margin-bottom:4px">Launch a campaign</h2>
       <p style="font-size:12px;color:var(--mut);margin-bottom:8px">Start with a client brand, write a specific brief, then review and edit the pack. Three text stages plus deterministic SVG visuals; PNG/JPEG export runs in your browser.</p>
-      <div id="run-msg" role="status" aria-live="polite"></div>
+      <p class="help"><a href="/practice" target="_blank" rel="noopener">Explore the no-allowance practice pack (new tab)</a> before creating a saved campaign.</p>
+      <div id="run-msg" role="status" aria-live="polite"></div><p id="run-progress" class="help" role="status" aria-live="polite"></p>
       <label for="c-brand">Reusable client brand</label><select id="c-brand"><option value="">New / unsaved brand</option></select>
       <div class="action-row"><button class="btn ghost" id="brand-save" type="button">Save brand</button><button class="btn ghost hidden" id="brand-delete" type="button">Remove saved brand</button></div>
       <div id="brand-msg" role="status"></div>
@@ -187,8 +190,9 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
       <label for="c-ind">Industry</label><input id="c-ind" maxlength="80" placeholder="e.g. Coffee Shop">
       <label for="c-aud">Audience</label><input id="c-aud" maxlength="120" placeholder="e.g. Busy professionals">
       <label for="c-ben">Key benefits</label><textarea id="c-ben" maxlength="500" rows="2" placeholder="organic beans, same-day delivery"></textarea>
-      <details><summary>Offer, brand assets and voice</summary>
       <label for="c-offer">Offer / purchase terms</label><input id="c-offer" maxlength="200" placeholder="Only an offer you can fulfill">
+      <details><summary>Brand assets, destination and voice</summary>
+      
       <label for="c-cta">Call to action</label><input id="c-cta" maxlength="40" placeholder="e.g. View the coffee selection">
       <label for="c-url">Destination URL</label><input id="c-url" type="url" maxlength="500" placeholder="https://your-business.example/offer">
       <label for="c-tone">Voice</label><input id="c-tone" maxlength="120" placeholder="e.g. Warm, concise, helpful">
@@ -199,9 +203,18 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
       <img id="logo-preview" alt="Your approved logo" class="hidden brand-preview"><button id="logo-clear" type="button" class="btn ghost hidden">Remove logo</button>
       <label class="check-label"><input id="c-new-logo" type="checkbox">Also create separate geometric logo concepts</label>
       </details>
-      <label for="c-style">Visual style</label><select id="c-style"><option value="bold" selected>Bold — vivid brand-pair composition</option><option value="essential">Essential — calm minimal layout</option></select>
-      <label for="c-provider">Text generation provider</label><select id="c-provider"><option value="auto">Auto — prefer my personal key</option><option value="groq">Groq</option><option value="gemini">Gemini</option><option value="offline">Templates only — no AI provider</option></select>
-      <p class="help">The selected provider receives your brief and supplied brand context, not your logo. No silent switch to another provider. A saved pack uses one campaign, including clearly labeled template fallbacks.</p>
+      <details><summary>Your product photograph (not a logo)</summary>
+      <label for="product-photo">Product photograph (PNG / JPEG, max 5 MB and 4 million pixels)</label><input type="file" id="product-photo" accept="image/png,image/jpeg">
+      <p class="help">Prepared locally, then validated on the Cloud server. Never sent to a model or substituted with an AI product. Product-first contains the full photo without cropping. Up to three selected sizes plus the hero; tiny formats may omit the image. No automatic background removal.</p>
+      <img id="product-photo-preview" class="hidden brand-preview" alt="Selected product photograph"><button type="button" class="btn ghost hidden" id="product-photo-clear">Remove product photograph</button>
+      <label class="check-label"><input type="checkbox" id="product-photo-rights">I have permission to upload this photograph to Cloud and use it in this campaign. It contains no unnecessary sensitive information.</label><p id="product-photo-status" class="help" role="status"></p>
+      </details>
+      <label for="c-style">Composition</label><select id="c-style" aria-describedby="c-style-help"><option value="auto-v1">Match the brief — photo, proof, offer or service</option><option value="bold" selected>Bold — vivid brand-pair composition</option><option value="essential">Essential — calm minimal layout</option><option value="editorial-v1">Editorial — clean typography</option><option value="product-v1">Product-first — your approved photograph</option><option value="offer-v1">Offer-first — price and conditions</option><option value="service-v1">Service-first — benefits and booking</option><option value="evidence-v1">Evidence-first — your supplied proof</option></select><p class="help" id="c-style-help">New compositions are opt-in, not a quality guarantee. Match the brief prioritizes your photo, then supplied proof, offer, benefits and finally Editorial. Evidence-first prints supplied proof without independently verifying it. Text that cannot fit is omitted and reported. AI hero artwork uses its existing scene layout; resized vectors use this choice.</p>
+      <label for="c-provider">Text generation provider</label><select id="c-provider"><option value="auto">Auto — prefer my personal key</option><option value="groq">Groq</option><option value="gemini">Gemini</option><option value="offline">No AI providers — template text + vector visuals</option></select>
+      <p class="help">The selected text provider receives your brief and brand context, not your logo. It is not silently replaced by another text provider. Choose No AI providers to disable all model calls; the campaign is still saved in Cloud. A saved pack uses one campaign, including labeled fallbacks.</p>
+      <label class="check-label" for="c-images"><input id="c-images" type="checkbox" aria-describedby="image-consent-help" disabled> Add an AI artwork scene (Pro / Agency; optional)</label>
+      <label class="check-label" hidden><input id="c-reference-consent" type="checkbox"> I have permission to send my supplied product photo and logo to the displayed image provider.</label>
+      <p class="help" id="image-consent-help" aria-live="polite">Vector-only by default. Image provider availability is checked when your account loads.</p>
       <label for="c-lang">Output language</label>
       <select id="c-lang">
         <option value="en">English</option>
@@ -219,10 +232,13 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
         <div style="flex:1"><label for="c-ch">Custom height (px)</label><input id="c-ch" type="number" min="50" max="5000" placeholder="e.g. 400"></div>
       </div>
       </details>
-      <div style="margin-top:14px"><button class="btn gold" style="width:100%" id="c-go">Create My Campaign →</button></div>
+      <button id="template-preview" type="button" class="btn ghost">Preview templates — no allowance used</button>
+      <section id="template-preview-panel" class="hidden" aria-labelledby="template-preview-title"><h3 id="template-preview-title">Review before creating</h3><p class="help">Template text only; connected generation can differ. This does not save a campaign or call an AI provider.</p><label for="template-preview-size">Preview format</label><select id="template-preview-size"></select><img id="template-preview-image" alt="Template campaign preview" style="display:block;max-width:100%;height:auto"><p id="template-preview-fit" class="help" role="status"></p></section>
+      <p class="help" id="allowance-policy" aria-live="polite">A saved pack uses one campaign, including template fallbacks. Failed unsaved work does not. Text edits, downloads and supported deterministic corrections do not use another campaign; deleting work does not restore usage.</p>
+      <div style="margin-top:14px"><button aria-describedby="allowance-policy" class="btn gold" style="width:100%" id="c-go">Create My Campaign →</button></div>
     </div>
     <div class="card">
-      <h3 style="margin-bottom:10px">Your campaigns</h3>
+      <h2 style="margin-bottom:10px">Your campaigns</h2>
       <form id="history-search"><label for="history-query">Search by campaign name</label><div class="field-row"><input id="history-query" type="search" maxlength="80" placeholder="Search all your campaigns"><button class="btn ghost" type="submit">Search</button></div></form>
       <div id="camp-list" class="list" aria-live="polite"><p style="font-size:12px;color:var(--mut)">Loading…</p></div>
       <div class="action-row"><button class="btn ghost" id="history-prev">Previous</button><span id="history-page" class="help"></span><button class="btn ghost" id="history-next">Next</button></div>
@@ -231,12 +247,16 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
   <div id="detail" class="card hidden" style="margin-top:14px">
     <div class="detail-heading">
       <button class="btn ghost" id="d-back">← All</button>
-      <h3 id="d-name"></h3>
+      <h2 id="d-name"></h2>
       <span class="badge" id="d-provider"></span>
       <button class="btn ghost" id="d-delete" style="margin-left:auto;color:var(--bad)">Delete</button>
     </div><div id="d-stage-status" class="help" role="status"></div>
-    <div class="action-row"><button class="btn gold" id="d-zip">Download pack · SVG + PNG + copy</button><button class="btn ghost" id="d-rename">Rename</button><button class="btn ghost" id="d-duplicate">Reuse brief</button><button class="btn ghost" id="d-copy">Copy section</button><button class="btn ghost" id="d-edit">Edit section</button></div>
+    <div class="action-row"><button class="btn gold" id="d-zip">Download pack · SVG + PNG + copy</button><button class="btn ghost" id="d-canvas">Open in editable canvas</button><button class="btn ghost" id="d-portable">Export portable archive</button><a class="btn ghost" href="/transfer">Portable archives</a><button class="btn ghost" id="d-rename">Rename</button><button class="btn ghost" id="d-duplicate">Reuse brief</button><button class="btn ghost" id="d-copy">Copy section</button><button class="btn ghost" id="d-edit">Edit section</button><button class="btn ghost" id="d-visual-edit">Correct visual text · no campaign charge</button></div>
+    <details id="image-recovery-tools"><summary>Recover a failed hero image</summary><p>For paid accounts with a supported vector fallback only. Copy, logos and resized banners stay unchanged. Maximum three recovery attempts per account per UTC day, also subject to operator image budget. No additional campaign allowance is consumed. Provider failures still cost the operator; success is not guaranteed. Inline and private files are supported when a saved rendering recipe exists; older recipe-less packs are not supported.</p><label class="check-label"><input id="image-recovery-consent" type="checkbox"> I permit a fresh image request sharing product / brand, industry, audience, tone and brand colors with <span id="image-recovery-provider"></span>. Logos and photos are not sent.</label><button id="image-recovery-run" class="btn ghost">Recover hero · no campaign charge</button><button id="image-recovery-status" class="btn ghost">Check recovery status</button><p id="image-recovery-message" role="status"></p></details>
+    <details id="review-tools"><summary>Share for client review</summary><p>Anyone with the link can view and save the entire current pack, comment and record a decision without an account. Names are not verified. Edits invalidate the link. Creating a new link replaces the previous link and responses. Already downloaded files cannot be recalled; private download URLs may remain valid for up to 60 seconds after revocation.</p><label for="review-days">Link expiry</label><select id="review-days"><option value="1">1 day</option><option value="7" selected>7 days</option><option value="30">30 days</option></select><label class="check-label"><input id="review-consent" type="checkbox">I have permission to share this entire pack with the recipient.</label><div class="action-row"><button id="review-create" class="btn ghost">Create / replace review link</button><button id="review-status" class="btn ghost">View responses</button><button id="review-revoke" class="btn ghost">Revoke link</button></div><p id="review-msg" role="status"></p><label for="review-link">Private link (shown only when created)</label><input id="review-link" readonly><div id="review-responses"></div></details>
     <p class="help" id="d-action-msg" role="status"></p>
+    <p class="help" id="d-visual-support"></p><p class="help" id="d-field-report"></p>
+    <p class="help" id="d-visual-review" role="status"></p><button class="btn ghost hidden" id="d-review-ack">I reviewed the copy and visuals — acknowledge this version</button>
     <div class="tabs" role="group" aria-label="Campaign sections"><button data-t="strategy" class="on">Strategy</button><button data-t="copy">Copy</button><button data-t="seo">SEO</button><button data-t="files">Files</button></div>
     <div style="margin-top:10px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
       <label id="d-phone-label" for="d-phone">Your WhatsApp number</label><input type="tel" id="d-phone" placeholder="+923001234567 (E.164)" style="width:200px" autocomplete="tel">
@@ -252,7 +272,7 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
   <div id="view-billing" class="wrap hidden">
     <div class="card">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
-        <h3 style="margin:0">Plans</h3>
+        <h2 style="margin:0">Plans</h2>
         <span style="font-size:12px;color:var(--mut)" id="bill-current"></span>
       </div>
       <p style="font-size:12px;color:var(--mut);margin:6px 0 14px">Free / Pro / Agency plans. Upgrades are processed securely by Paddle — your plan updates automatically. Questions: <a href="mailto:support@brandforge-os.com">support@brandforge-os.com</a>.</p>
@@ -278,11 +298,11 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
 
   <!-- BYOK (Stage 1): optional personal AI key — hidden until enabled server-side -->
   <div id="keys-card" class="card hidden" style="margin-top:14px">
-    <h3 style="margin-bottom:4px">Your AI key (optional)</h3>
+    <h2 style="margin-bottom:4px">Your AI key (optional)</h2>
     <p style="font-size:12px;color:var(--mut);margin-bottom:10px">Connect a personal key for provider-generated drafts. Provider charges and limits may apply. Your key is encrypted — we never show it again, and it's never used for anyone else.</p>
     <div id="keys-msg"></div>
     <label for="key-provider">Provider</label>
-    <select id="key-provider" style="width:auto">
+    <select id="key-provider">
       <option value="groq">Groq — console.groq.com/keys</option>
       <option value="gemini">Gemini — aistudio.google.com/app/apikey</option>
     </select>
@@ -299,7 +319,7 @@ details{border:1px solid var(--line);padding:12px;border-radius:12px;margin:14px
   <div class="card" style="margin-top:14px;border-color:color-mix(in srgb, var(--gold) 35%, var(--line))">
     <div style="display:flex;gap:14px;flex-wrap:wrap;align-items:center;justify-content:space-between">
       <div style="min-width:240px;flex:1">
-        <h3 style="margin-bottom:4px">Prefer to own it forever?</h3>
+        <h2 style="margin-bottom:4px">Prefer to own it forever?</h2>
         <p style="font-size:12px;color:var(--mut);line-height:1.5;margin:0">The desktop app runs on your PC — <b>local-first, private, one-time price</b>. Owner $199 · Agency+Source $499 once. Cloud subscriptions are separate.</p>
       </div>
       <a class="btn gold" href="https://www.brandforge-os.com/pricing" data-pricing-link target="_blank" rel="noopener noreferrer">See desktop pricing →</a>

@@ -3,16 +3,21 @@
 // If not set, frontend falls back to relative or current origin.
 import {WA_ENABLED,providerConfig} from "../deliver.js";
 import { AD_SIZES } from "../engine.js";
+import {visualConfig} from '../visual-plan.js';
 import { serve } from "../serve.js";
 
 async function handle() {
   const publicKey=String(process.env.SUPABASE_ANON_KEY||'').trim();
-  let privileged=publicKey.startsWith('sb_secret_') || (!!publicKey && publicKey===process.env.SUPABASE_SERVICE_ROLE_KEY);
+  // Allow only recognized publishable credentials. A provider secret or
+  // malformed JWT pasted here must never be reflected to every visitor.
+  let allowed=!publicKey || /^sb_publishable_[A-Za-z0-9_-]+$/.test(publicKey);
   if(publicKey.split('.').length===3){
-    try{const claims=JSON.parse(Buffer.from(publicKey.split('.')[1],'base64url').toString('utf8'));privileged ||= claims.role!=='anon';}catch{}
+    try{const claims=JSON.parse(Buffer.from(publicKey.split('.')[1],'base64url').toString('utf8'));allowed=claims.role==='anon';}catch{allowed=false;}
   }
+  const privileged=!allowed || publicKey.startsWith('sb_secret_') || (!!publicKey && publicKey===process.env.SUPABASE_SERVICE_ROLE_KEY);
   if(privileged)return new Response(JSON.stringify({error:'Workspace configuration is unavailable.'}),{status:503,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
 
+  if(process.env.CAPTCHA_REQUIRED==='true'&&!String(process.env.CAPTCHA_SITE_KEY||'').trim())return new Response(JSON.stringify({error:'Signup protection is required but not configured.'}),{status:503,headers:{'Content-Type':'application/json','Cache-Control':'no-store'}});
   return new Response(JSON.stringify({
     supabaseUrl: process.env.SUPABASE_URL || "",
     supabaseAnonKey: publicKey,
@@ -26,6 +31,11 @@ async function handle() {
     // Banner preset catalog for the workspace form (public, non-secret data —
     // the same list the pricing page advertises).
     adSizes: AD_SIZES,
+    images: visualConfig(),
+    usageMetricsEnabled: process.env.USAGE_METRICS_ENABLED==='true'&&(process.env.USAGE_METRICS_SECRET||'').length>=32,
+    imageRecoveryEnabled: process.env.IMAGE_RECOVERY_ENABLED==='true',
+    clientReviewEnabled: process.env.CLIENT_REVIEW_ENABLED==='true',
+    vectorCorrectionsEnabled: process.env.VECTOR_CORRECTIONS_ENABLED==='true',
     whatsappEnabled: WA_ENABLED() && !!providerConfig((process.env.WHATSAPP_PROVIDER || "").toLowerCase()),
   }), { headers: { "Content-Type": "application/json", "Cache-Control": "no-store" } });
 }

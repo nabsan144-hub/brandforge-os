@@ -1,3 +1,5 @@
+const arrivals=new WeakMap();
+export const requestStartedAt=req=>arrivals.get(req)||Date.now();
 // ---------------------------------------------------------------------------
 // Robust adapter so a single Web-style handler runs on ANY Vercel Node runtime
 // mode. Vercel sometimes executes a `export default` function in LEGACY Node
@@ -57,13 +59,16 @@ export function toWebRequest(req) {
     // Read the request stream into the Web Request body.
     return new Promise((resolve, reject) => {
       const chunks = []; let bytes = 0, exceeded = false;
+      const path=new URL(absUrl).pathname.replace(/\/$/,'');
+      const maximum=path==='/api/transfers'?3100000:path==='/api/canvas'?1050000:1000000;
+      const timer=setTimeout(()=>{req.pause?.();reject(Object.assign(new Error('Body read timed out'),{status:408}));},15000);timer.unref?.();
       req.on("data", (c) => {
         bytes += Buffer.byteLength(c);
-        if (bytes > 1_000_000) { exceeded = true; chunks.length = 0; }
+        if (bytes > maximum) { exceeded = true; chunks.length = 0; }
         else if (!exceeded) chunks.push(Buffer.from(c));
       });
-      req.on("end", () => exceeded ? reject(Object.assign(new Error("Request too large"), {status:413})) : resolve(new Request(absUrl, { method, headers, body: Buffer.concat(chunks) })));
-      req.on("error", reject);
+      req.on("end", () => {clearTimeout(timer);return exceeded ? reject(Object.assign(new Error("Request too large"), {status:413})) : resolve(new Request(absUrl, { method, headers, body: Buffer.concat(chunks) }));});
+      req.on("error", error=>{clearTimeout(timer);reject(error);});
     });
   }
   return new Request(absUrl, { method, headers, body: hasBody ? "" : undefined });
@@ -82,9 +87,11 @@ export async function writeResponse(webRes, res) {
 
 export function serve(handler) {
   return async function (req, res) {
+    if(req&&typeof req==='object'&&!arrivals.has(req))arrivals.set(req,Date.now());
     if (isNodeResponse(res)) {
       try {
         const webReq = await toWebRequest(req);
+        arrivals.set(webReq,requestStartedAt(req));
         const webRes = await handler(webReq);
         return writeResponse(webRes, res);
       } catch (error) {

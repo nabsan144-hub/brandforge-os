@@ -3,6 +3,8 @@ export default {
   content: ['./index.html', './src/**/*.{svelte,js,ts}'],
   theme: {
     extend: {
+      spacing: {1:"var(--bf-space-1)",2:"var(--bf-space-2)",3:"var(--bf-space-3)",4:"var(--bf-space-4)",6:"var(--bf-space-6)"},
+      borderRadius: {card:"var(--bf-radius-card)",control:"var(--bf-radius-control)",full:"var(--bf-radius-pill)"},
       colors: {
         bg:     'rgb(var(--bg-rgb) / <alpha-value>)',
         card:   'rgb(var(--card-rgb) / <alpha-value>)',

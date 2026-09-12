@@ -1,3 +1,5 @@
+> Historical audit record. Its counts, live checks and completeness claims are not current certification. See `audit/FINAL-AUDIT.md` and `implementation/PROGRESS.csv` for this handoff.
+
 > Follow-up: see RUNTIME-AUDIT-1.4.2.md for the subsequent runtime/recovery changes and newer verification counts. This document records the original 1.4.1 audit.
 
 # Independent full-package audit — 1.4.1

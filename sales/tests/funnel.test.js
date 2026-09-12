@@ -14,6 +14,8 @@ const pricingHtml = read('pricing.html');
 const indexHtml = read('index.html');
 const configJs = read('assets/config.js');
 const buyJs = read('assets/buy.js');
+const availabilityJs=read('assets/availability.js');
+const capabilities={schema:1,cloud:{checkout_enabled:true},desktop:{checkout_enabled:true},imagery:{configured:false,scope:'hero_only',resized_banners:'vector_only'},generation_paused:false};
 const waitlistJs = read('assets/waitlist.js');
 
 let pass = 0, fail = 0;
@@ -35,6 +37,7 @@ async function makeDom(html, url) {
   const w = dom.window;
   w.HTMLElement.prototype.scrollIntoView=function(){};
   w.eval(configJs);
+  w.eval(availabilityJs);
   w.eval(buyJs);
   w.eval(waitlistJs);
   // waitlist.js defers init() to DOMContentLoaded when readyState==='loading' —
@@ -161,6 +164,9 @@ async function submitForm(dom, email, tier, honey) {
     CFG.desktop_checkout_enabled=true;
     assert('both desktop tiers configured', JSON.stringify(CFG.configuredTiers()) === '["owner","agency_source"]');
     w.refreshDesktopCtas();
+    assert('public flag + prices do not promise checkout without server state',w.document.querySelector('[data-cta-tier="owner"]').textContent.includes('waitlist'));
+    w.fetch=async()=>({ok:true,json:async()=>capabilities});
+    await w.BRANDFORGE_AVAILABILITY.refresh();
     const labelOf = tier => w.document.querySelector('[data-cta-tier="' + tier + '"]').textContent;
     assert('fully configured → CTAs promise checkout, not the waitlist', labelOf('owner') === 'Buy once — $199' && labelOf('agency_source') === 'Buy once — $499', labelOf('owner') + ' | ' + labelOf('agency_source'));
 
@@ -169,6 +175,7 @@ async function submitForm(dom, email, tier, honey) {
     let openedWith=null,onEvent=null,checkouts=[];
     w.Paddle={Environment:{set(){}},Initialize(o){onEvent=o.eventCallback;},Checkout:{open(o){openedWith=o;}}};
     w.fetch=async(url,opts)=>({ok:true,status:200,json:async()=>{
+      if(url.endsWith('/capabilities'))return capabilities;
       if(url.endsWith('/paddle-client-token'))return {token:'test_fixture',environment:'sandbox'};
       checkouts.push(JSON.parse(opts.body));return {transaction_id:'txn_'+JSON.parse(opts.body).tier};
     }});
@@ -179,11 +186,17 @@ async function submitForm(dom, email, tier, honey) {
     assert('Source opens its own authorized transaction',openedWith?.transactionId==='txn_agency_source');
     assert('server receives only an allowlisted edition request',checkouts.length===2&&checkouts[0].tier==='owner');
 
-    // Partial config: only solo configured → agency must fall back, solo sells
+    // Legacy price metadata is not authoritative; server readiness controls both editions.
     CFG.prices.agency_source.id = '';
     assert('partial config → configuredTiers drops agency_source', JSON.stringify(CFG.configuredTiers()) === '["owner"]');
     w.refreshDesktopCtas();
-    assert('partial config → one tier buys, the unconfigured tier still says waitlist', labelOf('owner') === 'Buy once — $199' && labelOf('agency_source') === 'Join the waitlist — $499 at launch', labelOf('owner') + ' | ' + labelOf('agency_source'));
+    assert('legacy price metadata cannot override verified server state', labelOf('owner') === 'Buy once — $199' && labelOf('agency_source') === 'Buy once — $499');
+    onEvent({name:'checkout.closed'});openedWith=null;
+    w.fetch=async()=>({ok:true,json:async()=>({...capabilities,desktop:{checkout_enabled:false}})});
+    await w.brandforgeBuy('owner');
+    assert('server closure is rechecked before SDK or transaction',openedWith===null&&labelOf('owner').includes('waitlist'));
+    w.fetch=async()=>{throw new Error('offline')};await w.BRANDFORGE_AVAILABILITY.refresh();
+    assert('network failure does not retain an old buy label',labelOf('agency_source').includes('waitlist'));
   }
 
   console.log('\n=== STATE C — homepage fallback (index.html has no waitlist form) ===');

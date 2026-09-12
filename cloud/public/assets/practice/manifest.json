@@ -1,0 +1,16 @@
+{
+  "schema": 1,
+  "notice": "Fictional, pre-rendered offline demonstration. No provider calls or account allowance. Three selected sizes are shown for comparison, not a statement of Free-plan entitlement. Human proofreading is required. Revisions shown are separately rendered example briefs, not an AI image correction.",
+  "files": [
+    {
+      "name": "original.json",
+      "sha256": "eadc2a0450303efb517b0d303bd5776c0563299038859bf6e9abf301b17b00e5",
+      "bytes": 220622
+    },
+    {
+      "name": "revised.json",
+      "sha256": "62ac57058251a2e400ee1fb227bc7c9acb04f6d840de78b23f9ffa191257e897",
+      "bytes": 220879
+    }
+  ]
+}

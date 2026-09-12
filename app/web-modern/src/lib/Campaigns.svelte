@@ -3,6 +3,21 @@
   import { FolderOpen } from '@lucide/svelte'
   import { mdToHtml } from './markdown.js'
 
+  async function openCanvas() {
+    try {
+      const name = selected
+      let file = 'canvas_hero.json'
+      let response = await fetch(`/api/campaigns/${encodeURIComponent(name)}/files/${file}`)
+      if (response.status === 404) { file = 'hero_banner.svg'; response = await fetch(`/api/campaigns/${encodeURIComponent(name)}/files/${file}`) }
+      if (!response.ok) throw new Error('Campaign artwork unavailable')
+      const hero = await response.text()
+      if (selected !== name) return
+      const moduleUrl = '/canvas/launch.js'
+      const module = await import(/* @vite-ignore */ moduleUrl)
+      await module.launchCampaign({ ...detail, files: [{ name: file, content: hero }] })
+    } catch (error) { editMessage = error.message }
+  }
+
   let campaigns = []
   let loading = true
   let selected = null
@@ -209,14 +224,28 @@
     try {await navigator.clipboard.writeText(text||'');editMessage='Section copied.'}catch{editMessage='Clipboard access blocked; select and copy the text manually.'}
   }
 
+  async function portableExport() {
+    try {
+      let r = await fetch('/api/transfers?campaign='+encodeURIComponent(selected))
+      let d = await r.json()
+      if (!r.ok && String(d.detail).includes('exceeds portable capacity') && confirm('Full portable archive is too large. Export text and hero only? Other files stay in the original ZIP and are explicitly listed as omitted.')) { r=await fetch('/api/transfers?core=true&campaign='+encodeURIComponent(selected));d=await r.json() }
+      if (!r.ok) throw new Error(d.detail || 'Portable export failed')
+      const url = URL.createObjectURL(new Blob([JSON.stringify(d.pack)],{type:'application/json'}))
+      const a = document.createElement('a'); a.href=url; a.download='brandforge-portable.json'; a.click()
+      setTimeout(()=>URL.revokeObjectURL(url),10000)
+      editMessage=d.notice
+    } catch(e) { editMessage=e.message }
+  }
   onMount(load)
 </script>
 
-<div class="rounded-[20px] bg-card border border-line overflow-hidden">
+<div class="rounded-card bg-card border border-line overflow-hidden">
   <div class="p-5 border-b border-line flex justify-between items-center">
     <div class="flex items-center gap-2.5">
       <div class="w-8 h-8 rounded-xl bg-ink text-bg flex items-center justify-center"><FolderOpen class="w-4 h-4" /></div>
-      <div><h3 class="font-bold text-[14px]">My Campaigns</h3><p class="text-[11px] text-faint">All private, on your machine — includes branding kit</p></div>
+      <div><a href="/canvas/" class="text-sm underline">Editable canvas projects</a>
+{#if detail}<button on:click={openCanvas} class="text-sm underline">Open selected campaign in canvas</button>{/if}
+<h2 class="font-bold text-[14px]">My Campaigns</h2><p class="text-[11px] text-faint">All private, on your machine — includes branding kit</p></div>
     </div>
     <div class="flex items-center gap-2">
       {#if selected}<button on:click={() => { openRequest += 1; selected = null; detail = null; detailLoading = false }} class="px-3 py-1.5 rounded-full bg-inset border border-line text-[11px] text-mut hover:text-ink transition">← All</button>{/if}
@@ -290,6 +319,7 @@
               ✓ I reviewed this content — enable exports
             </button>
           {:else}
+            <button on:click={portableExport} class="px-3 py-1.5 rounded-full border border-line text-[11px] font-bold">Portable archive</button><a href="/transfer" class="px-3 py-1.5 rounded-full border border-line text-[11px] font-bold">Import / view archives</a>
             <a href={`/api/campaigns/${encodeURIComponent(selected)}/export.pdf`} class="px-3 py-1.5 rounded-full border border-line text-[11px] font-bold hover:border-gold/50">PDF</a>
             <a href={`/api/campaigns/${encodeURIComponent(selected)}/export.docx`} class="px-3 py-1.5 rounded-full border border-line text-[11px] font-bold hover:border-gold/50">DOCX</a>
             <a href={downloadUrl(selected)} class="px-3 py-1.5 rounded-full bg-ink text-bg text-[11px] font-bold hover:opacity-90 transition">⬇ ZIP</a>
@@ -408,7 +438,7 @@
         {:else if detailTab === 'branding'}
           <div class="space-y-4">
             <div class="p-3 rounded-xl bg-gold/5 border border-gold/20 text-[11px] text-ink">
-              <b class="text-gold">Branding Kit — High-End Design — Logos etc.</b> — Every campaign includes full branding kit: primary logo (combination), reversed (white on dark), icon-only (lettermark), wordmark, lettermark, abstract, emblem, favicon 512, social avatar 500, color_palette.json, brand_guidelines.md, logo_usage.md — offline, no API key, custom colors, review before publishing. Convert SVG to PNG for favicon 32x32, 16x16, avatar PNG as needed.
+              <b class="text-gold">Brand assets and logo concepts</b> — Basic-layout campaigns include template brand assets: primary logo (combination), reversed (white on dark), icon-only (lettermark), wordmark, lettermark, abstract, emblem, favicon 512, social avatar 500, color_palette.json, brand_guidelines.md, logo_usage.md — offline, no API key, custom colors, review before publishing. Convert SVG to PNG for favicon 32x32, 16x16, avatar PNG as needed.
             </div>
             {#each brandingFiles() as f}
               <div>

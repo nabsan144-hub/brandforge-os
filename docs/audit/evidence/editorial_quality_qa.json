@@ -1,0 +1,362 @@
+[
+  {
+    "id": "coffee",
+    "format": "hero",
+    "name": "coffee-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "coffee",
+    "format": "square",
+    "name": "coffee-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "coffee",
+    "format": "story",
+    "name": "coffee-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "coffee",
+    "format": "display",
+    "name": "coffee-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "coffee",
+    "format": "strip",
+    "name": "coffee-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "coffee-strip.svg: headline omitted in this format",
+      "coffee-strip.svg: subheadline omitted in this format",
+      "coffee-strip.svg: offer omitted in this format",
+      "coffee-strip.svg: benefit 1 omitted in this format",
+      "coffee-strip.svg: benefit 2 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "fitness",
+    "format": "hero",
+    "name": "fitness-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "fitness",
+    "format": "square",
+    "name": "fitness-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "fitness",
+    "format": "story",
+    "name": "fitness-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "fitness",
+    "format": "display",
+    "name": "fitness-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "fitness",
+    "format": "strip",
+    "name": "fitness-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "fitness-strip.svg: headline omitted in this format",
+      "fitness-strip.svg: subheadline omitted in this format",
+      "fitness-strip.svg: offer omitted in this format",
+      "fitness-strip.svg: benefit 1 omitted in this format",
+      "fitness-strip.svg: benefit 2 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "service",
+    "format": "hero",
+    "name": "service-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "service",
+    "format": "square",
+    "name": "service-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "service",
+    "format": "story",
+    "name": "service-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "service",
+    "format": "display",
+    "name": "service-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "service",
+    "format": "strip",
+    "name": "service-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "service-strip.svg: headline omitted in this format",
+      "service-strip.svg: subheadline omitted in this format",
+      "service-strip.svg: offer omitted in this format",
+      "service-strip.svg: benefit 1 omitted in this format",
+      "service-strip.svg: benefit 2 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "urdu",
+    "format": "hero",
+    "name": "urdu-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "urdu",
+    "format": "square",
+    "name": "urdu-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "urdu",
+    "format": "story",
+    "name": "urdu-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "urdu",
+    "format": "display",
+    "name": "urdu-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "urdu",
+    "format": "strip",
+    "name": "urdu-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "urdu-strip.svg: headline omitted in this format",
+      "urdu-strip.svg: subheadline omitted in this format",
+      "urdu-strip.svg: offer omitted in this format",
+      "urdu-strip.svg: benefit 1 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "hindi",
+    "format": "hero",
+    "name": "hindi-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "hindi",
+    "format": "square",
+    "name": "hindi-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "hindi",
+    "format": "story",
+    "name": "hindi-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "hindi",
+    "format": "display",
+    "name": "hindi-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "hindi",
+    "format": "strip",
+    "name": "hindi-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "hindi-strip.svg: headline omitted in this format",
+      "hindi-strip.svg: subheadline omitted in this format",
+      "hindi-strip.svg: offer omitted in this format",
+      "hindi-strip.svg: benefit 1 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "rejected-long",
+    "format": "hero",
+    "name": "rejected-long-hero.svg",
+    "width": 1200,
+    "height": 630,
+    "issues": [
+      "rejected-long-hero.svg: headline does not fit at the minimum type size",
+      "rejected-long-hero.svg: subheadline does not fit at the minimum type size"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "rejected-long",
+    "format": "square",
+    "name": "rejected-long-square.svg",
+    "width": 1080,
+    "height": 1080,
+    "issues": [
+      "rejected-long-square.svg: headline does not fit at the minimum type size",
+      "rejected-long-square.svg: subheadline does not fit at the minimum type size",
+      "rejected-long-square.svg: benefit 1 does not fit at the minimum type size",
+      "rejected-long-square.svg: benefit 2 does not fit at the minimum type size",
+      "rejected-long-square.svg: offer does not fit at the minimum type size",
+      "rejected-long-square.svg: cta does not fit at the minimum type size"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "rejected-long",
+    "format": "story",
+    "name": "rejected-long-story.svg",
+    "width": 1080,
+    "height": 1920,
+    "issues": [
+      "rejected-long-story.svg: headline does not fit at the minimum type size",
+      "rejected-long-story.svg: subheadline does not fit at the minimum type size",
+      "rejected-long-story.svg: offer does not fit at the minimum type size",
+      "rejected-long-story.svg: cta does not fit at the minimum type size"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "rejected-long",
+    "format": "display",
+    "name": "rejected-long-display.svg",
+    "width": 300,
+    "height": 250,
+    "issues": [
+      "rejected-long-display.svg: brand does not fit at the minimum type size",
+      "rejected-long-display.svg: headline does not fit at the minimum type size",
+      "rejected-long-display.svg: subheadline does not fit at the minimum type size",
+      "rejected-long-display.svg: benefit 1 does not fit at the minimum type size",
+      "rejected-long-display.svg: benefit 2 does not fit at the minimum type size",
+      "rejected-long-display.svg: offer does not fit at the minimum type size",
+      "rejected-long-display.svg: cta does not fit at the minimum type size"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  },
+  {
+    "id": "rejected-long",
+    "format": "strip",
+    "name": "rejected-long-strip.svg",
+    "width": 320,
+    "height": 50,
+    "issues": [
+      "rejected-long-strip.svg: brand does not fit at the minimum type size",
+      "rejected-long-strip.svg: cta does not fit at the minimum type size",
+      "rejected-long-strip.svg: headline omitted in this format",
+      "rejected-long-strip.svg: subheadline omitted in this format",
+      "rejected-long-strip.svg: offer omitted in this format",
+      "rejected-long-strip.svg: benefit 1 omitted in this format",
+      "rejected-long-strip.svg: benefit 2 omitted in this format",
+      "rejected-long-strip.svg: benefit 3 omitted in this format"
+    ],
+    "geometry": "pass",
+    "raster": "pass"
+  }
+]

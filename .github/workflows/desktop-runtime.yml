@@ -1,0 +1,45 @@
+name: Native runtime candidate (manual, unsigned)
+on:
+  workflow_dispatch:
+jobs:
+  package:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: python -m pip install -r app/requirements.txt pyinstaller==6.22.2
+      - run: npm ci --prefix app/web-modern
+      - run: npm run build --prefix app/web-modern
+      - run: python scripts/build_desktop_runtime.py native-candidate
+      - name: Native offline smoke (no provider calls)
+        shell: bash
+        run: |
+          if [ "${{ runner.os }}" = "Windows" ]; then
+            python scripts/smoke_native_runtime.py native-candidate/BrandForge/BrandForge.exe
+          else
+            python scripts/smoke_native_runtime.py native-candidate/BrandForge/BrandForge
+          fi
+      - name: Install Windows installer compiler
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          choco install innosetup --yes --no-progress
+          "C:\Program Files (x86)\Inno Setup 6" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+      - name: Build unsigned target-OS installer
+        run: python scripts/package_native_installer.py native-candidate --output installers
+      - uses: actions/upload-artifact@v4
+        with:
+          name: unsigned-runtime-${{ matrix.os }}
+          path: |
+            native-candidate/
+            installers/
+          retention-days: 7

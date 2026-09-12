@@ -1,0 +1,50 @@
+[
+  {
+    "theme": "light",
+    "width": 390,
+    "opt_in_default_preserved": true,
+    "omission_notice": true,
+    "quality_manifest_sha256": true,
+    "copy_unchanged": true,
+    "free_svg_png_watermark": true,
+    "axe": [],
+    "page_errors": [],
+    "overflow": false
+  },
+  {
+    "theme": "light",
+    "width": 1440,
+    "opt_in_default_preserved": true,
+    "omission_notice": true,
+    "quality_manifest_sha256": true,
+    "copy_unchanged": true,
+    "free_svg_png_watermark": true,
+    "axe": [],
+    "page_errors": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 390,
+    "opt_in_default_preserved": true,
+    "omission_notice": true,
+    "quality_manifest_sha256": true,
+    "copy_unchanged": true,
+    "free_svg_png_watermark": true,
+    "axe": [],
+    "page_errors": [],
+    "overflow": false
+  },
+  {
+    "theme": "dark",
+    "width": 1440,
+    "opt_in_default_preserved": true,
+    "omission_notice": true,
+    "quality_manifest_sha256": true,
+    "copy_unchanged": true,
+    "free_svg_png_watermark": true,
+    "axe": [],
+    "page_errors": [],
+    "overflow": false
+  }
+]

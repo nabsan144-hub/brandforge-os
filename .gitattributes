@@ -1,0 +1,2 @@
+# Generated bundles can contain intentional whitespace in template literals.
+app/brandforge_assets/dashboard/assets/*.js -whitespace

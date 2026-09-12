@@ -1,0 +1,278 @@
+QUALITY: /usr/local/bin/python scripts/repository_inventory.py --output .cache/release-source-inventory.json
+{
+  "files": 753,
+  "text_lines": 67568,
+  "syntax_failures": [],
+  "credential_patterns": []
+}
+QUALITY: node --input-type=module -e await import('./cloud/api/index.js');console.log('Native Node Cloud route import passed')
+Native Node Cloud route import passed
+QUALITY: /usr/local/bin/python scripts/sync_canvas.py --check
+Canvas assets match canonical source.
+QUALITY: /usr/local/bin/python scripts/sync_design_tokens.py --check
+Shared UI semantic tokens match source.
+QUALITY: /usr/local/bin/python -m pytest app/tests -q
+........................................................................ [ 16%]
+........................................................................ [ 32%]
+........................................................................ [ 48%]
+........................................................................ [ 64%]
+........................................................................ [ 80%]
+........................................................................ [ 96%]
+..................                                                       [100%]
+=============================== warnings summary ===============================
+tests/test_readiness_regressions.py::test_real_swarm_api_honors_dimensions_logo_and_new_text_revision
+  /home/user/repo/app/tests/test_readiness_regressions.py:39: DeprecationWarning: Image.Image.getdata is deprecated and will be removed in Pillow 14 (2027-10-15). Use get_flattened_data instead.
+    assert sum(1 for r,g,b in image.getdata() if r>240 and g<20 and 150<b<190)>10
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+450 passed, 1 warning in 154.02s (0:02:34)
+QUALITY: /usr/local/bin/python -m ruff check app
+All checks passed!
+QUALITY: npm test --prefix cloud
+
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/user/repo/cloud[39m
+
+ [32m✓[39m tests/engine.test.js [2m([22m[2m12 tests[22m[2m)[22m[33m 6410[2mms[22m[39m
+     [33m[2m✓[22m[39m retains successful provider stages if one request fails [33m 4513[2mms[22m[39m
+     [33m[2m✓[22m[39m backoff retries a 429 and binds the generated headline into every banner [33m 1535[2mms[22m[39m
+ [32m✓[39m tests/payload-routes.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3936[2mms[22m[39m
+   [33m[2m✓[22m[39m large high-entropy legacy account exports fail with a controlled support path [33m 454[2mms[22m[39m
+ [32m✓[39m tests/private-assets.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 4304[2mms[22m[39m
+   [33m[2m✓[22m[39m operator recovery writes oversized legacy bytes privately without mutation or overwriting a backup [33m 495[2mms[22m[39m
+ [32m✓[39m tests/vector-corrections.test.js [2m([22m[2m23 tests[22m[2m)[22m[33m 4131[2mms[22m[39m
+ [32m✓[39m tests/billing.test.js [2m([22m[2m18 tests[22m[2m)[22m[33m 3968[2mms[22m[39m
+ [32m✓[39m tests/private-versions.test.js [2m([22m[2m9 tests[22m[2m)[22m[33m 3726[2mms[22m[39m
+ [32m✓[39m tests/campaigns.test.js [2m([22m[2m17 tests[22m[2m)[22m[33m 3848[2mms[22m[39m
+ [32m✓[39m tests/database.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 3402[2mms[22m[39m
+ [32m✓[39m tests/usage-metrics.test.js [2m([22m[2m5 tests[22m[2m)[22m[33m 3510[2mms[22m[39m
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mpersists the order when email fails and safely retries delivery
+[22m[39mPaddle processing needs retry evt_4a0f09785c024c0281ba0c1c7d DELIVERY_PENDING
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mbinds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+[22m[39mPaddle processing needs retry evt_a3fcd63363ea4963aa69c1e6bb REQUEST_FAILED
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mkeeps an unsuccessful event retryable after a database failure
+[22m[39mPaddle processing needs retry evt_e15cf696da474c5ca9fda2a022 DATABASE_UNAVAILABLE
+
+ [32m✓[39m tests/paddle-webhook.test.js [2m([22m[2m8 tests[22m[2m)[22m[33m 3669[2mms[22m[39m
+ [32m✓[39m tests/image-safety.test.js [2m([22m[2m24 tests[22m[2m)[22m[33m 3174[2mms[22m[39m
+ [32m✓[39m tests/product-workflows.test.js [2m([22m[2m12 tests[22m[2m)[22m[33m 3239[2mms[22m[39m
+ [32m✓[39m tests/portable-pack.test.js [2m([22m[2m4 tests[22m[2m)[22m[33m 3072[2mms[22m[39m
+ [32m✓[39m tests/canvas.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3154[2mms[22m[39m
+ [32m✓[39m tests/delivery-queue.test.js [2m([22m[2m4 tests[22m[2m)[22m[33m 3335[2mms[22m[39m
+ [32m✓[39m tests/image-recovery.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3326[2mms[22m[39m
+ [32m✓[39m tests/client-review.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3309[2mms[22m[39m
+ [32m✓[39m tests/me.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3252[2mms[22m[39m
+ [32m✓[39m tests/id.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3214[2mms[22m[39m
+ [32m✓[39m tests/full-audit.test.js [2m([22m[2m7 tests[22m[2m)[22m[33m 3186[2mms[22m[39m
+ [32m✓[39m tests/me-export.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3166[2mms[22m[39m
+ [32m✓[39m tests/visual-review.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 3557[2mms[22m[39m
+ [32m✓[39m tests/ops-status.test.js [2m([22m[2m2 tests[22m[2m)[22m[33m 3168[2mms[22m[39m
+ [32m✓[39m tests/database-upgrade.test.js [2m([22m[2m1 test[22m[2m)[22m[33m 3135[2mms[22m[39m
+   [33m[2m✓[22m[39m upgrade preserves larger known monthly usage and closes legacy waitlist grants [33m 3133[2mms[22m[39m
+ [32m✓[39m tests/dashboard-a11y.test.js [2m([22m[2m5 tests[22m[2m)[22m[33m 1540[2mms[22m[39m
+     [33m[2m✓[22m[39m has zero axe violations (color-contrast disabled for jsdom) [33m 1209[2mms[22m[39m
+ [32m✓[39m tests/watermark-payload.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 527[2mms[22m[39m
+ [32m✓[39m tests/scene-image.test.js [2m([22m[2m9 tests[22m[2m)[22m[33m 319[2mms[22m[39m
+ [32m✓[39m tests/editorial-vector.test.js [2m([22m[2m37 tests[22m[2m)[22m[33m 322[2mms[22m[39m
+ [32m✓[39m tests/readiness-regressions.test.js [2m([22m[2m12 tests[22m[2m)[22m[33m 364[2mms[22m[39m
+ [32m✓[39m tests/i18n.test.js [2m([22m[2m15 tests[22m[2m)[22m[32m 154[2mms[22m[39m
+ [32m✓[39m tests/golden-i18n.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 132[2mms[22m[39m
+ [32m✓[39m tests/quota.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 86[2mms[22m[39m
+ [32m✓[39m tests/golden-en.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 70[2mms[22m[39m
+ [32m✓[39m tests/capabilities.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 36[2mms[22m[39m
+ [32m✓[39m tests/logo-crop.test.js [2m([22m[2m3 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+ [32m✓[39m tests/final-hardening.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+[90mstderr[2m | tests/waitlist.test.js[2m > [22m[2mwaitlist endpoint[2m > [22m[2mreturns 501 with an actionable message when the waitlist table is missing
+[22m[39mwaitlist upsert failed relation "public.waitlist" does not exist
+
+ [32m✓[39m tests/waitlist.test.js [2m([22m[2m7 tests[22m[2m)[22m[32m 43[2mms[22m[39m
+ [32m✓[39m tests/dispatcher.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m tests/signup-protection.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m tests/deliver.test.js [2m([22m[2m17 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+ [32m✓[39m tests/keys.test.js [2m([22m[2m18 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m tests/limit.test.js [2m([22m[2m6 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m tests/schema.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/vendor.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 26[2mms[22m[39m
+ [32m✓[39m tests/dashboard-contrast.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m tests/allowance.test.js [2m([22m[2m3 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m tests/clientip.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/auth-availability.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 12[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m48 passed[39m[22m[90m (48)[39m
+[2m      Tests [22m [1m[32m438 passed[39m[22m[90m (438)[39m
+[2m   Start at [22m 07:03:54
+[2m   Duration [22m 107.27s[2m (transform 1.42s, setup 0ms, import 9.63s, tests 90.05s, environment 9ms)[22m
+
+QUALITY: npm test --prefix sales
+
+> brandforge-sales-tests@0.0.0 test
+> node tests/funnel.test.js && node tests/demo.test.js && node tests/a11y.test.js && node tests/css-coverage.js && node tests/theme-contrast.test.js && node tests/site-integrity.test.js && node tests/hero-motion.test.mjs
+
+
+=== STATE A — current repo state (honest pre-launch: Paddle off, waitlist live) ===
+  ✓ config exposes window.BRANDFORGE_LAUNCH
+  ✓ no FormSubmit placeholder inbox remains
+  ✓ waitlist posts to the cloud /api/waitlist backend
+  ✓ waitlistReady === true (endpoint is wired)
+  ✓ paddle_client_token empty → paddleReady === false
+  ✓ configuredTiers() === []
+  ✓ default state → Owner CTA promises the waitlist, never checkout
+  ✓ valid email posts to the waitlist endpoint
+  ✓ payload carries email + tier (no FormSubmit keys)
+  ✓ backend success → confirmation shown (waitlist is live pre-launch)
+  ✓ no unhandled native form navigation occurred
+  ✓ backend 501 → actionable "not enabled / email support" message
+  ✓ backend 5xx → honest failure message
+  ✓ invalid email → validation message
+  ✓ honeypot filled → fake success, still no fetch
+
+=== STATE A2 — domain integrity (regression guard, audit 2026-08-28) ===
+  ✓ support_email domain === production site domain
+  ✓ no shipped sales file references dead domain brandforgeos.com
+
+=== STATE B — operator-configured (simulates pasting real values) ===
+  ✓ waitlistReady === true (endpoint resolved)
+  ✓ waitlist endpoint resolves to the cloud backend
+  ✓ posts to the cloud /api/waitlist backend
+  ✓ payload carries email + selected tier
+  ✓ backend success → confirmation shown
+  ✓ backend 501 → honest "not enabled" message
+  ✓ public token + prices alone cannot enable paid checkout
+  ✓ both desktop tiers configured
+  ✓ public flag + prices do not promise checkout without server state
+  ✓ fully configured → CTAs promise checkout, not the waitlist
+  ✓ Owner opens the authorized transaction, not a raw price
+  ✓ Source opens its own authorized transaction
+  ✓ server receives only an allowlisted edition request
+  ✓ partial config → configuredTiers drops agency_source
+  ✓ legacy price metadata cannot override verified server state
+  ✓ server closure is rechecked before SDK or transaction
+  ✓ network failure does not retain an old buy label
+
+=== STATE C — homepage fallback (index.html has no waitlist form) ===
+  ✓ index.html has no #waitlist element
+  ✓ unconfigured buy CTA attempts redirect (to pricing.html#waitlist)
+  ✓ waitlist fallback preserves the selected Desktop tier
+
+RESULT: 37 passed, 0 failed
+  ✓ index.html: one integrated video, not an eager duplicate iframe
+  ✓ index.html: native controls, inline playback and muted by default
+  ✓ index.html: no autoplay or preload download
+  ✓ index.html: named accessible video
+  ✓ index.html: shipped assets/product-demo/demo.mp4
+  ✓ index.html: shipped assets/product-demo/captions.vtt
+  ✓ index.html: shipped poster
+  ✓ index.html: no duplicate default caption overlay
+  ✓ index.html: animated alternative and video download present
+  ✓ index.html: still explains fictional/example footage
+  ✓ index.html: initialization never starts playback
+  ✓ index.html: explicit click plays and hides the poster control
+  ✓ index.html: ending offers replay
+  ✓ index.html: media failure provides HTML/download alternatives
+  ✓ demo.html: one integrated video, not an eager duplicate iframe
+  ✓ demo.html: native controls, inline playback and muted by default
+  ✓ demo.html: no autoplay or preload download
+  ✓ demo.html: named accessible video
+  ✓ demo.html: shipped assets/product-demo/demo.mp4
+  ✓ demo.html: shipped assets/product-demo/captions.vtt
+  ✓ demo.html: shipped poster
+  ✓ demo.html: no duplicate default caption overlay
+  ✓ demo.html: animated alternative and video download present
+  ✓ demo.html: still explains fictional/example footage
+  ✓ demo.html: initialization never starts playback
+  ✓ demo.html: explicit click plays and hides the poster control
+  ✓ demo.html: ending offers replay
+  ✓ demo.html: media failure provides HTML/download alternatives
+  ✓ manifest declares 1080p, 30fps, fictional/non-live footage
+  ✓ asset hash/size: ASSET-NOTICE.md
+  ✓ asset hash/size: MUSIC-NOTE.txt
+  ✓ asset hash/size: captions.srt
+  ✓ asset hash/size: captions.vtt
+  ✓ asset hash/size: demo.mp4
+  ✓ asset hash/size: geist-OFL.txt
+  ✓ asset hash/size: instrumentserif-OFL.txt
+  ✓ asset hash/size: poster.jpg
+  ✓ asset hash/size: tour.html
+  ✓ video is a nonempty MP4
+  ✓ HTML alternative embeds music and has accessible real next steps
+  ✓ standalone font notices retained
+  ✓ homepage watch link and demo sample anchor are real
+  ✓ marketing CSP permits embedded audio without allowing frames
+  ✓ Netlify and Cloudflare marketing policies also allow the self-contained soundtrack
+  ✓ checkout still off
+  ✓ vercel.json: no tour asset redirect competes with the /tour rewrite
+  ✓ netlify.toml: single 200 /tour rewrite, no legacy tour 301s
+  ✓ _redirects: only the /tour 200 rewrite remains
+  ✓ publish build mirrors the self-contained tour at the site root
+  ✓ Desktop CTAs promise the waitlist until a tier is configured for sale
+  ✓ workspace CTA matches the honest waitlist wording
+  ✓ free plan copy matches the engine (hero + 1 preset)
+  ✓ FAQ JSON-LD mirrors the visible answers (no absolute offline overclaim)
+  ✓ homepage hero shows real benefits and still states the honest limits
+RESULT: 54 demo integration checks passed
+=== Accessibility gate (axe-core) — shipped sales pages ===
+  ✓ index.html — no axe violations
+  ✓ pricing.html — no axe violations
+  ✓ agents.html — no axe violations
+  ✓ docs.html — no axe violations
+  ✓ changelog.html — no axe violations
+  ✓ tools.html — no axe violations
+  ✓ workspace.html — no axe violations
+  ✓ privacy.html — no axe violations
+  ✓ terms.html — no axe violations
+  ✓ refund.html — no axe violations
+  ✓ 404.html — no axe violations
+  ✓ demo.html — no axe violations
+  ✓ vs-canva-ad-creator.html — no axe violations
+  ✓ best-ad-copy-generator.html — no axe violations
+
+RESULT: 14 passed, 0 failed
+RESULT: css coverage ✓ (393 class tokens all present)
+RESULT: theme-contrast ✓ (20 files scanned, all gold backgrounds use theme-aware ink)
+RESULT: escaped-quote ✓ (no literal backslash-quotes in attributes)
+RESULT: light-gold-contrast ✓ (text 6.57:1 on paper, buttons 16.19:1 dark-pill)
+Site integrity: 14 pages; canonical URLs, metadata, IDs, links/assets passed.
+Hero motion: reduced-motion changes, off-screen and hidden-tab pause/resume passed.
+QUALITY: npm run build --prefix sales
+
+> brandforge-sales-tests@0.0.0 build
+> node build.mjs
+
+Static publication assembled in sales/public (no tests, package files or operator-only media notes).
+Animated tour mirrored to the publish root as /tour.html (served at /tour).
+QUALITY: npm run build --prefix app/web-modern
+
+> brandforge-os-dashboard@1.0.0 build
+> vite build
+
+7:05:51 AM [vite-plugin-svelte] no Svelte config found at /home/user/repo/app/web-modern - using default configuration.
+vite v8.2.2 building client environment for production...
+transforming...
+✓ 3941 modules transformed.
+rendering chunks...
+computing gzip size...
+../web/dist/index.html                                           1.07 kB │ gzip:  0.67 kB
+../web/dist/assets/instrument-serif-400-DnYpCC2O.woff2          21.03 kB
+../web/dist/assets/instrument-serif-400-italic-DKMiL14s.woff2   22.12 kB
+../web/dist/assets/geist-400-BgDaEnEv.woff2                     29.40 kB
+../web/dist/assets/index-DLYhrHcl.css                           31.88 kB │ gzip:  7.43 kB
+../web/dist/assets/index-IDc_F-K9.js                           169.05 kB │ gzip: 54.04 kB
+
+✓ built in 5.49s
+[33m[PLUGIN_TIMINGS] [0mYour build spent 98% of 5.5s inside plugin hooks (5.3s).
+Measured inside the callback, so queue time is excluded and time the callback itself awaited is not:
+  - vite-plugin-svelte:compile transform (68%, 3.7s, 1785 calls)
+Those rows are 68% of the build; the rest of the 98% is below.
+Not measurable — 1 hook whose calls overlap, so elapsed time covers work other calls were doing. Profile with `node --cpu-prof`:
+  - vite:css transform (4 calls)
+See https://rolldown.rs/reference/InputOptions.checks#plugintimings for more details.
+
+QUALITY: node cloud/scripts/sync-schema.mjs --check
+QUALITY: /usr/local/bin/python scripts/validate_launch_config.py --prelaunch
+Mode: PRELAUNCH SAFE (not revenue-ready)
+PASS

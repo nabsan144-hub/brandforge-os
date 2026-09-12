@@ -1,0 +1,23 @@
+Testing chromium
+Testing firefox
+Testing webkit
+[
+  {
+    "engine": "chromium",
+    "malicious_references_rejected": 9,
+    "static_reference_flattened": true,
+    "external_requests": 0
+  },
+  {
+    "engine": "firefox",
+    "malicious_references_rejected": 9,
+    "static_reference_flattened": true,
+    "external_requests": 0
+  },
+  {
+    "engine": "webkit",
+    "malicious_references_rejected": 9,
+    "static_reference_flattened": true,
+    "external_requests": 0
+  }
+]

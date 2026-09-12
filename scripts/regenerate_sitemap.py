@@ -23,18 +23,15 @@ OUT = SALES / "sitemap.xml"
 # page file -> (priority, loc path). Order preserved from the existing sitemap.
 # The site serves with Vercel `cleanUrls: true`, so the canonical loc is the
 # clean URL (no .html) — matches the clean canonical/og tags in the pages.
-PAGES = [
-    ("index.html", "1.0", "/"),
-    ("workspace.html", "0.9", "/workspace"),
-    ("agents.html", "0.9", "/agents"),
-    ("pricing.html", "0.9", "/pricing"),
-    ("tools.html", "0.9", "/tools"),
-    ("docs.html", "0.8", "/docs"),
-    ("demo.html", "0.8", "/demo"),
-    ("privacy.html", "0.3", "/privacy"),
-    ("refund.html", "0.3", "/refund"),
-    ("terms.html", "0.3", "/terms"),
-]
+# Include every indexable root page; never silently drop comparison guides
+# when regenerating a hard-coded list. Private/draft pages must opt out.
+PAGES = []
+for page in sorted(SALES.glob('*.html')):
+    text = page.read_text(encoding='utf-8')
+    if page.name == '404.html' or re.search(r'<meta[^>]+name=[\'"]robots[\'"][^>]+content=[\'"][^\'"]*noindex', text, re.I):
+        continue
+    PAGES.append((page.name, '1.0' if page.name == 'index.html' else '0.6', '/' if page.name == 'index.html' else '/' + page.stem))
+
 
 # The site serves at www.brandforge-os.com (the non-www host 308-redirects to
 # it), so the canonical host is www. Keep sitemap URLs on www to match the

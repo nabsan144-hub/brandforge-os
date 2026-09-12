@@ -112,11 +112,11 @@
   function quick(t) { input = t; send() }
 </script>
 
-<div class="rounded-[20px] bg-card border border-line overflow-hidden flex flex-col">
+<div class="rounded-card bg-card border border-line overflow-hidden flex flex-col">
   <div class="p-5 border-b border-line flex items-center gap-3">
     <div class="w-8 h-8 rounded-full bg-ink text-bg flex items-center justify-center font-bold text-[12px]">B</div>
     <div>
-      <h3 class="font-bold text-[14px]">Ask BrandForge</h3>
+      <h2 class="font-bold text-[14px]">Ask BrandForge</h2>
       <p class="text-[11px] text-faint">Local-first • 21 tools • Cloud providers are optional</p>
     </div>
     <button on:click={toggleCouncil} title="3 agents (Strategist, Copywriter, Critic) discuss your question in turns" class="ml-auto px-3 py-1.5 rounded-full border text-[11px] font-medium transition flex items-center gap-1.5 {councilMode ? 'bg-gold text-ink border-gold' : 'bg-inset text-faint border-line hover:border-zinc-600'}" aria-pressed={councilMode}>

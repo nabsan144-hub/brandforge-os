@@ -1,0 +1,129 @@
+
+> brandforge-sales-tests@0.0.0 test
+> node tests/funnel.test.js && node tests/demo.test.js && node tests/a11y.test.js && node tests/css-coverage.js && node tests/theme-contrast.test.js && node tests/site-integrity.test.js && node tests/hero-motion.test.mjs
+
+
+=== STATE A — current repo state (honest pre-launch: Paddle off, waitlist live) ===
+  ✓ config exposes window.BRANDFORGE_LAUNCH
+  ✓ no FormSubmit placeholder inbox remains
+  ✓ waitlist posts to the cloud /api/waitlist backend
+  ✓ waitlistReady === true (endpoint is wired)
+  ✓ paddle_client_token empty → paddleReady === false
+  ✓ configuredTiers() === []
+  ✓ default state → Owner CTA promises the waitlist, never checkout
+  ✓ valid email posts to the waitlist endpoint
+  ✓ payload carries email + tier (no FormSubmit keys)
+  ✓ backend success → confirmation shown (waitlist is live pre-launch)
+  ✓ no unhandled native form navigation occurred
+  ✓ backend 501 → actionable "not enabled / email support" message
+  ✓ backend 5xx → honest failure message
+  ✓ invalid email → validation message
+  ✓ honeypot filled → fake success, still no fetch
+
+=== STATE A2 — domain integrity (regression guard, audit 2026-08-28) ===
+  ✓ support_email domain === production site domain
+  ✓ no shipped sales file references dead domain brandforgeos.com
+
+=== STATE B — operator-configured (simulates pasting real values) ===
+  ✓ waitlistReady === true (endpoint resolved)
+  ✓ waitlist endpoint resolves to the cloud backend
+  ✓ posts to the cloud /api/waitlist backend
+  ✓ payload carries email + selected tier
+  ✓ backend success → confirmation shown
+  ✓ backend 501 → honest "not enabled" message
+  ✓ public token + prices alone cannot enable paid checkout
+  ✓ both desktop tiers configured
+  ✓ public flag + prices do not promise checkout without server state
+  ✓ fully configured → CTAs promise checkout, not the waitlist
+  ✓ Owner opens the authorized transaction, not a raw price
+  ✓ Source opens its own authorized transaction
+  ✓ server receives only an allowlisted edition request
+  ✓ partial config → configuredTiers drops agency_source
+  ✓ legacy price metadata cannot override verified server state
+  ✓ server closure is rechecked before SDK or transaction
+  ✓ network failure does not retain an old buy label
+
+=== STATE C — homepage fallback (index.html has no waitlist form) ===
+  ✓ index.html has no #waitlist element
+  ✓ unconfigured buy CTA attempts redirect (to pricing.html#waitlist)
+  ✓ waitlist fallback preserves the selected Desktop tier
+
+RESULT: 37 passed, 0 failed
+  ✓ index.html: one integrated video, not an eager duplicate iframe
+  ✓ index.html: native controls, inline playback and muted by default
+  ✓ index.html: no autoplay or preload download
+  ✓ index.html: named accessible video
+  ✓ index.html: shipped assets/product-demo/demo.mp4
+  ✓ index.html: shipped assets/product-demo/captions.vtt
+  ✓ index.html: shipped poster
+  ✓ index.html: no duplicate default caption overlay
+  ✓ index.html: animated alternative and video download present
+  ✓ index.html: still explains fictional/example footage
+  ✓ index.html: initialization never starts playback
+  ✓ index.html: explicit click plays and hides the poster control
+  ✓ index.html: ending offers replay
+  ✓ index.html: media failure provides HTML/download alternatives
+  ✓ demo.html: one integrated video, not an eager duplicate iframe
+  ✓ demo.html: native controls, inline playback and muted by default
+  ✓ demo.html: no autoplay or preload download
+  ✓ demo.html: named accessible video
+  ✓ demo.html: shipped assets/product-demo/demo.mp4
+  ✓ demo.html: shipped assets/product-demo/captions.vtt
+  ✓ demo.html: shipped poster
+  ✓ demo.html: no duplicate default caption overlay
+  ✓ demo.html: animated alternative and video download present
+  ✓ demo.html: still explains fictional/example footage
+  ✓ demo.html: initialization never starts playback
+  ✓ demo.html: explicit click plays and hides the poster control
+  ✓ demo.html: ending offers replay
+  ✓ demo.html: media failure provides HTML/download alternatives
+  ✓ manifest declares 1080p, 30fps, fictional/non-live footage
+  ✓ asset hash/size: ASSET-NOTICE.md
+  ✓ asset hash/size: MUSIC-NOTE.txt
+  ✓ asset hash/size: captions.srt
+  ✓ asset hash/size: captions.vtt
+  ✓ asset hash/size: demo.mp4
+  ✓ asset hash/size: geist-OFL.txt
+  ✓ asset hash/size: instrumentserif-OFL.txt
+  ✓ asset hash/size: poster.jpg
+  ✓ asset hash/size: tour.html
+  ✓ video is a nonempty MP4
+  ✓ HTML alternative embeds music and has accessible real next steps
+  ✓ standalone font notices retained
+  ✓ homepage watch link and demo sample anchor are real
+  ✓ marketing CSP permits embedded audio without allowing frames
+  ✓ Netlify and Cloudflare marketing policies also allow the self-contained soundtrack
+  ✓ checkout still off
+  ✓ vercel.json: no tour asset redirect competes with the /tour rewrite
+  ✓ netlify.toml: single 200 /tour rewrite, no legacy tour 301s
+  ✓ _redirects: only the /tour 200 rewrite remains
+  ✓ publish build mirrors the self-contained tour at the site root
+  ✓ Desktop CTAs promise the waitlist until a tier is configured for sale
+  ✓ workspace CTA matches the honest waitlist wording
+  ✓ free plan copy matches the engine (hero + 1 preset)
+  ✓ FAQ JSON-LD mirrors the visible answers (no absolute offline overclaim)
+  ✓ homepage hero shows real benefits and still states the honest limits
+RESULT: 54 demo integration checks passed
+=== Accessibility gate (axe-core) — shipped sales pages ===
+  ✓ index.html — no axe violations
+  ✓ pricing.html — no axe violations
+  ✓ agents.html — no axe violations
+  ✓ docs.html — no axe violations
+  ✓ changelog.html — no axe violations
+  ✓ tools.html — no axe violations
+  ✓ workspace.html — no axe violations
+  ✓ privacy.html — no axe violations
+  ✓ terms.html — no axe violations
+  ✓ refund.html — no axe violations
+  ✓ 404.html — no axe violations
+  ✓ demo.html — no axe violations
+  ✓ vs-canva-ad-creator.html — no axe violations
+  ✓ best-ad-copy-generator.html — no axe violations
+
+RESULT: 14 passed, 0 failed
+RESULT: css coverage ✓ (393 class tokens all present)
+RESULT: theme-contrast ✓ (20 files scanned, all gold backgrounds use theme-aware ink)
+RESULT: escaped-quote ✓ (no literal backslash-quotes in attributes)
+RESULT: light-gold-contrast ✓ (text 4.60:1 on paper, buttons 16.19:1 dark-pill)
+Site integrity: 14 pages; canonical URLs, metadata, IDs, links/assets passed.
+Hero motion: reduced-motion changes, off-screen and hidden-tab pause/resume passed.

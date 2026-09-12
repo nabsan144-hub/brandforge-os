@@ -9,7 +9,7 @@ def data_dir():
     if override:
         return str(Path(override).expanduser().resolve())
     portable = Path(__file__).resolve().parents[1]
-    if (portable / 'pyproject.toml').is_file() and os.access(portable, os.W_OK):
+    if not getattr(sys, 'frozen', False) and (portable / 'pyproject.toml').is_file() and os.access(portable, os.W_OK):
         return str(portable)
     if os.name == 'nt':
         root = Path(os.environ.get('LOCALAPPDATA') or Path.home() / 'AppData/Local')

@@ -70,3 +70,22 @@ with psycopg.connect(DSN,autocommit=True) as connection:
     except psycopg.errors.InsufficientPrivilege: pass
     else: raise AssertionError('Waitlist was readable by authenticated')
 print(json.dumps({'postgres':info.get('host'),'checks':'PASS','parallel_campaign_attempts':120,'completed_exactly':50,'delete_refunds':0,'parallel_cost_attempts':50,'accepted_cost_reservations':7,'parallel_checkout_attempts':30,'accepted_checkouts':1,'seconds':round(time.monotonic()-started,2)},indent=2))
+# Canvas saves and retention use the same owner lock under real competition.
+with psycopg.connect(DSN,autocommit=True) as connection:
+    canvas_uid=str(uuid.uuid4());connection.execute('insert into auth.users values(%s,%s)',(canvas_uid,'canvas-concurrency@example.test'))
+doc=json.dumps({'format':'brandforge-canvas','version':1,'name':'Concurrent canvas','width':100,'height':100,'background':'#ffffff','watermark':False,'sections':{'strategy':'','copy':'','seo':''},'layers':[]})
+request_id=str(uuid.uuid4())
+with ThreadPoolExecutor(max_workers=12) as workers:
+    saved=list(workers.map(lambda _:call('save_canvas',(canvas_uid,None,0,request_id,'c'*64,doc,None)),range(24)))
+assert len({s['id'] for s in saved})==1 and all(s['ok'] for s in saved)
+project=saved[0]['id']
+with ThreadPoolExecutor(max_workers=12) as workers:
+    revised=list(workers.map(lambda _:call('save_canvas',(canvas_uid,project,1,str(uuid.uuid4()),'d'*64,doc,None)),range(24)))
+assert sum(bool(r['ok']) for r in revised)==1
+with psycopg.connect(DSN,autocommit=True) as connection:
+    assert connection.execute('select document->>\'watermark\' from canvas_projects where id=%s',(project,)).fetchone()[0]=='true'
+    connection.execute('set role authenticated')
+    try:connection.execute('select * from public.canvas_projects')
+    except psycopg.errors.InsufficientPrivilege:pass
+    else:raise AssertionError('Canvas source exposed directly to browser role')
+print(json.dumps({'canvas_same_request_replays':24,'distinct_projects':1,'competing_revisions':24,'successful_revisions':1,'forced_free_attribution':True,'browser_role_denied':True}))

@@ -16,12 +16,17 @@ async def audit(page,label):
  return d
 async def main():
  async with async_playwright() as p:
-  browser=await p.chromium.launch(headless=True,args=['--no-sandbox'])
+  engine=os.environ.get('BF_BROWSER','chromium')
+  browser=await getattr(p,engine).launch(headless=True,args=['--no-sandbox'] if engine=='chromium' else [])
   # The real static site, no external submissions.
   for theme in ['dark','light']:
    for width in [390,1440]:
     context=await browser.new_context(viewport={'width':width,'height':900},reduced_motion='reduce')
     await context.add_init_script(f"localStorage.setItem('brandforge-theme','{theme}');")
+    async def local_only(route):
+     if urllib.parse.urlparse(route.request.url).hostname not in ('127.0.0.1','localhost'):return await route.abort()
+     return await route.continue_()
+    await context.route('**/*',local_only)
     page=await context.new_page()
     for path in ['','pricing','tools','demo','privacy','terms','refund','docs','agents','workspace','404']:
      await page.goto('http://127.0.0.1:8765/'+(path+'.html' if path else 'index.html'),wait_until='networkidle')
@@ -40,6 +45,7 @@ async def main():
      async def route(r):
       u=urllib.parse.urlparse(r.request.url);path=u.path
       requests.append({'path':path,'method':r.request.method,'body':r.request.post_data,'headers':dict(r.request.headers)})
+      if u.scheme in ('blob','data'):return await r.continue_()
       if u.hostname!=urllib.parse.urlparse(FIXTURE).hostname:return await r.abort()
       if path=='/vendor/supabase.mjs':
        module="export function createClient(){return {auth:{onAuthStateChange(){},async getSession(){return {data:{session:{access_token:'fixture-only',user:{id:'00000000-0000-4000-8000-000000000001',email:'fixture@example.test'}}}}},async signOut(){return {error:null}}}}}"
@@ -57,12 +63,13 @@ async def main():
       if path in api:return await r.fulfill(content_type='application/json',body=json.dumps(api[path]))
       if path=='/api/me/keys':return await r.fulfill(status=404,content_type='application/json',body='{}')
       if path in ['/','/signup','/login'] or path.startswith('/app/c/'):path='/index.html'
+      if path=='/canvas/':path='/canvas/index.html'
       f=CLOUD/path.lstrip('/')
       if f.is_file():return await r.fulfill(body=f.read_bytes(),content_type=mimetypes.guess_type(str(f))[0] or 'application/octet-stream')
       return await r.fulfill(status=404,body='Not found')
      context=await browser.new_context(viewport={'width':width,'height':900},reduced_motion='reduce',accept_downloads=True)
      await context.route('**/*',route);await context.add_init_script(f"localStorage.setItem('brandforge-theme','{theme}');window.__checkoutCalls=[];window.Paddle={{Checkout:{{open(d){{window.__checkoutCalls.push(d)}}}}}};")
-     page=await context.new_page();page.on('pageerror',lambda e:errors.append(str(e)))
+     page=await context.new_page();page.on('pageerror',lambda e:errors.append(e.stack))
      await page.goto(FIXTURE+'/',wait_until='networkidle');await page.wait_for_selector('#camp-list .row')
      await page.locator('summary').filter(has_text='Banner formats').click()
      assert await page.locator('#c-custom-wrap').is_visible()==(plan=='agency')
@@ -89,6 +96,12 @@ async def main():
      if plan=='pro':
       await page.locator('[data-plan=agency]').click();await page.wait_for_selector('#confirm-plan-change');assert not any(r['path']=='/api/billing/checkout' for r in requests);assert await page.evaluate('window.__checkoutCalls.length')==0
      results.append({'view':f'cloud flows/{plan}/{theme}/{width}','page_errors':errors,'history_oldest_reachable':True,'paid_changes_use_preview':plan=='pro'})
+     if plan=='agency' and theme=='dark' and width==1440:
+      await page.locator('#bill-back').click();await page.locator('#camp-list .row').first.click();await page.wait_for_selector('#detail:not(.hidden)')
+      page.once('dialog',lambda d:d.accept());await page.locator('#d-canvas').click();await page.wait_for_url('**/canvas/')
+      await page.wait_for_function("document.querySelector('#layers')?.textContent.includes('image')")
+      assert await page.locator('#copy').input_value()
+      results.append({'view':'Cloud recipe-less campaign to separate editable canvas','result':'pass','auth_transport':'mocked'})
      assert not errors,errors
      await context.close()
   # Auth layout on the actual DOM, with no session fixture.
@@ -107,7 +120,7 @@ async def main():
    await context.close()
   # Optional actual built Desktop client; start an isolated local server first.
   if os.environ.get('BRANDFORGE_DESKTOP_QA')=='1':
-   context=await browser.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce');page=await context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(str(e)))
+   context=await browser.new_context(viewport={'width':1440,'height':1000},reduced_motion='reduce');page=await context.new_page();errors=[];page.on('pageerror',lambda e:errors.append(e.stack))
    await page.goto('http://127.0.0.1:8767/',wait_until='networkidle');await audit(page,'desktop/initial/1440');await page.screenshot(path=str(SHOTS/'desktop-workspace.png'),full_page=False);results.append({'view':'Desktop actual built client','page_errors':errors});await context.close()
   await browser.close()
  (OUT/'browser-verification.json').write_text(json.dumps(results,indent=2));print(json.dumps({'views':len(results),'axe_violations':sum(len(r.get('axe',[])) for r in results),'overflows':[r['view'] for r in results if r.get('width',{}).get('page',0)>r.get('width',{}).get('viewport',0)],'errors':[r for r in results if r.get('page_errors')]},indent=2))

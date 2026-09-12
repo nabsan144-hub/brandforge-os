@@ -2,24 +2,27 @@ import {PNG} from 'pngjs';
 export class HttpError extends Error {
   constructor(status, message, code = 'REQUEST_FAILED') { super(message); this.status = status; this.code = code; }
 }
-export async function readBody(req,maxBytes=32000){
+export async function readBody(req,maxBytes=32000,signal=req.signal){
  const declared=Number(req.headers?.get?.('content-length')||0);
  if(Number.isFinite(declared)&&declared>maxBytes)throw new HttpError(413,'Request is too large.');
  let raw;
  if(req.body?.getReader){
-  const reader=req.body.getReader(),chunks=[];let size=0;
+  const reader=req.body.getReader(),chunks=[];let size=0;const cancel=()=>{reader.cancel().catch(()=>{});};if(signal?.aborted)throw new HttpError(408,'Request deadline reached.');signal?.addEventListener('abort',cancel,{once:true});
+  try{
   for(;;){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;
    if(size>maxBytes){await reader.cancel();throw new HttpError(413,'Request is too large.');}
    chunks.push(Buffer.from(value));
   }
+  if(signal?.aborted)throw new HttpError(408,'Request deadline reached.');
   raw=Buffer.concat(chunks).toString('utf8');
+  }finally{signal?.removeEventListener('abort',cancel);}
  }else raw=typeof req.text==='function'?await req.text():JSON.stringify(await req.json());
  if(Buffer.byteLength(raw,'utf8')>maxBytes)throw new HttpError(413,'Request is too large.');
  return raw;
 }
-export async function readJson(req,maxBytes=32000){
+export async function readJson(req,maxBytes=32000,{signal=req.signal}={}){
  let value;
- try{value=JSON.parse(await readBody(req,maxBytes));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}
+ try{value=JSON.parse(await readBody(req,maxBytes,signal));}catch(e){if(e instanceof HttpError)throw e;throw new HttpError(400,'Invalid JSON.');}
  if(!value||typeof value!=='object'||Array.isArray(value))throw new HttpError(400,'Expected a JSON object.');
  return value;
 }

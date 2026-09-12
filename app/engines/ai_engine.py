@@ -36,7 +36,7 @@ class AIEngine:
     # Provider catalogs and account eligibility can change; verify at release.
     PROVIDER_MODELS = {
         "xai_grok": "grok-4.6",
-        "groq": "qwen/qwen3.8-27b",
+        "groq": "openai/gpt-oss-120b",
         "openrouter": "deepseek/deepseek-r1:free",
         "gemini": "gemini-3.6-flash",
         # Premium tier users (Claude / Gemini Pro keys) — a better model means
@@ -62,9 +62,6 @@ class AIEngine:
     # Migrate only documented retired IDs. Do not silently replace a valid
     # saved model (and potentially change its price or output behavior).
     DEPRECATED_MODELS = {
-        "llama-3.3-70b-versatile": "qwen/qwen3.8-27b",
-        "llama-3.1-8b-instant": "qwen/qwen3.8-27b",
-        "meta-llama/llama-4-scout-17b-16e-instruct": "qwen/qwen3.8-27b",
         "gemini-2.0-flash": "gemini-3.6-flash",
         "gemini-2.0-flash-001": "gemini-3.6-flash",
         "gemini-3-pro-preview": "gemini-3.1-pro-preview",
@@ -77,7 +74,7 @@ class AIEngine:
     FALLBACK_MODELS = {
         "gemini": ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-3.5-flash", "gemini-2.5-pro"],
         "anthropic": ["claude-sonnet-5", "claude-sonnet-4-6", "claude-haiku-4-5"],
-        "groq": ["qwen/qwen3.6-27b", "openai/gpt-oss-120b", "openai/gpt-oss-20b"],
+        "groq": ["openai/gpt-oss-120b", "openai/gpt-oss-20b"],
         "deepseek": ["deepseek-v4-flash", "deepseek-v4-pro"],
         "kimi": ["kimi-k2.5", "kimi-k2"],
         "xai_grok": ["grok-4.6", "grok-4.5", "grok-4.3"],

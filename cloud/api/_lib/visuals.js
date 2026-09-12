@@ -2,6 +2,8 @@
 // server. Outlining keeps exported Arabic/Hindi shaping intact in any viewer,
 // without embedding a large font in every file or depending on local fonts.
 import * as fontkit from 'fontkit';
+import {editorialVector} from './editorial-vector.js';
+import {compositionVector,COMPOSITION_STYLES} from './composition-vector.js';
 import {fileURLToPath} from 'node:url';
 import {safeHex,safeLogo,HttpError} from './http.js';
 const FONT_NAMES=['NotoSans','NotoNaskhArabic','NotoSansDevanagari'];
@@ -228,9 +230,39 @@ function boldBody({w,h,p,inner,head,sub,label,list,offerTxt,primary,secondary,fg
  return out;
 }
 
-export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='#E8B54A',secondary='#0F172A',cta='Learn more',logo='',watermark=false,width=1200,height=630,headline='',subheadline='',scene='',style='essential',offer=''}){
- const w=Math.max(50,Math.min(5000,Math.round(width))),h=Math.max(50,Math.min(5000,Math.round(height))),p=Math.max(6,Math.min(64,Math.min(w,h)*.065));
- primary=safeHex(primary);secondary=safeHex(secondary,'#0F172A');logo=safeLogo(logo);
+// Visible attribution, not a forensic or tamper-proof watermark. Outlined text
+// lives in the SVG itself, so browser raster and ZIP exports inherit it.
+export const WATERMARK_TEXT='Made with BrandForge';
+export function watermarkFooter(width,height){
+ const band=Math.min(48,Math.max(16,Math.round(height*.045)));
+ const padding=Math.min(14,Math.max(4,width*.015));
+ const label=width<90?'BF':width<180?'BrandForge':WATERMARK_TEXT;
+ return {height:band,svg:`<g data-watermark="brandforge" role="img" aria-label="${WATERMARK_TEXT}"><rect x="0" y="${height-band}" width="${width}" height="${band}" fill="#101820"/>`
+  +textBox(label,[padding,height-band+2,width-padding*2,band-4],Math.min(22,Math.max(9,band*.52)),'#FFFFFF',1,'right')+'</g>'};
+}
+export function bannerSvg(options){
+ const w=Math.max(50,Math.min(5000,Math.round(options.width??1200)));
+ const h=Math.max(50,Math.min(5000,Math.round(options.height??630)));
+ if(!options.watermark)return renderBanner({...options,width:w,height:h});
+ const footer=watermarkFooter(w,h),artH=h-footer.height,renderH=artH;
+ // Reserve a separate footer rather than overlaying the customer's CTA/logo.
+ // Micro canvases reflow into the remaining height and use compact attribution.
+ const art=renderBanner({...options,width:w,height:renderH,watermark:false});
+ const layout=art.match(/data-layout="([^"]+)"/)[1];
+ const inner=art.slice(art.indexOf('>')+1,art.lastIndexOf('</svg>'));
+ return frame(w,h,options.product||'Your brand',`<svg x="0" y="0" width="${w}" height="${artH}" viewBox="0 0 ${w} ${renderH}" preserveAspectRatio="none" overflow="hidden">${inner}</svg>`+footer.svg,layout);
+}
+
+function renderBanner({product,subtitle='',audience='',benefits=[],primary='#E8B54A',secondary='#0F172A',cta='Learn more',logo='',watermark=false,width=1200,height=630,headline='',subheadline='',scene='',style='essential',offer='',product_image='',proof='',logo_position='left',photo_fit='contain',photo_anchor='center',explicitVisualFields=false}){
+ const w=Math.max(50,Math.min(5000,Math.round(width))),h=Math.max(24,Math.min(5000,Math.round(height))),p=Math.max(6,Math.min(64,Math.min(w,h)*.065));
+ primary=safeHex(primary);secondary=safeHex(secondary,'#0F172A');logo=safeLogo(logo);if(logo_position==='hidden')logo='';
+ if((style==='editorial-v1'||COMPOSITION_STYLES.includes(style))&&!scene){
+  const label=product||'Your brand',head=String(headline||'').trim()||String(benefits.find(x=>String(x||'').trim())||label).trim();
+  const sub=(explicitVisualFields?String(subheadline||''):String(subheadline||'').trim()||String(benefits.filter(x=>String(x||'').trim())[1]||'')).trim();
+  const renderer=style==='editorial-v1'?editorialVector:compositionVector;
+  const result=renderer({w,h,style,product_image,proof,logo_position,photo_fit,photo_anchor,primary,secondary,logo,label,head,sub,list:benefits.map(x=>String(x||'').trim()).filter(Boolean),offer:String(offer||'').trim(),cta},{measure:measured,textBox,ink,image,esc,supported:text=>Array.from(text).every(ch=>/[\s\p{Cf}]/u.test(ch)||getFonts().some(f=>f.hasGlyphForCodePoint(ch.codePointAt(0))))});
+  return frame(w,h,label,result.svg,result.layout);
+ }
  const fg=ink(secondary),label=product||'Your brand';let svg=`<rect width="${w}" height="${h}" fill="${secondary}"/><path d="M0 0H${w}" stroke="${primary}" stroke-width="${Math.max(3,h*.006)}"/>`,layout;
  // Layered brand depth: two soft radial glows in the brand accent, a diagonal
  // sheen and a fine deterministic grain. All procedural — no external assets,
@@ -253,7 +285,7 @@ export function bannerSvg({product,subtitle='',audience='',benefits=[],primary='
   layout=h>w*1.4?'vertical':w>h*1.7?'horizontal':'square';
   const inner=w-2*p,headerH=Math.min(64,h*.12),logoW=logo?Math.min(headerH,inner*.25):0;
   const head=(String(headline||'').trim()||String(benefits.find(x=>String(x||'').trim())||'')||label).trim();
-  const sub=(String(subheadline||'').trim()||String(benefits.filter(x=>String(x||'').trim())[1]||'')).trim();
+  const sub=(explicitVisualFields?String(subheadline||''):String(subheadline||'').trim()||String(benefits.filter(x=>String(x||'').trim())[1]||'')).trim();
   const rtlTop=measured(head||label).rtl;
   const list=benefits.map(x=>String(x||'').trim()).filter(Boolean).slice(0,3);
   if(!scene&&style==='bold'){
@@ -322,7 +354,7 @@ export function logoSvg({brand,primary='#E8B54A',secondary='#0F172A',style='comb
  else if(style==='pictorial')svg+=`<path d="M512 232 C 262 316 258 640 512 816 C 766 640 762 316 512 232 Z" fill="${pc}"/><path d="M512 310 L 512 730" stroke="${sc}" stroke-width="24" stroke-linecap="round"/><path d="M430 372 C 486 470 538 570 512 690" fill="none" stroke="${sc}" stroke-width="20" stroke-linecap="round"/>`;
  else if(style==='emblem')svg+=`<circle cx="512" cy="490" r="335" fill="none" stroke="${pc}" stroke-width="22"/><circle cx="512" cy="490" r="290" fill="none" stroke="${pc}" stroke-width="3"/>`+textBox(initials,[295,265,434,250],220,fg,1,'center')+textBox(brand,[235,545,554,140],76,fg,2,'center');
  else svg+=`<circle cx="512" cy="338" r="165" fill="${pc}"/>`+textBox(initials,[385,230,254,210],145,ink(pc),1,'center')+textBox(brand,[80,590,864,190],105,fg,2,'center');
- if(watermark)svg+=textBox('BrandForge · Preview',[130,900,764,44],24,fg,1,'center');
+ if(watermark)svg+=watermarkFooter(1024,1024).svg;
  return frame(1024,1024,brand,svg,'logo-'+style);
 }
 export {textBox as measuredTextBox};

@@ -1,0 +1,450 @@
+[
+  {
+    "page": "404.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "agents.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "best-ad-copy-generator.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "changelog.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "demo.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "docs.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "privacy.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "refund.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "terms.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "tools.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "vs-canva-ad-creator.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "workspace.html",
+    "theme": "light",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "404.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "agents.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "best-ad-copy-generator.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "changelog.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "demo.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "docs.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "privacy.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "refund.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "terms.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "tools.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "vs-canva-ad-creator.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "workspace.html",
+    "theme": "light",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "404.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "agents.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "best-ad-copy-generator.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "changelog.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "demo.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "docs.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "privacy.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "refund.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "terms.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "tools.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "vs-canva-ad-creator.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "workspace.html",
+    "theme": "dark",
+    "width": 390,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "404.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "agents.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "best-ad-copy-generator.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "changelog.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "demo.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "docs.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "index.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "pricing.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "privacy.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "refund.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "terms.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "tools.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "vs-canva-ad-creator.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  },
+  {
+    "page": "workspace.html",
+    "theme": "dark",
+    "width": 1440,
+    "axe": [],
+    "overflow": false,
+    "page_errors": []
+  }
+]

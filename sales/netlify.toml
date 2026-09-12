@@ -5,12 +5,9 @@
 [build.environment]
   NODE_VERSION = "20"
 
-clean_urls = true
+[build.processing.html]
+  pretty_urls = true
 
-[[redirects]]
-  from = "/tour"
-  to = "/assets/product-demo/tour.html"
-  status = 200
 
 [[headers]]
   for = "/*"

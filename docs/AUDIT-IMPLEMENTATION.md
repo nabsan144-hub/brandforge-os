@@ -1,3 +1,5 @@
+> Historical audit record. Its counts, live checks and completeness claims are not current certification. See `audit/FINAL-AUDIT.md` and `implementation/PROGRESS.csv` for this handoff.
+
 > Historical 1.4.0 audit mapping. The independent 1.4.1 review and current release evidence supersede its counts and packaging notes; see FULL-AUDIT.md and OWNER-GUIDE.md.
 
 # Audit implementation — 1.4 prelaunch branch

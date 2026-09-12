@@ -20,26 +20,7 @@
   src: url('./assets/fonts/instrument-serif-400-italic.woff2') format('woff2');
 }
 
-/* CANONICAL PALETTE — sales/assets/theme.css mirrors these dark values
-   (keep in sync; workspace.html mockup must match the real product). */
-:root {
-  --bg: #070d11;
-  --card: #0F172A; --inset: #070d11; --line: #1E293B;
-  --ink: #F8FAFC; --mut: #94A3B8; --faint: #76829B; --gold: #E8B54A;
-  --bg-rgb: 7 13 17; --card-rgb: 15 23 42; --inset-rgb: 7 13 17;
-  --line-rgb: 30 41 59; --ink-rgb: 248 250 252; --mut-rgb: 148 163 184;
-  --faint-rgb: 118 130 155; --gold-rgb: 232 181 74;
-}
-[data-theme="light"] {
-  /* Sweep 17 contrast pass: faint/mut were too washed for 11px UI text on
-     cream (user-reported). Darkened to clear WCAG AA at small sizes. */
-  --bg: #F6F4EF; --card: #FFFFFF; --inset: #F0EDE6; --line: #CFC9BB;
-  --ink: #14181F; --mut: #414B59; --faint: #535C6A; --gold: #8A5F0E;
-  --bg-rgb: 246 244 239; --card-rgb: 255 255 255; --inset-rgb: 240 237 230;
-  --line-rgb: 207 201 187; --ink-rgb: 20 24 31; --mut-rgb: 65 75 89;
-  --faint-rgb: 83 92 106; --gold-rgb: 138 95 14;
-}
-
+/* Palette aliases and RGB triplets are generated from shared/design-tokens.json. */
 html { background: var(--bg); }
 body {
   background: var(--bg);
@@ -58,10 +39,11 @@ body {
 /* WCAG AA: theme-agnostic utility colors (error/success chips) in light mode */
 [data-theme="light"] .text-emerald-300,
 [data-theme="light"] .text-emerald-400,
-[data-theme="light"] .text-emerald-500 { color:#047857; }
+[data-theme="light"] .text-emerald-500 { color:var(--bf-success); }
 [data-theme="light"] .text-red-300,
-[data-theme="light"] .text-red-400 { color:#B91C1C; }
-[data-theme="light"] .text-amber-400 { color:#B45309; }
+[data-theme="light"] .text-red-400 { color:var(--bf-error); }
+[data-theme="light"] .text-amber-300,
+[data-theme="light"] .text-amber-400 { color:var(--bf-warning); }
 [data-theme="light"] .text-zinc-200,
 [data-theme="light"] .text-zinc-300,
 [data-theme="light"] .text-zinc-400 { color:#3F4854; }
@@ -86,3 +68,23 @@ body {
 
 button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible,
 textarea:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+.startup-error { max-width: 640px; margin: 12vh auto; padding: 24px; color: #f8fafc; background: #101820; border-radius: 12px; line-height: 1.6; }
+.startup-error h1 { font-size: 28px; line-height: 1.2; margin-bottom: 18px; }
+.startup-error button { margin-top: 20px; padding: 12px 20px; color: #101820; background: #e8b54a; border-radius: 6px; font-weight: 700; }
+.startup-error button:focus-visible { outline: 3px solid #fff; outline-offset: 4px; }
+
+.desktop-status { order: 3; flex-basis: 100%; }
+.desktop-status button { white-space: nowrap; }
+@media (min-width: 1100px) { .desktop-status { order: 0; flex-basis: auto; } }
+@media (max-width: 639px) { .network-panel { position: fixed; left: 16px; right: 16px; top: 124px; width: auto; } }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+
+.text-emerald-300,.text-emerald-400,.text-emerald-500{color:var(--bf-success)}
+.text-red-300,.text-red-400{color:var(--bf-error)}
+.text-amber-300,.text-amber-400{color:var(--bf-warning)}
+
+@font-face{font-family:Geist;font-style:normal;font-weight:100 900;font-display:swap;src:url(./assets/fonts/geist-400.woff2) format("woff2")}

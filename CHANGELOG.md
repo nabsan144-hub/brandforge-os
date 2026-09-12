@@ -1,5 +1,60 @@
 # BrandForge OS — Changelog
 
+## 1.14.0 — AI campaign source release (2026-09-12)
+
+- AI-first three-format campaign execution in Cloud (operator-gated) and keyed Desktop image mode; separate provider credentials/models, bounded orchestration, no silent basic-design substitution on failure.
+- Validated product/approved-logo references for Gemini and OpenAI with explicit sharing consent. Unsupported xAI references fail before calls.
+- Portable hero/square/story Canvas documents, honest raster-lettering boundary, editable layer tools and fixed Desktop source handoff.
+- Restored drifting/click-responsive homepage orbs alongside the labeled Crunch concept showcase, with DOM and browser regressions.
+- Isolated staging marketing/app origins and preview robots; migration runbook corrected through 0025.
+- Desktop request-body bounds, reference decoding, model-consent checks and three-image cost reservation.
+- Local source/test verification does not substitute for live paid-provider quality, deployment, signing or customer acceptance. Checkout remains disabled.
+
+## 1.13.0 — Consolidated local completion candidate (2026-09-12)
+
+- Shared editable canvas: layers, geometry, rotation, crop, text, undo/redo, preview zoom, retained saves/restores and editable JSON transfer. Historical artwork imports as a safe flattened reference, not recovered typography.
+- Canvas included in bounded account exports; owner isolation, revision conflicts, replay, raster validation, SVG entity/active-content restrictions and review-before-artwork exports.
+- Native runtime notices, process/data-directory lock, readiness-aware browser launch, unsigned OS installer build recipes and Linux install/repair/rollback/uninstall integrity checks.
+- Real stage progress metadata and support request IDs for Cloud and local Desktop. Progress outages do not duplicate or refund generation.
+- Canonical semantic palette/RGB aliases, control boundaries, font, state and spacing adoption; expanded browser checks. Removed unsubstantiated starter-brief guarantees and blank-benefit claims.
+- Verified historical restoration and deduplication; obsolete source ZIP removed from the live tree and retained privately in history.
+- No live-service, publisher-signing, legal, clean Windows/macOS device or customer-purchase certification is implied. See the consolidated owner handoff and all-91 reconciliation.
+
+## 1.12.0 — scene-preserving edits and replacement assets (2026-09-12)
+
+- Add permission-gated approved-logo replacement, safe PNG re-encoding and exact source/history restore.
+- Add nine Product-first crop anchors, preserving contain as the default.
+- Add hash-bound schema-2 recipes for newly generated and recovered AI heroes; edit text/logo overlays without changing scene bytes or making a provider call. Historical recipe-less scenes remain protected.
+- Reject oversized logo dimensions before browser decoding; preserve static PNG/JPEG/WebP support and transparent PNG output.
+- Lock correction controls while saving; extend retry/export/restore browser QA to logos and scene-preserving recipes.
+- Requires migration 0023 after 0022 before enabling new corrections/recovery. No deployment, paid calls, native signing or complete-backlog certification.
+
+## 1.11.0 — remaining-workflows source candidate (2026-09-11)
+
+- Added default-off revision-scoped Cloud client reviews and explicit portable archive transfer with core-only omission reporting.
+- Added bounded image-only recovery, private immutable visual versions, deterministic text/benefit/proof, photo and logo-placement edits, exact restore and history cleanup.
+- Added automatic composition selection, reproducible fictional gallery, signup CAPTCHA fail-closed controls, shared semantic UI tokens and explicit-consent daily event counts.
+- Added unsigned current-OS native runtime build and offline smoke, plus manual Windows/macOS candidate workflow.
+- Not a signed installer, deployed release, live payment/provider certification or completion of all 91 acceptance items. See docs/audit/FOLLOW-UP-1.11.0.md and the full reconciliation.
+
+## 1.10.0 — approved-photo compositions and template previews (2026-09-11)
+
+- Add opt-in Product-first, Offer-first, Service-first and Evidence-first Cloud composition families; preserve existing defaults and saved renderer compatibility.
+- Add explicit photograph-rights consent, bounded JPEG normalization, metadata stripping, contained imagery and portable source exports. Uploaded photos are never sent to model providers.
+- Add authenticated no-allowance/no-provider template previews with deletion and rate guards, and product workflow browser regressions in CI.
+- Add owner-only read-only operational aggregates, shared maintenance abort budget, privacy-safe Desktop support diagnostics and a tested owner economics scenario calculator.
+- Correct downloaded JPEG MIME type and replace misleading paid navigation with Plans & billing.
+- Retain checkout prelaunch gates. This is a complete source archive, not a claim that all 91 items, live integrations, native certification or customer acceptance are complete.
+
+## 1.9.1 — bounded scene decoding and no-allowance practice (2026-09-11)
+
+- Validate/decode provider rasters, bound pixels and bytes, strip metadata and normalize scene JPEGs; Sharp 0.35.4 with lazy loading and bounded cache/concurrency.
+- Add standalone `/practice`: reproducible original/revised fictional offer packs, no auth/provider/allowance usage, preview and hash-checked ZIP/PNG export.
+- Put exact allowance, fallback and UTC-reset rules beside Create; retain safe idempotent retries.
+- Narrow Desktop positioning; simplify mobile marketing hierarchy; pause off-screen hero animation and honor live reduced-motion changes.
+- Clarify single-account Cloud scope, remove guaranteed-quality wording, preserve paid gates and existing renderer/correction contracts.
+- Repair missing shallow Git ancestry discovered during independent archive recovery. No push/deployment/payment activation. Remaining features and external release gates are not complete.
+
 ## 1.9.0 — bold creative engine (2026-09-11)
 
 Vivid, business-specific ad compositions for every generated banner (Cloud and

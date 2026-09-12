@@ -25,7 +25,7 @@
   let hasKey = false
   // AI image design (separate engine — Gemini / Grok / OpenAI image keys)
   const IMAGE_PROVIDERS_UI = ['auto', 'gemini', 'xai_grok', 'openai', 'off']
-  const IMAGE_PROVIDER_LABEL = { auto: 'Auto (when campaign is online)', gemini: 'Gemini (Nano Banana)', xai_grok: 'Grok Imagine', openai: 'OpenAI (gpt-image)', off: 'Off (template design)' }
+  const IMAGE_PROVIDER_LABEL = { auto: 'Auto: one keyed provider when online', gemini: 'Gemini (Nano Banana)', xai_grok: 'Grok Imagine', openai: 'OpenAI (gpt-image)', off: 'Basic layouts (no image provider)' }
   let imageProvider = 'auto'
   let imageModel = ''
   let imageKey = ''
@@ -40,7 +40,7 @@
   let newClient = { name: '', industry: 'General', tone: 'Direct, confident', audience: '', primary: '#E8B54A', secondary: '#0F172A' }
   let adding = false
   let brainOpen = false
-  let brain = { brand_promise: '', proof_points: '', prohibited_claims: '', agency_footer: '', show_vanguard_branding: true }
+  let brain = { brand_promise: '', proof_points: '', prohibited_claims: '', agency_footer: '', show_brandforge_branding: true }
   let brainSaving = false
   let logoBusy = false
   let logoInput = null
@@ -99,7 +99,7 @@
         proof_points: activeClient?.proof_points || '',
         prohibited_claims: activeClient?.prohibited_claims || '',
         agency_footer: activeClient?.agency_footer || '',
-        show_vanguard_branding: activeClient?.show_vanguard_branding !== false,
+        show_brandforge_branding: activeClient?.show_brandforge_branding !== false,
       }
     } catch { /* ignore */ }
   }
@@ -230,9 +230,9 @@
   onMount(load)
 </script>
 
-<div class="rounded-[20px] bg-card border border-line overflow-hidden">
+<div class="rounded-card bg-card border border-line overflow-hidden">
   <div class="p-5 border-b border-line">
-    <h3 class="font-bold text-[14px] flex items-center gap-2"><Settings2 class="w-4 h-4 text-gold" /> Settings</h3>
+    <h2 class="font-bold text-[14px] flex items-center gap-2"><Settings2 class="w-4 h-4 text-gold" /> Settings</h2>
     <p class="text-[11px] text-faint">AI provider, keys & active brand</p>
   </div>
 
@@ -262,7 +262,7 @@
         {/each}
       </div>
       {#if provider === 'offline'}
-        <p class="text-[11px] text-faint mt-2">Offline engine: template-grade output, zero cost, fully private.</p>
+        <p class="text-[11px] text-faint mt-2">Offline text uses local templates without a model charge. Image and connected-tool settings are separate.</p>
       {/if}
       {#if provider === 'ollama'}
         <p class="text-[11px] text-faint mt-2">Uses Ollama at localhost:11434 (fully offline models).</p>
@@ -277,9 +277,9 @@
         <input id="apikey" bind:value={apiKey} type="password" autocomplete="off"
           placeholder={hasKey ? '•••••••• (leave blank to keep existing key)' : 'Paste API key — free: console.groq.com/keys or aistudio.google.com'}
           class="w-full px-4 py-2.5 rounded-xl border border-line bg-inset text-ink text-[13px] outline-none focus:border-gold/50" />
-        <p class="text-[11px] text-faint mt-1.5">Keys are written to <code class="text-[11px]">.env</code> with 0600 permissions — never to config.json. Each provider has its own env var.</p>
-        <p class="text-[11px] text-faint mt-1">No key yet? Get one free (no card): <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-gold underline">Groq ↗</a> · <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="text-gold underline">Gemini ↗</a> — unlocks model-grade copy + real AI images. Premium keys welcome too: <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer" class="text-gold underline">Claude ↗</a> (paid, expert-grade).</p>
-        <label for="model" class="text-[11px] font-semibold text-mut tracking-wide uppercase mb-1.5 block mt-3">Model — better model = better campaigns</label>
+        <p class="text-[11px] text-faint mt-1.5">Keys are kept in your local <code class="text-[11px]">.env</code>, not config.json. Restrict access to your user account and folder; never share this file. POSIX file permissions and Windows access controls differ.</p>
+        <p class="text-[11px] text-faint mt-1">Get a key from the provider: <a href="https://console.groq.com/keys" target="_blank" rel="noopener noreferrer" class="text-gold underline">Groq ↗</a> · <a href="https://aistudio.google.com/app/apikey" target="_blank" rel="noopener noreferrer" class="text-gold underline">Gemini ↗</a> — text access does not prove image access or free image generation. Also available: <a href="https://console.anthropic.com/settings/keys" target="_blank" rel="noopener noreferrer" class="text-gold underline">Claude ↗</a> (provider fees may apply).</p>
+        <label for="model" class="text-[11px] font-semibold text-mut tracking-wide uppercase mb-1.5 block mt-3">Text model — choose a supported model ID</label>
         <select id="model" bind:value={modelChoice} on:change={applyModelChoice}
           class="w-full px-4 py-2.5 rounded-xl border border-line bg-inset text-ink text-[13px] outline-none focus:border-gold/50">
           <option value="default">Recommended default (best value)</option>
@@ -292,14 +292,15 @@
           <input bind:value={model} placeholder="e.g. claude-opus-4-8 or gemini-2.5-pro"
             class="w-full mt-2 px-4 py-2.5 rounded-xl border border-line bg-inset text-ink text-[13px] outline-none focus:border-gold/50" />
         {/if}
-        <p class="text-[11px] text-faint mt-1.5">Free tiers (Groq/Gemini) are great to start. Have a Claude or Gemini Pro key? Pick the expert model — the engine writes noticeably sharper copy on it.</p>
+        <p class="text-[11px] text-faint mt-1.5">Provider access, quotas and pricing vary by account and model. Check availability and review the resulting copy; model choice does not guarantee quality.</p>
       </div>
     {/if}
 
     <!-- AI image design -->
+    <p class="text-[11px] text-faint">With a configured image key, campaigns request three complete AI advertisements. Three provider requests can incur fees. No automatic provider/model switch. Review product details, spelling and claims; AI lettering is raster, not editable text. Basic layouts remain a deliberate no-image-provider option.</p>
     <div class="p-4 rounded-xl bg-inset border border-line">
-      <h4 class="text-[12px] font-bold text-ink flex items-center gap-2">AI Image Design</h4>
-      <p class="text-[11px] text-faint mt-0.5 mb-3">Campaign heroes and Instagram posts become AI-generated brand photos — your brand colors, headline, benefits and CTA are composed on top. Auto uses your image keys only when the AI provider is online (offline campaigns stay 100% offline); picking a provider enables AI images even then. Without keys, online campaigns use the keyless generator and offline campaigns use the template design.</p>
+      <h3 class="text-[12px] font-bold text-ink flex items-center gap-2">AI Image Design</h3>
+      <p class="text-[11px] text-faint mt-0.5 mb-3">Hero, square and story advertisements are generated as complete artwork. Auto selects one keyed provider only when text generation is connected. An explicitly selected image provider may run even with offline text. No key means basic layouts; no paid provider failure silently switches to another service. Use the per-campaign no-AI checkbox to disable all provider calls.</p>
       <div class="grid grid-cols-1 gap-1.5 mb-3">
         {#each IMAGE_PROVIDERS_UI as ip}
           <button on:click={() => { imageProvider = ip; imageKey = '' }}
@@ -321,7 +322,7 @@
     </div>
 
     {#if msg}
-      <div class="p-3 rounded-xl text-[12px] {msg.ok ? 'bg-emerald-950/30 border border-emerald-900/50 text-emerald-300' : 'bg-red-950/30 border border-red-900/50 text-red-300'}">{msg.text}</div>
+      <div role={msg.ok ? 'status' : 'alert'} class="p-3 rounded-xl text-[12px] bg-card border border-line {msg.ok ? 'text-emerald-300' : 'text-red-300'}">{msg.text}</div>
     {/if}
 
     <button on:click={save} disabled={busy} class="w-full py-3 rounded-full bg-ink text-bg font-bold text-[13px] disabled:opacity-50 hover:opacity-90 transition">
@@ -332,7 +333,7 @@
     <div class="p-4 rounded-xl bg-inset border border-line">
       <div class="flex items-start gap-2">
         <div>
-          <h4 class="text-[12px] font-bold text-ink">Brand Brain</h4>
+          <h3 class="text-[12px] font-bold text-ink">Brand Brain</h3>
           <p class="text-[11px] text-faint mt-0.5">Set approved proof and phrases BrandForge must flag before a campaign is used.</p>
         </div>
         <button on:click={() => brainOpen = !brainOpen} class="ml-auto text-[11px] font-bold text-gold hover:underline">{brainOpen ? 'Close' : 'Edit'}</button>
@@ -355,7 +356,7 @@
             <label for="brain-footer" class="text-[11px] font-semibold text-mut uppercase tracking-wide block mb-1">Client-facing export footer</label>
             <input id="brain-footer" bind:value={brain.agency_footer} maxlength="180" placeholder="e.g. Prepared by Apex Growth Studio · hello@example.com" class="w-full px-3 py-2 rounded-lg border border-line bg-card text-ink text-[12px] outline-none focus:border-gold/50" />
           </div>
-          <label class="flex items-center gap-2 text-[11px] text-ink cursor-pointer"><input type="checkbox" bind:checked={brain.show_vanguard_branding} class="accent-[var(--gold)]" /> Include “Prepared with BrandForge OS” in client-facing exports</label>
+          <label class="flex items-center gap-2 text-[11px] text-ink cursor-pointer"><input type="checkbox" bind:checked={brain.show_brandforge_branding} class="accent-[var(--gold)]" /> Include “Prepared with BrandForge OS” in client-facing exports</label>
           <p class="text-[10.5px] text-faint">The Claim Guard highlights matches; it does not replace legal, platform, or factual review.</p>
           <button on:click={saveBrandBrain} disabled={brainSaving} class="w-full py-2.5 rounded-full bg-ink text-bg text-[12px] font-bold disabled:opacity-50">{brainSaving ? 'Saving…' : 'Save Brand Brain'}</button>
         </div>
@@ -380,7 +381,7 @@
               <p class="text-[10.5px] text-faint">Stored locally with this brand's profile.</p>
             </div>
           </div>
-          <input type="file" accept="image/png,image/jpeg" bind:this={logoInput} on:change={uploadLogo} class="mt-2 w-full text-[11px] text-mut file:mr-2 file:px-3 file:py-1.5 file:rounded-full file:border-0 file:bg-ink file:text-bg file:text-[11px] file:font-bold cursor-pointer" />
+          <input aria-label="Upload approved brand logo" type="file" accept="image/png,image/jpeg" bind:this={logoInput} on:change={uploadLogo} class="mt-2 w-full text-[11px] text-mut file:mr-2 file:px-3 file:py-1.5 file:rounded-full file:border-0 file:bg-ink file:text-bg file:text-[11px] file:font-bold cursor-pointer" />
         </div>
       {/if}
       {#each clients as c}

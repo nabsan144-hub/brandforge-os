@@ -37,7 +37,7 @@ def test_allow_ai_image_false_blocks_generation(monkeypatch):
     assert "hero_image.jpg" not in result["visual_files"]
 
 
-def test_online_swarm_includes_image_when_api_works(monkeypatch):
+def test_online_swarm_does_not_substitute_a_public_image_for_keyed_ai_artwork(monkeypatch):
     monkeypatch.setenv("GROQ_API_KEY", "gsk_test_online_key")
     monkeypatch.setenv("BRANDFORGE_PUBLIC_IMAGES", "1")
     import modules.image_generator as ig
@@ -49,8 +49,8 @@ def test_online_swarm_includes_image_when_api_works(monkeypatch):
     eng.provider = "groq"  # simulate connected online provider
     swarm = sd.SwarmDirector(eng)
     result = swarm.execute_swarm_campaign("Probe", "T", "a", "x")
-    assert result["visual_files"].get("hero_image.jpg") == fake_jpg
-    assert result["meta"]["ai_image"] is True
+    assert "hero_image.jpg" not in result["visual_files"]
+    assert result["meta"]["ai_image"] is False
 
 
 def test_project_manager_saves_binary_files(tmp_path):

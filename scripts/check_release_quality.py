@@ -5,12 +5,17 @@ must not accumulate in a RAM-backed /tmp and starve the PostgreSQL/WASM tests.
 """
 import os
 import subprocess
+import shutil
 import sys
 import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 COMMANDS = [
+    [sys.executable, "scripts/repository_inventory.py", "--output", ".cache/release-source-inventory.json"],
+    ["node", "--input-type=module", "-e", "await import('./cloud/api/index.js');console.log('Native Node Cloud route import passed')"],
+    [sys.executable, 'scripts/sync_canvas.py', '--check'],
+    [sys.executable, 'scripts/sync_design_tokens.py', '--check'],
     [sys.executable, '-m', 'pytest', 'app/tests', '-q'],
     [sys.executable, '-m', 'ruff', 'check', 'app'],
     ['npm', 'test', '--prefix', 'cloud'],
@@ -34,7 +39,10 @@ def main():
             env[key] = temporary
         for command in COMMANDS:
             print('QUALITY:', ' '.join(command), flush=True)
-            subprocess.run(command, cwd=ROOT, env=env, check=True)
+            executable = shutil.which(command[0])
+            if not executable:
+                raise SystemExit('Required executable not found: ' + command[0])
+            subprocess.run([executable, *command[1:]], cwd=ROOT, env=env, check=True)
 
 
 if __name__ == '__main__':

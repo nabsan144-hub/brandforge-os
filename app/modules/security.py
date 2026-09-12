@@ -62,7 +62,7 @@ def safe_text(text: Any, max_len: int = 500) -> str:
     except (TypeError, ValueError):
         max_len = 500
     value = str(text)[:max_len]
-    value = re.sub(r"<[^>]*>", "", value)
+    value = re.sub(r"</?[A-Za-z][^<>]*>", "", value)
     value = _UNTERMINATED_TAG_RE.sub("", value)
     # Remove NUL and other non-printing controls, but retain whitespace useful
     # in briefs. This also keeps ReportLab and terminal output from choking.

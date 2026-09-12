@@ -37,6 +37,10 @@
     if(cfg().desktop_checkout_enabled!==true){waitlist(tier);return;}
     if(busy)return;busy=true;
     try{
+      var availability=window.BRANDFORGE_AVAILABILITY;
+      if(!availability)throw new Error('Desktop availability could not be verified.');
+      await availability.refresh();
+      if(!availability.desktopOpen()){busy=false;notice('Desktop checkout is not open or could not be verified. Join the waitlist for updates.');waitlist(tier);return;}
       var base=String(cfg().hosted_url||'').replace(/\/+$/,'');
       if(!/^https:\/\//.test(base))throw new Error('Checkout service is not configured.');
       var client=await paddle(base);
@@ -50,15 +54,7 @@
   // checkout for a tier that still routes to the waitlist (and vice versa).
   // Static HTML ships the honest waitlist wording; this upgrades each labelled
   // element to a buy label only when its tier is actually configured for sale.
-  function relabel(){
-    var cfg=window.BRANDFORGE_LAUNCH||{};var live=[];
-    try{live=typeof cfg.configuredTiers==='function'?cfg.configuredTiers():[];}catch(e){}
-    document.querySelectorAll('[data-cta-tier]').forEach(function(el){
-      var tier=el.getAttribute('data-cta-tier'),price=el.getAttribute('data-cta-price')||'';
-      var text=live.indexOf(tier)!==-1?('Buy once — $'+price):('Join the waitlist — $'+price+' at launch');
-      if(el.textContent!==text)el.textContent=text;
-    });
-  }
+  function relabel(){window.BRANDFORGE_AVAILABILITY?.render();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',relabel);else relabel();
   window.refreshDesktopCtas=relabel;
   function intent(){var tier=new URLSearchParams(location.search).get('tier');var select=document.getElementById('wl-tier');if(select&&['owner','agency_source','undecided'].includes(tier))select.value=tier;}

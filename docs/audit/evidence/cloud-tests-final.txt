@@ -1,0 +1,66 @@
+
+> brandforge-cloud@1.0.0 test
+> vitest run
+
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/user/repo/cloud[39m
+
+ [32m✓[39m tests/delivery-queue.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3205[2mms[22m[39m
+ [32m✓[39m tests/private-assets.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 4429[2mms[22m[39m
+   [33m[2m✓[22m[39m operator recovery writes oversized legacy bytes privately without mutation or overwriting a backup [33m 442[2mms[22m[39m
+ [32m✓[39m tests/full-audit.test.js [2m([22m[2m7 tests[22m[2m)[22m[33m 2857[2mms[22m[39m
+ [32m✓[39m tests/vector-corrections.test.js [2m([22m[2m23 tests[22m[2m)[22m[33m 3846[2mms[22m[39m
+ [32m✓[39m tests/engine.test.js [2m([22m[2m11 tests[22m[2m)[22m[33m 6184[2mms[22m[39m
+     [33m[2m✓[22m[39m retains successful provider stages if one request fails [33m 4525[2mms[22m[39m
+     [33m[2m✓[22m[39m backoff retries a 429 and binds the generated headline into every banner [33m 1540[2mms[22m[39m
+ [32m✓[39m tests/billing.test.js [2m([22m[2m18 tests[22m[2m)[22m[33m 3466[2mms[22m[39m
+ [32m✓[39m tests/database.test.js [2m([22m[2m19 tests[22m[2m)[22m[33m 3319[2mms[22m[39m
+ [32m✓[39m tests/image-safety.test.js [2m([22m[2m24 tests[22m[2m)[22m[33m 2958[2mms[22m[39m
+ [32m✓[39m tests/campaigns.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 3441[2mms[22m[39m
+ [32m✓[39m tests/me-export.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 2886[2mms[22m[39m
+ [32m✓[39m tests/visual-review.test.js [2m([22m[2m16 tests[22m[2m)[22m[33m 3206[2mms[22m[39m
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mpersists the order when email fails and safely retries delivery
+[22m[39mPaddle processing needs retry evt_bbc08e8efdda47179009eccf67 DELIVERY_PENDING
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mbinds a Cloud entitlement to the ORIGINAL authorized transaction, never custom user_id/email
+[22m[39mPaddle processing needs retry evt_bce8b587faa54b07ab385b841a REQUEST_FAILED
+
+[90mstderr[2m | tests/paddle-webhook.test.js[2m > [22m[2mverified payment events and durable fulfillment[2m > [22m[2mkeeps an unsuccessful event retryable after a database failure
+[22m[39mPaddle processing needs retry evt_f15c6dbb4bc94f9aa655d77b74 DATABASE_UNAVAILABLE
+
+ [32m✓[39m tests/paddle-webhook.test.js [2m([22m[2m8 tests[22m[2m)[22m[33m 3139[2mms[22m[39m
+ [32m✓[39m tests/me.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 2917[2mms[22m[39m
+ [32m✓[39m tests/database-upgrade.test.js [2m([22m[2m1 test[22m[2m)[22m[33m 2841[2mms[22m[39m
+   [33m[2m✓[22m[39m upgrade preserves larger known monthly usage and closes legacy waitlist grants [33m 2838[2mms[22m[39m
+ [32m✓[39m tests/id.test.js [2m([22m[2m6 tests[22m[2m)[22m[33m 3028[2mms[22m[39m
+ [32m✓[39m tests/dashboard-a11y.test.js [2m([22m[2m5 tests[22m[2m)[22m[33m 1424[2mms[22m[39m
+     [33m[2m✓[22m[39m has zero axe violations (color-contrast disabled for jsdom) [33m 1155[2mms[22m[39m
+ [32m✓[39m tests/editorial-vector.test.js [2m([22m[2m37 tests[22m[2m)[22m[33m 310[2mms[22m[39m
+ [32m✓[39m tests/readiness-regressions.test.js [2m([22m[2m12 tests[22m[2m)[22m[32m 277[2mms[22m[39m
+ [32m✓[39m tests/watermark-payload.test.js [2m([22m[2m16 tests[22m[2m)[22m[32m 260[2mms[22m[39m
+ [32m✓[39m tests/i18n.test.js [2m([22m[2m15 tests[22m[2m)[22m[32m 128[2mms[22m[39m
+ [32m✓[39m tests/golden-i18n.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 116[2mms[22m[39m
+ [32m✓[39m tests/golden-en.test.js [2m([22m[2m1 test[22m[2m)[22m[32m 62[2mms[22m[39m
+ [32m✓[39m tests/quota.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 67[2mms[22m[39m
+ [32m✓[39m tests/final-hardening.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m tests/dispatcher.test.js [2m([22m[2m9 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+ [32m✓[39m tests/capabilities.test.js [2m([22m[2m8 tests[22m[2m)[22m[32m 35[2mms[22m[39m
+[90mstderr[2m | tests/waitlist.test.js[2m > [22m[2mwaitlist endpoint[2m > [22m[2mreturns 501 with an actionable message when the waitlist table is missing
+[22m[39mwaitlist upsert failed relation "public.waitlist" does not exist
+
+ [32m✓[39m tests/waitlist.test.js [2m([22m[2m7 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m tests/deliver.test.js [2m([22m[2m17 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m tests/schema.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m tests/keys.test.js [2m([22m[2m18 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m tests/limit.test.js [2m([22m[2m6 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m tests/vendor.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m tests/dashboard-contrast.test.js [2m([22m[2m4 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/clientip.test.js [2m([22m[2m5 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m tests/payload-routes.test.js [2m([22m[2m3 tests[22m[2m)[22m[33m 3424[2mms[22m[39m
+   [33m[2m✓[22m[39m large high-entropy legacy account exports fail with a controlled support path [33m 468[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m35 passed[39m[22m[90m (35)[39m
+[2m      Tests [22m [1m[32m368 passed[39m[22m[90m (368)[39m
+[2m   Start at [22m 15:58:26
+[2m   Duration [22m 68.35s[2m (transform 832ms, setup 0ms, import 5.60s, tests 57.99s, environment 5ms)[22m
+

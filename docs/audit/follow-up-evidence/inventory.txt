@@ -1,0 +1,6 @@
+{
+  "files": 575,
+  "text_lines": 59021,
+  "syntax_failures": [],
+  "credential_patterns": []
+}

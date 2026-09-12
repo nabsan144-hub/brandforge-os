@@ -1,0 +1,28 @@
+Traceback (most recent call last):
+  File "/home/user/repo/scripts/visual_review_qa.py", line 87, in <module>
+    asyncio.run(main())
+    ~~~~~~~~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 196, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/runners.py", line 119, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/usr/local/lib/python3.13/asyncio/base_events.py", line 725, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "/home/user/repo/scripts/visual_review_qa.py", line 73, in main
+    await dialog_click(page,'#d-review-ack',False);assert len(patches)==1
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/user/repo/scripts/visual_review_qa.py", line 14, in dialog_click
+    async with page.expect_event('dialog') as info:
+               ~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_async_base.py", line 60, in __aexit__
+    await self._event.value
+  File "/usr/local/lib/python3.13/site-packages/playwright/_impl/_async_base.py", line 35, in value
+    return mapping.from_maybe_impl(await self._future)
+                                   ^^^^^^^^^^^^^^^^^^
+playwright._impl._errors.TimeoutError: Timeout 30000ms exceeded while waiting for event "dialog"
+=========================== logs ===========================
+waiting for event "dialog"
+============================================================

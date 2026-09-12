@@ -1,0 +1,53 @@
+{
+  "dark": {
+    "bg": "#070D11",
+    "card": "#0F172A",
+    "ink": "#F8FAFC",
+    "muted": "#94A3B8",
+    "line": "#34435B",
+    "focus": "#F3C567",
+    "error": "#FFB4AB",
+    "success": "#8BE0AA",
+    "inset": "#0B1016",
+    "faint": "#8B98AE",
+    "accent": "#E8B54A",
+    "accent_ink": "#14181F",
+    "warning": "#F3C567",
+    "control_line": "#64748B",
+    "action": "#E8B54A",
+    "on_action": "#0A0D14"
+  },
+  "light": {
+    "bg": "#F6F4EF",
+    "card": "#FFFFFF",
+    "ink": "#14181F",
+    "muted": "#414B59",
+    "line": "#CFC9BB",
+    "focus": "#785000",
+    "error": "#B42318",
+    "success": "#176C40",
+    "inset": "#F0EDE6",
+    "faint": "#535C6A",
+    "accent": "#75500B",
+    "accent_ink": "#FFFFFF",
+    "warning": "#785000",
+    "control_line": "#737B87",
+    "action": "#E8B54A",
+    "on_action": "#0A0D14"
+  },
+  "space": {
+    "1": "4px",
+    "2": "8px",
+    "3": "12px",
+    "4": "16px",
+    "6": "24px"
+  },
+  "radius": "8px",
+  "font_ui": "'Geist', system-ui, -apple-system, sans-serif",
+  "font_display": "'Instrument Serif', Georgia, serif",
+  "radii": {
+    "card": "20px",
+    "control": "12px",
+    "pill": "9999px"
+  }
+}

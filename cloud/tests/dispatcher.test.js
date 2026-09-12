@@ -44,6 +44,11 @@ describe("api catch-all dispatcher (Hobby 12-Function refactor)", () => {
     expect(r.status).toBe(401); // auth first -> Not signed in
   });
 
+  it("routes owner-authorized private asset downloads", async () => {
+    const r=await dispatcher(new Request(`https://app.brandforge-os.com/api/campaigns/${crypto.randomUUID()}/assets`));
+    expect(r.status).toBe(401);
+  });
+
   it("routes deeper dynamic /api/campaigns/:id/deliver", async () => {
     const r = await dispatcher(
       new Request(`https://app.brandforge-os.com/api/campaigns/${crypto.randomUUID()}/deliver`, {
